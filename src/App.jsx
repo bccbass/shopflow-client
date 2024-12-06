@@ -1,14 +1,18 @@
-import { useState } from 'react'
-import Loading from './Loading'
+/** @format */
+
+import { useState } from "react";
+import Loading from "./Loading";
+import Notes from "./Notes";
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [count, setCount] = useState(0);
 
-  return (
-    <>
-      < Loading />
-    </>
-  )
+	return (
+		<>
+			{/* < Loading /> */}
+			<Notes />
+		</>
+	);
 }
 
-export default App
+export default App;
