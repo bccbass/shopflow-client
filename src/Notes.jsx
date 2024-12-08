@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useEffect, useState } from "react";
+import Note from "./Note";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import NoteForm from "./NoteForm";
 import { getResource } from "./assets/apiHelpers";
@@ -28,18 +29,8 @@ const Notes = () => {
           {notesQuery?.data?.map((note) => (
             <li
               key={note._id}
-              className="flex flex-col w-60 m-4 border-slate-200 shadow-sm border rounded-md "
             >
-              <h3 className="font-bold bg-slate-200 text-center p-2">
-                {note.title}
-              </h3>
-              <div className="p-2 flex flex-col">
-                <div>{note.body}</div>
-                <span className="text-xs text-slate-400 mx-4 self-end">
-                  -{note.createdBy}
-                </span>
-                <div className="text-xs">{note.dateCreated}</div>
-              </div>
+    <Note note={note} />
             </li>
           ))}
         </ul>

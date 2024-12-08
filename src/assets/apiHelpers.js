@@ -15,11 +15,23 @@ export const getResource = async (path) => {
   }
 };
 
-export const postResource = async (body) => {
+export const postResource = async (queryObj) => {
+  const { path, body } = queryObj;
   try {
-    const res = await axiosApi.post(`/${'notes'}`, body);
-    return res.data;
+    const response = await axiosApi.post(`/${path}`, body);
+    return response.data;
   } catch (err) {
+    alert(err);
     console.error(err);
   }
-};
+}
+export const deleteResource = async (queryObj) => {
+  const { path, id } = queryObj;
+  try {
+    const response = await axiosApi.delete(`/${path}/${id}`);
+    return response.data;
+  } catch (err) {
+    alert(err);
+    console.error(err);
+  }
+}
