@@ -34,7 +34,7 @@ const NoteForm = () => {
         <label htmlFor="title">Title: </label>
         <input className="rounded-md p-1" name="title" id="title" type="text" onChange={handleChange} />
         <label htmlFor="body">Note: </label>
-        <input className="rounded-md p-1" name="body" id="body" type="text" onChange={handleChange} />
+        <textarea className="rounded-md p-1" rows={5} name="body" id="body"  type="textarea" onChange={handleChange} />
         <label htmlFor="createdBy">created by: </label>
         <input
         className="rounded-md p-1"
