@@ -1,10 +1,11 @@
 import React from "react";
 import DeleteButton from "./DeleteButton";
+import EditButton from "./EditButton";
 
 const Note = ({ note }) => {
   return (
     <div
-      className="flex flex-col w-60 m-4 border-slate-200 shadow-sm border rounded-md "
+      className="flex flex-col w-60 m-4 border-slate-200 shadow-sm border rounded-md dark:bg-gray-700"
     >
       <h3 className="font-bold bg-slate-200 text-center p-2">{note.title}</h3>
       <div className="p-2 flex flex-col">
@@ -15,6 +16,7 @@ const Note = ({ note }) => {
         <div className="text-xs">{note.dateCreated}</div>
         <div className="text-xs">{note._id}</div>
       </div>
+      < EditButton />
       <DeleteButton path={"notes"} id={note._id} />
     </div>
   );
