@@ -1,24 +1,19 @@
-import React from 'react'
-import Modal from './Modal';
-import NoteForm from './NoteForm'
+import React from "react";
+import Modal from "./Modal";
+import NoteForm from "./NoteForm";
 import { useState } from "react";
 
-const EditButton = () => {
-    const [modalOpen, setModalOpen] = useState(false)
-
-    const handleClick = ()=>{
-			setModalOpen(true)
-		};
-
+const EditButton = ({ toggleEdit }) => {
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
-		<div>
-			<button onClick={handleClick}>Edit</button>
-            {modalOpen && <Modal>
-                < NoteForm />
-            </Modal>}
-		</div>
-	);
-}
+    <span
+      className={`w-fit rounded-md p-1 m-1 text-red-700 hover:text-red-400 transition-all`}
+      onClick={toggleEdit}
+    >
+      edit
+    </span>
+  );
+};
 
-export default EditButton
+export default EditButton;

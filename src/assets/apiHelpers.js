@@ -25,6 +25,18 @@ export const postResource = async (queryObj) => {
     console.error(err);
   }
 }
+
+export const patchResource = async (queryObj) => {
+  const { path, body } = queryObj;
+  try {
+    const response = await axiosApi.patch(`/${path}`, body);
+    return response.data;
+  } catch (err) {
+    alert(err);
+    console.error(err);
+  }
+}
+
 export const deleteResource = async (queryObj) => {
   const { path, id } = queryObj;
   try {
