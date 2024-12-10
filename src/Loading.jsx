@@ -1,11 +1,10 @@
 import React from 'react'
-// import './Loading.css'
-
+import './Loading.css'
 
 const Loading = () => {
   return (
-    <div >
-        <h2 className='background text-3xl text-red-300 h-96 uppercase text-center w-screen'>Loading...</h2>
+    <div className='loader max-w-96 flex content-center justify-center'>
+      
     </div>
   )
 }
