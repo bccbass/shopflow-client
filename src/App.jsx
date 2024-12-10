@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Loading from "./Loading";
-import Notes from "./Notes";
+import Notes from "./Notes/Notes";
 
 function App() {
 	const [count, setCount] = useState(0);
