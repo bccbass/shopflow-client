@@ -1,7 +1,9 @@
 /** @format */
 
 import { useState } from "react";
-import Loading from "./Loading";
+import { Routes, Route } from "react-router";
+import SideNav from "./SideNav";
+import Home from "./Home";
 import Notes from "./Notes/Notes";
 
 function App() {
@@ -9,8 +11,11 @@ function App() {
 
 	return (
 		<>
-			{/* < Loading /> */}
-			<Notes />
+			<SideNav />
+			<Routes>
+				<Route path="/" element={<Home />} />
+				<Route path="/notes" element={<Notes />} />
+			</Routes>
 		</>
 	);
 }
