@@ -8,6 +8,7 @@ import Loading from "../Loading";
 import NoteForm from "./NoteForm";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
+import NoteCard from "./NoteCard";
 
 const Notes = () => {
   const queryClient = useQueryClient();
@@ -29,16 +30,16 @@ const Notes = () => {
       ) : notesQuery.isError ? (
         <h1 className="">Error</h1>
       ) : (
-        <ul className="flex flex-row w-full flex-wrap">
-          <li>
+        <div className="flex flex-row w-fdivl flex-wrap">
+          <div>
             <NoteForm />
-          </li>
+          </div>
           {notesQuery?.data?.map((note) => (
-            <li key={note._id}>
+            <div key={note._id}>
               <Note note={note} />
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

@@ -16,7 +16,7 @@ const SectionHeader = ({ searchParams, title }) => {
 				{title}
 			</h2>
 			<div className="flex mx-6">
-				<span className="p-2 font-bold text-sm">sort by: </span>
+				<span className="p-2 text-sm">sort by: </span>
 
 				{sortOptions.map((option) => (
 					<button

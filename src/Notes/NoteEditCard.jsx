@@ -1,4 +1,9 @@
 import React from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
@@ -7,7 +12,7 @@ const NoteEditCard = ({ note, toggleEdit }) => {
   const [updatedNote, setUpdatedNote] = useState({
     title: note.title,
     body: note.body,
-    due: note.due.split('T')[0] ,
+    due: note?.due?.split('T')[0] ,
   });
 
   const queryClient = useQueryClient();

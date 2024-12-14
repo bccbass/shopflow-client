@@ -1,6 +1,9 @@
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteResource } from "./assets/apiHelpers";
+import DeleteIcon from '@mui/icons-material/Delete';
+import Button from '@mui/material/Button';
+
 
 const DeleteButton = ({ path, id }) => {
   const queryClient = useQueryClient();
@@ -16,15 +19,16 @@ const DeleteButton = ({ path, id }) => {
   };
 
   return (
-		<span
-			className={`cursor-default w-fit rounded-md p-1 m-1 text-red-700 hover:text-red-400 transition-all ${
+		<Button
+			className={` ${
 				mutation.isIdle || (mutation.isPending && "text-slate-200")
 			}`}
 			disabled={mutation.isPending}
 			onClick={handleClick}
 		>
-			delete
-		</span>
+
+			< DeleteIcon />
+		</Button>
 	);
 };
 export default DeleteButton;
