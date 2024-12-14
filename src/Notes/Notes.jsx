@@ -8,7 +8,6 @@ import Loading from "../Loading";
 import NoteForm from "./NoteForm";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import NoteCard from "./NoteCard";
 
 const Notes = () => {
   const queryClient = useQueryClient();
