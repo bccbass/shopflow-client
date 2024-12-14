@@ -2,10 +2,10 @@
 
 import React from "react";
 
-const SectionHeader = ({ sortState, title }) => {
-	const { sortOrder, setSortOrder } = sortState;
+const SectionHeader = ({ searchParams, title }) => {
+	const { sortOrder, setSearchParams } = searchParams;
 	const handleSort = (e) => {
-		setSortOrder(e.target.name);
+		setSearchParams({sort: e.target.name});
 	};
 
 	const sortOptions = ["new", "old", "due"];
