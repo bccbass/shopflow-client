@@ -36,12 +36,12 @@ export default function NoteCard({ note, toggleEdit }) {
             Author: {note.createdBy}
           </Typography>
           {note.due != null && (
-            <Typography sx={{ color: "darkred", mb: 1.5, fontSize: 14 }}>
+            <Typography sx={{ color: "red", mb: 1.5, fontSize: 14, fontWeight: 'bold' }}>
               Due:{" "}
               {new Date(note.due).toLocaleString("en-AU", {
-                text: "danger",
+                
                 day: "numeric",
-                month: "long",
+                month: "numeric",
               })}
             </Typography>
           )}

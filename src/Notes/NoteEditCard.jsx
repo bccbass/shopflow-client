@@ -4,15 +4,18 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
-const NoteEditCard = ({ note, toggleEdit }) => {
 
+const NoteEditCard = ({ note, toggleEdit }) => {
   const [updatedNote, setUpdatedNote] = useState({
     title: note.title,
     body: note.body,
-    due: note?.due?.split('T')[0] ,
+    due: note?.due?.split("T")[0],
   });
 
   const queryClient = useQueryClient();
@@ -32,60 +35,80 @@ const NoteEditCard = ({ note, toggleEdit }) => {
 
   const handleChange = (e) => {
     setUpdatedNote({ ...updatedNote, [e.target.name]: e.target.value });
-};
+  };
   return (
-		<div>
-			<h3 className="font-bold bg-slate-200 text-center p-2">Edit Note...</h3>
-			<form className="flex flex-col space-y-2 flex-nowrap p-2 border bg-slate-200">
-				<div className="flex flex-col flex-nowrap space-y-2">
-					<label htmlFor="title"></label>
-					<input
-						maxLength={80}
-						className="rounded-md p-1 font-bold"
-						name="title"
-						id="title"
-						type="text"
-						onChange={handleChange}
-						value={updatedNote.title}
-					/>
-					<label htmlFor="body"></label>
-					<textarea
-						maxLength={600}
-						className="rounded-md p-1"
-						rows={updatedNote.body.length / 30}
-						name="body"
-						id="body"
-						type="textarea"
-						onChange={handleChange}
-						value={updatedNote.body}
-					/>
+      <Box sx={{ minWidth: 275, m: 2, width: 300 }}>
+        <Card variant="outlined" sx={{ backgroundColor: "lightblue" }}>
+          {" "}
+          <CardContent>
+            <Typography
+              gutterBottom
+              sx={{ color: "text.secondary", fontSize: 12 }}
+            >
+              {new Date(note.dateCreated).toLocaleString("en-AU", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}{" "}
+            </Typography>
+            <Box
+              component="form"
+              sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="outlined-basic"
+                label="Title"
+                value={updatedNote.title}
+                variant="outlined"
+				name="title"
+                onChange={handleChange}
+              />
+            </Box>
 
-					<label htmlFor="due"> </label>
-					<input
-						className=" text-slate-400 p-1 rounded-md"
-						name="due"
-						id="due"
-						type="date"
-						onChange={handleChange}
-						value={updatedNote.due}
-					/>
+            <Box
+              component="form"
+              sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id="outlined-basic"
+                label="Note"
+                value={updatedNote.body}
+                multiline
+                variant="outlined"
+				name="body"
+                onChange={handleChange}
 
-					<button
-						// disabled={mutation.isPending}
-						onClick={handleSubmit}
-					>
-						update
-					</button>
-					<span
-						onClick={toggleEdit}
-						className="underline text-center hover:text-slate-400 transition-all"
-					>
-						cancel
-					</span>
-				</div>
-			</form>
-		</div>
-	);
+              />
+            </Box>
+            <Typography sx={{ color: "text.secondary", fontSize: 14, my: 1.5 }}>
+              Author: {note.createdBy}
+            </Typography>
+            <input
+              className=" text-slate-400 p-1 rounded-md"
+              label="due"
+              name="due"
+              id="due"
+              type="date"
+              onChange={handleChange}
+              value={updatedNote.due}
+            />
+          </CardContent>
+          <div className="flex flex-col p-4">
+            <Button variant="outlined" sx={{ flex: 1 }} onClick={handleSubmit}>
+              Save
+            </Button>
+            <Button variant="text" sx={{ color: "red" }} onClick={toggleEdit}>
+              cancel
+            </Button>
+          </div>
+        </Card>
+      </Box>
+      
+  );
 };
 
 export default NoteEditCard;

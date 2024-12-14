@@ -27,5 +27,5 @@ body {
 
 	min-width: 320px;
 	min-height: 100vh;
-	word-break: break-all;
+	/* word-break: break-all; */
 }
