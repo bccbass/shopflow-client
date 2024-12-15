@@ -52,6 +52,7 @@ const NoteForm = () => {
             sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
             noValidate
             autoComplete="off"
+            onSubmit={handleSubmit}
           >
             <TextField
               id="outlined-basic"
@@ -78,13 +79,7 @@ const NoteForm = () => {
               name="body"
               onChange={handleChange}
             />
-          </Box>
-          <Box
-            component="form"
-            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
-            noValidate
-            autoComplete="off"
-          >
+
             <TextField
               id="outlined-basic"
               label="Author"
@@ -93,27 +88,17 @@ const NoteForm = () => {
               name="createdBy"
               onChange={handleChange}
             />
-          </Box>
-          <Box
-            component="form"
-            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
-            noValidate
-            autoComplete="off"
-          >
+
             <TextField
               className=" text-slate-400 p-1 rounded-md"
-            //   label="due"
-			  helperText="Due Date"
-
+              // label="due"
+              helperText="Due Date"
               name="due"
               id="due"
               type="date"
               onChange={handleChange}
               value={note.due}
             />
-          </Box>
-        </CardContent>
-        <div className="flex flex-col p-4">
           <Button
             disabled={mutation.isPending}
             variant="outlined"
@@ -122,7 +107,10 @@ const NoteForm = () => {
           >
             Save
           </Button>
-        </div>
+          </Box>
+
+        </CardContent>
+
       </Card>
     </Box>
   );

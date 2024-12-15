@@ -2,18 +2,20 @@
 
 import React from "react";
 import EditIcon from '@mui/icons-material/Edit';
+import Button from '@mui/material/Button';
+
 
 
 const EditButton = ({ id, setEditingNote }) => {
 	return (
-		<span
-			className={ `cursor-default w-fit  text-gray-500 hover:text-gray-400 transition-all`}
+		<Button
 			onClick={() => setEditingNote(id)}
+			sx={{color: 'grey'}}
 		>
 			{/* { EditIcon} */}
 			<EditIcon fontSize="small"/>
 
-		</span>
+		</Button>
 	);
 };
 

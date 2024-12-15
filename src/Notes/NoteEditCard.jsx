@@ -22,14 +22,14 @@ const NoteEditCard = ({ note, setEditingNote }) => {
 
   const mutation = useMutation({
     mutationFn: patchResource,
-    onSuccess: () => queryClient.invalidateQueries(["notes"], toggleEdit()),
+    onSuccess: () => queryClient.invalidateQueries(["notes"], setEditingNote()),
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     mutation.mutate({ path: `notes/${note._id}`, body: updatedNote });
     if (mutation.isSuccess) {
-      toggleEdit();
+      setEditingNote();
     }
   };
 
@@ -44,21 +44,12 @@ const NoteEditCard = ({ note, setEditingNote }) => {
           <Typography variant="h5" gutterBottom>
             Editing note...
           </Typography>
-          <Typography
-            gutterBottom
-            sx={{ color: "text.secondary", fontSize: 12 }}
-          >
-            {new Date(note.dateCreated).toLocaleString("en-AU", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-            })}{" "}
-          </Typography>
           <Box
             component="form"
             sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
             noValidate
             autoComplete="off"
+            onSubmit={handleSubmit}
           >
             <TextField
               id="outlined-basic"
@@ -68,14 +59,7 @@ const NoteEditCard = ({ note, setEditingNote }) => {
               name="title"
               onChange={handleChange}
             />
-          </Box>
 
-          <Box
-            component="form"
-            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
-            noValidate
-            autoComplete="off"
-          >
             <TextField
               id="outlined-basic"
               label="Note"
@@ -85,7 +69,6 @@ const NoteEditCard = ({ note, setEditingNote }) => {
               name="body"
               onChange={handleChange}
             />
-          </Box>
           <Typography sx={{ color: "text.secondary", fontSize: 14, my: 1.5 }}>
             Author: {note.createdBy}
           </Typography>
@@ -97,9 +80,9 @@ const NoteEditCard = ({ note, setEditingNote }) => {
             type="date"
             onChange={handleChange}
             value={updatedNote.due}
+
           />
-        </CardContent>
-        <div className="flex flex-col p-4">
+          
           <Button variant="outlined" sx={{ flex: 1 }} onClick={handleSubmit}>
             Save
           </Button>
@@ -110,7 +93,10 @@ const NoteEditCard = ({ note, setEditingNote }) => {
           >
             cancel
           </Button>
-        </div>
+          </Box>
+
+        </CardContent>
+
       </Card>
     </Box>
   );

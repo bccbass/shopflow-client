@@ -25,7 +25,8 @@ const DeleteButton = ({ path, id }) => {
 			}`}
 			disabled={mutation.isPending}
 			onClick={handleClick}
-		>
+      sx={{color: 'grey'}}
+    >
 
 			< DeleteIcon />
 		</Button>
