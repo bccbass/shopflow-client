@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const skeletonCard = (
-  <Box sx={{ minWidth: 275, m: 2, width: 300 }}>
+  <Box sx={{ minWidth: 275, m: 2, width: 300, height: 500}}>
     <Card variant="outlined" sx={{}}>
       {" "}
       <CardContent>

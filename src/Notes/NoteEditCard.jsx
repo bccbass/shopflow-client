@@ -89,7 +89,7 @@ const NoteEditCard = ({ note, setEditingNote }) => {
           <Button
             variant="text"
             sx={{ color: "red" }}
-            onClick={() => setEditingNote()}
+            onClick={setEditingNote}
           >
             cancel
           </Button>
