@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 const EditButton = ({ id, setEditingNote }) => {
 	return (
 		<Button
-			onClick={() => setEditingNote(id)}
+			onClick={() => setEditingNote('')}
 			sx={{color: 'grey'}}
 		>
 			{/* { EditIcon} */}
