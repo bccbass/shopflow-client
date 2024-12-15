@@ -1,4 +1,11 @@
 import React from "react";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postResource } from "../assets/apiHelpers";
@@ -9,7 +16,7 @@ const NoteForm = () => {
     body: "",
     createdBy: "",
     due: "",
-  }
+  };
 
   const [note, setNote] = useState(blankNote);
 
@@ -29,65 +36,96 @@ const NoteForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     mutation.mutate({ path: "notes", body: note });
-    if (mutation.isSuccess){setNote(blankNote)}
+    setNote(blankNote);
   };
 
   return (
-		<form className=" flex flex-col space-y-2 flex-nowrap p-4 border border-slate-300 max-w-96 bg-slate-200 rounded-md m-4">
-			<h3 className="text-center text-blue-900">New Note</h3>
-			<div className="flex flex-col flex-nowrap space-y-2">
-				<label htmlFor="title">Title: </label>
-				<input
-					maxLength={80}
-					className="rounded-md p-1"
-					name="title"
-					id="title"
-					type="text"
-					onChange={handleChange}
-					value={note.title}
-				/>
-				<label htmlFor="body">Note: </label>
-				<textarea
-					className="rounded-md p-1"
-					rows={5}
-					maxLength={600}
-					name="body"
-					id="body"
-					type="textarea"
-					onChange={handleChange}
-					value={note.body}
-				/>
-				<label htmlFor="createdBy">created by: </label>
-				<input
-					className="rounded-md p-1"
-					name="createdBy"
-					id="createdBy"
-					type="text"
-					onChange={handleChange}
-					value={note.createdBy}
-				/>
-				<label htmlFor="due">due: </label>
-				<input
-					className=" text-slate-400 p-1 rounded-md"
-					name="due"
-					id="due"
-					type="date"
-					onChange={handleChange}
-					value={note.due}
-				/>
+    <Box sx={{ minWidth: 275, m: 2, width: 300 }}>
+      <Card variant="outlined" sx={{ backgroundColor: "lightblue" }}>
+        <CardContent>
+          <Typography variant="h5" gutterBottom>
+            New Note
+          </Typography>
 
-				<button
-					disabled={mutation.isPending}
-					onClick={handleSubmit}
-					className={`bg-white border-spacing-1 w-fit self-center border-1 border-blue-200 hover:bg-slate-100 ${
-						mutation.isPending && "text-slate-200"
-					}`}
-				>
-					save
-				</button>
-			</div>
-		</form>
-	);
+          <Box
+            component="form"
+            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Title"
+              value={note.title}
+              variant="outlined"
+              name="title"
+              onChange={handleChange}
+            />
+          </Box>
+
+          <Box
+            component="form"
+            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Note"
+              value={note.body}
+              multiline
+              variant="outlined"
+              name="body"
+              onChange={handleChange}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              id="outlined-basic"
+              label="Author"
+              value={note.createdBy}
+              variant="outlined"
+              name="createdBy"
+              onChange={handleChange}
+            />
+          </Box>
+          <Box
+            component="form"
+            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField
+              className=" text-slate-400 p-1 rounded-md"
+            //   label="due"
+			  helperText="Due Date"
+
+              name="due"
+              id="due"
+              type="date"
+              onChange={handleChange}
+              value={note.due}
+            />
+          </Box>
+        </CardContent>
+        <div className="flex flex-col p-4">
+          <Button
+            disabled={mutation.isPending}
+            variant="outlined"
+            sx={{ flex: 1 }}
+            onClick={handleSubmit}
+          >
+            Save
+          </Button>
+        </div>
+      </Card>
+    </Box>
+  );
 };
 
 export default NoteForm;

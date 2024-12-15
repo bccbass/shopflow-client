@@ -8,12 +8,12 @@ import EditButton from "../EditButton";
 
 const today = new Date();
 
-export default function NoteCard({ note, toggleEdit }) {
+export default function NoteCard({ note, setEditingNote }) {
   const overdue = today > new Date(note.due);
   return (
     <Box sx={{ minWidth: 275, m: 2, width: 300 }}>
       <Card variant="outlined" sx={{ backgroundColor: overdue && "pink" }}>
-        {(" ")}
+        {" "}
         <CardContent>
           <Typography
             gutterBottom
@@ -36,18 +36,20 @@ export default function NoteCard({ note, toggleEdit }) {
             Author: {note.createdBy}
           </Typography>
           {note.due != null && (
-            <Typography sx={{ color: "red", mb: 1.5, fontSize: 14, fontWeight: 'bold' }}>
-              Due:{" "}
+            <Typography
+              sx={{ color: "red", background: 'white', width: 100, borderRadius: '5px', p: .5, my: 1.5, fontSize: 14, fontWeight: "bold" }}
+            >
+              Due:
               {new Date(note.due).toLocaleString("en-AU", {
-                
                 day: "numeric",
                 month: "numeric",
               })}
             </Typography>
           )}
         </CardContent>
-        <CardActions>
-          <EditButton note={note} toggleEdit={toggleEdit} />
+        <CardActions
+        sx={{}}>
+          <EditButton id={note._id} setEditingNote={setEditingNote} />
           <DeleteButton path="notes" id={note._id} />
         </CardActions>
       </Card>

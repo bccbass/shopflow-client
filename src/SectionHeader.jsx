@@ -20,6 +20,7 @@ const SectionHeader = ({ searchParams, title }) => {
 
 				{sortOptions.map((option) => (
 					<button
+					key={option}
 						className={`${
 							sortOrder === option && "font-bold underline"
 						} p-2 text-sm`}

@@ -10,7 +10,6 @@ import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 
 const Notes = () => {
-  const queryClient = useQueryClient();
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOrder = searchParams.get("sort");
   const notesQuery = useQuery({
@@ -19,27 +18,28 @@ const Notes = () => {
   });
 
   return (
-    <div className="w-screen  min-h-96 bg-slate-50 flex flex-col h-full">
+    <div>
       <SectionHeader
         searchParams={{ setSearchParams, sortOrder }}
         title="Notes"
       />
+        <div className="flex flex-row  flex-wrap">
+      
+      <NoteForm />
       {notesQuery.isLoading ? (
         <Loading />
       ) : notesQuery.isError ? (
         <h1 className="">Error</h1>
       ) : (
-        <div className="flex flex-row w-fdivl flex-wrap">
-          <div>
-            <NoteForm />
-          </div>
-          {notesQuery?.data?.map((note) => (
+    
+          notesQuery?.data?.map((note) => (
             <div key={note._id}>
               <Note note={note} />
             </div>
-          ))}
-        </div>
+          ))
+
       )}
+    </div>
     </div>
   );
 };

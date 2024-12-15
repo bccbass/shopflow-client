@@ -7,15 +7,15 @@ import { useState } from "react";
 
 const Note = ({ note }) => {
   const today = new Date();
-  const [editingNote, setEditingNote] = useState(false);
-  const toggleEdit = () => setEditingNote(!editingNote)
+  const [editingNote, setEditingNote] = useState('');
+  const toggleEdit = (id='') => setEditingNote(id)
   return (
     <div >
-{      !editingNote ? 
-< NoteCard note={note} toggleEdit={toggleEdit} />
-:
-      <NoteEditCard note={note} toggleEdit={toggleEdit} />}
-    </div>
+{      note._id === editingNote ? 
+      <NoteEditCard note={note} setEditingNote={setEditingNote} /> :
+< NoteCard note={note} setEditingNote={setEditingNote} />
+
+ } </div>
   );
 };
 
