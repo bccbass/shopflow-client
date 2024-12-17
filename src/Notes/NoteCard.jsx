@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import DeleteButton from "../DeleteButton";
 import EditButton from "../EditButton";
-
+import Chip from '@mui/material/Chip'
 const today = new Date();
 
 export default function NoteCard({ note, setEditingNote }) {
@@ -36,15 +36,17 @@ export default function NoteCard({ note, setEditingNote }) {
             Author: {note.createdBy}
           </Typography>
           {note.due != null && (
-            <Typography
-              sx={{ color: "red", background: 'white', width: 100, borderRadius: '5px', p: .5, my: 1.5, fontSize: 14, fontWeight: "bold" }}
-            >
-              Due:
-              {new Date(note.due).toLocaleString("en-AU", {
-                day: "numeric",
-                month: "numeric",
-              })}
-            </Typography>
+                  <Chip 
+                  label={'Due: ' + 
+                    new Date(note.due).toLocaleString("en-AU", {
+                     day: "numeric",
+                     month: "numeric",
+                      })
+                  } 
+                  variant={overdue ? '' : 'outlined'}
+                  color="error"
+                  sx={{my: 2}}
+                   />
           )}
         </CardContent>
         <CardActions

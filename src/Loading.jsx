@@ -5,8 +5,8 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 
 const skeletonCard = (
-  <Box sx={{ minWidth: 275, m: 2, width: 300, height: 500}}>
-    <Card variant="outlined" sx={{}}>
+  <Box sx={{ minWidth: 275, m: 2, width: 300}}>
+    <Card variant="outlined" sx={{height: 445}}>
       {" "}
       <CardContent>
         {/* For variant="text", adjust the height via font-size */}
