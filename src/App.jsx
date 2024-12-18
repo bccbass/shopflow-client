@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import { Routes, Route } from "react-router";
-import SideNav from "./SideNav";
-import AppBar from "./AppBar";
 import HeaderDrawer from './HeaderDrawer'
 import Home from "./Home";
 import Notes from "./Notes/Notes";
