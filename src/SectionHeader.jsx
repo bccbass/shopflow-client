@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { Box, Typography, Button, ButtonGroup } from '@mui/material'
 
 const SectionHeader = ({ searchParams, title }) => {
 	const { sortOrder, setSearchParams } = searchParams;
@@ -11,27 +12,21 @@ const SectionHeader = ({ searchParams, title }) => {
 	const sortOptions = ["new", "old", "due"];
 
 	return (
-		<div className="w-screen">
-			<h2 className="text-slate-500 text-left m-8 mb-0 text-5xl border-b-2 ">
+		<Box sx={{ mx: 2, my: 4 }}>
+			<Typography variant="h4" color="primary">
 				{title}
-			</h2>
-			<div className="flex mx-6">
-				<span className="p-2 text-sm">sort by: </span>
-
-				{sortOptions.map((option) => (
-					<button
-					key={option}
-						className={`${
-							sortOrder === option && "font-bold underline"
-						} p-2 text-sm`}
-						name={option}
-						onClick={handleSort}
-					>
-						{option}
-					</button>
-				))}
-			</div>
-		</div>
+			</Typography>
+			<Box sx={{display: 'flex', alignContent: '', height: 15, my:1}}>
+				<Typography>sort by: </Typography>
+				<ButtonGroup variant="text" size="small" sx={{mt: 1.2, mx: 1}}>
+					{sortOptions.map((option) => (
+						<Button key={option} name={option} onClick={handleSort}>
+							{option}
+						</Button>
+					))}
+				</ButtonGroup>
+			</Box>
+		</Box>
 	);
 };
 
