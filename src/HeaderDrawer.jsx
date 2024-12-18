@@ -22,7 +22,7 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import NoteIcon from "@mui/icons-material/Note";
 import Person from "@mui/icons-material/Person";
 import Home from "@mui/icons-material/Home";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const drawerWidth = 240;
 
