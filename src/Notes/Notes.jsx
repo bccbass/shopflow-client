@@ -8,40 +8,38 @@ import Loading from "../Loading";
 import NoteForm from "./NoteForm";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
+import { Box } from "@mui/material";
 
 const Notes = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const sortOrder = searchParams.get("sort");
-  const notesQuery = useQuery({
-    queryKey: ["notes", sortOrder],
-    queryFn: () => getResource("notes?sort=" + sortOrder),
-  });
+	const [searchParams, setSearchParams] = useSearchParams();
+	const sortOrder = searchParams.get("sort");
+	const notesQuery = useQuery({
+		queryKey: ["notes", sortOrder],
+		queryFn: () => getResource("notes?sort=" + sortOrder),
+	});
 
-  return (
-    <div>
-      <SectionHeader
-        searchParams={{ setSearchParams, sortOrder }}
-        title="Notes"
-      />
-        <div className="flex flex-row  flex-wrap">
-      
-      <NoteForm />
-      {notesQuery.isLoading ? (
-        <Loading />
-      ) : notesQuery.isError ? (
-        <h1 className="">Error</h1>
-      ) : (
-    
-          notesQuery?.data?.map((note) => (
-            <div key={note._id}>
-              <Note note={note} />
-            </div>
-          ))
-
-      )}
-    </div>
-    </div>
-  );
+	return (
+		<Box>
+			<SectionHeader
+				searchParams={{ setSearchParams, sortOrder }}
+				title="Notes"
+			/>
+			<Box sx={{display: 'flex', w: '100vw', flexWrap: 'wrap'}}>
+				<NoteForm />
+				{notesQuery.isLoading ? (
+					<Loading />
+				) : notesQuery.isError ? (
+					<h1 className="">Error</h1>
+				) : (
+					notesQuery?.data?.map((note) => (
+						<Box key={note._id}>
+							<Note note={note} />
+						</Box>
+					))
+				)}
+			</Box>
+		</Box>
+	);
 };
 
 export default Notes;
