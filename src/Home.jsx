@@ -1,16 +1,13 @@
 import React from 'react'
-import { Container, Box, IconButton } from '@mui/material'
+import { Container, Box, IconButton, Typography } from '@mui/material'
 import Person from "@mui/icons-material/Person";
 
 
 const Home = () => {
   return (
-    <Container maxWidth="sm">
+    <Container sx={{m:4}}>
       < Box >
-      <IconButton aria-label="delete" size="small">
-  {/* <DeleteIcon fontSize="inherit" /> */}
-    < Person fontSize='large'/>
-</IconButton>
+        < Typography variant='h3' color='primary'>Welcome to Shopflow</Typography>
       </Box>
       </Container>
 
