@@ -26,7 +26,7 @@ export default function NoteCard({ note, setEditingNote }) {
 							year: "numeric",
 						})}{" "}
 					</Typography>
-					<Divider sx={{ my: 1.5 }} />
+					<Divider sx={{ mb: 1.5 }} />
 
 					<Typography
 						sx={{ minHeight: 65  }}

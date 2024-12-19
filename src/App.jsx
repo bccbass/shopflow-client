@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router";
 import HeaderDrawer from './HeaderDrawer'
 import Home from "./Home";
 import Notes from "./Notes/Notes";
-import NewStudents from "./NewStudents";
+import NewStudents from "./NewStudents/NewStudents";
 
 function App() {
 	const [count, setCount] = useState(0);

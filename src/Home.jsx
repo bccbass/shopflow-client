@@ -1,17 +1,14 @@
-import React from 'react'
-import { Container, Box, IconButton, Typography } from '@mui/material'
-import Person from "@mui/icons-material/Person";
-
+import React from "react";
+import { Container, Box, IconButton, Typography } from "@mui/material";
+import SectionHeader from "./SectionHeader";
 
 const Home = () => {
   return (
-    <Container sx={{m:4}}>
-      < Box >
-        < Typography variant='h3' color='primary'>Welcome to Shopflow</Typography>
-      </Box>
-      </Container>
+    <Container>
+      <SectionHeader title="Home" setSearchParams={null} />
+      
+    </Container>
+  );
+};
 
-  )
-}
-
-export default Home
+export default Home;

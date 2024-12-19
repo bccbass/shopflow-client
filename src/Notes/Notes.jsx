@@ -1,14 +1,12 @@
-/** @format */
-
 import React from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
+import { getResource } from "../assets/apiHelpers";
 import Note from "./Note";
 import Loading from "../Loading";
 import NoteForm from "./NoteForm";
-import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 const Notes = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -19,9 +17,9 @@ const Notes = () => {
 	});
 
 	return (
-		<Box>
+		< Container >
 			<SectionHeader
-				searchParams={{ setSearchParams, sortOrder }}
+				setSearchParams={ setSearchParams }
 				title="Notes"
 			/>
 			<Box sx={{display: 'flex', w: '100vw', flexWrap: 'wrap'}}>
@@ -38,7 +36,7 @@ const Notes = () => {
 					))
 				)}
 			</Box>
-		</Box>
+		</ Container>
 	);
 };
 
