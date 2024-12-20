@@ -4,9 +4,9 @@ import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import { Container, Box, Typography } from "@mui/material";
-import NewEnquiriesTable from "./NewEnquiriesTable";
-import NewTrialsTable from "./NewTrialsTable";
+import EnquiriesTable from "./EnquiriesTable";
 import NewStudentForm from "../AddStudent/AddStudentForm";
+import BookTrialButton from "./BookTrialButton";
 
 const NewStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,7 +16,7 @@ const NewStudents = () => {
     queryFn: () => getResource("leads?sort=" + sortOrder),
   });
   return (
-    <Container sx={{m: 0}}>
+    <Container sx={{ m: 0 }}>
       <SectionHeader title="New Students" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
         {leadsQuery.isLoading ? (
@@ -28,11 +28,9 @@ const NewStudents = () => {
             <Typography variant="h5" color="primary" sx={{ my: 2 }}>
               Enquiries
             </Typography>
-            <NewEnquiriesTable newStudents={leadsQuery.data} />
-            <Typography variant="h5" color="primary" sx={{ mt: 6, mb: 2 }}>
-              Trial Lessons
-            </Typography>
-            <NewTrialsTable newStudents={leadsQuery.data} />
+            <EnquiriesTable enquiries={leadsQuery.data}>
+              <BookTrialButton />
+            </EnquiriesTable>
           </>
         )}
       </Box>

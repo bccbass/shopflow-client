@@ -11,16 +11,16 @@ import { Divider } from "@mui/material";
 
 const FollowUpTable = ({ followUpEvents }) => {
   return (
-    <TableContainer sx={{mb: 4 }}>
-      <Divider sx={{my: 2.5 }}/>
+    <TableContainer sx={{ mb: 4 }}>
+      <Divider sx={{ my: 2.5 }} />
       <Typography
         variant="h6"
         gutterBottom
         color="textSecondary"
         component="div"
-        sx={{mx: 2}}
+        sx={{ mx: 2 }}
       >
-        <strong> Enquiry Details </strong>
+        <strong> Follow Up Details </strong>
       </Typography>
       <Table size="small" aria-label="follow-up">
         <TableHead>
@@ -62,7 +62,6 @@ const FollowUpTable = ({ followUpEvents }) => {
           ))}
         </TableBody>
       </Table>
-      
     </TableContainer>
   );
 };
