@@ -24,10 +24,10 @@ const NewStudents = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            <Typography variant="h5" color="primary" sx={{ my: 2 }}>
+            {/* <Typography variant="h5" color="primary" sx={{ my: 2 }}>
               Enquiries
-            </Typography>
-            <EnquiriesTable enquiries={leadsQuery.data}>
+            </Typography> */}
+            <EnquiriesTable enquiries={leadsQuery.data.filter(lead => !lead.bookedTrial)}>
               <BookTrialButton />
             </EnquiriesTable>
           </>

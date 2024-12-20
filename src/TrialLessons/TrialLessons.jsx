@@ -26,7 +26,7 @@ const TrialLessons = () => {
             {/* <Typography variant="h5" color="primary" sx={{ my: 2 }}>
               Trial Lessons
             </Typography> */}
-            <EnquiriesTable enquiries={leadsQuery.data}>
+            <EnquiriesTable enquiries={leadsQuery.data.filter(lead => lead.bookedTrial)}>
             </EnquiriesTable>
           </>
         )}

@@ -64,6 +64,14 @@ function EnquiryRow({ children, row }) {
                     <strong> Enquiry Details </strong>
                   </Typography>
                   <Typography>
+                    <strong> Created: </strong>
+                    {new Date(row?.dateCreated).toLocaleString("en-AU", {
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                    })}
+                  </Typography>
+                  <Typography>
                     <strong> Phone: </strong>
                     {row?.contact?.phone}
                   </Typography>
@@ -84,6 +92,46 @@ function EnquiryRow({ children, row }) {
                     {row?.student?.age}
                   </Typography>
                 </Box>
+                { row.bookedTrial === true && <Box sx={{ py: 2, flex: 2 }}>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    color="textSecondary"
+                    component="div"
+                  >
+                    <strong> Trial Lesson </strong>
+                  </Typography>
+                  <Typography>
+                    <strong> date: </strong>
+                    {new Date(row?.trialLesson?.date).toLocaleString("en-AU", {
+                      day: "numeric",
+                      month: "numeric",
+                      year: "numeric",
+                    })}
+                  </Typography>
+                  <Typography>
+                    <strong> Time: </strong>
+                    {row?.trialLesson?.time}
+                  </Typography>
+                  <Typography>
+                    <strong> Location: </strong>
+                    {row?.trialLesson?.location}
+                  </Typography>
+                  <Typography>
+                    <strong> Instrument: </strong>
+                    {row?.trialLesson?.instrument}
+                  </Typography>
+                  <Typography>
+                    <strong> Teacher: </strong>
+                    {row?.trialLesson?.teacher}
+                  </Typography>
+                  {row.trialLesson.groupClass && (
+                    <Typography>
+                      <strong>Group Class: </strong>
+                      {row?.trialLesson?.groupClass}
+                    </Typography>
+                  )}
+                </Box>}
                 <Box sx={{ py: 2, flex: 2 }}>
                   <Typography
                     variant="h6"

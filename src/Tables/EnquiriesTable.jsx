@@ -9,12 +9,10 @@ import Paper from "@mui/material/Paper";
 import EnquiryRow from "./EnquiryRow";
 
 export default function EnquiriesTable({ enquiries, children }) {
-  // const rows = enquiries.filter(student => student.bookedTrial === false)
-  // **** FOR DEV ONLY - DELETE AND UNCOMMENT ABOVE FOR PRODUCTION ****
-  const rows = enquiries.filter((student) => student.bookedTrial === true);
+  const rows = [...enquiries]
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer sx={{mt: 2}} component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
