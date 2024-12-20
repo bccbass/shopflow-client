@@ -6,8 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import EnquiryRow from './EnquiryRow';
-
+import EnquiryRow from "./EnquiryRow";
 
 export default function EnquiriesTable({ enquiries, children }) {
   // const rows = enquiries.filter(student => student.bookedTrial === false)
@@ -32,8 +31,8 @@ export default function EnquiriesTable({ enquiries, children }) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <EnquiryRow key={row._id} row={row} >
-              { children }
+            <EnquiryRow key={row._id} row={row}>
+              {children}
             </EnquiryRow>
           ))}
         </TableBody>
