@@ -10,9 +10,12 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import NoteIcon from "@mui/icons-material/Note";
 import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
+
 
 const menuItems = [
   { title: "Home", path: "" },
+  { title: "Add Student", path: "addstudent" },
   { title: "New Students", path: "newstudents" },
   { title: "Notes", path: "notes" },
 ];
@@ -56,6 +59,7 @@ const HeaderMenuItems = () => {
               >
                 {item.path === "" && <HomeIcon />}
                 {item.path === "newstudents" && <PersonIcon />}
+                {item.path === "addstudent" && <PersonAddIcon />}
                 {item.path === "notes" && <NoteIcon />}
               </ListItemIcon>
               <ListItemText

@@ -56,16 +56,16 @@ function Row(props) {
         {/* <TableCell component="th" scope="row">
           {row.name}
         </TableCell> */}
-        <TableCell align="">{new Date(row.nextContactDate).toLocaleString("en-AU", {
+        <TableCell >{new Date(row.nextContactDate).toLocaleString("en-AU", {
 							day: "numeric",
 							month: "long",
 							// year: "numeric",
 						})}</TableCell>
-        <TableCell align="">{`${row.student.lastName}, ${row.student.firstName}`}</TableCell>
-        <TableCell align="">{`${row.guardian.lastName}, ${row.guardian.firstName}`}</TableCell>
-        <TableCell align="">{row.contact.phone}</TableCell>
-        <TableCell align="">{row.contact.email}</TableCell>
-        <TableCell align="">{row.student.instrument}</TableCell>
+        <TableCell >{`${row.student.lastName}, ${row.student.firstName}`}</TableCell>
+        <TableCell >{`${row.guardian.lastName}, ${row.guardian.firstName}`}</TableCell>
+        <TableCell >{row.contact.phone}</TableCell>
+        <TableCell >{row.contact.email}</TableCell>
+        <TableCell >{row.student.instrument}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0, backgroundColor: 'lightgrey' }} colSpan={7}>
@@ -124,8 +124,8 @@ function Row(props) {
 //   }).isRequired,
 // };
 
-export default function NewStudentsTable({ newStudents }) {
-  const rows = [...newStudents];
+export default function NewTrialsTable ({ newStudents }) {
+  const rows = newStudents.filter(student => student.bookedTrial === true)
 
   return (
     <TableContainer component={Paper}>
@@ -137,16 +137,16 @@ export default function NewStudentsTable({ newStudents }) {
               Next Action
             </TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Student</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }} align="">
+            <TableCell sx={{ fontWeight: "bold" }} >
               Parent
             </TableCell>
-            <TableCell sx={{ fontWeight: "bold" }} align="">
+            <TableCell sx={{ fontWeight: "bold" }} >
               Phone
             </TableCell>
-            <TableCell sx={{ fontWeight: "bold" }} align="">
+            <TableCell sx={{ fontWeight: "bold" }} >
               Email
             </TableCell>
-            <TableCell sx={{ fontWeight: "bold" }} align="">
+            <TableCell sx={{ fontWeight: "bold" }} >
               Instrument
             </TableCell>
    

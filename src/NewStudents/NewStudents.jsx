@@ -3,8 +3,10 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Container, Box } from "@mui/material";
-import NewStudentsTable from './NewStudentsTable';
+import { Container, Box, Typography } from "@mui/material";
+import NewEnquiriesTable from "./NewEnquiriesTable";
+import NewTrialsTable from "./NewTrialsTable";
+import NewStudentForm from "../AddStudent/AddStudentForm";
 
 const NewStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +24,16 @@ const NewStudents = () => {
         ) : leadsQuery.isError ? (
           <h1 className="">Error</h1>
         ) : (
-          < NewStudentsTable newStudents={leadsQuery.data}/>
+          <>
+            <Typography variant="h5" color="primary" sx={{ my: 2 }}>
+              Enquiries
+            </Typography>
+            <NewEnquiriesTable newStudents={leadsQuery.data} />
+            <Typography variant="h5" color="primary" sx={{ mt: 6, mb: 2 }}>
+              Trial Lessons
+            </Typography>
+            <NewTrialsTable newStudents={leadsQuery.data} />
+          </>
         )}
       </Box>
     </Container>
