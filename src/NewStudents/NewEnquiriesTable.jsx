@@ -56,7 +56,7 @@ function Row(props) {
           colSpan={7}
         >
           <Collapse in={open} timeout="auto">
-            <Box sx={{ m: 2 }}>
+            <Box sx={{ m: 2 }} >
               <Container
                 sx={{ display: "flex", justifyContent: "space-between" }}
               >
@@ -94,9 +94,10 @@ function Row(props) {
                   </Typography>
                 </Box>
               </Container>
-              <FollowUpTable followUpEvents={row.followUp} />
+              <FollowUpTable followUpEvents={row.bookedTrial ? row.trialLesson.followUp : row.followUp} />
               <Box sx={{ py: 4, flex: 2 }}>
-                <BookTrialButton />
+               {!row.enrolled && <BookTrialButton />}
+               {console.log(row)}
               </Box>
             </Box>
           </Collapse>
