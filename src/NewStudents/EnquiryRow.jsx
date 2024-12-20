@@ -12,7 +12,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import FollowUpTable from "./FollowUpTable";
 import BookTrialButton from "./BookTrialButton";
 
-function Row({children, row}) {
+function EnquiryRow({children, row}) {
     const [open, setOpen] = React.useState(false);
   
     return (
@@ -130,4 +130,4 @@ function Row({children, row}) {
   // };
   
 
-export default Row
+export default EnquiryRow
