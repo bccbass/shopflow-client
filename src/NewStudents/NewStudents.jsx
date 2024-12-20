@@ -16,8 +16,8 @@ const NewStudents = () => {
     queryFn: () => getResource("leads?sort=" + sortOrder),
   });
   return (
-    <Container>
-      <SectionHeader title="New Students" setSearchParams={setSearchParams} />
+    <Container sx={{m: 0}}>
+      <SectionHeader title="New Students" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
         {leadsQuery.isLoading ? (
           <h1 className="">Loading...</h1>

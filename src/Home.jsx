@@ -4,7 +4,7 @@ import SectionHeader from "./SectionHeader";
 
 const Home = () => {
   return (
-    <Container>
+    <Container sx={{m: 0}}>
       <SectionHeader title="Home" setSearchParams={null} />
       
     </Container>

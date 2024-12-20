@@ -17,12 +17,12 @@ const Notes = () => {
 	});
 
 	return (
-		< Container >
+		< Container sx={{m:0}}>
 			<SectionHeader
 				setSearchParams={ setSearchParams }
 				title="Notes"
 			/>
-			<Box sx={{display: 'flex', w: '100vw', flexWrap: 'wrap'}}>
+			<Box sx={{display: 'flex', flexWrap: 'wrap'}}>
 				<NoteForm />
 				{notesQuery.isLoading ? (
 					<Loading />
