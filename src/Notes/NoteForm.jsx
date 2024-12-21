@@ -17,7 +17,7 @@ const NoteForm = () => {
     createdBy: "",
     due: "",
   };
-
+  
   const [note, setNote] = useState(blankNote);
 
   const queryClient = useQueryClient();
