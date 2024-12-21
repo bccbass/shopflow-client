@@ -4,7 +4,7 @@ import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import { Container, Box, Typography } from "@mui/material";
-import EnquiriesTable from "../Tables/EnquiriesTable";
+import ArchiveTable from "./ArchiveTable";
 
 const ArchivedLeads = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,8 +26,8 @@ const ArchivedLeads = () => {
             {/* <Typography variant="h5" color="primary" sx={{ my: 2 }}>
               Trial Lessons
             </Typography> */}
-            <EnquiriesTable enquiries={archive.data}>
-            </EnquiriesTable>
+            <ArchiveTable enquiries={archive.data}>
+            </ArchiveTable>
           </>
         )}
       </Box>

@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
 
 const FollowUpTable = ({ followUpEvents }) => {
-  return (
+  return followUpEvents.length > 0 ? (
     <TableContainer sx={{ mb: 4 }}>
       <Divider sx={{ my: 2.5 }} />
       <Typography
@@ -27,10 +27,10 @@ const FollowUpTable = ({ followUpEvents }) => {
           <TableRow>
             <TableCell>Date</TableCell>
             <TableCell>Admin</TableCell>
-            <TableCell>Chat</TableCell>
-            <TableCell>Voicemail</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Text</TableCell>
+            <TableCell >Chat</TableCell>
+            <TableCell >Voicemail</TableCell>
+            <TableCell >Email</TableCell>
+            <TableCell >Text</TableCell>
             <TableCell>Notes</TableCell>
           </TableRow>
         </TableHead>
@@ -63,7 +63,7 @@ const FollowUpTable = ({ followUpEvents }) => {
         </TableBody>
       </Table>
     </TableContainer>
-  );
+  ) : null
 };
 
 export default FollowUpTable;
