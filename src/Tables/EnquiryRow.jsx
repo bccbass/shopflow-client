@@ -14,10 +14,12 @@ import BookTrialButton from "../NewStudents/BookTrialButton";
 
 function EnquiryRow({ children, row }) {
   const [open, setOpen] = React.useState(false);
+  const overdue = new Date(row.nextContactDate) <= Date.now();
+  console.log(row)
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableRow sx={{ "& > *": { borderBottom: "unset", backgroundColor: overdue ? 'pink' : '#AFE5E3' }}}>
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -45,7 +47,7 @@ function EnquiryRow({ children, row }) {
           style={{
             paddingBottom: 0,
             paddingTop: 0,
-            backgroundColor: "#AFE5E3",
+         
           }}
           colSpan={7}
         >
