@@ -1,14 +1,11 @@
 import * as React from "react";
 import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
-import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 import { Typography } from "@mui/material";
-import { postResource } from "../assets/apiHelpers";
+import CreateButton from "../CreateButton";
+import { addDays } from "../assets/dateHelpers";
 
 const blankStudent = {
   notes: "",
@@ -65,7 +62,6 @@ const leadSources = [
 ];
 export default function AddStudentForm() {
   const [studentData, setStudentData] = useState(blankStudent);
-  const [open, setOpen] = React.useState(false);
 
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
@@ -84,52 +80,18 @@ export default function AddStudentForm() {
       ...studentData,
       contact: { ...studentData.contact, [e.target.name]: e.target.value },
     });
-
-  const queryClient = useQueryClient();
-
-  const mutation = useMutation({
-    mutationFn: postResource,
-    onSuccess: () => {
-      setOpen(true);
-      queryClient.invalidateQueries(["leads"]);
-    },
-  });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    mutation.mutate({ path: "leads", body: studentData });
-    setStudentData(blankStudent);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
+    console.log(new Date('12/02/2024'))
   return (
-    <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-      <Snackbar
-        sx={{ mt: 10 }}
-        severity="success"
-        variant="filled"
-        anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        open={open}
-        autoHideDuration={4000}
-        onClose={handleClose}
-      >
-               <Alert
-          onClose={handleClose}
-          severity="success"
-          variant="filled"
-          sx={{ width: '100%' }}
-        >
-          Successfully added new enquiry
-        </Alert>
-        </Snackbar>
-      <Box sx={{ m: 2 }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexWrap: "wrap",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        maxWidth: 410,
+      }}
+    >
+      <Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
           Student:
         </Typography>
@@ -137,11 +99,10 @@ export default function AddStudentForm() {
           sx={{
             display: "flex",
             flexWrap: "nowrap",
-            alignContent: "space-between",
+            justifyContent: "space-between",
           }}
         >
           <TextField
-            //  sx={{mx: 2}}
             size="small"
             id="outlined-helperText"
             label="First Name"
@@ -152,7 +113,6 @@ export default function AddStudentForm() {
 
           <TextField
             size="small"
-            sx={{ mx: 2 }}
             id="outlined-helperText"
             label="Last Name"
             name="lastName"
@@ -162,10 +122,10 @@ export default function AddStudentForm() {
         </Box>
         <Box
           sx={{
-            my: 4,
+            my: 2,
             display: "flex",
             flexWrap: "nowrap",
-            alignContent: "space-between",
+            justifyContent: "space-between",
           }}
         >
           <TextField
@@ -212,12 +172,19 @@ export default function AddStudentForm() {
           />
         </Box>
       </Box>
-      <Box sx={{ m: 2 }}>
+
+      <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
           Parent:
         </Typography>
 
-        <Box sx={{ display: "flex", flexWrap: "nowrap" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "nowrap",
+            justifyContent: "space-between",
+          }}
+        >
           <TextField
             //  sx={{mx: 2}}
             size="small"
@@ -229,7 +196,6 @@ export default function AddStudentForm() {
           />
           <TextField
             size="small"
-            sx={{ mx: 2 }}
             id="outlined-helperText"
             label="Last Name"
             name="lastName"
@@ -238,14 +204,19 @@ export default function AddStudentForm() {
           />
         </Box>
       </Box>
-      <Box sx={{ m: 2 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
           Contact Details:
         </Typography>
 
-        <Box sx={{ display: "flex", flexWrap: "nowrap" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "nowrap",
+            justifyContent: "space-between",
+          }}
+        >
           <TextField
-            //  sx={{mx: 2}}
             size="small"
             id="phone"
             label="Phone Number"
@@ -255,7 +226,6 @@ export default function AddStudentForm() {
           />
           <TextField
             size="small"
-            sx={{ mx: 2 }}
             id="email"
             label="Email"
             name="email"
@@ -264,7 +234,7 @@ export default function AddStudentForm() {
           />
         </Box>
       </Box>
-      <Box sx={{ m: 2 }}>
+      <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
         <Typography variant="h6" sx={{ mb: 2 }}>
           Enquiry Details:
         </Typography>
@@ -272,7 +242,7 @@ export default function AddStudentForm() {
           sx={{
             display: "flex",
             flexWrap: "nowrap",
-            alignContent: "space-between",
+            justifyContent: "space-between",
           }}
         >
           <TextField
@@ -300,20 +270,20 @@ export default function AddStudentForm() {
             id="nextContactDate"
             type="date"
             onChange={handleChange}
-            value={studentData.nextContactDate}
+            value={studentData.nextContactDate.length == 0 ? addDays(2) : studentData.nextContactDate}
           />
         </Box>
         <Box
           sx={{
-            my: 4,
+            my: 2,
             display: "flex",
             flexWrap: "nowrap",
-            alignContent: "space-between",
+            justifyContent: "space-between",
           }}
         >
           <TextField
             size="small"
-            sx={{ width: "42ch" }}
+            sx={{ width: "100%" }}
             id="notes"
             label="Notes"
             multiline
@@ -323,15 +293,17 @@ export default function AddStudentForm() {
             variant="outlined"
           />
         </Box>
-        <Button
-          variant="outlined"
-          disabled={mutation.isPending}
-          sx={{ margin: "auto" }}
-          onClick={handleSubmit}
-        >
-          Submit
-        </Button>
       </Box>
+      <CreateButton
+        buttonProps={{
+          buttonText: "Submit",
+          path: "leads",
+          defaultData: blankStudent,
+          data: studentData,
+          setData: setStudentData,
+          redirect: "/newstudents",
+        }}
+      />
     </Box>
   );
 }
