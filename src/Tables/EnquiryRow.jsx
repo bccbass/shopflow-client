@@ -16,7 +16,7 @@ function EnquiryRow({ children, row }) {
   const [open, setOpen] = React.useState(false);
   const overdue = new Date(row.nextContactDate) <= Date.now();
   const minorStudent =
-  row.guardian.lastName.length > 0 && row.guardian.firstName.length > 0;
+  row.guardian.lastName.length > 0 || row.guardian.firstName.length > 0;
 
   return (
     <React.Fragment>

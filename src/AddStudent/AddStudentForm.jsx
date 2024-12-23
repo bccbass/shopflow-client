@@ -3,13 +3,21 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import { Typography } from "@mui/material";
+import { Typography, Autocomplete, Button } from "@mui/material";
 import CreateButton from "../CreateButton";
 import { addDays } from "../assets/dateHelpers";
+import TrialLessonForm from "../TrialLessonForm/TrialLessonForm";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import {
+  instruments,
+  groupClasses,
+  leadSources,
+} from "../assets/dbPlaceholderData.js";
 
 const blankStudent = {
   notes: "",
-  nextContactDate: "",
+  nextContactDate: addDays(3),
   leadSource: "",
   student: {
     firstName: "",
@@ -23,64 +31,49 @@ const blankStudent = {
     lastName: "",
   },
   contact: { phone: "", email: "" },
-  // bookedTrial: '',
-  // trialLesson: {
-  //   date: "",
-  //   time: "",
-  //   location: "",
-  //   instrument: "",
-  //   groupClass: "",
-  //   teacher: "",
-  //   followUp: [],
-  // },
+  bookedTrial: "",
+  trialLesson: {
+    date: "",
+    time: "",
+    location: "",
+    instrument: "",
+    groupClass: "",
+    teacher: "",
+    // followUp: [],
+  },
 };
 
-const instruments = [
-  "Guitar",
-  "Voice",
-  "Piano",
-  "Bass",
-  "Drums",
-  "Flute",
-  "Saxophone",
-  "Ukulele",
-  "Violin",
-];
-const groupClasses = [
-  "Pop Choir",
-  "Adult Jam Group",
-  "Adult Guitar Group",
-  "Kids Keyboard Group",
-  "Kids Rock Band",
-];
-const leadSources = [
-  "Google Ads",
-  "Website",
-  "Phone",
-  "Walk-in",
-  "Word of Mouth",
-];
 export default function AddStudentForm() {
   const [studentData, setStudentData] = useState(blankStudent);
+  const [isTrial, setIsTrial] = useState(false);
 
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
+
   const handleStudentChange = (e) =>
     setStudentData({
       ...studentData,
       student: { ...studentData.student, [e.target.name]: e.target.value },
     });
+
   const handleGuardianChange = (e) =>
     setStudentData({
       ...studentData,
       guardian: { ...studentData.guardian, [e.target.name]: e.target.value },
     });
+
   const handleContactChange = (e) =>
     setStudentData({
       ...studentData,
       contact: { ...studentData.contact, [e.target.name]: e.target.value },
     });
-    console.log(new Date('12/02/2024'))
+
+  const handleTrialClick = (e) => {
+    setIsTrial(!isTrial);
+
+    isTrial ? setStudentData({...studentData, bookedTrial: !isTrial, trialLesson: {...blankStudent.trialLesson}}) :
+    setStudentData({...studentData, bookedTrial: !isTrial})
+  };
   return (
     <Box
       sx={{
@@ -89,6 +82,9 @@ export default function AddStudentForm() {
         flexDirection: "column",
         justifyContent: "space-around",
         maxWidth: 410,
+        mx: 6,
+        mt: 6,
+        mb: 20,
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>
@@ -194,13 +190,33 @@ export default function AddStudentForm() {
             value={studentData.guardian.firstName}
             onChange={handleGuardianChange}
           />
-          <TextField
+          {/* <TextField
             size="small"
             id="outlined-helperText"
             label="Last Name"
             name="lastName"
             value={studentData.guardian.lastName}
             onChange={handleGuardianChange}
+          /> */}
+          <Autocomplete
+            freeSolo
+            size="small"
+            disablePortal
+            options={[studentData.student.lastName]}
+            sx={{ width: "22ch" }}
+            value={studentData.guardian.lastName}
+            onChange={(e, newValue) =>
+              setStudentData({
+                ...studentData,
+                guardian: {
+                  ...studentData.guardian,
+                  lastName: newValue,
+                },
+              })
+            }
+            renderInput={(params) => (
+              <TextField {...params} label="Last Name" />
+            )}
           />
         </Box>
       </Box>
@@ -270,7 +286,7 @@ export default function AddStudentForm() {
             id="nextContactDate"
             type="date"
             onChange={handleChange}
-            value={studentData.nextContactDate.length == 0 ? addDays(2) : studentData.nextContactDate}
+            value={studentData.nextContactDate}
           />
         </Box>
         <Box
@@ -293,6 +309,22 @@ export default function AddStudentForm() {
             variant="outlined"
           />
         </Box>
+      </Box>
+      <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
+        <Button
+          variant="outlined"
+          color="textPrimary"
+          onClick={handleTrialClick}
+          startIcon={isTrial ? <RemoveIcon /> : <AddIcon />}
+        >
+          Trial Lesson
+        </Button>
+        {isTrial && (
+          <TrialLessonForm
+            studentData={studentData}
+            setStudentData={setStudentData}
+          />
+        )}
       </Box>
       <CreateButton
         buttonProps={{
