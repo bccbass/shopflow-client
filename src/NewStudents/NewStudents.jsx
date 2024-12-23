@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Modal } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
 import BookTrialButton from "./BookTrialButton";
 

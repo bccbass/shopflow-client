@@ -37,7 +37,7 @@ const CreateButton = ({ buttonProps }) => {
     setOpen(false);
   };
   return (
-    <Box sx={{ width: "100%", display: "flex", alignContent: "center" }}>
+    <Box sx={{ width: "100%", display: "flex", alignContent: "center", my: 6}}>
       <Snackbar
         sx={{ mt: 10 }}
         severity="success"
@@ -59,7 +59,7 @@ const CreateButton = ({ buttonProps }) => {
       <Button
         variant="contained"
         disabled={mutation.isPending}
-        sx={{ margin: "auto" }}
+        sx={{ margin: "auto", width: "100%" }}
         onClick={handleSubmit}
       >
         {buttonText}
