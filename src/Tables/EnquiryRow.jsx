@@ -38,7 +38,7 @@ function EnquiryRow({ children, row }) {
           })}
         </TableCell>
         <TableCell>{`${row.student.lastName}, ${row.student.firstName}`}</TableCell>
-        <TableCell align={minorStudent ? '' : 'center'}>{minorStudent ? `${row.guardian.lastName}, ${row.guardian.firstName}` : '-'}</TableCell>
+        <TableCell align={minorStudent ? 'inherit' : 'center'}>{minorStudent ? `${row.guardian.lastName}, ${row.guardian.firstName}` : '-'}</TableCell>
         <TableCell>{row.contact.phone}</TableCell>
         <TableCell>{row.contact.email}</TableCell>
         <TableCell>{row.student.instrument}</TableCell>
@@ -163,8 +163,9 @@ function EnquiryRow({ children, row }) {
                   row.bookedTrial ? row.trialLesson.followUp : row.followUp
                 }
               />
+              <BookTrialButton student={row} />
 
-              {children}
+              {/* {children} */}
             </Box>
           </Collapse>
         </TableCell>

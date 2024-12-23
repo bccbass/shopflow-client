@@ -37,7 +37,7 @@ const CreateButton = ({ buttonProps }) => {
     setOpen(false);
   };
   return (
-    <Box sx={{ width: "100%", display: "flex", alignContent: "center", my: 6}}>
+    <Box sx={{ width: "100%", display: "flex", alignContent: "center", mt: 2, mb: 6}}>
       <Snackbar
         sx={{ mt: 10 }}
         severity="success"

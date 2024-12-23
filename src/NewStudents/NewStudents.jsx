@@ -28,7 +28,6 @@ const NewStudents = () => {
               Enquiries
             </Typography> */}
             <EnquiriesTable enquiries={leadsQuery.data.filter(lead => !lead.bookedTrial)}>
-              <BookTrialButton />
             </EnquiriesTable>
           </>
         )}

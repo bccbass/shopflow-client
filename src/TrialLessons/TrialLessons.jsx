@@ -7,11 +7,11 @@ import { Container, Box, Typography } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
 
 const TrialLessons = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const sortOrder = searchParams.get("sort");
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // const sortOrder = searchParams.get("sort");
   const leadsQuery = useQuery({
-    queryKey: ["leads", sortOrder],
-    queryFn: () => getResource("leads?sort=" + sortOrder),
+    queryKey: ["leads"],
+    queryFn: () => getResource("leads"),
   });
   return (
     <Container sx={{ m: 0 }}>

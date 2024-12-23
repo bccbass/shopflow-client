@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { Box, Typography, TextField, MenuItem } from "@mui/material";
+// These should be stored on the DB and queried
 import {
   instruments,
   groupClasses,
@@ -14,6 +15,14 @@ const ampmArray = ["am", "pm"];
 
 const TrialLessonForm = ({ setStudentData, studentData }) => {
   const [time, setTime] = useState({ hour: 12, min: "00", twelveHr: "am" });
+
+  const initialTime = studentData.trialLesson.time
+useEffect(() => {
+    if (initialTime?.length > 0) {
+      const timeArr = initialTime.split(':')
+    setTime({hour: timeArr[0], min: timeArr[1]?.slice(0, 2), twelveHr: timeArr[1]?.slice(2)})
+  }
+}, [])
 
   const handleTrialLessonChange = (e) =>
     setStudentData({
@@ -39,13 +48,15 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
 
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", my: 1, width: "100%", mt: 6}}
+
+
+    sx={{ display: "flex", flexDirection: "column", my: 1, width: "100%", mt: 2, px: 2, py: 4, borderRadius: "5px"}}
     >
       <Box
         sx={{
           display: "flex",
           flexWrap: "nowrap",
-          justifyContent: "space-between",
+          justifyContent: "space-around",
         }}
       >
         <TextField
@@ -158,7 +169,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
       </Box>
       <Box
         sx={{
-          my: 2,
+          mt: 2,
           display: "flex",
           flexWrap: "nowrap",
           justifyContent: "space-around",
