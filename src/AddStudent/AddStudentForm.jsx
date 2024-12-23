@@ -3,7 +3,7 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import { Typography, Autocomplete, Button } from "@mui/material";
+import { Typography, Autocomplete, Button, Collapse } from "@mui/material";
 import CreateButton from "../CreateButton";
 import { addDays } from "../assets/dateHelpers";
 import TrialLessonForm from "../TrialLessonForm/TrialLessonForm";
@@ -71,8 +71,13 @@ export default function AddStudentForm() {
   const handleTrialClick = (e) => {
     setIsTrial(!isTrial);
 
-    isTrial ? setStudentData({...studentData, bookedTrial: !isTrial, trialLesson: {...blankStudent.trialLesson}}) :
-    setStudentData({...studentData, bookedTrial: !isTrial})
+    isTrial
+      ? setStudentData({
+          ...studentData,
+          bookedTrial: !isTrial,
+          trialLesson: { ...blankStudent.trialLesson },
+        })
+      : setStudentData({ ...studentData, bookedTrial: !isTrial });
   };
   return (
     <Box
@@ -319,12 +324,13 @@ export default function AddStudentForm() {
         >
           Trial Lesson
         </Button>
-        {isTrial && (
+
+        <Collapse in={isTrial}>
           <TrialLessonForm
             studentData={studentData}
             setStudentData={setStudentData}
           />
-        )}
+        </Collapse>
       </Box>
       <CreateButton
         buttonProps={{
