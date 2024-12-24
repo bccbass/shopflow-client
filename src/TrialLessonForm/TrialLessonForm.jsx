@@ -1,5 +1,4 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import { Box, Typography, TextField, MenuItem } from "@mui/material";
 // These should be stored on the DB and queried
 import {
@@ -14,21 +13,7 @@ const minutesArray = ["00", "15", "30", "45"];
 const ampmArray = ["am", "pm"];
 
 const TrialLessonForm = ({ setStudentData, studentData }) => {
-  const [time, setTime] = useState({ hour: 12, min: "00", twelveHr: "am" });
-  console.log(studentData.trialLesson);
 
-  useEffect(() => {
-    // take in time from student data and reformat to match time state format
-    const initialTime = studentData.trialLesson.time;
-    if (initialTime?.length > 0) {
-      const timeArr = initialTime.split(":");
-      setTime({
-        hour: timeArr[0],
-        min: timeArr[1]?.slice(0, 2),
-        twelveHr: timeArr[1]?.slice(2),
-      });
-    }
-  }, []);
 
   const handleTrialLessonChange = (e) =>
     setStudentData({
@@ -39,25 +24,16 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
       },
     });
   const handleTimeChange = (e) => {
-    setTime({ ...time, [e.target.name]: e.target.value });
-    const readableTime = `${time.hour}:${time.min}${time.twelveHr}`;
-    setStudentData({ ...studentData, trialLesson: { time: readableTime } });
+    setStudentData({ ...studentData, trialLesson: {...studentData.trialLesson, time: {...studentData.trialLesson.time, [e.target.name]: e.target.value} } });
   };
-
-  useEffect(() => {
-    const readableTime = `${time.hour}:${time.min}${time.twelveHr}`;
-    setStudentData({
-      ...studentData,
-      trialLesson: { ...studentData.trialLesson, time: readableTime },
-    });
-  }, [time]);
 
   return (
     <Box
       sx={{
         display: "flex",
+        // border: "1px solid grey",
         flexDirection: "column",
-        my: 1,
+        mb: 1,
         width: "100%",
         mt: 2,
         px: 2,
@@ -69,7 +45,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         sx={{
           display: "flex",
           flexWrap: "nowrap",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
         }}
       >
         <TextField
@@ -91,7 +67,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           // label="--"
           select
           name="hour"
-          value={time.hour}
+          value={studentData.trialLesson.time.hour}
           onChange={handleTimeChange}
         >
           {hoursArray.map((hour) => (
@@ -109,7 +85,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           // label="--"
           select
           name="min"
-          value={time.min}
+          value={studentData.trialLesson.time.min}
           onChange={handleTimeChange}
         >
           {minutesArray.map((minute) => (
@@ -127,7 +103,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           // label="--"
           select
           name="twelveHr"
-          value={time.twelveHr}
+          value={studentData.trialLesson.time.twelveHr}
           onChange={handleTimeChange}
         >
           {ampmArray.map((ampm) => (
@@ -142,12 +118,12 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           my: 2,
           display: "flex",
           flexWrap: "nowrap",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           // width: "100%",
         }}
       >
         <TextField
-          sx={{ width: "15ch" }}
+          sx={{ width: "21ch" }}
           size="small"
           id="outlined-helperText"
           label="Instrument"
@@ -165,7 +141,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
 
         <TextField
           size="small"
-          sx={{ width: "16ch" }}
+          sx={{ width: "21ch" }}
           select
           id="outlined-helperText"
           label="Group Class"
@@ -185,13 +161,13 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           mt: 2,
           display: "flex",
           flexWrap: "nowrap",
-          justifyContent: "space-around",
+          justifyContent: "space-between",
           width: "100%",
         }}
       >
         <TextField
           size="small"
-          sx={{ width: "15ch" }}
+          sx={{ width: "21ch" }}
           select
           id="outlined-helperText"
           label="Teacher"
@@ -207,7 +183,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         </TextField>
         <TextField
           size="small"
-          sx={{ width: "15ch" }}
+          sx={{ width: "21ch" }}
           select
           id="outlined-helperText"
           label="Location"

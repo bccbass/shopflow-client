@@ -34,7 +34,7 @@ const blankStudent = {
   bookedTrial: false,
   trialLesson: {
     date: "",
-    time: "",
+    time: { hour: "", min: "", twelveHr: "" },
     location: "",
     instrument: "",
     groupClass: "",

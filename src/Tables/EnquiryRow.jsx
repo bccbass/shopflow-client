@@ -105,6 +105,8 @@ function EnquiryRow({ children, row }) {
                     {row?.student?.age}
                   </Typography>
                 </Box>
+                {/* <div style={{borderLeft: '1px solid #DDD', margin: '2rem', height: '200px'}}/> */}
+
                 { row.bookedTrial === true && <Box sx={{ py: 2, flex: 2 }}>
                   <Typography
                     variant="h6"
@@ -124,7 +126,7 @@ function EnquiryRow({ children, row }) {
                   </Typography>
                   <Typography>
                     <strong> Time: </strong>
-                    {row?.trialLesson?.time}
+                    {`${row?.trialLesson?.time?.hour}:${row?.trialLesson?.time?.min}${row?.trialLesson?.time?.twelveHr}`}
                   </Typography>
                   <Typography>
                     <strong> Location: </strong>
@@ -144,7 +146,9 @@ function EnquiryRow({ children, row }) {
                       {row?.trialLesson?.groupClass}
                     </Typography>
                   )}
+                  
                 </Box>}
+
                 <Box sx={{ py: 2, flex: 2 }}>
                   <Typography
                     variant="h6"

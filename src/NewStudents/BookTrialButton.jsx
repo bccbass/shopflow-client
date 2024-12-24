@@ -15,9 +15,6 @@ const BookTrialButton = ({ student }) => {
       ...studentData,
       trialLesson: { ...studentData.trialLesson, date: formattedDate },
     });
-    console.log(
-'from trial button'
-    );
   }, []);
 
   return (
