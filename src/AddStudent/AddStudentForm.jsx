@@ -39,14 +39,13 @@ const blankStudent = {
     instrument: "",
     groupClass: "",
     teacher: "",
-    // followUp: [],
+    followUp: [],
   },
 };
 
 export default function AddStudentForm() {
   const [studentData, setStudentData] = useState(blankStudent);
   const [isTrial, setIsTrial] = useState(false);
-
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
 

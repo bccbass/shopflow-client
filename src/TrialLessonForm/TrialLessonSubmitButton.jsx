@@ -18,12 +18,12 @@ const TrialLessonSubmitButton = ({ updatedStudent, setOpen }) => {
 		bookedTrial: 1,
 		trialLesson: { ...updatedStudent.trialLesson },
 	};
-	console.log(updatedStudent._id, dataPayload);
+	// console.log(updatedStudent._id, dataPayload);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		mutation.mutate({
-			path: `leads/${updatedStudent._id}?updatetrial=true`,
+			path: `leads/${updatedStudent._id}`,
 			body: dataPayload,
 		});
 		//   if (mutation.isSuccess) {

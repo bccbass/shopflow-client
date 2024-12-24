@@ -1,11 +1,25 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Modal, Box } from "@mui/material";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 
 const BookTrialButton = ({ student }) => {
   const [open, setOpen] = useState(false);
   const [studentData, setStudentData] = useState(student);
+  useEffect(() => {
+    // Reformat trial lesson date from student data so it can be used as an input value and not throw error
+    const formattedDate = studentData.bookedTrial
+      ? studentData?.trialLesson?.date?.split("T")[0]
+      : "";
+    setStudentData({
+      ...studentData,
+      trialLesson: { ...studentData.trialLesson, date: formattedDate },
+    });
+    console.log(
+'from trial button'
+    );
+  }, []);
+
   return (
     <>
       <Button onClick={() => setOpen(!open)} variant="contained">
@@ -22,8 +36,11 @@ const BookTrialButton = ({ student }) => {
             borderRadius: "5px",
           }}
         >
-
-          < TrialLessonWrapper setOpen={setOpen} studentData={studentData} setStudentData={setStudentData}/>
+          <TrialLessonWrapper
+            setOpen={setOpen}
+            studentData={studentData}
+            setStudentData={setStudentData}
+          />
         </Box>
       </Modal>
     </>

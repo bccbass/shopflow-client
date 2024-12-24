@@ -19,8 +19,8 @@ const TrialLessonWrapper = ({ studentData, setStudentData, setOpen }) => {
         </Button>
       </Box>
 
-      <Typography textAlign={"center"} variant="h5">
-        {studentData.bookedTrial ? "Edit Trial" : "Book Trial"}
+      <Typography textAlign={"center"} variant="h5" >
+        {`${studentData.student.firstName}  ${studentData.student.lastName} Trial Lesson` }
       </Typography>
       <TrialLessonForm
         studentData={studentData}

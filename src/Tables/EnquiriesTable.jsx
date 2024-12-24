@@ -29,6 +29,7 @@ export default function EnquiriesTable({ enquiries, children }) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
+            
             <EnquiryRow key={row._id} row={row}>
               {children}
             </EnquiryRow>

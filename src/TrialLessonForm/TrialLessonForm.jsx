@@ -15,14 +15,20 @@ const ampmArray = ["am", "pm"];
 
 const TrialLessonForm = ({ setStudentData, studentData }) => {
   const [time, setTime] = useState({ hour: 12, min: "00", twelveHr: "am" });
+  console.log(studentData.trialLesson);
 
-  const initialTime = studentData.trialLesson.time
-useEffect(() => {
+  useEffect(() => {
+    // take in time from student data and reformat to match time state format
+    const initialTime = studentData.trialLesson.time;
     if (initialTime?.length > 0) {
-      const timeArr = initialTime.split(':')
-    setTime({hour: timeArr[0], min: timeArr[1]?.slice(0, 2), twelveHr: timeArr[1]?.slice(2)})
-  }
-}, [])
+      const timeArr = initialTime.split(":");
+      setTime({
+        hour: timeArr[0],
+        min: timeArr[1]?.slice(0, 2),
+        twelveHr: timeArr[1]?.slice(2),
+      });
+    }
+  }, []);
 
   const handleTrialLessonChange = (e) =>
     setStudentData({
@@ -34,8 +40,8 @@ useEffect(() => {
     });
   const handleTimeChange = (e) => {
     setTime({ ...time, [e.target.name]: e.target.value });
-    // const readableTime = `${time.hour}:${time.min}${time.twelveHr}`
-    // setStudentData({...studentData, trialLesson: {time: readableTime}});
+    const readableTime = `${time.hour}:${time.min}${time.twelveHr}`;
+    setStudentData({ ...studentData, trialLesson: { time: readableTime } });
   };
 
   useEffect(() => {
@@ -48,9 +54,16 @@ useEffect(() => {
 
   return (
     <Box
-
-
-    sx={{ display: "flex", flexDirection: "column", my: 1, width: "100%", mt: 2, px: 2, py: 4, borderRadius: "5px"}}
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        my: 1,
+        width: "100%",
+        mt: 2,
+        px: 2,
+        py: 4,
+        borderRadius: "5px",
+      }}
     >
       <Box
         sx={{
@@ -60,7 +73,7 @@ useEffect(() => {
         }}
       >
         <TextField
-          sx={{width: '16.5ch'}}
+          sx={{ width: "16.5ch" }}
           size="small"
           id="outlined-helperText"
           type="date"
@@ -152,7 +165,7 @@ useEffect(() => {
 
         <TextField
           size="small"
-          sx={{width: "16ch" }}
+          sx={{ width: "16ch" }}
           select
           id="outlined-helperText"
           label="Group Class"
