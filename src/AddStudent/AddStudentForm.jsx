@@ -31,7 +31,7 @@ const blankStudent = {
     lastName: "",
   },
   contact: { phone: "", email: "" },
-  bookedTrial: "",
+  bookedTrial: false,
   trialLesson: {
     date: "",
     time: "",
@@ -195,16 +195,16 @@ export default function AddStudentForm() {
             value={studentData.guardian.firstName}
             onChange={handleGuardianChange}
           />
-          {/* <TextField
+          <TextField
             size="small"
             id="outlined-helperText"
             label="Last Name"
             name="lastName"
             value={studentData.guardian.lastName}
             onChange={handleGuardianChange}
-          /> */}
-          <Autocomplete
-            freeSolo
+          />
+          {/* <Autocomplete
+            freeSolo={true}
             size="small"
             disablePortal
             options={[studentData.student.lastName]}
@@ -215,14 +215,14 @@ export default function AddStudentForm() {
                 ...studentData,
                 guardian: {
                   ...studentData.guardian,
-                  lastName: newValue,
+                  lastName: e.target.value
                 },
               })
             }
             renderInput={(params) => (
-              <TextField {...params} label="Last Name" />
+              <TextField name='lastName' {...params} label="Last Name" />
             )}
-          />
+          /> */}
         </Box>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
