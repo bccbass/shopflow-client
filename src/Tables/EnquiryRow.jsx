@@ -6,21 +6,24 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import FollowUpTable from "./FollowUpTable";
-import BookTrialButton from "../NewStudents/BookTrialButton";
+import RowCollapsibleContent from "./RowCollapsibleContent";
 
 function EnquiryRow({ children, row }) {
   const [open, setOpen] = React.useState(false);
-  const overdue = new Date(row.nextContactDate) <= Date.now();
-  const minorStudent =
-  row.guardian.lastName.length > 0 || row.guardian.firstName.length > 0;
 
   return (
     <React.Fragment>
-      <TableRow sx={{ "& > *": { borderBottom: "unset", backgroundColor: overdue ? 'pink' : '#AFE5E3' }}}>
+      <TableRow
+        sx={{
+          "& > *": {
+            borderBottom: "unset",
+            backgroundColor: row.overdue ? "pink" : "#AFE5E3",
+          },
+        }}
+      >
         <TableCell>
           <IconButton
             aria-label="expand row"
@@ -37,8 +40,10 @@ function EnquiryRow({ children, row }) {
             // year: "numeric",
           })}
         </TableCell>
-        <TableCell>{`${row.student.lastName}, ${row.student.firstName}`}</TableCell>
-        <TableCell align={minorStudent ? 'inherit' : 'center'}>{minorStudent ? `${row.guardian.lastName}, ${row.guardian.firstName}` : '-'}</TableCell>
+        <TableCell>{`${row.studentFullName}`}</TableCell>
+        <TableCell align={row.isMinor ? "inherit" : "center"}>
+          {row.isMinor ? `${row.guardianFullName}` : "-"}
+        </TableCell>
         <TableCell>{row.contact.phone}</TableCell>
         <TableCell>{row.contact.email}</TableCell>
         <TableCell>{row.student.instrument}</TableCell>
@@ -48,129 +53,11 @@ function EnquiryRow({ children, row }) {
           style={{
             paddingBottom: 0,
             paddingTop: 0,
-         
           }}
           colSpan={7}
         >
           <Collapse in={open} timeout="auto">
-            <Box sx={{ m: 2 }}>
-              <Container
-                sx={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <Box sx={{ py: 2, flex: 2 }}>
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    color="textSecondary"
-                    component="div"
-                  >
-                    <strong> Enquiry Details </strong>
-                  </Typography>
-                  <Typography>
-                    <strong> Created: </strong>
-                    {new Date(row?.dateCreated).toLocaleString("en-AU", {
-                      day: "numeric",
-                      month: "numeric",
-                      year: "numeric",
-                    })}
-                  </Typography>
-                  <Typography>
-                    <strong> Student: </strong>
-                    {`${row.student.firstName} ${row.student.lastName}`}
-                  </Typography>
-                  {minorStudent && (
-                    <Typography>
-                      <strong> Parent: </strong>
-                      {`${row.guardian.firstName} ${row.guardian.lastName}`}
-                    </Typography>
-                  )}
-                  <Typography>
-                    <strong> Phone: </strong>
-                    {row?.contact?.phone}
-                  </Typography>
-                  <Typography>
-                    <strong> Email: </strong>
-                    {row?.contact?.email}
-                  </Typography>
-                  <Typography>
-                    <strong> Source: </strong>
-                    {row?.leadSource}
-                  </Typography>
-                  <Typography>
-                    <strong>Group Class: </strong>
-                    {row.student?.groupClass}
-                  </Typography>
-                  <Typography>
-                    <strong> Age: </strong>
-                    {row?.student?.age}
-                  </Typography>
-                </Box>
-                {/* <div style={{borderLeft: '1px solid #DDD', margin: '2rem', height: '200px'}}/> */}
-
-                { row.bookedTrial === true && <Box sx={{ py: 2, flex: 2 }}>
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    color="textSecondary"
-                    component="div"
-                  >
-                    <strong> Trial Lesson </strong>
-                  </Typography>
-                  <Typography>
-                    <strong> date: </strong>
-                    {new Date(row?.trialLesson?.date).toLocaleString("en-AU", {
-                      day: "numeric",
-                      month: "numeric",
-                      year: "numeric",
-                    })}
-                  </Typography>
-                  <Typography>
-                    <strong> Time: </strong>
-                    {`${row?.trialLesson?.time?.hour}:${row?.trialLesson?.time?.min}${row?.trialLesson?.time?.twelveHr}`}
-                  </Typography>
-                  <Typography>
-                    <strong> Location: </strong>
-                    {row?.trialLesson?.location}
-                  </Typography>
-                  <Typography>
-                    <strong> Instrument: </strong>
-                    {row?.trialLesson?.instrument}
-                  </Typography>
-                  <Typography>
-                    <strong> Teacher: </strong>
-                    {row?.trialLesson?.teacher}
-                  </Typography>
-                  {row.trialLesson.groupClass && (
-                    <Typography>
-                      <strong>Group Class: </strong>
-                      {row?.trialLesson?.groupClass}
-                    </Typography>
-                  )}
-                  
-                </Box>}
-
-                <Box sx={{ py: 2, flex: 2 }}>
-                  <Typography
-                    variant="h6"
-                    gutterBottom
-                    color="textSecondary"
-                    component="div"
-                  >
-                    <strong> Notes </strong>
-                  </Typography>
-                  <Typography>{row?.notes}</Typography>
-                </Box>
-              </Container>
-
-              <FollowUpTable
-                followUpEvents={
-                  row.bookedTrial ? row.trialLesson.followUp : row.followUp
-                }
-              />
-              <BookTrialButton student={row} />
-
-              {/* {children} */}
-            </Box>
+            <RowCollapsibleContent lead={row} />
           </Collapse>
         </TableCell>
       </TableRow>

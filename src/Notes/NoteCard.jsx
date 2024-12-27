@@ -3,17 +3,16 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import DeleteButton from "../DeleteButton";
-import EditButton from "../EditButton";
+import DeleteButton from "../CRUDButtons/DeleteButton";
+import EditButton from "../CRUDButtons/EditButton";
 import Chip from '@mui/material/Chip'
 import Divider from "@mui/material/Divider";
 const today = new Date();
 
 export default function NoteCard({ note, setEditingNote }) {
-  const overdue = today > new Date(note.due);
   return (
 		<Box sx={{ minWidth: 275, m: 2, width: 300 }}>
-			<Card variant="outlined" sx={{ backgroundColor: overdue && "pink" }}>
+			<Card variant="outlined" sx={{ backgroundColor: note.overdue && "pink" }}>
 				{" "}
 				<CardContent>
 					<Typography
@@ -52,7 +51,7 @@ export default function NoteCard({ note, setEditingNote }) {
 									month: "numeric",
 								})
 							}
-							variant={overdue ? "" : "outlined"}
+							variant={note.overdue ? "" : "outlined"}
 							color="error"
 							sx={{ my: 2 }}
 						/>

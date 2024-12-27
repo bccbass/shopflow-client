@@ -37,6 +37,17 @@ export const patchResource = async (queryObj) => {
   }
 }
 
+export const putResource = async (queryObj) => {
+  const { path, body } = queryObj;
+  try {
+    const response = await axiosApi.put(`/${path}`, body);
+    return response.data;
+  } catch (err) {
+    alert(err);
+    console.error(err);
+  }
+}
+
 export const deleteResource = async (queryObj) => {
   const { path, id } = queryObj;
   try {

@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { Typography, Autocomplete, Button, Collapse } from "@mui/material";
-import CreateButton from "../CreateButton";
+import CreateButton from "../CRUDButtons/CreateButton";
 import { addDays } from "../assets/dateHelpers";
 import TrialLessonForm from "../TrialLessonForm/TrialLessonForm";
 import AddIcon from "@mui/icons-material/Add";
@@ -43,8 +43,8 @@ const blankStudent = {
   },
 };
 
-export default function AddStudentForm() {
-  const [studentData, setStudentData] = useState(blankStudent);
+export default function AddStudentForm({ student=blankStudent }) {
+  const [studentData, setStudentData] = useState(student);
   const [isTrial, setIsTrial] = useState(false);
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
@@ -86,9 +86,9 @@ export default function AddStudentForm() {
         flexDirection: "column",
         justifyContent: "space-around",
         maxWidth: 410,
-        mx: 6,
+        mx: 'auto',
         mt: 6,
-        mb: 20,
+        mb: 8,
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>

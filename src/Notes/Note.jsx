@@ -1,8 +1,7 @@
 /** @format */
 
 import React from "react";
-import DeleteButton from "../DeleteButton";
-import EditButton from "../EditButton";
+
 import NoteEditCard from "./NoteEditCard";
 import NoteCard from "./NoteCard";
 import { useState } from "react";

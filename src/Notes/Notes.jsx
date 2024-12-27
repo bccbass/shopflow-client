@@ -23,7 +23,7 @@ const Notes = () => {
 				title="Notes"
 			/>
 			<Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-				<NoteForm />
+				<NoteForm key={'noteForm'}/>
 				{notesQuery.isLoading ? (
 					<Loading />
 				) : notesQuery.isError ? (

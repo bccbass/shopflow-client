@@ -3,8 +3,21 @@ import { Button, Typography, Box } from "@mui/material";
 import TrialLessonForm from "./TrialLessonForm";
 import CloseIcon from "@mui/icons-material/Close";
 import TrialLessonSubmitButton from "./TrialLessonSubmitButton";
+import { useState, useEffect } from "react";
 
-const TrialLessonWrapper = ({ studentData, setStudentData, setOpen }) => {
+
+const TrialLessonWrapper = ({ student, setOpen }) => {
+  const [studentData, setStudentData] = useState(student);
+  useEffect(() => {
+    // Reformat trial lesson date from student data so it can be used as an input value and not throw error
+    const formattedDate = studentData.bookedTrial
+      ? studentData?.trialLesson?.date?.split("T")[0]
+      : "";
+    setStudentData({
+      ...studentData,
+      trialLesson: { ...studentData.trialLesson, date: formattedDate },
+    });
+  }, []);
   return (
     <Box
       sx={{
@@ -20,7 +33,7 @@ const TrialLessonWrapper = ({ studentData, setStudentData, setOpen }) => {
       </Box>
 
       <Typography textAlign={"center"} variant="h5" >
-        {`${studentData.student.firstName}  ${studentData.student.lastName} Trial Lesson` }
+        {`${studentData.studentFullName} Trial Lesson` }
       </Typography>
       <TrialLessonForm
         studentData={studentData}

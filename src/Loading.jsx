@@ -29,8 +29,10 @@ const skeletonCard = (
 export default function Loading() {
   return (
     <>
-      {[1,2,3].map(() => (
-        skeletonCard
+      {[1,2,3].map((num) => (
+        <div key={num}>
+        skeletonCard 
+        </div>
       ))}
     </>
   );

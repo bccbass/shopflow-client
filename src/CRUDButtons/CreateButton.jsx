@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
-import { postResource } from "./assets/apiHelpers";
+import { postResource } from "../assets/apiHelpers";
 
 const CreateButton = ({ buttonProps }) => {
   const { buttonText, path, defaultData, data, setData, redirect } =
@@ -20,7 +20,7 @@ const CreateButton = ({ buttonProps }) => {
       setOpen(true);
       queryClient.invalidateQueries(["leads"]);
       setData(defaultData);
-    //   navigate(redirect);
+      //   navigate(redirect);
     },
   });
 
@@ -37,7 +37,15 @@ const CreateButton = ({ buttonProps }) => {
     setOpen(false);
   };
   return (
-    <Box sx={{ width: "100%", display: "flex", alignContent: "center", mt: 2, mb: 6}}>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        alignContent: "center",
+        mt: 2,
+        mb: 6,
+      }}
+    >
       <Snackbar
         sx={{ mt: 10 }}
         severity="success"

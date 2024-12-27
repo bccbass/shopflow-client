@@ -5,7 +5,6 @@ import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import { Container, Box, Typography, Modal } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
-import BookTrialButton from "./BookTrialButton";
 
 const NewStudents = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -28,6 +27,7 @@ const NewStudents = () => {
               Enquiries
             </Typography> */}
             <EnquiriesTable enquiries={leadsQuery.data.filter(lead => !lead.bookedTrial)}>
+              <h1>Book a trial</h1>
             </EnquiriesTable>
           </>
         )}
