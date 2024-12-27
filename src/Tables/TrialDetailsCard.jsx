@@ -5,9 +5,17 @@ import Typography from "@mui/material/Typography";
 const TrialDetailsCard = ({student, children}) => {
   return (
     <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      alignItems: "center",
+    }}
+  >
+    <Box
       sx={{
         py: 2,
-        px: 1,
+        mr: 3,
         flex: 2,
         borderLeft: "1px solid #DDD",
         // minHeight: "250px",
@@ -52,13 +60,13 @@ const TrialDetailsCard = ({student, children}) => {
           {student?.trialLesson?.groupClass}
         </Typography>
       )}
+    </Box>
 
       <Box
         sx={{
           display: "flex",
           justifyContent: "flex-start",
           my: 4,
-          ml: 2,
         }}
       >
         {children}
