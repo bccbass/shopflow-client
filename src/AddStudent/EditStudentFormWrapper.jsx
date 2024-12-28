@@ -10,16 +10,14 @@ const EditStudentFormWrapper = ({student=blankStudent, setOpen}) => {
       const [studentData, setStudentData] = useState(student);
 
         useEffect(() => {
-      console.log('inside effect')
-
     // Reformat trial lesson date from student data so it can be used as an input value and not throw error
     const formattedDate = studentData.bookedTrial
-      ? studentData?.trialLesson?.date?.split("T")[0]
+      ? studentData?.nextContactDate?.split("T")[0]
       : "";
     setStudentData({
       ...studentData,
-      trialLesson: { ...studentData.trialLesson, date: formattedDate },
-    });
+      nextContactDate: formattedDate }
+    );
   }, []);
       
   return (
