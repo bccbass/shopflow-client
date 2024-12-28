@@ -36,7 +36,6 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         mb: 1,
         width: "100%",
         mt: 2,
-        px: 2,
         py: 4,
         borderRadius: "5px",
       }}

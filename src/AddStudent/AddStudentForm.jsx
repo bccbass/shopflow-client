@@ -5,19 +5,16 @@ import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { Typography, Autocomplete, Button, Collapse } from "@mui/material";
 import CreateButton from "../Buttons/CreateButton";
-import TrialLessonForm from "../TrialLessonForm/TrialLessonForm";
-import AddIcon from "@mui/icons-material/Add";
-import RemoveIcon from "@mui/icons-material/Remove";
+
 import {
   instruments,
   groupClasses,
   leadSources,
 } from "../assets/dbPlaceholderData.js";
-import { blankStudent } from "../assets/blankStudentForm";
 
 
-export default function AddStudentForm({ student=blankStudent }) {
-  const [studentData, setStudentData] = useState(student);
+export default function AddStudentForm({studentData, setStudentData }) {
+
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
 
@@ -39,21 +36,7 @@ export default function AddStudentForm({ student=blankStudent }) {
       contact: { ...studentData.contact, [e.target.name]: e.target.value },
     });
 
-  const handleTrialClick = (e) => {
-    // TOGGLE TRIAL LESSON BOOLEAN
-    setStudentData({
-          ...studentData,
-          bookedTrial: !studentData.bookedTrial
-        })
-        // LOGIC TO SET TRIAL LESSON DATA WHEN CLICKED (IE REMOVE TRIAL LESSOND DATA IF USER CLICKS REMOVE TRIAL LESSON BUTTON)
-    studentData.bookedTrial
-      ? setStudentData({
-          ...studentData,
-          bookedTrial: !studentData.bookedTrial,
-          trialLesson: { ...blankStudent.trialLesson },
-        })
-      : setStudentData({ ...studentData, bookedTrial: !studentData.bookedTrial });
-  };
+
   return (
     <Box
       sx={{
@@ -64,7 +47,7 @@ export default function AddStudentForm({ student=blankStudent }) {
         maxWidth: 410,
         mx: 'auto',
         mt: 6,
-        mb: 8
+        // mb: 8
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>
@@ -290,33 +273,8 @@ export default function AddStudentForm({ student=blankStudent }) {
           />
         </Box>
       </Box>
-      <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
-        <Button
-          variant="outlined"
-          color="textPrimary"
-          onClick={handleTrialClick}
-          startIcon={studentData.bookedTrial ? <RemoveIcon /> : <AddIcon />}
-        >
-          Trial Lesson
-        </Button>
+ 
 
-        <Collapse in={studentData.bookedTrial}>
-          <TrialLessonForm
-            studentData={studentData}
-            setStudentData={setStudentData}
-          />
-        </Collapse>
-      </Box>
-      <CreateButton
-        buttonProps={{
-          buttonText: "Submit",
-          path: "leads",
-          defaultData: blankStudent,
-          data: studentData,
-          setData: setStudentData,
-          redirect: "/newstudents",
-        }}
-      />
     </Box>
   );
 }
