@@ -19,7 +19,7 @@ const OpenUpdateModalButton = ({children, student, title }) => {
        < EditIcon onClick={() => setOpen(!open)} sx={{ color: "grey" }}/>
        </Box>}
 
-      <Modal open={open} sx={{ overflowY: 'scrollable', display: "flex", justifyContent: "center", height: '2000px' }}>
+      <Modal open={open} sx={{ display: "flex", justifyContent: "center" }}>
         <Box
           sx={{
             backgroundColor: "white",

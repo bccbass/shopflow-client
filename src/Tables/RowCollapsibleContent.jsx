@@ -7,7 +7,7 @@ import EnquiryDetailsCard from "./EnquiryDetailsCard";
 import TrialDetailsCard from "./TrialDetailsCard";
 import EnquiryNotesCard from "./EnquiryNotesCard";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
-import AddStudentForm from "../AddStudent/AddStudentForm";
+import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 
 const RowCollapsibleContent = ({ lead }) => {
   return (
@@ -17,8 +17,8 @@ const RowCollapsibleContent = ({ lead }) => {
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
-          <OpenUpdateModalButton student={lead}>
-            <AddStudentForm student={lead} />
+          <OpenUpdateModalButton student={lead} title={"Edit Student"}>
+            < EditStudentFormWrapper />
           </OpenUpdateModalButton>
         </EnquiryDetailsCard>
         {lead.bookedTrial && (

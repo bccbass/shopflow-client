@@ -1,10 +1,8 @@
 import * as React from "react";
-import { useState } from "react";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import { Typography, Autocomplete, Button, Collapse } from "@mui/material";
-import CreateButton from "../Buttons/CreateButton";
+import { Typography, Autocomplete} from "@mui/material";
 
 import {
   instruments,
@@ -14,6 +12,7 @@ import {
 
 
 export default function AddStudentForm({studentData, setStudentData }) {
+
 
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
@@ -46,7 +45,7 @@ export default function AddStudentForm({studentData, setStudentData }) {
         justifyContent: "space-around",
         maxWidth: 410,
         mx: 'auto',
-        mt: 6,
+        // mt: 6,
         // mb: 8
       }}
     >
