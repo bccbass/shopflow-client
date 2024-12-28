@@ -4,11 +4,25 @@ import Typography from "@mui/material/Typography";
 
 const EnquiryNotesCard = ({ lead, children }) => {
   return (
+     <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: '30%',
+        borderLeft: "1px solid #DDD",
+
+    }}
+  >
     <Box
       sx={{
         py: 2,
+        ml: 3,
         flex: 2,
-        borderLeft: "1px solid #DDD",
+      width: '100%',
+
+        // minHeight: "250px",
         pl: 4,
       }}
     >
@@ -21,7 +35,9 @@ const EnquiryNotesCard = ({ lead, children }) => {
         <strong> Notes </strong>
       </Typography>
       <Typography>{lead?.notes}</Typography>
-      <Box
+
+    </Box>
+          <Box
         sx={{
           display: "flex",
           justifyContent: "flex-start",

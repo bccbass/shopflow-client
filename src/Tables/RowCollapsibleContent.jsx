@@ -13,7 +13,7 @@ const RowCollapsibleContent = ({ lead }) => {
   return (
     <Box sx={{ m: 2 }}>
       <Container
-        sx={{ display: "flex", justifyContent: "space-between", my: 4 }}
+        sx={{ display: "flex", justifyContent: "space-between", my: 4, width: '100%' }}
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
@@ -28,7 +28,11 @@ const RowCollapsibleContent = ({ lead }) => {
             </OpenUpdateModalButton>
           </TrialDetailsCard>
         )}
-        <EnquiryNotesCard lead={lead} />
+        <EnquiryNotesCard lead={lead} >
+             <OpenUpdateModalButton student={lead} title={"Update Notes"}>
+            < EditStudentFormWrapper />
+          </OpenUpdateModalButton>
+           </EnquiryNotesCard>
       </Container>
 
       <FollowUpTable

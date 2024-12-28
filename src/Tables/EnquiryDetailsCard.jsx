@@ -9,6 +9,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         alignItems: "center",
+        width: '30%'
       }}
     >
       <Box sx={{ py: 2, flex: 2, mr:3 }}>

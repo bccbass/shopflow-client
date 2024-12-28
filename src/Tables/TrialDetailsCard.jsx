@@ -6,10 +6,13 @@ const TrialDetailsCard = ({student, children}) => {
   return (
     <Box
     sx={{
+        borderLeft: "1px solid #DDD",
+
       display: "flex",
       flexDirection: "column",
       justifyContent: "space-between",
       alignItems: "center",
+      width: '30%'
     }}
   >
     <Box
@@ -17,7 +20,6 @@ const TrialDetailsCard = ({student, children}) => {
         py: 2,
         mr: 3,
         flex: 2,
-        borderLeft: "1px solid #DDD",
         // minHeight: "250px",
         pl: 4,
       }}
