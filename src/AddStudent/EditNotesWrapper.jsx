@@ -20,6 +20,7 @@ const EditNotesWrapper = ({ student, setOpen }) => {
         {`Edit ${studentData.studentFullName} Notes` }
       </DialogTitle>
             <TextField
+            rows={6}
             size="small"
             sx={{ width: "100%", minHeight: '40px', my: 4 }}
             id="notes"
