@@ -1,7 +1,6 @@
 import React from "react";
-import { Button, Typography, Box } from "@mui/material";
+import { Button, DialogTitle, DialogContent, DialogActions } from "@mui/material";
 import TrialLessonForm from "./TrialLessonForm";
-import CloseIcon from "@mui/icons-material/Close";
 import TrialLessonSubmitButton from "./TrialLessonSubmitButton";
 import { useState, useEffect } from "react";
 
@@ -19,28 +18,29 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
     });
   }, []);
   return (
-    <Box
+    <DialogContent
       sx={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
       }}
     >
-      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button onClick={() => setOpen(false)}>
-          <CloseIcon sx={{}} />
-        </Button>
-      </Box>
 
-      <Typography textAlign={"center"} variant="h5" >
+      <DialogTitle textAlign={"center"} variant="h5" >
         {`${studentData.studentFullName} Trial Lesson` }
-      </Typography>
+      </DialogTitle>
       <TrialLessonForm
         studentData={studentData}
         setStudentData={setStudentData}
       />
+< DialogActions sx={{display: 'flex', flexDirection: 'column'}} >
+
       <TrialLessonSubmitButton updatedStudent={studentData} setOpen={setOpen} />
-    </Box>
+                    <Button sx={{my: 2}}  onClick={() => setOpen(false)}>
+          Cancel
+        </Button>
+      </DialogActions>
+    </DialogContent>
   );
 };
 

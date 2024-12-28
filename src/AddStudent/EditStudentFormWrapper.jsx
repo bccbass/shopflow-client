@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import {Box, Button, Typography} from "@mui/material";
+import {Box, Button, DialogActions, DialogTitle, Typography} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import AddStudentForm from "./AddStudentForm";
 import { blankStudent } from "../assets/blankStudentForm";
@@ -29,21 +29,19 @@ const EditStudentFormWrapper = ({student=blankStudent, setOpen}) => {
         justifyContent: "space-around",
         maxWidth: 410,
         mx: 'auto',
-        mt: 6,
-        mb: 8
       }}
     >
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button onClick={() => setOpen(false)}>
-          <CloseIcon sx={{}} />
-        </Button>
-      </Box>
-            <Typography textAlign={"center"} variant="h5" >
+            <DialogTitle textAlign={"center"} variant="h5" >
         {`Edit ${studentData.studentFullName}` }
-      </Typography>
+      </DialogTitle>
         <AddStudentForm studentData={studentData} setStudentData={setStudentData} />     
 
+< DialogActions sx={{display: 'flex', flexDirection: 'column'}} >
       < SubmitUpdateButton submitProps={{updatedStudent: studentData, setOpen: setOpen, path: `leads/${studentData._id}`, query: "Leads", type: 'put' }} />
+              <Button sx={{my: 2}}  onClick={() => setOpen(false)}>
+          Cancel
+        </Button>
+      </DialogActions>
     </Box>
   )
 }

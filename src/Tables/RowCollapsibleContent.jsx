@@ -8,6 +8,7 @@ import TrialDetailsCard from "./TrialDetailsCard";
 import EnquiryNotesCard from "./EnquiryNotesCard";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
+import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
 
 const RowCollapsibleContent = ({ lead }) => {
   return (
@@ -30,7 +31,7 @@ const RowCollapsibleContent = ({ lead }) => {
         )}
         <EnquiryNotesCard lead={lead} >
              <OpenUpdateModalButton student={lead} title={"Update Notes"}>
-            < EditStudentFormWrapper />
+            < EditNotesWrapper />
           </OpenUpdateModalButton>
            </EnquiryNotesCard>
       </Container>

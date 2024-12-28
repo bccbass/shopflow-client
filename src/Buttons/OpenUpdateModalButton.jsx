@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Modal, Dialog, Box } from "@mui/material";
+import { Button, Modal, Dialog, Box, DialogContent } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 
@@ -12,7 +12,7 @@ const OpenUpdateModalButton = ({children, student, title }) => {
   return (
     <>
     { title !== undefined ? 
-      <Button onClick={() => setOpen(!open)} variant="contained">
+      <Button onClick={() => setOpen(!open)} >
         {title}
       </Button> :
       < Box >
@@ -20,18 +20,17 @@ const OpenUpdateModalButton = ({children, student, title }) => {
        </Box>}
 
       <Dialog open={open} sx={{ display: "flex", justifyContent: "center" }}>
-        <Box
+        <DialogContent
           sx={{
             backgroundColor: "white",
-            mt: 24,
-            // height: "fit-content",
-            width: 500,
-            p: 2,
+            width: 'fitContent',
+            px: 6,
+            py: 2,
             borderRadius: "5px",
           }}
         >
           {React.cloneElement(children, { student, setOpen })}
-        </Box>
+        </DialogContent>
       </Dialog>
     </>
   );

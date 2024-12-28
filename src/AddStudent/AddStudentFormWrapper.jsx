@@ -5,12 +5,13 @@ import CreateButton from "../Buttons/CreateButton";
 import AddStudentForm from "./AddStudentForm";
 import { blankStudent } from "../assets/blankStudentForm";
 import TrialLessonButton from "../TrialLessonForm/TrialLessonButton";
+import { DialogContent } from "@mui/material";
 
 const AddStudentFormWrapper = ({student=blankStudent}) => {
       const [studentData, setStudentData] = useState(student);
 
   return (
-          <Box
+          <DialogContent
       sx={{
         display: "flex",
         flexWrap: "wrap",
@@ -35,7 +36,7 @@ const AddStudentFormWrapper = ({student=blankStudent}) => {
           redirect: "/newstudents",
         }}
       />
-    </Box>
+    </DialogContent>
   )
 }
 
