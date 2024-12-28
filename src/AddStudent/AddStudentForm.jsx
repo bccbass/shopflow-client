@@ -43,7 +43,7 @@ export default function AddStudentForm({studentData, setStudentData }) {
         flexWrap: "wrap",
         flexDirection: "column",
         justifyContent: "space-around",
-        maxWidth: 410,
+        // maxWidth: 410,
         mx: 'auto',
         // mt: 6,
         // mb: 8

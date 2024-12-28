@@ -11,7 +11,7 @@ const AddStudentFormWrapper = ({student=blankStudent}) => {
       const [studentData, setStudentData] = useState(student);
 
   return (
-          <DialogContent
+          <Box
       sx={{
         display: "flex",
         flexWrap: "wrap",
@@ -36,7 +36,7 @@ const AddStudentFormWrapper = ({student=blankStudent}) => {
           redirect: "/newstudents",
         }}
       />
-    </DialogContent>
+    </Box>
   )
 }
 
