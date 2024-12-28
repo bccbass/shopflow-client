@@ -18,10 +18,10 @@ const skeletonCard = (
         <Skeleton variant="rounded" height={60} />
         <Skeleton variant="text" sx={{ fontSize: "1.5rem" }} />
         <Skeleton variant="text" sx={{ fontSize: "1.5rem" }} />
-        <div className="flex space-x-4">
+        <Box sx={{display: 'flex', mt: 4}}>
+          <Skeleton sx={{mr: 5}} variant="circular" width={30} height={30} />
           <Skeleton variant="circular" width={30} height={30} />
-          <Skeleton variant="circular" width={30} height={30} />
-        </div>
+        </Box>
       </CardContent>
     </Card>
   </Box>
@@ -31,7 +31,7 @@ export default function Loading() {
     <>
       {[1,2,3].map((num) => (
         <div key={num}>
-        skeletonCard 
+        {skeletonCard} 
         </div>
       ))}
     </>

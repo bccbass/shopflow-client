@@ -4,8 +4,7 @@ import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { Typography, Autocomplete, Button, Collapse } from "@mui/material";
-import CreateButton from "../CRUDButtons/CreateButton";
-import { addDays } from "../assets/dateHelpers";
+import CreateButton from "../Buttons/CreateButton";
 import TrialLessonForm from "../TrialLessonForm/TrialLessonForm";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
@@ -14,38 +13,11 @@ import {
   groupClasses,
   leadSources,
 } from "../assets/dbPlaceholderData.js";
+import { blankStudent } from "../assets/blankStudentForm";
 
-const blankStudent = {
-  notes: "",
-  nextContactDate: addDays(3),
-  leadSource: "",
-  student: {
-    firstName: "",
-    lastName: "",
-    instrument: "",
-    groupClass: "",
-    age: "",
-  },
-  guardian: {
-    firstName: "",
-    lastName: "",
-  },
-  contact: { phone: "", email: "" },
-  bookedTrial: false,
-  trialLesson: {
-    date: "",
-    time: { hour: "", min: "", twelveHr: "" },
-    location: "",
-    instrument: "",
-    groupClass: "",
-    teacher: "",
-    followUp: [],
-  },
-};
 
 export default function AddStudentForm({ student=blankStudent }) {
   const [studentData, setStudentData] = useState(student);
-  const [isTrial, setIsTrial] = useState(false);
   const handleChange = (e) =>
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
 
@@ -68,15 +40,19 @@ export default function AddStudentForm({ student=blankStudent }) {
     });
 
   const handleTrialClick = (e) => {
-    setIsTrial(!isTrial);
-
-    isTrial
+    // TOGGLE TRIAL LESSON BOOLEAN
+    setStudentData({
+          ...studentData,
+          bookedTrial: !studentData.bookedTrial
+        })
+        // LOGIC TO SET TRIAL LESSON DATA WHEN CLICKED (IE REMOVE TRIAL LESSOND DATA IF USER CLICKS REMOVE TRIAL LESSON BUTTON)
+    studentData.bookedTrial
       ? setStudentData({
           ...studentData,
-          bookedTrial: !isTrial,
+          bookedTrial: !studentData.bookedTrial,
           trialLesson: { ...blankStudent.trialLesson },
         })
-      : setStudentData({ ...studentData, bookedTrial: !isTrial });
+      : setStudentData({ ...studentData, bookedTrial: !studentData.bookedTrial });
   };
   return (
     <Box
@@ -88,7 +64,7 @@ export default function AddStudentForm({ student=blankStudent }) {
         maxWidth: 410,
         mx: 'auto',
         mt: 6,
-        mb: 8,
+        mb: 8
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>
@@ -319,12 +295,12 @@ export default function AddStudentForm({ student=blankStudent }) {
           variant="outlined"
           color="textPrimary"
           onClick={handleTrialClick}
-          startIcon={isTrial ? <RemoveIcon /> : <AddIcon />}
+          startIcon={studentData.bookedTrial ? <RemoveIcon /> : <AddIcon />}
         >
           Trial Lesson
         </Button>
 
-        <Collapse in={isTrial}>
+        <Collapse in={studentData.bookedTrial}>
           <TrialLessonForm
             studentData={studentData}
             setStudentData={setStudentData}

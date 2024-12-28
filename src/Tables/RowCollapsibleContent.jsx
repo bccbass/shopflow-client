@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import FollowUpTable from "./FollowUpTable";
-import OpenUpdateModalButton from "../CRUDButtons/OpenUpdateModalButton";
+import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import EnquiryDetailsCard from "./EnquiryDetailsCard";
 import TrialDetailsCard from "./TrialDetailsCard";
 import EnquiryNotesCard from "./EnquiryNotesCard";
@@ -17,7 +17,7 @@ const RowCollapsibleContent = ({ lead }) => {
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
-          <OpenUpdateModalButton student={lead} title={"Edit Details"}>
+          <OpenUpdateModalButton student={lead}>
             <AddStudentForm student={lead} />
           </OpenUpdateModalButton>
         </EnquiryDetailsCard>

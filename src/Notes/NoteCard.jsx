@@ -3,11 +3,10 @@ import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import DeleteButton from "../CRUDButtons/DeleteButton";
-import EditButton from "../CRUDButtons/EditButton";
+import DeleteButton from "../Buttons/DeleteButton";
+import EditButton from "../Buttons/EditButton";
 import Chip from '@mui/material/Chip'
 import Divider from "@mui/material/Divider";
-const today = new Date();
 
 export default function NoteCard({ note, setEditingNote }) {
   return (
