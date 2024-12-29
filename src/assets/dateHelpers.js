@@ -4,4 +4,24 @@ const addDays = (days, date = Date.now()) => {
     return result.toISOString().split('T')[0];
 }
 
-export { addDays }
+const calculateNextContact = (lead) =>{
+    if (lead.bookedTrial) {
+        return addDays(2);
+    }
+    else if (lead.followUp.length <= 1) {
+        return addDays(2);
+    }
+    else if (lead.followUp.length == 1) {
+        return addDays(3);
+    }
+    else if (lead.followUp.length == 2) {
+        return addDays(4);
+    }
+    else if (lead.followUp.length == 3) {
+        return addDays(7);
+    }
+    else return ''
+
+}
+
+export { addDays, calculateNextContact }

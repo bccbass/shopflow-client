@@ -9,12 +9,13 @@ import EnquiryNotesCard from "./EnquiryNotesCard";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
+import FollowUpForm from "../Tables/FollowUpForm";
 
 const RowCollapsibleContent = ({ lead }) => {
   return (
-    <Box sx={{ m: 2 }}>
+    <Box sx={{ m: 2, mb: 8 }}>
       <Container
-        sx={{ display: "flex", justifyContent: "space-between", my: 4, width: '100%' }}
+        sx={{ display: "flex", justifyContent: "space-between", width: '100%' }}
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
@@ -41,6 +42,8 @@ const RowCollapsibleContent = ({ lead }) => {
           lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
         }
       />
+      < FollowUpForm lead={lead}/>
+
       {!lead.bookedTrial && (
         <Box sx={{ display: "flex", justifyContent: "center", my: 4 }}>
           <OpenUpdateModalButton student={lead} title={"Book Trial"}>

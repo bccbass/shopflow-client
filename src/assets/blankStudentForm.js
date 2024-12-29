@@ -26,6 +26,8 @@ const blankStudent = {
     teacher: "",
     followUp: [],
   },
+  followUp: [],
+
 };
 
 export { blankStudent }

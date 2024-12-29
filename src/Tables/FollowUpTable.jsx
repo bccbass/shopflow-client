@@ -9,9 +9,10 @@ import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 import { Divider } from "@mui/material";
 
+
 const FollowUpTable = ({ followUpEvents }) => {
-  return followUpEvents.length > 0 ? (
-    <TableContainer sx={{ mb: 4 }}>
+  return (
+    <TableContainer sx={{ mb: 1 }}>
       <Divider sx={{ my: 2.5 }} />
       <Typography
         variant="h6"
@@ -25,13 +26,13 @@ const FollowUpTable = ({ followUpEvents }) => {
       <Table size="small" aria-label="follow-up">
         <TableHead>
           <TableRow>
-            <TableCell>Date</TableCell>
+            <TableCell sx={{width: '20%'}}>Date</TableCell>
             <TableCell>Admin</TableCell>
-            <TableCell >Chat</TableCell>
-            <TableCell >Voicemail</TableCell>
-            <TableCell >Email</TableCell>
-            <TableCell >Text</TableCell>
-            <TableCell>Notes</TableCell>
+            <TableCell>Chat</TableCell>
+            <TableCell>Voicemail</TableCell>
+            <TableCell>Email</TableCell>
+            <TableCell>Text</TableCell>
+            <TableCell sx={{width: '37%'}}>Notes</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -58,12 +59,14 @@ const FollowUpTable = ({ followUpEvents }) => {
                 {contact.method?.text === true ? "✓" : ""}
               </TableCell>
               <TableCell>{contact?.notes}</TableCell>
+
             </TableRow>
           ))}
         </TableBody>
+
       </Table>
     </TableContainer>
-  ) : null
+  );
 };
 
 export default FollowUpTable;

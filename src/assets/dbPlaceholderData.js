@@ -10,6 +10,7 @@ const instruments = [
   "Violin",
 ];
 const groupClasses = [
+  '',
   "Pop Choir",
   "Adult Jam Group",
   "Adult Guitar Group",
