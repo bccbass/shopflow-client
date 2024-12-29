@@ -1,8 +1,9 @@
 import React from "react";
-import { Button, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { Button, DialogTitle, DialogContent, DialogActions, Box } from "@mui/material";
 import TrialLessonForm from "./TrialLessonForm";
 import TrialLessonSubmitButton from "./TrialLessonSubmitButton";
 import { useState, useEffect } from "react";
+import CancelLessonButton from "../Buttons/CancelLessonButton";
 
 
 const TrialLessonWrapper = ({ student, setOpen }) => {
@@ -20,6 +21,7 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
   return (
     <DialogContent
       sx={{
+        width: '29rem',
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -40,6 +42,11 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
           Cancel
         </Button>
       </DialogActions>
+      {studentData.bookedTrial &&
+      <Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mx: 2}}>
+        < CancelLessonButton id={studentData._id} setOpen={setOpen}/>
+      </Box>
+      }
     </DialogContent>
   );
 };

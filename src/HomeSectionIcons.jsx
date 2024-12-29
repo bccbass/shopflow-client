@@ -10,11 +10,9 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import NoteIcon from "@mui/icons-material/Note";
-import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
-import { getResource } from "./assets/apiHelpers";
 
 const HomeSectionItems = () => {
   const navigate = useNavigate();

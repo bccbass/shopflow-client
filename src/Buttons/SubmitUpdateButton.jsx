@@ -4,9 +4,11 @@ import React from "react";
 import { Button } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource, putResource } from "../assets/apiHelpers";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
-const SubmitUpdateButton = ({ submitProps }) => {
-    const { updatedStudent, path, query, type, setOpen=false, successCb=null } = submitProps
+
+const SubmitUpdateButton = ({ children, submitProps }) => {
+    const { updatedStudent, path, query, type, setOpen=false, successCb=null, title='Submit' } = submitProps
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
@@ -23,9 +25,11 @@ const SubmitUpdateButton = ({ submitProps }) => {
 		});
 	};
 
-	return (
+	return title == "add" ? (
+		<AddBoxIcon onClick={handleSubmit} fontSize="large" color="primary" />
+	) : (
 		<Button variant="contained" onClick={handleSubmit}>
-			Submit
+			{title}
 		</Button>
 	);
 };
