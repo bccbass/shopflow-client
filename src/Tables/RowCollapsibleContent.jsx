@@ -26,13 +26,26 @@ const RowCollapsibleContent = ({ lead }) => {
 						<EditStudentFormWrapper />
 					</OpenUpdateModalButton>
 				</EnquiryDetailsCard>
-				{lead.bookedTrial && (
+				{lead.bookedTrial ? (
 					<TrialDetailsCard student={lead}>
 						<OpenUpdateModalButton student={lead} title={"Edit Trial"}>
 							<TrialLessonWrapper student={lead} />
 						</OpenUpdateModalButton>
 					</TrialDetailsCard>
-				)}
+				) : (	
+				    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        width: '30%',
+        borderLeft: "1px solid #DDD",
+      }}
+    >
+				<OpenUpdateModalButton student={lead} title={"Book Trial"}>
+						<TrialLessonWrapper student={lead} />
+					</OpenUpdateModalButton> </ Box>)}
 				<EnquiryNotesCard lead={lead}>
 					<OpenUpdateModalButton student={lead} title={"Update Notes"}>
 						<EditNotesWrapper />
@@ -46,14 +59,6 @@ const RowCollapsibleContent = ({ lead }) => {
 				}
 			/>
 			<FollowUpForm lead={lead} />
-
-			{!lead.bookedTrial && (
-				<Box sx={{ display: "flex", justifyContent: "center", my: 4 }}>
-					<OpenUpdateModalButton student={lead} title={"Book Trial"}>
-						<TrialLessonWrapper student={lead} />
-					</OpenUpdateModalButton>
-				</Box>
-			)}
 			<Box
 				sx={{
 					width: "100%",

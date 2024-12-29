@@ -54,19 +54,8 @@ const FollowUpForm = ({ lead }) => {
 				flexDirection: "column",
 				alignItems: "center",
 				width: "100%",
-				// my: 2,
 			}}
 		>
-			<Typography
-				variant="h8"
-				gutterBottom
-				color="textSecondary"
-				component="div"
-				sx={{ mx: 2, width: "100%" }}
-			>
-				<strong> New Follow Up: </strong>
-			</Typography>
-
 			<FormGroup
 				sx={{
 					display: "flex",
@@ -78,8 +67,9 @@ const FollowUpForm = ({ lead }) => {
 				}}
 			>
 				<TextField
-					size="small"
-					sx={{ width: "16%", minWidth: "8rem" }}
+					variant="standard"
+					size="normal"
+					sx={{ width: "16%", minWidth: "8rem", mt: 1.67, pr: 5, ml: 1}}
 					helperText="Next Contact Date"
 					name="nextContactDate"
 					id="nextContactDate"
@@ -90,7 +80,7 @@ const FollowUpForm = ({ lead }) => {
 				<TextField
 					size="small"
 					// minWidth: "1rem",
-					sx={{ width: "7%", minWidth: "3rem", ml: 1 }}
+					sx={{ width: "6%", minWidth: "3rem" }}
 					id="admin"
 					label="Admin"
 					multiline
@@ -102,6 +92,7 @@ const FollowUpForm = ({ lead }) => {
 				/>
 				<Box
 					sx={{
+						mt: 1,
 						width: "35%",
 						minWidth: "18rem",
 						display: "flex",

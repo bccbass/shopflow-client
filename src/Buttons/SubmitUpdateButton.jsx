@@ -1,13 +1,13 @@
 /** @format */
 
 import React from "react";
-import { Button } from "@mui/material";
+import { Button, Tooltip} from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource, putResource } from "../assets/apiHelpers";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 
 
-const SubmitUpdateButton = ({ children, submitProps }) => {
+const SubmitUpdateButton = ({ submitProps }) => {
     const { updatedStudent, path, query, type, setOpen=false, successCb=null, title='Submit' } = submitProps
 	const queryClient = useQueryClient();
 
@@ -26,7 +26,9 @@ const SubmitUpdateButton = ({ children, submitProps }) => {
 	};
 
 	return title == "add" ? (
-		<AddBoxIcon onClick={handleSubmit} fontSize="large" color="primary" />
+		< Tooltip title='Add resource'>
+		<AddBoxIcon onClick={handleSubmit} fontSize="large" color="primary" sx={{mt:1.2}}/>
+		</Tooltip>
 	) : (
 		<Button variant="contained" onClick={handleSubmit}>
 			{title}

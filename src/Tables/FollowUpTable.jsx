@@ -12,7 +12,7 @@ import { Divider } from "@mui/material";
 
 const FollowUpTable = ({ followUpEvents }) => {
   return (
-    <TableContainer sx={{ mb: 1 }}>
+    <TableContainer sx={{ mb: 0}}>
       <Divider sx={{ my: 2.5 }} />
       <Typography
         variant="h6"
