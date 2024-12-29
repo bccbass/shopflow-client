@@ -1,18 +1,21 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import Box from "@mui/material/Box";
-import Container from "@mui/material/Container";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import FollowUpTable from "./FollowUpTable";
 import RowCollapsibleContent from "./RowCollapsibleContent";
 
 function EnquiryRow({ children, row }) {
   const [open, setOpen] = React.useState(false);
+
+  const nullDueDate = new Date(row.nextContactDate) < new Date("2020-01-01");
+
+  const overdueStyles = {
+    color: "red",
+  };
 
   return (
     <React.Fragment>
@@ -20,7 +23,7 @@ function EnquiryRow({ children, row }) {
         sx={{
           "& > *": {
             borderBottom: "unset",
-            backgroundColor: row.overdue ? "pink" : "#AFE5E3",
+            // backgroundColor: row.overdue ? "pink" : "#AFE5E3",
           },
         }}
       >
@@ -34,11 +37,15 @@ function EnquiryRow({ children, row }) {
           </IconButton>
         </TableCell>
         <TableCell>
-          {new Date(row.nextContactDate).toLocaleString("en-AU", {
-            day: "numeric",
-            month: "long",
-            // year: "numeric",
-          })}
+          <span style={row.overdue ? overdueStyles : null}>
+            {nullDueDate
+              ? ""
+              : new Date(row.nextContactDate).toLocaleString("en-AU", {
+                  day: "numeric",
+                  month: "long",
+                  // year: "numeric",
+                })}
+          </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
         <TableCell align={row.isMinor ? "inherit" : "center"}>
