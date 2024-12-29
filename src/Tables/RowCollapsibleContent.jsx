@@ -16,7 +16,7 @@ import ArchiveButton from "../Buttons/ArchiveButton";
 
 const RowCollapsibleContent = ({ lead }) => {
 	return (
-		<Box sx={{ m: 2, mb: 8 }}>
+		<Box sx={{ m: 2, mb: 4 }}>
 			<Container
 				sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
 			>
@@ -60,7 +60,7 @@ const RowCollapsibleContent = ({ lead }) => {
 					display: "flex",
 					justifyContent: "flex-end",
 					px: 4,
-					mt: 2
+					mt: 4
 				}}
 			>
 				<ArchiveButton id={lead._id}  />

@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ArchiveButton from "../Buttons/ArchiveButton";
+import DeleteButton from "../Buttons/DeleteButton";
 
 
 function ArchiveRow({ children, row }) {
@@ -168,6 +169,7 @@ function ArchiveRow({ children, row }) {
 						</Box>
 						<Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', p: 4}}>
 							<ArchiveButton reactivate={true} id={row._id} />
+							< DeleteButton id={row._id} path='archive'/>
 						</Box>
 					</Collapse>
 				</TableCell>

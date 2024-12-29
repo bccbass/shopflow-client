@@ -41,7 +41,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
         sx={{
           display: "flex",
           justifyContent: "flex-start",
-          my: 4,
+          // my: 4,
           ml: 2,
         }}
       >

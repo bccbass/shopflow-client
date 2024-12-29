@@ -62,7 +62,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
       </Box>
       <Box
         sx={{
-          my: 4,
+          // my: 4,
         }}
       >
         {children}

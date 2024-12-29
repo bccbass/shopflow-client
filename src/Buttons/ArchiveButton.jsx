@@ -2,21 +2,20 @@
 
 import React from "react";
 import { Button, Tooltip } from "@mui/material";
+import RecyclingIcon from '@mui/icons-material/Recycling';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteResource } from "../assets/apiHelpers";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 
-
-const ArchiveButton = ({reactivate=false, id}) => {
-    const url = reactivate ? `archive/reactivate` : `leads/archive`
+const ArchiveButton = ({ reactivate = false, id }) => {
+	const url = reactivate ? `archive/reactivate` : `leads/archive`;
 
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
 		mutationFn: deleteResource,
 		onSuccess: () => {
-			queryClient.invalidateQueries(['Leads', 'Archive']);
+			queryClient.invalidateQueries(["Leads", "Archive"]);
 		},
 	});
 
@@ -24,19 +23,31 @@ const ArchiveButton = ({reactivate=false, id}) => {
 		e.preventDefault();
 		mutation.mutate({
 			path: url,
-            id: id
+			id: id,
 		});
 	};
 
 	return (
-		<Tooltip title={reactivate ? 'Reactivate archived lead' : 'Archive lead'}>
-			<InboxIcon
+		<Tooltip title={reactivate ? "Reactivate archived lead" : "Archive lead"}>
+			<Button
+				className={` ${
+					mutation.isIdle || (mutation.isPending && "text-slate-200")
+				}`}
+				disabled={mutation.isPending}
 				onClick={handleSubmit}
-				fontSize="large"
-				color="secondary"
-			/>
+				sx={{ px: 2 }}
+			>
+				{reactivate ? (
+					<RecyclingIcon color="secondary" />
+				) : (
+					<InboxIcon
+						// fontSize="large"
+						color="secondary"
+					/>
+				)}
+			</Button>
 		</Tooltip>
-	); 
+	);
 };
 
 export default ArchiveButton;

@@ -68,7 +68,7 @@ const TrialDetailsCard = ({student, children}) => {
         sx={{
           display: "flex",
           justifyContent: "flex-start",
-          my: 4,
+          // my: 4,
         }}
       >
         {children}
