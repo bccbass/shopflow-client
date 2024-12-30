@@ -25,11 +25,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         </Typography>
         <Typography>
           <strong> Created: </strong>
-          {new Date(lead?.dateCreated).toLocaleString("en-AU", {
-            day: "numeric",
-            month: "numeric",
-            year: "numeric",
-          })}
+          {lead.createdDate}
         </Typography>
         <Typography>
           <strong> Student: </strong>

@@ -8,13 +8,13 @@ import EditIcon from "@mui/icons-material/Edit";
 const OpenUpdateModalButton = ({children, student, title }) => {
   const [open, setOpen] = useState(false);
 
-  const bookTrial = title == 'Book Trial'
+  const buttonVariant = title == 'Book Trial' ? 'contained' : ''
 
 
   return (
     <>
     { title !== undefined ? 
-      <Button variant={bookTrial && 'contained'} onClick={() => setOpen(!open)} >
+      <Button variant={buttonVariant} onClick={() => setOpen(!open)} >
         {title}
       </Button> :
       < Box >

@@ -39,11 +39,7 @@ const FollowUpTable = ({ followUpEvents }) => {
           {followUpEvents.map((contact) => (
             <TableRow key={contact._id}>
               <TableCell component="th" scope="row">
-                {new Date(contact.dateCreated).toLocaleString("en-AU", {
-                  day: "numeric",
-                  month: "long",
-                  year: "numeric",
-                })}
+                {contact.followUpInitDate}
               </TableCell>
               <TableCell>{contact.admin}</TableCell>
               <TableCell align="center" sx={{ color: "green" }}>

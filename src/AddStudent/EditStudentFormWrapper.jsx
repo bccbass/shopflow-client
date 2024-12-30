@@ -11,18 +11,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import AddStudentForm from "./AddStudentForm";
 import { blankStudent } from "../assets/blankStudentForm";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
+import { formatDate } from "../assets/dateHelpers";
 
 const EditStudentFormWrapper = ({ student = blankStudent, setOpen }) => {
   const [studentData, setStudentData] = useState(student);
 
   useEffect(() => {
     // Reformat trial lesson date from student data so it can be used as an input value and not throw error
-    const formattedDate = studentData.nextContactDate
-      ? studentData?.nextContactDate?.split("T")[0]
-      : "";
+    const formattedDate = formatDate(studentData.nextContactDate)
     setStudentData({
       ...studentData,
-      nextContactDate: formattedDate,
+      nextContactDate: formattedDate
     });
   }, []);
 

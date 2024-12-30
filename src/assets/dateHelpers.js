@@ -24,7 +24,22 @@ const calculateNextContact = (lead) =>{
         return addDays(7);
     }
     else return ''
-
 }
 
-export { addDays, calculateNextContact, dateStamp }
+const localDate = (date, locale='en-AU', incYear=true) => {
+    const formattedDate = new Date(date).toLocaleString(locale, {
+        day: "numeric",
+        month: "numeric",
+        year: incYear ? "numeric" : null,
+      })
+    return formattedDate == 'Invalid Date' ? '' : formattedDate
+}
+const formatDate = (date, incYear=true) => {
+    try {const formattedDate = date?.split("T")[0]
+    return formattedDate == undefined ? 'xxx' : formattedDate}
+    catch (e) {console.log('Invalid date:', e.message)}
+}
+
+  const nullDueDate = (date) => new Date(date) <= new Date("2020-01-01");
+
+export { addDays, calculateNextContact, dateStamp, localDate, nullDueDate, formatDate }

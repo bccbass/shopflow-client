@@ -21,31 +21,37 @@ const HomeSectionItems = () => {
     {
       title: "Add New Leads",
       path: "addstudent",
-      description: "Add a new student to the system",
+      description:
+        "Add a new student to the system, tracking progress from lead to enrollment",
+      icon: <PersonAddIcon sx={{ transform: "scale(3)" }} />,
     },
     {
       title: "View New Leads",
       path: "newstudents",
       description:
         "View and manage new leads, tracking your followup process on the path to converting them to students",
+      icon: <PersonIcon sx={{ transform: "scale(3)" }} />,
     },
     {
       title: "Track Trial Lessons",
       path: "triallessons",
       description:
         "View and manage trial lessons, tracking your followup process on the path enrolling them as full time students",
+      icon: <QueueMusicIcon sx={{ transform: "scale(3)" }} />,
     },
     {
       title: "Notes",
       path: "notes",
       description:
         "View and manage shared notes - a convenient place to handle administration handoff and monitor tasks that fall outside of narrowly defined needs.",
+      icon: <NoteIcon sx={{ transform: "scale(3)" }} />,
     },
     {
       title: "Archive",
       path: "archive",
       description:
         "View and manage archived students and leads, tracking business history and trends.",
+      icon: <InboxIcon sx={{ transform: "scale(3)" }} />,
     },
   ];
   return (
@@ -64,8 +70,8 @@ const HomeSectionItems = () => {
             sx={{
               m: 2,
               width: "100%",
-              border: "1px solid grey",
-              borderRadius: 4,
+              // border: "1px solid grey",
+              // borderRadius: 4,
             }}
           >
             <ListItemButton
@@ -75,30 +81,29 @@ const HomeSectionItems = () => {
                 {
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "center",
-                //   minHeight: 48,
+                  alignItems: "center",
                   px: 2.5,
+                  justifyContent: "center",
                 },
               ]}
             >
               <ListItemIcon
-                // sx={{}}
               >
-                {item.path === "newstudents" && <PersonIcon sx={{transform: 'scale(3)'}}/>}
-                {item.path === "addstudent" && (
-                  <PersonAddIcon sx={{transform: 'scale(3)'}} />
-                )}
-                {item.path === "triallessons" && (
-                  <QueueMusicIcon sx={{transform: 'scale(3)'}} />
-                )}
-                {item.path === "notes" && <NoteIcon sx={{transform: 'scale(3)'}} />}
-                {item.path === "archive" && <InboxIcon sx={{transform: 'scale(3)'}} />}
+                {item.icon}
               </ListItemIcon>
-              <Box sx={{ p: 2 }}>
+              <Box
+                sx={{
+                  pt: 2, pl:2
+                }}
+              >
                 {/* <ListItemText primary={item.title} sx={{ fontSize: "20rem" }} />
                 <ListItemText primary={item.description} sx={[]} /> */}
-                <Typography variant="h6" color='primary'>{item.title}</Typography>
-                <Typography variant="h9" color='textSecondary'>{item.description}</Typography>
+                <Typography variant="h6" color="primary" >
+                  {item.title}
+                </Typography>
+                <Typography  color="textSecondary" style={{textAlign: 'justify'}} >
+                  {item.description}
+                </Typography>
               </Box>
             </ListItemButton>
           </ListItem>

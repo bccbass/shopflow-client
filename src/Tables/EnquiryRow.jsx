@@ -7,15 +7,14 @@ import TableRow from "@mui/material/TableRow";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RowCollapsibleContent from "./RowCollapsibleContent";
-import EmailIcon from '@mui/icons-material/Email';
-import CallIcon from '@mui/icons-material/Call';
-import RowMenu  from './RowMenu'
+import EmailIcon from "@mui/icons-material/Email";
+import CallIcon from "@mui/icons-material/Call";
+import { nullDueDate } from "../assets/dateHelpers";
 
-function EnquiryRow({ children, row }) {
+function EnquiryRow({ row }) {
   const [open, setOpen] = React.useState(false);
 
-  const nullDueDate = new Date(row.nextContactDate) < new Date("2020-01-01");
-
+  const noDueDate = nullDueDate(row.nextContactDate);
   const overdueStyles = {
     color: "red",
   };
@@ -30,9 +29,8 @@ function EnquiryRow({ children, row }) {
           },
         }}
       >
-        <TableCell >
+        <TableCell>
           <IconButton
-
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
@@ -42,35 +40,32 @@ function EnquiryRow({ children, row }) {
         </TableCell>
         <TableCell>
           <span style={row.overdue ? overdueStyles : null}>
-            {nullDueDate
-              ? ""
-              : new Date(row.nextContactDate).toLocaleString("en-AU", {
-                  day: "numeric",
-                  month: "long",
-                  // year: "numeric",
-                })}
+            {noDueDate ? "" : row.contactDate}
           </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
         <TableCell align={row.isMinor ? "inherit" : "center"}>
           {row.isMinor ? `${row.guardianFullName}` : ""}
         </TableCell>
-        <TableCell>   <a href={"tel:"+row?.contact?.phone}>
-          < CallIcon fontSize='small'  sx={{ml: 1, color: 'grey'}}/>
-          </a></TableCell>
-        <TableCell >   < a href={"mailto:"+row?.contact?.email} >
-          < EmailIcon fontSize='small' sx={{ml: 1, color: 'grey'}}/>
-          </a></TableCell>
+        <TableCell>
+          {" "}
+          <a href={"tel:" + row?.contact?.phone}>
+            <CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
+          </a>
+        </TableCell>
+        <TableCell>
+          {" "}
+          <a href={"mailto:" + row?.contact?.email}>
+            <EmailIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
+          </a>
+        </TableCell>
         <TableCell>{row.student.instrument}</TableCell>
         {/* CELL TO FOR ACTIONS MENU ICON */}
         {/* <TableCell>
         </TableCell> */}
       </TableRow>
       <TableRow>
-        <TableCell
-          sx={{p: 0}}
-          colSpan={8}
-        >
+        <TableCell sx={{ p: 0 }} colSpan={8}>
           <Collapse in={open} timeout="auto">
             <RowCollapsibleContent lead={row} />
           </Collapse>
