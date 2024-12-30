@@ -5,6 +5,7 @@ import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import { Container, Box, Typography } from "@mui/material";
 import ArchiveTable from "./ArchiveTable";
+import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 
 const ArchivedLeads = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,9 +24,7 @@ const ArchivedLeads = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            {/* <Typography variant="h5" color="primary" sx={{ my: 2 }}>
-              Trial Lessons
-            </Typography> */}
+            < DownloadCollectionCsvButton data={archive.data} collection="Archived Leads" />
             <ArchiveTable enquiries={archive.data}>
             </ArchiveTable>
           </>

@@ -5,6 +5,7 @@ import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import { Container, Box, Typography } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
+import DownloadCollectionCsvButton from '../Buttons/DownloadCollectionCsvButton'
 
 const TrialLessons = () => {
   // const [searchParams, setSearchParams] = useSearchParams();
@@ -13,6 +14,9 @@ const TrialLessons = () => {
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
   });
+
+  const filteredData = !leadsQuery.isLoading && !leadsQuery.error ? leadsQuery.data.filter(lead => lead.bookedTrial) : []
+
   return (
     <Container sx={{ m: 0 }}>
       <SectionHeader title="Trial Lessons" />
@@ -23,11 +27,8 @@ const TrialLessons = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            {/* <Typography variant="h5" color="primary" sx={{ my: 2 }}>
-              Trial Lessons
-            </Typography> */}
-            <EnquiriesTable enquiries={leadsQuery.data.filter(lead => lead.bookedTrial)}>
-            </EnquiriesTable>
+            < DownloadCollectionCsvButton collection="Trial Lessons" data={filteredData} />
+            < EnquiriesTable enquiries={filteredData}/>
           </>
         )}
       </Box>

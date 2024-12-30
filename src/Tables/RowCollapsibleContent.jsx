@@ -13,6 +13,7 @@ import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
 import FollowUpForm from "../Tables/FollowUpForm";
 import ArchiveButton from "../Buttons/ArchiveButton";
+import DownloadStudentCsvButton from "../Buttons/DownloadStudentCsvButton";
 
 const RowCollapsibleContent = ({ lead }) => {
 	return (
@@ -67,7 +68,8 @@ const RowCollapsibleContent = ({ lead }) => {
 					px: 4,
 					mt: 4
 				}}
-			>
+			>	
+				< DownloadStudentCsvButton data={lead} />
 				<ArchiveButton id={lead._id}  />
 			</Box>
 		</Box>

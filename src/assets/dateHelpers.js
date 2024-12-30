@@ -1,3 +1,6 @@
+const dateStamp = new Date(Date.now()).toLocaleDateString('en-AU').split('T')[0]
+
+
 const addDays = (days, date = Date.now()) => {
     let result = new Date(date);
     result.setDate(result.getDate() + days);
@@ -24,4 +27,4 @@ const calculateNextContact = (lead) =>{
 
 }
 
-export { addDays, calculateNextContact }
+export { addDays, calculateNextContact, dateStamp }
