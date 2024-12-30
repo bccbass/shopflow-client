@@ -18,6 +18,8 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           gutterBottom
           color="textSecondary"
           component="div"
+        sx={{pb: 1}}
+
         >
           <strong> Enquiry Details </strong>
         </Typography>

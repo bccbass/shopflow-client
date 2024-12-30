@@ -7,6 +7,9 @@ import TableRow from "@mui/material/TableRow";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RowCollapsibleContent from "./RowCollapsibleContent";
+import EmailIcon from '@mui/icons-material/Email';
+import CallIcon from '@mui/icons-material/Call';
+import RowMenu  from './RowMenu'
 
 function EnquiryRow({ children, row }) {
   const [open, setOpen] = React.useState(false);
@@ -27,8 +30,9 @@ function EnquiryRow({ children, row }) {
           },
         }}
       >
-        <TableCell>
+        <TableCell >
           <IconButton
+
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
@@ -49,19 +53,23 @@ function EnquiryRow({ children, row }) {
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
         <TableCell align={row.isMinor ? "inherit" : "center"}>
-          {row.isMinor ? `${row.guardianFullName}` : "-"}
+          {row.isMinor ? `${row.guardianFullName}` : ""}
         </TableCell>
-        <TableCell>{row.contact.phone}</TableCell>
-        <TableCell>{row.contact.email}</TableCell>
+        <TableCell>   <a href={"tel:"+row?.contact?.phone}>
+          < CallIcon fontSize='small'  sx={{ml: 1, color: 'grey'}}/>
+          </a></TableCell>
+        <TableCell >   < a href={"mailto:"+row?.contact?.email} >
+          < EmailIcon fontSize='small' sx={{ml: 1, color: 'grey'}}/>
+          </a></TableCell>
         <TableCell>{row.student.instrument}</TableCell>
+        {/* CELL TO FOR ACTIONS MENU ICON */}
+        {/* <TableCell>
+        </TableCell> */}
       </TableRow>
       <TableRow>
         <TableCell
-          style={{
-            paddingBottom: 0,
-            paddingTop: 0,
-          }}
-          colSpan={7}
+          sx={{p: 0}}
+          colSpan={8}
         >
           <Collapse in={open} timeout="auto">
             <RowCollapsibleContent lead={row} />

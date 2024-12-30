@@ -12,41 +12,33 @@ import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
 import FollowUpForm from "../Tables/FollowUpForm";
-import ArchiveButton from "../Buttons/ArchiveButton";
-import DownloadStudentCsvButton from "../Buttons/DownloadStudentCsvButton";
+import RowSpeedDial from "./RowSpeedDial";
+
+
 
 const RowCollapsibleContent = ({ lead }) => {
 	return (
-		<Box sx={{ m: 2, mb: 4 }}>
+		<Box sx={{ p: 1, pb: 4, backgroundColor: '#ebebeb', width: '100%' }}>
+			< RowSpeedDial />
+
 			<Container
-				sx={{ display: "flex", justifyContent: "space-between", width: "100%" }}
+				sx={{ display: "flex", pt: 2, justifyContent: "space-between", width: "100%" }}
 			>
+
 				{/* Main Content in this container */}
 				<EnquiryDetailsCard lead={lead}>
+		
 					<OpenUpdateModalButton student={lead} title={"Edit Student"}>
 						<EditStudentFormWrapper />
 					</OpenUpdateModalButton>
 				</EnquiryDetailsCard>
-				{lead.bookedTrial ? (
+				
 					<TrialDetailsCard student={lead}>
 						<OpenUpdateModalButton student={lead} title={"Edit Trial"}>
 							<TrialLessonWrapper student={lead} />
 						</OpenUpdateModalButton>
 					</TrialDetailsCard>
-				) : (	
-				    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        width: '30%',
-        borderLeft: "1px solid #DDD",
-      }}
-    >
-				<OpenUpdateModalButton student={lead} title={"Book Trial"}>
-						<TrialLessonWrapper student={lead} />
-					</OpenUpdateModalButton> </ Box>)}
+				
 				<EnquiryNotesCard lead={lead}>
 					<OpenUpdateModalButton student={lead} title={"Update Notes"}>
 						<EditNotesWrapper />
@@ -69,8 +61,6 @@ const RowCollapsibleContent = ({ lead }) => {
 					mt: 4
 				}}
 			>	
-				< DownloadStudentCsvButton data={lead} />
-				<ArchiveButton id={lead._id}  />
 			</Box>
 		</Box>
 	);

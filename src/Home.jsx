@@ -5,12 +5,13 @@ import HomeSectionItems from "./HomeSectionIcons";
 
 const Home = () => {
   return (
-    <Container sx={{ m: 0, width: "100vw" }}>
-      <SectionHeader title="Home" setSearchParams={null} />
+    <Container sx={{ pt: 10, pb: 20, width: "100vw" }}>
+      {/* <SectionHeader title="Home" setSearchParams={null} /> */}
       <Box
         border={"1px solid grey"}
         borderRadius={4}
         sx={{
+    
           display: "flex",
           justifyContent: "center",
           alignItems: "center",

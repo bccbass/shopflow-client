@@ -12,6 +12,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
       alignItems: "center",
       width: '30%',
         borderLeft: "1px solid #DDD",
+      pr: 6
 
     }}
   >
@@ -21,7 +22,6 @@ const EnquiryNotesCard = ({ lead, children }) => {
         ml: 3,
         flex: 2,
       width: '100%',
-
         // minHeight: "250px",
         pl: 4,
       }}
@@ -31,6 +31,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
         gutterBottom
         color="textSecondary"
         component="div"
+        sx={{pb: 1}}
       >
         <strong> Notes </strong>
       </Typography>

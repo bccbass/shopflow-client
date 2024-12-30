@@ -1,6 +1,8 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import OpenUpdateModalButton from '../Buttons/OpenUpdateModalButton'
+import TrialLessonWrapper from '../TrialLessonForm/TrialLessonWrapper'
 
 const TrialDetailsCard = ({student, children}) => {
   return (
@@ -15,6 +17,8 @@ const TrialDetailsCard = ({student, children}) => {
       width: '30%'
     }}
   >
+
+
     <Box
       sx={{
         py: 2,
@@ -31,8 +35,14 @@ const TrialDetailsCard = ({student, children}) => {
         component="div"
       >
         <strong> Trial Lesson </strong>
-      </Typography>
-      <Typography>
+      </Typography> 
+          { !student.bookedTrial ? (		
+            < Box sx={{mt:12}}>
+          <OpenUpdateModalButton student={student} title={"Book Trial"}>
+						<TrialLessonWrapper student={student} />
+					</OpenUpdateModalButton>
+          </ Box > 
+       ) : ( <><Typography>
         <strong> date: </strong>
         {new Date(student?.trialLesson?.date).toLocaleString("en-AU", {
           day: "numeric",
@@ -62,6 +72,8 @@ const TrialDetailsCard = ({student, children}) => {
           {student?.trialLesson?.groupClass}
         </Typography>
       )}
+      </>
+      )}
     </Box>
 
       <Box
@@ -71,7 +83,7 @@ const TrialDetailsCard = ({student, children}) => {
           // my: 4,
         }}
       >
-        {children}
+        {student.bookedTrial ? children : null}
       </Box>
     </Box>
   );

@@ -3,7 +3,7 @@
 import React from "react";
 import { mkConfig, generateCsv, download } from "export-to-csv";
 import { dateStamp } from "../assets/dateHelpers";
-import { Button, Tooltip } from "@mui/material";
+import { Box, Button, Tooltip } from "@mui/material";
 import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
 
 
@@ -20,16 +20,14 @@ const DownloadStudentCsvButton = ({ data, collection=false }) => {
     const handleClick = () => download(csvConfig)(csv)
 
 	return (
-		<Tooltip title={!collection ? "Download CSV of student" : "Download CSV of all students" }>
-			<Button
+			<Box
 			
 				onClick={handleClick}
-				sx={{ px: 2 }}
+				// sx={{ px: 2 }}
 			>
-					<FileDownloadOutlinedIcon color="secondary" />
+					<FileDownloadOutlinedIcon color="secondary" /> Download CSV
 			
-			</Button>
-		</Tooltip>
+			</Box>
 	);
 };
 

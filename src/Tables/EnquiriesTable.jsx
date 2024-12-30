@@ -12,25 +12,27 @@ export default function EnquiriesTable({ enquiries, children }) {
   const rows = [...enquiries]
 
   return (
-    <TableContainer sx={{mt: 2, mb: 10}} component={Paper}>
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
+    <TableContainer sx={{mt: 2, mb: 10}} component={Paper} >
+      <Table aria-label="collapsible table" >
+        <TableHead >
+          <TableRow >
+            <TableCell  />
             <TableCell sx={{ fontWeight: "bold", color: "red", width: 120 }}>
               Next Action
             </TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Student</TableCell>
-            <TableCell align='center' sx={{ fontWeight: "bold" }}>Parent</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Parent</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
+            {/* BLANK CELL TO ACCOMODATE ACTIONS ICON */}
+            {/* <TableCell /> */}
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map((row) => (
             
-            <EnquiryRow key={row._id} row={row}>
+            <EnquiryRow  key={row._id} row={row}>
               {children}
             </EnquiryRow>
           ))}
