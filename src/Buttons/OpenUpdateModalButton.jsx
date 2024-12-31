@@ -3,29 +3,28 @@ import { useState } from "react";
 import { Button, Modal, Dialog, Box, DialogContent } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-
-
-const OpenUpdateModalButton = ({children, student, title }) => {
+const OpenUpdateModalButton = ({ children, student, title }) => {
   const [open, setOpen] = useState(false);
 
-  const buttonVariant = title == 'Book Trial' ? 'contained' : ''
-
+  const buttonVariant = title == "Book Trial" ? "contained" : "text";
 
   return (
     <>
-    { title !== undefined ? 
-      <Button variant={buttonVariant} onClick={() => setOpen(!open)} >
-        {title}
-      </Button> :
-      < Box >
-       < EditIcon onClick={() => setOpen(!open)} sx={{ color: "grey" }}/>
-       </Box>}
+      {title !== undefined ? (
+        <Button variant={buttonVariant} onClick={() => setOpen(!open)}>
+          {title}
+        </Button>
+      ) : (
+        <Box>
+          <EditIcon onClick={() => setOpen(!open)} sx={{ color: "grey" }} />
+        </Box>
+      )}
 
       <Dialog open={open} sx={{ display: "flex", justifyContent: "center" }}>
         <DialogContent
           sx={{
             backgroundColor: "white",
-            width: 'fitContent',
+            width: "fitContent",
             px: 6,
             py: 2,
             borderRadius: "5px",

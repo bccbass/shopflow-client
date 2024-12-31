@@ -26,7 +26,7 @@ function EnquiryRow({ row }) {
         sx={{
           "& > *": {
             borderBottom: "unset",
-            // backgroundColor: row.overdue ? "pink" : "#AFE5E3",
+            backgroundColor: row.enrolled ? "#C7FFD8" : "",
           },
         }}
       >
