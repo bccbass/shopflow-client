@@ -16,7 +16,7 @@ const DownloadCollectionCsvButton = ({ data, collection = false }) => {
 
   const csvData = data.map((d) => {
     return {
-      dateCreated: d.dateCreated,
+      dateCreated: d.createdDate,
       studentFirstName: d.student.firstName,
       studentLastName: d.student.lastName,
       isChild: d.isMinor,
@@ -31,7 +31,7 @@ const DownloadCollectionCsvButton = ({ data, collection = false }) => {
       enrolled: d.enrolled,
       followUpContact: d.followUp.length + d.trialLesson.followUp.length,
       trialTeacher: d.trialLesson.teacher,
-      trialDate: d.trialLesson.date,
+      trialDate: `${d.trialDate}, ${d.trialTime}`,
     };
   });
 
