@@ -1,17 +1,18 @@
-import * as React from 'react';
-import Button from '@mui/material/Button';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import Grow from '@mui/material/Grow';
-import Paper from '@mui/material/Paper';
-import Popper from '@mui/material/Popper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import Stack from '@mui/material/Stack';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import * as React from "react";
+import Button from "@mui/material/Button";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import Popper from "@mui/material/Popper";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import Stack from "@mui/material/Stack";
+import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArchiveButton from "../Buttons/ArchiveButton";
-import DownloadStudentCsvButton from "../Buttons/DownloadStudentCsvButton";
+import MenuItemCSVDownload from "../Buttons/MenuItemCSVDownload";
+import MenuItemArchive from "../Buttons/MenuItemArchive";
 
-export default function RowMenu({lead}) {
+export default function RowMenu({ lead }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -28,10 +29,10 @@ export default function RowMenu({lead}) {
   };
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
-    } else if (event.key === 'Escape') {
+    } else if (event.key === "Escape") {
       setOpen(false);
     }
   }
@@ -52,20 +53,18 @@ export default function RowMenu({lead}) {
         <Button
           ref={anchorRef}
           id="composition-button"
-          aria-controls={open ? 'composition-menu' : undefined}
-          aria-expanded={open ? 'true' : undefined}
+          aria-controls={open ? "composition-menu" : undefined}
+          aria-expanded={open ? "true" : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          < MoreHorizIcon size='small' sx={{color: 'grey'}}/>
+          <MoreHorizIcon size="small" sx={{ color: "grey" }} />
         </Button>
         <Popper
           open={open}
           anchorEl={anchorRef.current}
-          
           role={undefined}
-          placement="bottom-end"
-
+          placement="right-start"
           transition
           disablePortal
         >
@@ -74,10 +73,10 @@ export default function RowMenu({lead}) {
               {...TransitionProps}
               style={{
                 transformOrigin:
-                  placement === 'bottom-start' ? 'left top' : 'left bottom',
+                  placement === "bottom-start" ? "left top" : "left bottom",
               }}
             >
-              <Paper >
+              <Paper>
                 <ClickAwayListener onClickAway={handleClose}>
                   <MenuList
                     autoFocusItem={open}
@@ -85,11 +84,12 @@ export default function RowMenu({lead}) {
                     aria-labelledby="composition-button"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>				
-                        < DownloadStudentCsvButton data={lead} />
+                    <MenuItem onClick={handleClose}>
+                      <MenuItemCSVDownload data={lead} />
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>				
-                        <ArchiveButton id={lead._id}  />
+
+                    <MenuItem onClick={handleClose}>
+                      <MenuItemArchive id={lead._id} />
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

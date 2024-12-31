@@ -9,6 +9,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RowCollapsibleContent from "./RowCollapsibleContent";
 import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
+import RowMenu from "./RowMenu";
 import { nullDueDate } from "../assets/dateHelpers";
 
 function EnquiryRow({ row }) {
@@ -61,8 +62,9 @@ function EnquiryRow({ row }) {
         </TableCell>
         <TableCell>{row.student.instrument}</TableCell>
         {/* CELL TO FOR ACTIONS MENU ICON */}
-        {/* <TableCell>
-        </TableCell> */}
+        <TableCell>
+        < RowMenu lead={row} />
+        </TableCell>
       </TableRow>
       <TableRow>
         <TableCell sx={{ p: 0 }} colSpan={8}>

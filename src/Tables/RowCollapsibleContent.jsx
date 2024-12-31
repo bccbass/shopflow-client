@@ -12,58 +12,55 @@ import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
 import FollowUpForm from "../Tables/FollowUpForm";
-import RowSpeedDial from "./RowSpeedDial";
-
-
 
 const RowCollapsibleContent = ({ lead }) => {
-	return (
-		<Box sx={{ p: 1, pb: 4, backgroundColor: '#ebebeb', width: '100%' }}>
-			< RowSpeedDial />
+  return (
+    <Box sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
+      <Container
+        sx={{
+          display: "flex",
+          pt: 2,
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        {/* Main Content in this container */}
+        <EnquiryDetailsCard lead={lead}>
+          <OpenUpdateModalButton student={lead} title={"Edit Student"}>
+            <EditStudentFormWrapper />
+          </OpenUpdateModalButton>
+        </EnquiryDetailsCard>
 
-			<Container
-				sx={{ display: "flex", pt: 2, justifyContent: "space-between", width: "100%" }}
-			>
+        <TrialDetailsCard student={lead}>
+          <OpenUpdateModalButton student={lead} title={"Edit Trial"}>
+            <TrialLessonWrapper student={lead} />
+          </OpenUpdateModalButton>
+        </TrialDetailsCard>
 
-				{/* Main Content in this container */}
-				<EnquiryDetailsCard lead={lead}>
-		
-					<OpenUpdateModalButton student={lead} title={"Edit Student"}>
-						<EditStudentFormWrapper />
-					</OpenUpdateModalButton>
-				</EnquiryDetailsCard>
-				
-					<TrialDetailsCard student={lead}>
-						<OpenUpdateModalButton student={lead} title={"Edit Trial"}>
-							<TrialLessonWrapper student={lead} />
-						</OpenUpdateModalButton>
-					</TrialDetailsCard>
-				
-				<EnquiryNotesCard lead={lead}>
-					<OpenUpdateModalButton student={lead} title={"Update Notes"}>
-						<EditNotesWrapper />
-					</OpenUpdateModalButton>
-				</EnquiryNotesCard>
-			</Container>
+        <EnquiryNotesCard lead={lead}>
+          <OpenUpdateModalButton student={lead} title={"Update Notes"}>
+            <EditNotesWrapper />
+          </OpenUpdateModalButton>
+        </EnquiryNotesCard>
+      </Container>
 
-			<FollowUpTable
-				followUpEvents={
-					lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
-				}
-			/>
-			<FollowUpForm lead={lead} />
-			<Box
-				sx={{
-					width: "100%",
-					display: "flex",
-					justifyContent: "flex-end",
-					px: 4,
-					mt: 4
-				}}
-			>	
-			</Box>
-		</Box>
-	);
+      <FollowUpTable
+        followUpEvents={
+          lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
+        }
+      />
+      <FollowUpForm lead={lead} />
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "flex-end",
+          px: 4,
+          mt: 4,
+        }}
+      ></Box>
+    </Box>
+  );
 };
 
 export default RowCollapsibleContent;

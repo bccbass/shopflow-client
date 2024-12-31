@@ -36,7 +36,7 @@ const localDate = (date, locale='en-AU', incYear=true) => {
 }
 const formatDate = (date, incYear=true) => {
     try {const formattedDate = date?.split("T")[0]
-    return formattedDate == undefined ? 'xxx' : formattedDate}
+    return formattedDate == undefined ? '' : formattedDate}
     catch (e) {console.log('Invalid date:', e.message)}
 }
 

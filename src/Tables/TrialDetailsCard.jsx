@@ -37,7 +37,7 @@ const TrialDetailsCard = ({ student, children }) => {
           <strong> Trial Lesson </strong>
         </Typography>
         {!student.bookedTrial ? (
-          <Box sx={{ mt: 12 }}>
+          <Box sx={{ mt: '60%' }}>
             <OpenUpdateModalButton student={student} title={"Book Trial"}>
               <TrialLessonWrapper student={student} />
             </OpenUpdateModalButton>

@@ -45,8 +45,6 @@ export default function AddStudentForm({studentData, setStudentData }) {
         justifyContent: "space-around",
         // maxWidth: 410,
         mx: 'auto',
-        // mt: 6,
-        // mb: 8
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>
