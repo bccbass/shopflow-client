@@ -53,7 +53,7 @@ function EnquiryRow({ row }) {
         <TableCell>
           <span
             style={
-              row.overdue ? overdueStyles : row.enrolled ? enrolledStyles : null
+              row.overdue && !row.enrolled ? overdueStyles : row.enrolled ? enrolledStyles : null
             }
           >
             {noDueDate ? "" : row.enrolled ? "ENROLLED" : row.contactDate}
