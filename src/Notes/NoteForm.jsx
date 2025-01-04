@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
+import { addDays } from '../assets/dateHelpers'
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postResource } from "../assets/apiHelpers";
@@ -15,7 +16,7 @@ const NoteForm = () => {
     title: "",
     body: "",
     createdBy: "",
-    due: "",
+    due: addDays(3),
   };
   
   const [note, setNote] = useState(blankNote);

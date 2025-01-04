@@ -16,7 +16,7 @@ import FollowUpForm from "../Tables/FollowUpForm";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 
 const RowCollapsibleContent = ({ lead }) => {
-  return (
+	return (
 		<Box sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
 			<Container
 				sx={{
@@ -46,34 +46,39 @@ const RowCollapsibleContent = ({ lead }) => {
 				</EnquiryNotesCard>
 			</Container>
 
-			<FollowUpTable
-				followUpEvents={
-					lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
-				}
-			/>
-			<FollowUpForm lead={lead} />
-			<Box
-				sx={{
-					width: "100%",
-					display: "flex",
-					justifyContent: "flex-end",
-					px: 4,
-					mt: 4,
-				}}
-			></Box>
-			{!lead?.enrolled && (
-        < Box sx={{width: '100%', display: 'flex', justifyContent: 'center'}}> 
+			{ !lead.enrolled &&
+				<>
+					<FollowUpTable
+						followUpEvents={
+							lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
+						}
+					/>
+					<FollowUpForm lead={lead} />
+					<Box
+						sx={{
+							width: "100%",
+							display: "flex",
+							justifyContent: "flex-end",
+							px: 4,
+							mt: 4,
+						}}
+					></Box>{" "}
+				</>
+			}
+
+			<Box sx={{ width: "100%", display: "flex", justifyContent: "center", mt: lead.enrolled ? 2 : 0 }}>
 				<SubmitUpdateButton
 					submitProps={{
-						updatedStudent: { enrolled: true },
+						updatedStudent: { enrolled: !lead.enrolled },
 						path: "leads/updatetrial/" + lead._id,
 						type: "patch",
-						title: `Enroll ${lead.studentFullName}`,
+						title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${
+							lead.studentFullName
+						}`,
 						variant: "outlined",
 					}}
 				/>
-        </Box>
-			)}
+			</Box>
 		</Box>
 	);
 };
