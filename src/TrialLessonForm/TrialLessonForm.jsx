@@ -1,18 +1,25 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getResource } from "../assets/apiHelpers.js";
 import { Box, Typography, TextField, MenuItem } from "@mui/material";
 // These should be stored on the DB and queried
 import {
   instruments,
   groupClasses,
-  teachers,
   locations,
 } from "../assets/dbPlaceholderData.js";
+
+
 
 const hoursArray = Array.from({ length: 12 }, (_, i) => i + 1);
 const minutesArray = ["00", "15", "30", "45"];
 const ampmArray = ["am", "pm"];
 
 const TrialLessonForm = ({ setStudentData, studentData }) => {
+  	const teachersQuery = useQuery({
+			queryKey: ["teachers"],
+			queryFn: () => getResource("teachers"),
+		});
 
 
   const handleTrialLessonChange = (e) =>
@@ -50,7 +57,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         <TextField
           sx={{ width: "16.5ch" }}
           size="small"
-          id="outlined-helperText"
+          id="date"
           type="date"
           helperText="Lesson Date"
           name="date"
@@ -97,7 +104,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         <TextField
           sx={{ width: "8ch" }}
           size="small"
-          id="outlined-helperText"
+          id="12hr"
           helperText="12hr"
           // label="--"
           select
@@ -124,7 +131,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         <TextField
           sx={{ width: "21ch" }}
           size="small"
-          id="outlined-helperText"
+          id="instrument"
           label="Instrument"
           select
           name="instrument"
@@ -142,7 +149,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           size="small"
           sx={{ width: "21ch" }}
           select
-          id="outlined-helperText"
+          id="groupclass"
           label="Group Class"
           name="groupClass"
           value={studentData.trialLesson.groupClass}
@@ -168,23 +175,29 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           size="small"
           sx={{ width: "21ch" }}
           select
-          id="outlined-helperText"
-          label="Teacher"
+          id="teacher"
+          label={"Teacher"}
           name="teacher"
+          disabled={teachersQuery.isLoading || teachersQuery.isError}
           value={studentData.trialLesson.teacher}
           onChange={handleTrialLessonChange}
         >
-          {teachers.map((teacher) => (
-            <MenuItem value={teacher} key={teacher}>
-              {teacher}
+          
+          {!teachersQuery.isLoading && !teachersQuery.isError ? teachersQuery.data.map((teacher) => (
+            <MenuItem value={teacher.firstLast} key={teacher._id}>
+              {teacher.firstLast}
             </MenuItem>
-          ))}
+          )) : 
+            < MenuItem >
+              
+            </MenuItem>
+          }
         </TextField>
         <TextField
           size="small"
           sx={{ width: "21ch" }}
           select
-          id="outlined-helperText"
+          id="location"
           label="Location"
           name="location"
           value={studentData.trialLesson.location}
