@@ -93,10 +93,11 @@ const FollowUpForm = ({ lead }) => {
         <Box
           sx={{
             mt: 1,
-            width: "35%",
+            width: "31%",
             minWidth: "18rem",
             display: "flex",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
+            ml: 2
           }}
         >
           <Tooltip title="Chat" placement="top">
@@ -132,7 +133,7 @@ const FollowUpForm = ({ lead }) => {
         </Box>
         <TextField
           size="small"
-          sx={{ width: "30%" }}
+          sx={{ width: "29%" }}
           id="notes"
           label="Notes"
           multiline

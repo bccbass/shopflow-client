@@ -88,7 +88,7 @@ function EnquiryRow({ row }) {
 				</TableCell>
 			</TableRow>
 			<TableRow>
-				<TableCell sx={{ p: 0 }} colSpan={8}>
+				<TableCell sx={{ p: 0 }} colSpan={9}>
 					<Collapse in={open} timeout="auto">
 						<RowCollapsibleContent lead={row} />
 					</Collapse>

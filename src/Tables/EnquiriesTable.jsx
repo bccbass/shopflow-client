@@ -17,7 +17,7 @@ export default function EnquiriesTable({ enquiries, children }) {
         <TableHead >
           <TableRow >
             <TableCell  />
-            <TableCell sx={{ fontWeight: "bold", color: "red", width: 120 }}>
+            <TableCell sx={{ fontWeight: "bold", width: 120 }}>
               Next Action
             </TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Student</TableCell>
