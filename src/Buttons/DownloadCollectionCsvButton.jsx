@@ -19,7 +19,7 @@ const DownloadCollectionCsvButton = ({ data, collection = false }) => {
       dateCreated: d.createdDate,
       studentFirstName: d.student.firstName,
       studentLastName: d.student.lastName,
-      isChild: d.isMinor,
+      Adult: !d.isMinor,
       instrument: d.student.instrument,
       age: d.student.age,
       guardianFirstName: d.guardian.firstName,

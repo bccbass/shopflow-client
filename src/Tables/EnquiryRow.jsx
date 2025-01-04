@@ -1,3 +1,5 @@
+/** @format */
+
 import * as React from "react";
 import PropTypes from "prop-types";
 import Collapse from "@mui/material/Collapse";
@@ -9,72 +11,91 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RowCollapsibleContent from "./RowCollapsibleContent";
 import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
+import SmsIcon from "@mui/icons-material/Sms";
 import RowMenu from "./RowMenu";
 import { nullDueDate } from "../assets/dateHelpers";
+import { smsHref } from '../assets/helperFuncs'
 
 function EnquiryRow({ row }) {
-  const [open, setOpen] = React.useState(false);
+	const [open, setOpen] = React.useState(false);
 
-  const noDueDate = nullDueDate(row.nextContactDate);
-  const overdueStyles = {
-    color: "red",
-  };
+	const noDueDate = nullDueDate(row.nextContactDate);
+	const overdueStyles = {
+		color: "red",
+	};
+	const enrolledStyles = {
+		color: "white",
+		backgroundColor: "green",
+		padding: "4px 6px",
+		marginLeft: "-.5rem",
+		borderRadius: "6px",
+		fontWeight: "bold",
+	};
 
-  return (
-    <React.Fragment>
-      <TableRow
-        sx={{
-          "& > *": {
-            borderBottom: "unset",
-            backgroundColor: row.enrolled ? "#C7FFD8" : "",
-          },
-        }}
-      >
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell>
-          <span style={row.overdue ? overdueStyles : null}>
-            {noDueDate ? "" : row.contactDate}
-          </span>
-        </TableCell>
-        <TableCell>{`${row.studentFullName}`}</TableCell>
-        <TableCell align={row.isMinor ? "inherit" : "center"}>
-          {row.isMinor ? `${row.guardianFullName}` : ""}
-        </TableCell>
-        <TableCell>
-          {" "}
-          <a href={"tel:" + row?.contact?.phone}>
-            <CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-          </a>
-        </TableCell>
-        <TableCell>
-          {" "}
-          <a href={"mailto:" + row?.contact?.email}>
-            <EmailIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-          </a>
-        </TableCell>
-        <TableCell>{row.student.instrument}</TableCell>
-        {/* CELL TO FOR ACTIONS MENU ICON */}
-        <TableCell>
-        < RowMenu lead={row} />
-        </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell sx={{ p: 0 }} colSpan={8}>
-          <Collapse in={open} timeout="auto">
-            <RowCollapsibleContent lead={row} />
-          </Collapse>
-        </TableCell>
-      </TableRow>
-    </React.Fragment>
-  );
+	return (
+		<React.Fragment>
+			<TableRow
+				sx={{
+					"& > *": {
+						borderBottom: "unset",
+					},
+				}}
+			>
+				<TableCell>
+					<IconButton
+						aria-label="expand row"
+						size="small"
+						onClick={() => setOpen(!open)}
+					>
+						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+					</IconButton>
+				</TableCell>
+				<TableCell>
+					<span
+						style={
+							row.overdue ? overdueStyles : row.enrolled ? enrolledStyles : null
+						}
+					>
+						{noDueDate ? "" : row.enrolled ? "ENROLLED" : row.contactDate}
+					</span>
+				</TableCell>
+				<TableCell>{`${row.studentFullName}`}</TableCell>
+				<TableCell align={row.isMinor ? "inherit" : "center"}>
+					{row.isMinor ? `${row.guardianFullName}` : ""}
+				</TableCell>
+				<TableCell>
+					{" "}
+					<a href={"tel:" + row?.contact?.phone}>
+						<CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
+					</a>
+				</TableCell>
+				<TableCell>
+					{" "}
+					<a href={"mailto:" + row?.contact?.email}>
+						<EmailIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
+					</a>
+				</TableCell>
+				<TableCell>
+					{" "}
+					<a href={smsHref(row)}>
+						<SmsIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
+					</a>
+				</TableCell>
+				<TableCell>{row.student.instrument}</TableCell>
+				{/* CELL TO FOR ACTIONS MENU ICON */}
+				<TableCell>
+					<RowMenu lead={row} />
+				</TableCell>
+			</TableRow>
+			<TableRow>
+				<TableCell sx={{ p: 0 }} colSpan={8}>
+					<Collapse in={open} timeout="auto">
+						<RowCollapsibleContent lead={row} />
+					</Collapse>
+				</TableCell>
+			</TableRow>
+		</React.Fragment>
+	);
 }
 
 // Row.propTypes = {

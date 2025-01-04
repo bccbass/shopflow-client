@@ -1,13 +1,15 @@
 /** @format */
 
 import React from "react";
+import { useNavigate } from "react-router";
 import { Button, Tooltip } from "@mui/material";
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteResource } from "../assets/apiHelpers";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 
-const ArchiveButton = ({ reactivate = false, id }) => {
+const ArchiveButton = ({ reactivate = false, id, bookedTrial=false }) => {
+	const navigate = useNavigate()
 	const url = reactivate ? `archive/reactivate` : `leads/archive`;
 
 	const queryClient = useQueryClient();
@@ -16,6 +18,7 @@ const ArchiveButton = ({ reactivate = false, id }) => {
 		mutationFn: deleteResource,
 		onSuccess: () => {
 			queryClient.invalidateQueries(["Leads", "Archive"]);
+			navigate(bookedTrial ? '/triallessons' : '/newstudents')
 		},
 	});
 

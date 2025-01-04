@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Button, Tooltip } from "@mui/material";
+import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource, putResource } from "../assets/apiHelpers";
 import AddBoxIcon from "@mui/icons-material/AddBox";
@@ -13,12 +14,13 @@ const SubmitUpdateButton = ({ submitProps }) => {
     query = "Leads",
     type,
     setOpen = false,
+    redirect = false,
     successCb = null,
     title = "Submit",
     variant = "contained",
   } = submitProps;
   const queryClient = useQueryClient();
-
+  const navigate = useNavigate()
   const mutation = useMutation({
     mutationFn:
       (type == "patch" && patchResource) || (type == "put" && putResource),
@@ -26,6 +28,7 @@ const SubmitUpdateButton = ({ submitProps }) => {
       queryClient.invalidateQueries([query]);
       setOpen && setOpen(false);
       successCb && successCb();
+      redirect && navigate(redirect)
     },
   });
 

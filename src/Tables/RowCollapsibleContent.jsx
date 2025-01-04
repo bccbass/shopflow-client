@@ -28,14 +28,7 @@ const RowCollapsibleContent = ({ lead }) => {
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
-        {lead?.enrolled ? (
-          <Chip
-            color="success"
-            label="ENROLLED"
-            sx={{ pt: 0.4, mb: 1 }}
-            size="small"
-          />
-        ) : (
+        {!lead?.enrolled && (
           <SubmitUpdateButton
             submitProps={{
               updatedStudent: { enrolled: true },

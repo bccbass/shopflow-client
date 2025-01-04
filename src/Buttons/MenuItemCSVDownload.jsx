@@ -41,11 +41,11 @@ const MenuItemCSVDownload = ({ data, collection = false }) => {
   const handleClick = () => download(csvConfig)(csv);
 
   return (
-    <Box onClick={handleClick} sx={{ display: "flex" }}>
+    <Box onClick={handleClick} sx={{ display: "flex", width: '100%' }}>
       <ListItemIcon>
         <FileDownloadOutlinedIcon fontSize="small" />
       </ListItemIcon>
-      <ListItemText>Download</ListItemText>
+      <ListItemText >Download</ListItemText>
     </Box>
   );
 };

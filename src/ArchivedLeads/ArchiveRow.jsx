@@ -167,7 +167,7 @@ function ArchiveRow({ children, row }) {
 							{children}
 						</Box>
 						<Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', p: 4}}>
-							<ArchiveButton reactivate={true} id={row._id} />
+							<ArchiveButton reactivate={true} id={row._id} bookedTrial={row.bookedTrial} />
 							< DeleteButton id={row._id} path='archive'/>
 						</Box>
 					</Collapse>

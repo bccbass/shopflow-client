@@ -11,7 +11,7 @@ const calculateNextContact = (lead) =>{
     if (lead.bookedTrial) {
         return addDays(2);
     }
-    else if (lead.followUp.length <= 1) {
+    else if (lead.followUp.length == 0) {
         return addDays(2);
     }
     else if (lead.followUp.length == 1) {

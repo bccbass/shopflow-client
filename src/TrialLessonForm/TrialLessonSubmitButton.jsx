@@ -2,16 +2,18 @@
 
 import React from "react";
 import { Button } from "@mui/material";
+import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 
 const TrialLessonSubmitButton = ({ updatedStudent, setOpen }) => {
 	const queryClient = useQueryClient();
-
+	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: patchResource,
-		onSuccess: () => {queryClient.invalidateQueries(["leads"]);
-    setOpen(false)}
+		onSuccess: () => {queryClient.invalidateQueries(["leads"]),
+			navigate('/triallessons'),
+    		setOpen(false)}
 	});
 
 	const dataPayload = {

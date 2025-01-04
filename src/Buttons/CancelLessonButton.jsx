@@ -1,19 +1,21 @@
 /** @format */
 
 import React from "react";
+import { useNavigate } from "react-router";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Tooltip } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 
 const CancelLessonButton = ({ id, setOpen }) => {
-	const queryClient = useQueryClient();
-
+	const queryClient = useQueryClient();	
+	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: patchResource,
 		onSuccess: () => {
 			queryClient.invalidateQueries(["Leads"]);
 			setOpen(false);
+			navigate('/newstudents')
 		},
 	});
 
