@@ -1,42 +1,42 @@
+/** @format */
+
 import * as React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getResource } from "../assets/apiHelpers.js";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
-import { Typography, Autocomplete} from "@mui/material";
+import { Typography, Autocomplete } from "@mui/material";
 
-import {
-  instruments,
-  groupClasses,
-  leadSources,
-} from "../assets/dbPlaceholderData.js";
+export default function AddStudentForm({ studentData, setStudentData }) {
+	const utilsQuery = useQuery({
+		queryKey: ["utils"],
+		queryFn: () => getResource("utils?resource=info"),
+	});
 
+	const loaded = !utilsQuery.isError && !utilsQuery.isLoading;
+	const handleChange = (e) =>
+		setStudentData({ ...studentData, [e.target.name]: e.target.value });
 
-export default function AddStudentForm({studentData, setStudentData }) {
+	const handleStudentChange = (e) =>
+		setStudentData({
+			...studentData,
+			student: { ...studentData.student, [e.target.name]: e.target.value },
+		});
 
+	const handleGuardianChange = (e) =>
+		setStudentData({
+			...studentData,
+			guardian: { ...studentData.guardian, [e.target.name]: e.target.value },
+		});
 
-  const handleChange = (e) =>
-    setStudentData({ ...studentData, [e.target.name]: e.target.value });
+	const handleContactChange = (e) =>
+		setStudentData({
+			...studentData,
+			contact: { ...studentData.contact, [e.target.name]: e.target.value },
+		});
 
-  const handleStudentChange = (e) =>
-    setStudentData({
-      ...studentData,
-      student: { ...studentData.student, [e.target.name]: e.target.value },
-    });
-
-  const handleGuardianChange = (e) =>
-    setStudentData({
-      ...studentData,
-      guardian: { ...studentData.guardian, [e.target.name]: e.target.value },
-    });
-
-  const handleContactChange = (e) =>
-    setStudentData({
-      ...studentData,
-      contact: { ...studentData.contact, [e.target.name]: e.target.value },
-    });
-
-
-  return (
+	return (
 		<Box
 			sx={{
 				display: "flex",
@@ -94,11 +94,15 @@ export default function AddStudentForm({studentData, setStudentData }) {
 						value={studentData.student.instrument}
 						onChange={handleStudentChange}
 					>
-						{instruments.map((instrument) => (
-							<MenuItem value={instrument} key={instrument}>
-								{instrument}
-							</MenuItem>
-						))}
+						{loaded ? (
+							utilsQuery.data.instruments.map((instrument) => (
+								<MenuItem value={instrument} key={instrument}>
+									{instrument}
+								</MenuItem>
+							))
+						) : (
+							<MenuItem></MenuItem>
+						)}
 					</TextField>
 
 					<TextField
@@ -111,11 +115,15 @@ export default function AddStudentForm({studentData, setStudentData }) {
 						value={studentData.student.groupClass}
 						onChange={handleStudentChange}
 					>
-						{groupClasses.map((instrument) => (
-							<MenuItem value={instrument} key={instrument}>
-								{instrument}
-							</MenuItem>
-						))}
+						{loaded ? (
+							utilsQuery.data.groupClasses.map((group) => (
+								<MenuItem value={group} key={group}>
+									{group}
+								</MenuItem>
+							))
+						) : (
+							<MenuItem></MenuItem>
+						)}
 					</TextField>
 					<TextField
 						size="small"
@@ -228,14 +236,19 @@ export default function AddStudentForm({studentData, setStudentData }) {
 						label="Lead Source"
 						select
 						name="leadSource"
+						disabled={!loaded}
 						value={studentData.leadSource}
 						onChange={handleChange}
 					>
-						{leadSources.map((instrument) => (
-							<MenuItem value={instrument} key={instrument}>
-								{instrument}
-							</MenuItem>
-						))}
+						{loaded ? (
+							utilsQuery.data.leadSources.map((instrument) => (
+								<MenuItem value={instrument} key={instrument}>
+									{instrument}
+								</MenuItem>
+							))
+						) : (
+							<MenuItem></MenuItem>
+						)}
 					</TextField>
 
 					<TextField
