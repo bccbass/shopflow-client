@@ -38,7 +38,7 @@ const RepairFormWrapper = ({ repair=false, setOpen }) => {
           }}
         />
 
-        <Button sx={{ my: 2 }} onClick={() => setOpen(false)}>
+        <Button  onClick={() => setOpen(false)}>
           Cancel
         </Button>
       </DialogActions>
