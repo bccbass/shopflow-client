@@ -7,22 +7,24 @@ import { patchResource } from "../assets/apiHelpers";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import { Tooltip } from "@mui/material";
 
-const CompletedToggleButton = ({ note }) => {
-
+const RepairCompleteToggleButton = ({ repair }) => {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
 		mutationFn: patchResource,
-		onSuccess: () => queryClient.invalidateQueries(["notes"]),
+		onSuccess: () => queryClient.invalidateQueries(["repairs"]),
 	});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		mutation.mutate({ path: `notes/${note._id}`, body: {completed: !note.completed} });
+		mutation.mutate({
+			path: `repairs/${repair._id}`,
+			body: { completed: !repair.completed, status: repair.completed ? "In Progress" : "Complete" },
+		});
 	};
 
 	return (
-		<Tooltip title='Toggle complete'>
+		<Tooltip title="Toggle complete">
 			<Button sx={{ color: "grey" }} onClick={handleSubmit}>
 				<TaskAltIcon />
 			</Button>
@@ -30,4 +32,4 @@ const CompletedToggleButton = ({ note }) => {
 	);
 };
 
-export default CompletedToggleButton;
+export default RepairCompleteToggleButton;
