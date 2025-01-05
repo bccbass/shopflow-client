@@ -8,7 +8,7 @@ import Alert from "@mui/material/Alert";
 import { postResource } from "../assets/apiHelpers";
 
 const CreateButton = ({ buttonProps }) => {
-  const { buttonText, path, defaultData, data, setData, redirect } =
+  const { buttonText='Submit', path, defaultData, data, setData, setDialogOpen=false, query=false } =
     buttonProps;
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
@@ -18,8 +18,10 @@ const CreateButton = ({ buttonProps }) => {
     mutationFn: postResource,
     onSuccess: () => {
       setOpen(true);
-      queryClient.invalidateQueries(["leads"]);
-      setData(defaultData);
+      queryClient.invalidateQueries([!query ? "leads" : query]),
+      setData(defaultData)
+      setDialogOpen && setDialogOpen(false);
+
       //   navigate(redirect);
     },
   });

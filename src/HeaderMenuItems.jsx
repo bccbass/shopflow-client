@@ -14,6 +14,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import { getResource } from "./assets/apiHelpers";
 
 const HeaderMenuItems = () => {
@@ -38,6 +39,7 @@ const HeaderMenuItems = () => {
       due: dueQuery?.data?.trials || "",
     },
     { title: "Notes", path: "notes", due: dueQuery?.data?.notes || "" },
+    { title: "Repairs", path: "repairs", due: dueQuery?.data?.repairs || "" },
   ];
   return (
     <>
@@ -94,6 +96,9 @@ const HeaderMenuItems = () => {
                   )}
                   {item.path === "triallessons" && (
                     <QueueMusicIcon fontSize="large" />
+                  )}
+                  {item.path === "repairs" && (
+                    <BuildCircleIcon fontSize="large" />
                   )}
                   {item.path === "notes" && <NoteIcon fontSize="large" />}
                 </Badge>
