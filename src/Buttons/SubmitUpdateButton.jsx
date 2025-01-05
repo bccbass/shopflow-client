@@ -9,10 +9,10 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 
 const SubmitUpdateButton = ({ submitProps }) => {
   const {
-    updatedStudent,
+    updatedData,
     path,
-    query = "Leads",
-    type,
+    query = path,
+    type='patch',
     setOpen = false,
     redirect = false,
     successCb = null,
@@ -36,7 +36,7 @@ const SubmitUpdateButton = ({ submitProps }) => {
     e.preventDefault();
     mutation.mutate({
       path: path,
-      body: updatedStudent,
+      body: updatedData,
     });
   };
 

@@ -8,8 +8,7 @@ import Alert from "@mui/material/Alert";
 import { postResource } from "../assets/apiHelpers";
 
 const CreateButton = ({ buttonProps }) => {
-  const { buttonText='Submit', path, defaultData, data, setData, setDialogOpen=false, query=false } =
-    buttonProps;
+  const { buttonText='Submit', path, defaultData, data, setData, setDialogOpen=false, query=false }=buttonProps;
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const queryClient = useQueryClient();

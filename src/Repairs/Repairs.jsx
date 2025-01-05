@@ -32,7 +32,7 @@ const Repairs = () => {
 					<h1 className="">Error</h1>
 				) : (
 					<>
-						{/* < DownloadCollectionCsvButton collection="Repairs" data={filteredData} /> */}
+						< DownloadCollectionCsvButton collection="Repairs" data={repairsQuery.data} format='repairs' />
 						<RepairsTable repairs={repairsQuery.data} />
 
 						<Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', pr: 10}} >

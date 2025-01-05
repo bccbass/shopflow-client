@@ -6,12 +6,12 @@ import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined
 import Button from "@mui/material/Button";
 import { Tooltip } from "@mui/material";
 
-const DeleteButton = ({ path, id }) => {
+const DeleteButton = ({ path, id, query=path}) => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: deleteResource,
     onSuccess: () => {
-      queryClient.invalidateQueries(["notes"]);
+      queryClient.invalidateQueries([query]);
     },
   });
   const handleClick = (e) => {
@@ -29,7 +29,7 @@ const DeleteButton = ({ path, id }) => {
 				onClick={handleClick}
 				sx={{ px: 2 }}
 			>
-				<DeleteOutlineOutlinedIcon color="error" />
+				<DeleteOutlineOutlinedIcon sx={{color: 'grey'}}/>
 			</Button>
 		</Tooltip>
 	);

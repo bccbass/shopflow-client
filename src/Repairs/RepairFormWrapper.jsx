@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import CreateButton from "../Buttons/CreateButton";
+import SubmitUpdateButton from '../Buttons/SubmitUpdateButton'
 import RepairForm from "./RepairForm";
 import { defaultRepairForm } from "../assets/defaultRepairForm";
 
@@ -28,7 +29,7 @@ const RepairFormWrapper = ({ repair=false, setOpen }) => {
       </DialogTitle>
       <RepairForm repairData={repairData} setRepairData={setRepairData}/>
       <DialogActions sx={{ display: "flex", flexDirection: "column" }}>
-        <CreateButton
+       {!repair ?  <CreateButton
           buttonProps={{
             path: "repairs",
             data: repairData,
@@ -36,8 +37,13 @@ const RepairFormWrapper = ({ repair=false, setOpen }) => {
             query: "repairs",
             setDialogOpen: setOpen,
           }}
-        />
-
+        /> :
+        < SubmitUpdateButton 
+        submitProps={{
+          updatedData: repairData,
+          path: 'repairs/' + repair._id,
+          setOpen: setOpen,
+          }}/>}
         <Button  onClick={() => setOpen(false)}>
           Cancel
         </Button>

@@ -2,28 +2,33 @@
 
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
+import DeleteButton from '../Buttons/DeleteButton'
+import AddRepairButton from "./AddRepairButton";
+import RepairFormWrapper from "./RepairFormWrapper";
 import { localDate } from "../assets/dateHelpers";
+
 
 const RepairsCollapsibleContent = ({ row }) => {
 	return (
 		<Container sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
 			<Typography
-				variant="h6"
-				color=""
+				variant="h5"
+				color="primary"
 				component="div"
-                sx={{mt: 2}}
+                sx={{my: 2}}
+				textAlign='center'
 			>
-				<strong> Repair Details </strong>
+				<strong> {`Repair Details: ${row.instrument} ${row.jobDescription}`} </strong>
 			</Typography>
 			<Box
 				sx={{
 					display: "flex",
-					justifyContent: "space-between",
+					justifyContent: "space-around",
 					alignItems: "flex-start",
 					width: "100%",
 				}}
 			>
-				<Box sx={{ py: 2, width: "32%" }}>
+				<Box sx={{ py: 2, width: "25%" }}>
 					<Typography color="textSecondary" >
 						<strong> Created: </strong>
 						{localDate(row.dateCreated)}
@@ -41,7 +46,7 @@ const RepairsCollapsibleContent = ({ row }) => {
 						<a href={"mailto:" + row?.email}>{row?.email}</a>
 					</Typography>
 				</Box>
-				<Box sx={{ py: 2, width: "32%" }}>
+				<Box sx={{ py: 2, width: "25%" }}>
 					<Typography color="textSecondary">
 						<strong> Instrument: </strong>
 						{row?.instrument}
@@ -59,7 +64,7 @@ const RepairsCollapsibleContent = ({ row }) => {
 						{localDate(row.due)}
 					</Typography>
 				</Box>
-				<Box sx={{ py: 2, width: "32%" }}>
+				<Box sx={{ py: 2, width: "25%" }}>
 					<Typography color="textSecondary">
 						<strong> Notes: </strong>
 					</Typography>
@@ -67,6 +72,12 @@ const RepairsCollapsibleContent = ({ row }) => {
 						{row.notes}
 					</Typography>
 				</Box>
+			</Box > 
+			<Box sx={{width:"100%", px: 4, display: 'flex', justifyContent: 'flex-end'}}>
+			<AddRepairButton repair={row}>
+				<RepairFormWrapper />
+			</AddRepairButton>
+			< DeleteButton id={row._id} path='repairs' />
 			</Box>
 		</Container>
 	);

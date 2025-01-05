@@ -5,7 +5,7 @@ import { mkConfig, generateCsv, download } from "export-to-csv";
 import { dateStamp } from "../assets/dateHelpers";
 import { Button, Tooltip, Box } from "@mui/material";
 
-const DownloadCollectionCsvButton = ({ data, collection = false }) => {
+const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' }) => {
   const fileName = `${collection}_${dateStamp}`;
   const csvConfig = mkConfig({
     useKeysAsHeaders: true,
@@ -14,8 +14,8 @@ const DownloadCollectionCsvButton = ({ data, collection = false }) => {
     showTitle: false,
   });
 
-  const csvData = data.map((d) => {
-    return {
+  const generateCSVDataFromInput = (format, inputData) => {
+   if (format == 'leads'){return inputData.map((d) => { return {
       dateCreated: d.createdDate,
       studentFirstName: d.student.firstName,
       studentLastName: d.student.lastName,
@@ -32,8 +32,25 @@ const DownloadCollectionCsvButton = ({ data, collection = false }) => {
       followUpContact: d.followUp.length + d.trialLesson.followUp.length,
       trialTeacher: d.trialLesson.teacher,
       trialDate: `${d.trialDate}, ${d.trialTime}`,
-    };
-  });
+      }
+    } )
+  }
+  if (format == 'repairs') {return inputData.map((d) => {
+     return {
+      dateCreated: d.dateCreated,
+      name: d.firstLast,
+      instrument: d.instrument,
+      job: d.jobDescription,
+      phone: d.phone,
+      email: d.email,
+      status: d.status,
+      }
+    });
+  }
+}
+
+  const csvData = generateCSVDataFromInput(format, data)
+console.log(csvData)
 
   const csv = generateCsv(csvConfig)(csvData);
 
