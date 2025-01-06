@@ -1,10 +1,12 @@
 /** @format */
 
 import React from "react";
-import { Box, TextField, MenuItem } from "@mui/material";
+import { Box, TextField, MenuItem, InputAdornment, Checkbox, FormControlLabel} from "@mui/material";
 
 const status = ["In Progress", "Awaiting Response", "Completed"];
 const RepairForm = ({ setRepairData, repairData }) => {
+  console.log(repairData)
+
   const handleChange = (e) =>
     setRepairData({
       ...repairData,
@@ -132,6 +134,33 @@ const RepairForm = ({ setRepairData, repairData }) => {
             </MenuItem>
           ))}
         </TextField>
+      </Box>
+       <Box
+        sx={{
+          my: 2,
+          display: "flex",
+          flexWrap: "nowrap",
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        <TextField
+          sx={{ width: "49%" }}
+          size="small"
+          id="amount"
+          label="Amount Due"
+          name="amount"
+          value={repairData?.amount}
+          onChange={handleChange}
+          slotProps={{
+            input: {
+              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+            },
+          }}        
+          />
+
+      {/* <FormControlLabel sx={{mr: 10, color: 'grey'}} labelPlacement='start' control={<Checkbox checked={repairData.paid} onChange={e => setRepairData({...repairData, paid: e.target.checked}) } />} label="Paid:" /> */}
+      <Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } />
       </Box>
       <Box
         sx={{

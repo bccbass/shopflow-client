@@ -4,10 +4,10 @@ import React from "react";
 import Button from "@mui/material/Button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Tooltip } from "@mui/material";
 
-const RepairCompleteToggleButton = ({ repair }) => {
+const TogglePaidButton = ({ repair }) => {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
@@ -19,17 +19,17 @@ const RepairCompleteToggleButton = ({ repair }) => {
 		e.preventDefault();
 		mutation.mutate({
 			path: `repairs/${repair._id}`,
-			body: { completed: !repair.completed, status: repair.completed ? "In Progress" : "Complete" },
+			body: { paid: !repair.paid },
 		});
 	};
 
 	return (
-		<Tooltip title={repair.completed ? "Change to 'In Progress'" : "Mark as Completed"}>
-			<Button sx={{ color: repair.completed ? "white" : "grey", backgroundColor: repair.completed && 'green' }} onClick={handleSubmit}>
-				<TaskAltIcon />
+		<Tooltip title={repair.paid ? "Mark as Unpaid" : "Mark as Paid"}>
+			<Button sx={{ color: repair.paid ? "white" : "grey", backgroundColor: repair.paid && 'green' }} onClick={handleSubmit}>
+				<AttachMoneyIcon />
 			</Button>
 		</Tooltip>
 	);
 };
 
-export default RepairCompleteToggleButton;
+export default TogglePaidButton;

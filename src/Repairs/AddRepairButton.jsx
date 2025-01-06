@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Edit } from "@mui/icons-material";
 import { Button, Modal, Dialog, Tooltip, DialogContent } from "@mui/material";
+import { Add } from "@mui/icons-material";
 
 const AddRepairButton = ({ children, repair=false }) => {
   const [open, setOpen] = useState(false);
@@ -15,7 +16,7 @@ const AddRepairButton = ({ children, repair=false }) => {
           < Tooltip title='Edit' >
           < Edit /> 
           </Tooltip>
-          : 'New Repair'}
+          : "New Repair" }
           
         </Button>
      

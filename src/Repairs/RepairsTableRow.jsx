@@ -13,6 +13,7 @@ import SmsIcon from "@mui/icons-material/Sms";
 import RepairsCollapsibleContent from "./RepairsCollapsibleContent";
 import { nullDueDate } from "../assets/dateHelpers";
 import RepairCompleteToggleButton from "./RepairCompleteToggleButton";
+import TogglePaidButton from "./TogglePaidButton";
 import { smsHref } from "../assets/helperFuncs";
 
 function RepairsTableRow({ row }) {
@@ -48,9 +49,6 @@ function RepairsTableRow({ row }) {
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
-				<TableCell>
-					<span style={row.completed ? completedStyles : {}}>{row.status}</span>
-				</TableCell>
 				<TableCell>{`${row.lastFirst}`}</TableCell>
 				<TableCell>{row.instrument}</TableCell>
 				<TableCell>{row.jobDescription}</TableCell>
@@ -59,11 +57,11 @@ function RepairsTableRow({ row }) {
 						<CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
 					</a>
 				</TableCell>
-				<TableCell>
+				{/* <TableCell>
 					<a href={"mailto:" + row?.email}>
 						<EmailIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
 					</a>
-				</TableCell>
+				</TableCell> */}
 				<TableCell>
 					<a
 						href={`sms:/${row?.phone}/&body=Hi ${row.firstName}, %0D%0A %0D%0A [MESSAGE] %0D%0A %0D%0A Thank you, %0D%0A Caringbah Music Admin Team`}
@@ -71,10 +69,11 @@ function RepairsTableRow({ row }) {
 						<SmsIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
 					</a>
 				</TableCell>
-				{/* CELL TO FOR ACTIONS MENU ICON */}
 				<TableCell>
-					{" "}
 					<RepairCompleteToggleButton repair={row} />{" "}
+				</TableCell>
+				<TableCell >
+					<TogglePaidButton repair={row} />{" "}
 				</TableCell>
 			</TableRow>
 			<TableRow>

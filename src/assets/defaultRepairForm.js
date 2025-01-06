@@ -1,4 +1,6 @@
-import { addDays } from "./dateHelpers";
+import { addDays} from "./dateHelpers";
+
+ let dueDate = addDays(5)
 
 const defaultRepairForm = {
   firstName: "",
@@ -8,10 +10,12 @@ const defaultRepairForm = {
   instrument: "",
   status: "In Progress",
   jobDescription: "",
+  paid: false,
+  amount: '',
   notes: "",
   completed: false,
-  createdBy: "",
-  due: addDays(4)
+  createdBy: '',
+  due:  dueDate
 };
 
 export { defaultRepairForm };

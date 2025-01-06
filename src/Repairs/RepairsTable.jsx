@@ -19,15 +19,14 @@ export default function RepairsTable({ repairs, children }) {
 				<TableHead>
 					<TableRow>
 						<TableCell />
-						<TableCell sx={{ fontWeight: "bold" }}>Status</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Job</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
+						{/* <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell> */}
 						<TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
-						{/* BLANK CELL TO ACCOMODATE ACTIONS ICON */}
 						<TableCell sx={{ fontWeight: "bold" }}>Completed</TableCell>
+						<TableCell sx={{ fontWeight: "bold" }}>Paid</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
