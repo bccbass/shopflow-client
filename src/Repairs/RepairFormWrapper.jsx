@@ -16,14 +16,14 @@ import { formatDate } from "../assets/dateHelpers.js";
 const RepairFormWrapper = ({ repair=false, setOpen }) => {
   const [repairData, setRepairData] = useState(!repair ? defaultRepairForm : repair);
 
-  // useEffect(() => {
-  //   // Reformat trial lesson date from student data so it can be used as an input value and not throw error
-  //   const formattedDate = formatDate(repair.due)
-  //   setRepairData({
-  //     ...repairData,
-  //     due: formattedDate
-  //   });
-  // }, []);
+  useEffect(() => {
+    // Reformat date from so it can be used as an input value and not throw error
+    if (repair){const formattedDate = formatDate(repair.due)
+    setRepairData({
+      ...repairData,
+      due: formattedDate
+    });}
+  }, []);
 
 
   return (

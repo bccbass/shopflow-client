@@ -10,11 +10,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import RepairsTableRow from "./RepairsTableRow";
 
-export default function RepairsTable({ repairs, children }) {
+export default function RepairsTable({ repairs }) {
 	const rows = [...repairs];
 
 	return (
-		<TableContainer sx={{ mt: 0, mb: 4 }} component={Paper}>
+		<TableContainer sx={{ mt: 0, mb: 0 }} component={Paper}>
 			<Table aria-label="collapsible table">
 				<TableHead>
 					<TableRow>
@@ -31,9 +31,7 @@ export default function RepairsTable({ repairs, children }) {
 				</TableHead>
 				<TableBody>
 					{rows.map((row) => (
-						<RepairsTableRow key={row._id} row={row}>
-							{/* {children} */}
-						</RepairsTableRow>
+						<RepairsTableRow key={row._id} row={row} />
 					))}
 				</TableBody>
 			</Table>

@@ -19,8 +19,10 @@ const Repairs = () => {
     queryFn: () => getResource("repairs?sort=" + sortOrder),
   });
 
-  const selectedButtonStyles = {width: '50%', backgroundColor: 'teal', fontWeight: 'bold', borderRadius: 0, color: 'white', border: '1px solid teal'}
-  const inactiveButtonStyles = {width: '50%', backgroundColor: 'white', borderRadius: 0, color: 'grey', border: '1px solid lightgrey'}
+  const selectedButtonStyles = {width: '50%', fontWeight: 'bold', borderRadius: 0, borderRight: viewActive && '1px solid lightgrey', borderLeft: !viewActive && '1px solid lightgrey', borderBottom: 0}
+  const inactiveButtonStyles = {width: '50%', borderRadius: 0, color: 'grey', borderBottom: '1px solid lightgrey', backgroundColor: "#FAFAFA", borderTopRightRadius: viewActive && '6px', borderTopLeftRadius: !viewActive && '6px'}
+  // const selectedButtonStyles = {width: '50%', backgroundColor: 'teal', fontWeight: 'bold', borderRadius: 0, color: 'white', border: '1px solid teal'}
+  // const inactiveButtonStyles = {width: '50%', backgroundColor: 'white', borderRadius: 0, color: 'grey', border: '1px solid lightgrey'}
 
   const completedRepairs =
     !repairsQuery.isLoading && !repairsQuery.error
@@ -60,7 +62,7 @@ const Repairs = () => {
               format="repairs"
             />
             </Box>
-            <Box sx={{width: '100%'}}>
+            <Box sx={{width: '100%', border: '1px solid lightgrey', borderRadius: '6px', z: 20}}>
               <Box sx={{width: '100%'}}>
                 <Button onClick={() => setViewActive(true)} sx={viewActive ? selectedButtonStyles : inactiveButtonStyles }>In Progress</Button>
                 <Button onClick={() => setViewActive(false)} sx={!viewActive ? selectedButtonStyles : inactiveButtonStyles } >Completed</Button>

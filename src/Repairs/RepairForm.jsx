@@ -5,7 +5,6 @@ import { Box, TextField, MenuItem, InputAdornment, Checkbox, FormControlLabel} f
 
 const status = ["In Progress", "Awaiting Response", "Completed"];
 const RepairForm = ({ setRepairData, repairData }) => {
-  console.log(repairData)
 
   const handleChange = (e) =>
     setRepairData({
@@ -159,8 +158,8 @@ const RepairForm = ({ setRepairData, repairData }) => {
           }}        
           />
 
-      {/* <FormControlLabel sx={{mr: 10, color: 'grey'}} labelPlacement='start' control={<Checkbox checked={repairData.paid} onChange={e => setRepairData({...repairData, paid: e.target.checked}) } />} label="Paid:" /> */}
-      <Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } />
+      <FormControlLabel sx={{mr: 10, color: 'grey'}} labelPlacement='start' control={<Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } />} label="Paid:" />
+      {/* <Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } /> */}
       </Box>
       <Box
         sx={{
@@ -171,7 +170,7 @@ const RepairForm = ({ setRepairData, repairData }) => {
           width: "100%",
         }}
       >
-           <TextField
+        <TextField
            multiline
           sx={{ width: "100%" }}
           size="small"
