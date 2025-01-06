@@ -24,7 +24,9 @@ const ArchivedLeads = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            < DownloadCollectionCsvButton data={archive.data} collection="Archived Leads" />
+            < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mb: 2}}>
+              < DownloadCollectionCsvButton data={archive.data} collection="Archived Leads" />
+            </Box>
             <ArchiveTable enquiries={archive.data}>
             </ArchiveTable>
           </>

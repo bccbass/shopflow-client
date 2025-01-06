@@ -3,7 +3,7 @@
 import React from "react";
 import { mkConfig, generateCsv, download } from "export-to-csv";
 import { dateStamp } from "../assets/dateHelpers";
-import { Button, Tooltip, Box } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 
 const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' }) => {
   const fileName = `${collection}_${dateStamp}`;
@@ -56,15 +56,12 @@ const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' 
   const handleClick = () => download(csvConfig)(csv);
 
   return (
-    <Box
-      sx={{ width: "100%", display: "flex", justifyContent: "flex-end", mb: 4 }}
-    >
+
       <Tooltip title={`Download ${collection} CSV`}>
         <Button variant="outlined" onClick={handleClick} sx={{ px: 2 }}>
           Download CSV
         </Button>
       </Tooltip>
-    </Box>
   );
 };
 

@@ -63,17 +63,16 @@ const RepairsCollapsibleContent = ({ row }) => {
 						<strong> Due: </strong>
 						{localDate(row.due)}
 					</Typography>
-					<Typography color={row.paid ? "success" : "error"}>
+					<Typography variant="h6"  sx={{mt: 2}} color={row.paid ? "success" : "error"}>
 						<strong> {row.paid ? "Amount Paid:" : "Amount Owed:"} </strong>
 						{row.amount && "$"+ row?.amount}
 					</Typography>
 				</Box>
 				<Box sx={{ py: 2, width: "25%" }}>
 		
+
 					<Typography color="textSecondary">
-						<strong> Notes: </strong>
-					</Typography>
-					<Typography color="textSecondary">
+						<strong > Notes: </strong>
 						{row.notes}
 					</Typography>
 				</Box>

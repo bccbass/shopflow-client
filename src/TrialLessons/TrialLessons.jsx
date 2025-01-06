@@ -27,7 +27,10 @@ const TrialLessons = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            < DownloadCollectionCsvButton collection="Trial Lessons" data={filteredData} />
+            < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mb: 2}}>
+              < DownloadCollectionCsvButton collection="Trial Lessons" data={filteredData} />
+            </Box>
+           
             < EnquiriesTable enquiries={filteredData}/>
           </>
         )}

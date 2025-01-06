@@ -14,7 +14,7 @@ export default function RepairsTable({ repairs, children }) {
 	const rows = [...repairs];
 
 	return (
-		<TableContainer sx={{ mt: 2, mb: 4 }} component={Paper}>
+		<TableContainer sx={{ mt: 0, mb: 4 }} component={Paper}>
 			<Table aria-label="collapsible table">
 				<TableHead>
 					<TableRow>

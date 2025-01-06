@@ -1,15 +1,17 @@
 import React from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Container, Box, Typography, Modal } from "@mui/material";
+import { Container, Box, Typography, Button } from "@mui/material";
 import AddRepairButton from "./AddRepairButton";
 import RepairFormWrapper from "./RepairFormWrapper";
 import RepairsTable from "./RepairsTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 
 const Repairs = () => {
+  const [viewActive, setViewActive] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOrder = searchParams.get("sort");
   const repairsQuery = useQuery({
@@ -17,7 +19,15 @@ const Repairs = () => {
     queryFn: () => getResource("repairs?sort=" + sortOrder),
   });
 
-  const filteredData =
+  const selectedButtonStyles = {width: '50%', backgroundColor: 'teal', fontWeight: 'bold', borderRadius: 0, color: 'white', border: '1px solid teal'}
+  const inactiveButtonStyles = {width: '50%', backgroundColor: 'white', borderRadius: 0, color: 'grey', border: '1px solid lightgrey'}
+
+  const completedRepairs =
+    !repairsQuery.isLoading && !repairsQuery.error
+      ? repairsQuery.data.filter((repair) => repair.completed)
+      : [];
+
+  const activeRepairs =
     !repairsQuery.isLoading && !repairsQuery.error
       ? repairsQuery.data.filter((repair) => !repair.completed)
       : [];
@@ -32,24 +42,33 @@ const Repairs = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            <DownloadCollectionCsvButton
-              collection="Repairs"
-              data={repairsQuery.data}
-              format="repairs"
-            />
-            <RepairsTable repairs={repairsQuery.data} />
-          
-            <Box
+             <Box
               sx={{
                 width: "100%",
                 display: "flex",
-                justifyContent: "flex-end",
-                pr: 10,
+                justifyContent: "space-between",
+                mb: 6,
+                // px: 2
               }}
             >
               <AddRepairButton>
                 <RepairFormWrapper />
               </AddRepairButton>
+              <DownloadCollectionCsvButton
+              collection="Repairs"
+              data={repairsQuery.data}
+              format="repairs"
+            />
+            </Box>
+            <Box sx={{width: '100%'}}>
+              <Box sx={{width: '100%'}}>
+                <Button onClick={() => setViewActive(true)} sx={viewActive ? selectedButtonStyles : inactiveButtonStyles }>In Progress</Button>
+                <Button onClick={() => setViewActive(false)} sx={!viewActive ? selectedButtonStyles : inactiveButtonStyles } >Completed</Button>
+              </Box>
+
+            { viewActive ? <RepairsTable repairs={activeRepairs} />
+              :
+            <RepairsTable repairs={completedRepairs} />}
             </Box>
           </>
         )}
