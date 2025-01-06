@@ -69,7 +69,7 @@ const RowCollapsibleContent = ({ lead }) => {
 			<Box sx={{ width: "100%", display: "flex", justifyContent: "center", mt: lead.enrolled ? 2 : 0 }}>
 				<SubmitUpdateButton
 					submitProps={{
-						updatedStudent: { enrolled: !lead.enrolled },
+						updatedData: { enrolled: !lead.enrolled },
 						path: "leads/updatetrial/" + lead._id,
 						type: "patch",
 						title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${

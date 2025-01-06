@@ -37,7 +37,7 @@ const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' 
   }
   if (format == 'repairs') {return inputData.map((d) => {
      return {
-      dateCreated: d.dateCreated,
+      created: d.createdDate,
       name: d.firstLast,
       instrument: d.instrument,
       job: d.jobDescription,
@@ -50,7 +50,6 @@ const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' 
 }
 
   const csvData = generateCSVDataFromInput(format, data)
-console.log(csvData)
 
   const csv = generateCsv(csvConfig)(csvData);
 

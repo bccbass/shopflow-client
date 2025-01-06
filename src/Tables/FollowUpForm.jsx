@@ -145,7 +145,7 @@ const FollowUpForm = ({ lead }) => {
 
         <SubmitUpdateButton
           submitProps={{
-            updatedStudent: constructedPayload,
+            updatedData: constructedPayload,
             path: `leads/updatefollowup/${lead._id}`,
             query: "Leads",
             type: "patch",

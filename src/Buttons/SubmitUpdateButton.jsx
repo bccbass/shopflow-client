@@ -12,7 +12,7 @@ const SubmitUpdateButton = ({ submitProps }) => {
     updatedData,
     path,
     query = path,
-    type='patch',
+    type = "patch",
     setOpen = false,
     redirect = false,
     successCb = null,
@@ -20,7 +20,7 @@ const SubmitUpdateButton = ({ submitProps }) => {
     variant = "contained",
   } = submitProps;
   const queryClient = useQueryClient();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const mutation = useMutation({
     mutationFn:
       (type == "patch" && patchResource) || (type == "put" && putResource),
@@ -28,7 +28,7 @@ const SubmitUpdateButton = ({ submitProps }) => {
       queryClient.invalidateQueries([query]);
       setOpen && setOpen(false);
       successCb && successCb();
-      redirect && navigate(redirect)
+      redirect && navigate(redirect);
     },
   });
 

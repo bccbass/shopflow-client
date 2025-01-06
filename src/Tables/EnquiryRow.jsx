@@ -22,6 +22,7 @@ function EnquiryRow({ row }) {
   const noDueDate = nullDueDate(row.nextContactDate);
   const overdueStyles = {
     color: "red",
+    fontWeight: "bold",
   };
   const enrolledStyles = {
     color: "white",
@@ -63,6 +64,8 @@ function EnquiryRow({ row }) {
         <TableCell align={row.isMinor ? "inherit" : "center"}>
           {row.isMinor ? `${row.guardianFullName}` : ""}
         </TableCell>
+        <TableCell>{row.student.instrument}</TableCell>
+
         <TableCell>
           {" "}
           <a href={"tel:" + row?.contact?.phone}>
@@ -81,7 +84,6 @@ function EnquiryRow({ row }) {
             <SmsIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
           </a>
         </TableCell>
-        <TableCell>{row.student.instrument}</TableCell>
         {/* CELL TO FOR ACTIONS MENU ICON */}
         <TableCell>
           <RowMenu lead={row} />

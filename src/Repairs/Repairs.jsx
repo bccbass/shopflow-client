@@ -23,28 +23,39 @@ const Repairs = () => {
       : [];
 
   return (
-		<Container sx={{ m: 0 }}>
-			<SectionHeader title="Repairs" />
-			<Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
-				{repairsQuery.isLoading ? (
-					<h1 className="">Loading...</h1>
-				) : repairsQuery.isError ? (
-					<h1 className="">Error</h1>
-				) : (
-					<>
-						< DownloadCollectionCsvButton collection="Repairs" data={repairsQuery.data} format='repairs' />
-						<RepairsTable repairs={repairsQuery.data} />
+    <Container sx={{ m: 0 }}>
+      <SectionHeader title="Repairs" />
+      <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
+        {repairsQuery.isLoading ? (
+          <h1 className="">Loading...</h1>
+        ) : repairsQuery.isError ? (
+          <h1 className="">Error</h1>
+        ) : (
+          <>
+            <DownloadCollectionCsvButton
+              collection="Repairs"
+              data={repairsQuery.data}
+              format="repairs"
+            />
+            <RepairsTable repairs={repairsQuery.data} />
 
-						<Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', pr: 10}} >
-							<AddRepairButton>
-								<RepairFormWrapper />
-							</AddRepairButton>
-						</Box>
-					</>
-				)}
-			</Box>
-		</Container>
-	);
+            <Box
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "flex-end",
+                pr: 10,
+              }}
+            >
+              <AddRepairButton>
+                <RepairFormWrapper />
+              </AddRepairButton>
+            </Box>
+          </>
+        )}
+      </Box>
+    </Container>
+  );
 };
 
 export default Repairs;

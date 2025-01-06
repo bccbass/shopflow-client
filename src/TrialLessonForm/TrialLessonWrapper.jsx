@@ -16,7 +16,7 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
   const [studentData, setStudentData] = useState(student);
   useEffect(() => {
     // Reformat trial lesson date from student data so it can be used as an input value and not throw error
-    const formattedDate = formatDate(student.trialLesson.date)
+    const formattedDate = formatDate(student.trialLesson.date);
     setStudentData({
       ...studentData,
       trialLesson: { ...studentData.trialLesson, date: formattedDate },

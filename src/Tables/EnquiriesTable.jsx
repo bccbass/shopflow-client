@@ -22,10 +22,10 @@ export default function EnquiriesTable({ enquiries, children }) {
             </TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Student</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Parent</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
             {/* BLANK CELL TO ACCOMODATE ACTIONS ICON */}
             <TableCell />
           </TableRow>

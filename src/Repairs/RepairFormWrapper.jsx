@@ -6,14 +6,25 @@ import {
   DialogActions,
   Box,
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CreateButton from "../Buttons/CreateButton";
 import SubmitUpdateButton from '../Buttons/SubmitUpdateButton'
 import RepairForm from "./RepairForm";
 import { defaultRepairForm } from "../assets/defaultRepairForm";
+import { formatDate } from "../assets/dateHelpers.js";
 
 const RepairFormWrapper = ({ repair=false, setOpen }) => {
   const [repairData, setRepairData] = useState(!repair ? defaultRepairForm : repair);
+
+  useEffect(() => {
+    // Reformat trial lesson date from student data so it can be used as an input value and not throw error
+    const formattedDate = formatDate(repair.due)
+    setRepairData({
+      ...repairData,
+      due: formattedDate
+    });
+  }, []);
+
 
   return (
     <DialogContent

@@ -47,7 +47,7 @@ const EditStudentFormWrapper = ({ student = blankStudent, setOpen }) => {
       <DialogActions sx={{ display: "flex", flexDirection: "column" }}>
         <SubmitUpdateButton
           submitProps={{
-            updatedStudent: studentData,
+            updatedData: studentData,
             setOpen: setOpen,
             path: `leads/${studentData._id}`,
             query: "Leads",
