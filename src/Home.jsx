@@ -2,14 +2,12 @@ import React from "react";
 import { Container, Box, IconButton, Typography } from "@mui/material";
 import SectionHeader from "./SectionHeader";
 import HomeSectionItems from "./HomeSectionIcons";
-import SendEmail from "./Buttons/SendEmail";
 
 const Home = () => {
   return (
     <Container sx={{ pt: 10, pb: 20, width: "100vw" }}>
       {/* <SectionHeader title="Home" setSearchParams={null} /> */}
     
-        < SendEmail/>
 
       <Box
         border={"1px solid grey"}
