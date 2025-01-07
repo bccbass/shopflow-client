@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from "@mui/icons-material/Edit";
 import EmailIcon from "@mui/icons-material/Email";
 
-const OpenEmailModalButton = ({ children, dataObj, email }) => {
+const OpenEmailModalButton = ({ children, email }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
@@ -18,10 +18,8 @@ const OpenEmailModalButton = ({ children, dataObj, email }) => {
             </Box>
             <DialogContent
             sx={{
-                backgroundColor: "white",
                 px: 6,
                 py: 2,
-                borderRadius: "5px",
             }}
             >
             {React.cloneElement(children, { setOpen })}
