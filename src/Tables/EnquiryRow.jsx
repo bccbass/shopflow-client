@@ -9,11 +9,11 @@ import TableRow from "@mui/material/TableRow";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RowCollapsibleContent from "./RowCollapsibleContent";
-import EmailIcon from "@mui/icons-material/Email";
+import CallButton from "../Buttons/CallButton";
 import CallIcon from "@mui/icons-material/Call";
 import SmsIcon from "@mui/icons-material/Sms";
 import RowMenu from "./RowMenu";
-import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
+import OpenEmailModalButton from "../Buttons/OpenEmailModalButton";
 import EmailForm from "../EmailForm";
 import { nullDueDate } from "../assets/dateHelpers";
 import { smsHref } from "../assets/helperFuncs";
@@ -69,15 +69,12 @@ function EnquiryRow({ row }) {
         <TableCell>{row.student.instrument}</TableCell>
 
         <TableCell>
-          {" "}
-          <a href={"tel:" + row?.contact?.phone}>
-            <CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-          </a>
+         < CallButton phoneNumber={row.contact.phone}/>
         </TableCell>
         <TableCell>
-          < OpenUpdateModalButton student={row} title='email' >
-              <EmailForm/>
-          </OpenUpdateModalButton>
+          < OpenEmailModalButton dataObj={row} email={row.contact.email} >
+              <EmailForm student={row}/>
+          </OpenEmailModalButton>
         </TableCell>
         <TableCell>
           {" "}

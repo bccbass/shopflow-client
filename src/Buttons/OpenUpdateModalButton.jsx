@@ -3,19 +3,15 @@ import { useState } from "react";
 import { Button, Dialog, Box, DialogContent } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from "@mui/icons-material/Edit";
-import EmailIcon from "@mui/icons-material/Email";
 
-const OpenUpdateModalButton = ({ children, student, title }) => {
+const OpenUpdateModalButton = ({ children, title }) => {
   const [open, setOpen] = useState(false);
 
   const buttonVariant = title == "Book Trial" ? "contained" : "text";
 
   return (
     <>
-      { title === 'email' ?  (
-        <Box>
-          <EmailIcon onClick={() => setOpen(!open)} sx={{ color: "grey" }} />
-        </Box> ) : title !== undefined ? (
+      {title !== undefined ? (
         <Button variant={buttonVariant} onClick={() => setOpen(!open)}>
           {title}
         </Button>
@@ -40,7 +36,7 @@ const OpenUpdateModalButton = ({ children, student, title }) => {
             borderRadius: "5px",
           }}
         >
-          {React.cloneElement(children, { student, setOpen })}
+          {React.cloneElement(children, { setOpen })}
         </DialogContent>
       </Dialog>
     </>

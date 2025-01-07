@@ -32,7 +32,7 @@ const EditNotesWrapper = ({ student, setOpen }) => {
             variant="outlined"
           />
 < DialogActions sx={{display: 'flex', flexDirection: 'column'}} >
-      < SubmitUpdateButton submitProps={{updatedStudent: studentData, setOpen: setOpen, path: `leads/${studentData._id}`, query: "Leads", type: 'put' }} />
+      < SubmitUpdateButton submitProps={{updatedData: studentData, setOpen: setOpen, path: `leads/${studentData._id}`, query: "leads", type: 'put' }} />
               <Button sx={{my: 2}}  onClick={() => setOpen(false)}>
           Cancel
         </Button>
