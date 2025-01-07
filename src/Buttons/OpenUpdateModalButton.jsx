@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Modal, Dialog, Box, DialogContent } from "@mui/material";
+import { Button, Dialog, Box, DialogContent } from "@mui/material";
+import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from "@mui/icons-material/Edit";
+import EmailIcon from "@mui/icons-material/Email";
 
 const OpenUpdateModalButton = ({ children, student, title }) => {
   const [open, setOpen] = useState(false);
@@ -10,7 +12,10 @@ const OpenUpdateModalButton = ({ children, student, title }) => {
 
   return (
     <>
-      {title !== undefined ? (
+      { title === 'email' ?  (
+        <Box>
+          <EmailIcon onClick={() => setOpen(!open)} sx={{ color: "grey" }} />
+        </Box> ) : title !== undefined ? (
         <Button variant={buttonVariant} onClick={() => setOpen(!open)}>
           {title}
         </Button>
@@ -18,13 +23,18 @@ const OpenUpdateModalButton = ({ children, student, title }) => {
         <Box>
           <EditIcon onClick={() => setOpen(!open)} sx={{ color: "grey" }} />
         </Box>
-      )}
+      )
+    
+    }
 
       <Dialog open={open} sx={{ display: "flex", justifyContent: "center" }}>
+        <Box onClick={() => setOpen(!open)} sx={{width: '100%', display: 'flex', justifyContent:'flex-end', pr: 2, pt: 1}}>
+          < CloseIcon fontSize="large" sx={{color: 'grey'}} />
+        </Box>
         <DialogContent
           sx={{
             backgroundColor: "white",
-            width: "fitContent",
+            // width: "fitContent",
             px: 6,
             py: 2,
             borderRadius: "5px",

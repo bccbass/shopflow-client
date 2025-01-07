@@ -13,6 +13,8 @@ import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import SmsIcon from "@mui/icons-material/Sms";
 import RowMenu from "./RowMenu";
+import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
+import EmailForm from "../EmailForm";
 import { nullDueDate } from "../assets/dateHelpers";
 import { smsHref } from "../assets/helperFuncs";
 
@@ -73,10 +75,9 @@ function EnquiryRow({ row }) {
           </a>
         </TableCell>
         <TableCell>
-          {" "}
-          <a href={"mailto:" + row?.contact?.email}>
-            <EmailIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-          </a>
+          < OpenUpdateModalButton student={row} title='email' >
+              <EmailForm/>
+          </OpenUpdateModalButton>
         </TableCell>
         <TableCell>
           {" "}
