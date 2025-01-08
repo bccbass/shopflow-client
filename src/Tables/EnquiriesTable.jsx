@@ -8,7 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import EnquiryRow from "./EnquiryRow";
 
-export default function EnquiriesTable({ enquiries, children }) {
+export default function EnquiriesTable({ enquiries, children, info }) {
   const rows = [...enquiries]
 
   return (
@@ -33,7 +33,7 @@ export default function EnquiriesTable({ enquiries, children }) {
         <TableBody>
           {rows.map((row) => (
             
-            <EnquiryRow  key={row._id} row={row}>
+            <EnquiryRow  key={row._id} row={row} info={info}>
               {children}
             </EnquiryRow>
           ))}

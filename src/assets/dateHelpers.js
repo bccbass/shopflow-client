@@ -34,6 +34,17 @@ const localDate = (date, locale='en-AU', incYear=true) => {
       })
     return formattedDate == 'Invalid Date' ? '' : formattedDate
 }
+
+const getDay = (date, locale='en-AU') => {
+    const formattedDate = new Date(date).toLocaleString(locale, {
+          weekday: 'long',
+          month: 'long',
+          day: 'numeric'
+ 
+ })
+    return formattedDate == 'Invalid Date' ? '' : formattedDate
+}
+
 const formatDate = (date, incYear=true) => {
     try {const formattedDate = date?.split("T")[0]
     return formattedDate == undefined ? '' : formattedDate}
@@ -42,4 +53,4 @@ const formatDate = (date, incYear=true) => {
 
   const nullDueDate = (date) => new Date(date) <= new Date("2020-01-01");
 
-export { addDays, calculateNextContact, dateStamp, localDate, nullDueDate, formatDate }
+export { addDays, calculateNextContact, dateStamp, localDate, nullDueDate, formatDate, getDay}

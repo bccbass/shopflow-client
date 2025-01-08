@@ -18,7 +18,7 @@ import EmailForm from "../EmailForm";
 import { nullDueDate } from "../assets/dateHelpers";
 import { smsHref } from "../assets/helperFuncs";
 
-function EnquiryRow({ row }) {
+function EnquiryRow({ row, info }) {
   const [open, setOpen] = React.useState(false);
 
   const noDueDate = nullDueDate(row.nextContactDate);
@@ -73,7 +73,7 @@ function EnquiryRow({ row }) {
         </TableCell>
         <TableCell>
           < OpenEmailModalButton dataObj={row} email={row.contact.email} >
-              <EmailForm student={row}/>
+              <EmailForm student={row} info={info}/>
           </OpenEmailModalButton>
         </TableCell>
         <TableCell>

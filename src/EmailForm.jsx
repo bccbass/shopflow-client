@@ -1,5 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getResource } from "./assets/apiHelpers.js";
+import { useState, useEffect, useMemo } from "react";
 import {
   Box,
   TextField,
@@ -12,33 +14,29 @@ import {
 } from "@mui/material";
 import SendEmail from "./Buttons/SendEmail";
 import {
-  generateInitialEnquiry,
-  generateTrialConfirmation,
+  createEmailTemplateArray,
+  emailURL
 } from "./assets/emailHelpers.js";
 
-const EmailForm = ({ student, setOpen }) => {
-  const initialEmail = generateInitialEnquiry(student);
-  const trialEmail = generateTrialConfirmation(student);
+const EmailForm = ({ student, setOpen, info }) => {
 
-  const [activeTemplate, setActiveTemplate] = useState(
-    student.bookedTrial ? trialEmail : initialEmail
-  );
-  const defaultEmailObj = {
-    to: "bccbass@gmail.com",
-    from: "info@caringbahmusic.com.au",
-    subject: activeTemplate.subject,
-    text: activeTemplate.text,
-  };
 
-  const [emailObj, setEmailObj] = useState(defaultEmailObj);
+
+  const templateArray =  createEmailTemplateArray(student, info)
+
+  const defaultTemplateId = useMemo(() => templateArray.filter(temp => temp.id==`${student.bookedTrial ? 'trialConfirmation': 'initialEnquiry'}` )[0].id)
+  
+  const [activeTemplate, setActiveTemplate] = useState(defaultTemplateId);
+
+  const [emailObj, setEmailObj] = useState({to: 'bccbass@gmail.com', from: emailURL, subject: '', text: ''});
+
+  useEffect(()=>{
+    const templateObj = templateArray.filter(temp => temp.id === activeTemplate)[0]
+    setEmailObj({...emailObj, subject: templateObj.subject, text: templateObj.text})
+  }, [activeTemplate])
 
   const handleSelect = (e) => {
-    setActiveTemplate(e.target.value);
-    setEmailObj({
-      ...emailObj,
-      subject: e.target.value.subject,
-      text: e.target.value.text,
-    })}
+    setActiveTemplate(e.target.value)}
 
   return (
     <Box>
@@ -61,17 +59,11 @@ const EmailForm = ({ student, setOpen }) => {
             labelId="templateSelect"
             id="templateSelect"
             value={activeTemplate}
+            name="Email Template"
             label="Email Template"
             onChange={handleSelect}
           >
-            {/* {[initialEmail, trialEmail].map((email) => (
-              <MenuItem name={email.label} value={email}>
-                {email.label}
-              </MenuItem>
-            ))} */}
-
-            <MenuItem name={initialEmail?.label} value={initialEmail}>{initialEmail?.label}</MenuItem>
-            <MenuItem name={trialEmail?.label} value={trialEmail}>{trialEmail?.label}</MenuItem>
+            {templateArray.map(temp => <MenuItem key={temp.id} name={temp.label} value={temp.id}>{temp.label}</MenuItem>)}
 
           </Select>
         </FormControl>
@@ -98,7 +90,7 @@ const EmailForm = ({ student, setOpen }) => {
         }}
       >
         <SendEmail msg={emailObj} setOpen={setOpen} />
-        <Button sx={{ mt: 1 }} variant="text" onClick={() => setOpen(false)}>
+        <Button sx={{ mt: 1 }} variant="text:" onClick={() => setOpen(false)}>
           Cancel
         </Button>
       </Box>

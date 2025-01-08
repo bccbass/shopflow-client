@@ -15,23 +15,27 @@ const TrialLessons = () => {
     queryFn: () => getResource("leads"),
   });
 
+    const utilsQuery = useQuery({
+		queryKey: ["utils"],
+		queryFn: () => getResource("utils?resource=info"),
+	});
+
   const filteredData = !leadsQuery.isLoading && !leadsQuery.error ? leadsQuery.data.filter(lead => lead.bookedTrial) : []
 
   return (
     <Container sx={{ m: 0 }}>
       <SectionHeader title="Trial Lessons" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
-        {leadsQuery.isLoading ? (
+        {leadsQuery.isLoading || utilsQuery.isLoading ? (
           <h1 className="">Loading...</h1>
-        ) : leadsQuery.isError ? (
+        ) : leadsQuery.isError || utilsQuery.isError ? (
           <h1 className="">Error</h1>
         ) : (
           <>
             < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mb: 2}}>
               < DownloadCollectionCsvButton collection="Trial Lessons" data={filteredData} />
             </Box>
-           
-            < EnquiriesTable enquiries={filteredData}/>
+            < EnquiriesTable enquiries={filteredData} info={utilsQuery.data}/>
           </>
         )}
       </Box>
