@@ -1,49 +1,43 @@
-const generateStudentEmailArray = (student, locations, admin) => [
-    {
-        id: initialEnquiry,
-        label: 'Initial Enquiry',
-        subject: `${student.student.instrument ? student.student.instrument[0].toUpperCase() + student.student.instrument.slice(1) + ' ' : ''}Lessons at Caringbah Music`,
-        text: 
-`Dear ${student.isMinor ? student.guardian.firstName : student.student.firstName},
-    
-Thank you for enquiry. Here is information about ${student.student.instrument} lessons
-
-Warm regards,
-Caringbah Music`
+const generateInitialEnquiry = (student, locations, admin) => {
+  return {
+    id: 'initialEnquiry',
+    label: "Initial Enquiry",
+    subject: `${
+      student.student.instrument
+        ? student.student.instrument[0].toUpperCase() +
+          student.student.instrument.slice(1) +
+          " "
+        : ""
+    }Lessons at Caringbah Music`,
+    text: `Dear ${
+      student.isMinor ? student.guardian.firstName : student.student.firstName
     },
-    {
-        id: trialConfirmation,
-        label: 'Trial Confirmation',
-        subject: `Caringbah Music School Lesson Confirmation: ${trialDate}, ${trialTime}`,
-        text: 
-`Dear ${student.isMinor ? student.guardian.firstName : student.student.firstName},
     
-Thank you for enquiry. Here is information about ${student.student.instrument} lessons
+Thank you for enquiry. Here is information about ${
+      student.student.instrument
+    } lessons
 
 Warm regards,
-Caringbah Music`
-    }
-]
-
-
-//     const emailSubject = student.bookedTrial ? `Caringbah Music School Lesson Confirmation` : `${student.student.instrument ? student.student.instrument[0].toUpperCase() + student.student.instrument.slice(1) : ''} Lessons at Caringbah Music`
-
-
-// student.bookedTrial ? 
-// `Dear ${student.isMinor ? student.guardian.firstName : student.student.firstName},
-// Welcome to Caringbah Music! 
+Caringbah Music`,
+  };
+};
+const generateTrialConfirmation = (student, locations, admin) => {
+  return {
+    id: 'trialConfirmation',
+    label: "Trial Confirmation",
+    subject: `Trial Lesson Confirmation: ${student.trialDate}, ${student.trialTime}`,
+    text: `Dear ${
+      student.isMinor ? student.guardian.firstName : student.student.firstName
+    },
     
-// Your lesson is scheduled for ${student.trialLesson.date}` 
-//     :   
-// `Dear ${student.isMinor ? student.guardian.firstName : student.student.firstName},
-    
-// Thank you for enquiry. Here is information about ${student.student.instrument} lessons`
+Thank you for enquiry. Here is information about your trial lesson.
+
+...
+
+Warm regards,
+Caringbah Music`,
+  };
+};
 
 
-
-
-export { generateStudentEmailArray }
-
-
-
-
+export { generateInitialEnquiry, generateTrialConfirmation };

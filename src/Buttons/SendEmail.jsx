@@ -9,13 +9,13 @@ import { postResource } from "../assets/apiHelpers";
 
 
 
-const SendEmail = ({ msg }) => {
+const SendEmail = ({ msg, setOpen }) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: postResource,
-    onSuccess: () => {
+    onSuccess: () => { setOpen(false)
     }
   });
 
