@@ -36,18 +36,16 @@ const generateTrialConfirmation = (student, info, admin) => {
   const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
   const studentPossesive =  student.isMinor ? student.student.firstName + "'s" : 'your'
   const location = info?.locations?.filter(location => student.trialLesson.location === location.name)[0]
-  const day = getDay(student.trialLesson.date).split(' ')[0]
-  const date=  getDay(student.trialLesson.date).split(' ')[2] + ' ' + getDay(student.trialLesson.date).split(' ')[1]
   return {
     id: 'trialConfirmation',
     label: "Trial Confirmation",
-    subject: `Trial Lesson Info for ${day}, ${date} at ${student.trialTime}`,
+    subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee},
      
 Welcome to our Caringbah Music family! We're so glad to have you. Below are the details of ${studentPossesive} lesson:
 
-Day: ${day}
-Date: ${date}
+Day: ${student.trialDay}
+Date: ${student.trialDate}
 Time: ${student.trialTime}
 Address:  ${location ? location.streetAddress : '' } 
 		${location ? location.suburb + ',' : ''} ${location ? location.state : '' } 
@@ -69,12 +67,10 @@ caringbahmusic.com.au
 const generateTrialFollowUp = (student, info) => {
   const subjectName =  student.isMinor ? student.student.firstName : 'you'
   const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
-  const day = getDay(student.trialLesson.date).split(' ')[0]
-  const date=  getDay(student.trialLesson.date).split(' ')[2] + ' ' + getDay(student.trialLesson.date).split(' ')[1]
   return {
     id: 'trialFollowUp',
     label: "Trial Follow Up",
-    subject: `Trial Lesson Info for ${day}, ${date} at ${student.trialTime}`,
+    subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee}, 
 
 I hope you're well! 

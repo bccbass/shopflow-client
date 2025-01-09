@@ -63,7 +63,7 @@ const EmailForm = ({ student, setOpen, info }) => {
             label="Email Template"
             onChange={handleSelect}
           >
-            {templateArray.map(temp => <MenuItem key={temp.id} name={temp.label} value={temp.id}>{temp.label}</MenuItem>)}
+            {templateArray.map(temp => <MenuItem key={temp.id} name={temp.label} disabled={!student.bookedTrial && (temp.id == "trialConfirmation" || temp.id == "trialFollowUp") || (student.bookedTrial && temp.id == 'initialEnquiry')} value={temp.id}>{temp.label}</MenuItem>)}
 
           </Select>
         </FormControl>

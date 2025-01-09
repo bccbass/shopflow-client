@@ -40,7 +40,6 @@ const getDay = (date, locale='en-AU') => {
           weekday: 'long',
           month: 'long',
           day: 'numeric'
- 
  })
     return formattedDate == 'Invalid Date' ? '' : formattedDate
 }

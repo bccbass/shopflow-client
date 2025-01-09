@@ -11,8 +11,10 @@ const SectionHeader = ({ setSearchParams, title }) => {
   const sortOptions = ["new", "old", "due"];
 
   return (
-    <Box sx={{ mx: 0, my: 5, width: '85vw' }}  >
-      <Typography variant="h4" color="primary">
+    <Box sx={{ mx: 0, mt: 6, mb: 6, width: '85vw' }}  >
+      <Typography variant="h4" color="primary" 
+        // sx={{textTransform: "uppercase"}}
+       >
         {title}
       </Typography>
       <Divider />

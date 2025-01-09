@@ -9,6 +9,10 @@ import { localDate } from "../assets/dateHelpers";
 
 
 const RepairsCollapsibleContent = ({ row }) => {
+	const overdueStyles = {
+		color: "red",
+		fontWeight: 'bold'
+	};
 	return (
 		<Container sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
 			<Typography
@@ -59,13 +63,9 @@ const RepairsCollapsibleContent = ({ row }) => {
 						<strong> Status: </strong>
 						{row?.status}
 					</Typography>
-					<Typography color="textSecondary">
+					<Typography sx={row.overdue && !row.completed && overdueStyles} color="textSecondary">
 						<strong> Due: </strong>
 						{localDate(row.due)}
-					</Typography>
-					<Typography variant="h6"  sx={{mt: 2}} color={row.paid ? "success" : "error"}>
-						<strong> {row.paid ? "Amount Paid:" : "Amount Owed:"} </strong>
-						{row.amount && "$"+ row?.amount}
 					</Typography>
 				</Box>
 				<Box sx={{ py: 2, width: "25%" }}>
@@ -77,6 +77,21 @@ const RepairsCollapsibleContent = ({ row }) => {
 					</Typography>
 				</Box>
 			</Box > 
+			<Box sx={{width:"100%", display: 'flex', justifyContent: 'center'}}>
+				<Typography variant="h6"  
+					sx={{mt: 4,
+						backgroundColor: row.paid ? "green" : "red",
+						textAlign: 'center',
+						py: 1,
+						px: 2,
+						color: 'white',
+						borderRadius: '5px'
+					}}  
+					>
+						<strong> {row.paid ? "Amount Paid:" : "Amount Owed:"} {row.amount && "$"+ row?.amount} </strong>
+						
+					</Typography>
+			</Box>
 			<Box sx={{width:"100%", px: 4, display: 'flex', justifyContent: 'flex-end'}}>
 			<AddRepairButton repair={row}>
 				<RepairFormWrapper />

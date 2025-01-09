@@ -26,7 +26,7 @@ export default function RepairsTable({ repairs }) {
 						{/* <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell> */}
 						<TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Completed</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Paid</TableCell>
+						<TableCell  sx={{ fontWeight: "bold", pl: 3.5 }}>Paid</TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

@@ -32,8 +32,8 @@ const NewStudents = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            < DownloadCollectionCsvButton collection="Leads" data={filteredData}/>
             < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mb: 2}}>
+              < DownloadCollectionCsvButton collection="Leads" data={filteredData}/>
             </Box>
             <EnquiriesTable enquiries={filteredData} info={utilsQuery.data}/>
           </>

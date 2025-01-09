@@ -6,7 +6,7 @@ import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import { nullDueDate } from "../assets/dateHelpers";
 
 const TrialDetailsCard = ({ student, children }) => {
-  const noTrialDate = nullDueDate(student.trialDate);
+  const noTrialDate = nullDueDate(student.trialLesson.date);
   return (
     <Box
       sx={{
@@ -45,7 +45,11 @@ const TrialDetailsCard = ({ student, children }) => {
         ) : (
           <>
             <Typography>
-              <strong> date: </strong>
+              <strong> Day: </strong>
+              {noTrialDate ? "" : student.trialDay}
+            </Typography>
+            <Typography>
+              <strong> Date: </strong>
               {noTrialDate ? "" : student.trialDate}
             </Typography>
             <Typography>

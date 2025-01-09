@@ -25,7 +25,7 @@ const TogglePaidButton = ({ repair }) => {
 
 	return (
 		<Tooltip title={repair.paid ? "Mark as Unpaid" : "Mark as Paid"}>
-			<Button sx={{ color: repair.paid ? "white" : "grey", backgroundColor: repair.paid && 'green' }} onClick={handleSubmit}>
+			<Button sx={{ color: repair.paid ? "white" : "grey", backgroundColor: repair.paid && 'green'}} onClick={handleSubmit}>
 				<AttachMoneyIcon />
 			</Button>
 		</Tooltip>

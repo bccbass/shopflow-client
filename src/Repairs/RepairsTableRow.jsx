@@ -19,9 +19,12 @@ import { smsHref } from "../assets/helperFuncs";
 function RepairsTableRow({ row }) {
 	const [open, setOpen] = React.useState(false);
 	const noDueDate = nullDueDate(row.due);
+
 	const overdueStyles = {
 		color: "red",
+		fontWeight: 'bold'
 	};
+
 	const completedStyles = {
 		color: "white",
 		backgroundColor: "green",
@@ -49,9 +52,9 @@ function RepairsTableRow({ row }) {
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
-				<TableCell>{`${row.lastFirst}`}</TableCell>
-				<TableCell>{row.instrument}</TableCell>
-				<TableCell>{row.jobDescription}</TableCell>
+				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{`${row.lastFirst}`}</TableCell>
+				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{row.instrument}</TableCell>
+				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{row.jobDescription}</TableCell>
 				<TableCell>
 					<a href={"tel:" + row?.phone}>
 						<CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
