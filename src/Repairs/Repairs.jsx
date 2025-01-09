@@ -21,8 +21,6 @@ const Repairs = () => {
 
   const selectedButtonStyles = {width: '50%', fontWeight: 'bold', borderRadius: 0, borderRight: viewActive && '1px solid lightgrey', borderLeft: !viewActive && '1px solid lightgrey', borderBottom: 0}
   const inactiveButtonStyles = {width: '50%', borderRadius: 0, color: 'grey', borderBottom: '1px solid lightgrey', backgroundColor: "#FAFAFA", borderTopRightRadius: viewActive && '6px', borderTopLeftRadius: !viewActive && '6px'}
-  // const selectedButtonStyles = {width: '50%', backgroundColor: 'teal', fontWeight: 'bold', borderRadius: 0, color: 'white', border: '1px solid teal'}
-  // const inactiveButtonStyles = {width: '50%', backgroundColor: 'white', borderRadius: 0, color: 'grey', border: '1px solid lightgrey'}
 
   const completedRepairs =
     !repairsQuery.isLoading && !repairsQuery.error

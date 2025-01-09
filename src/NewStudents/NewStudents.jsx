@@ -1,13 +1,15 @@
 import React from "react";
+import { useState } from 'react';
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Container, Box, Typography, Modal } from "@mui/material";
+import { Container, Box, Typography, Button } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 
 const NewStudents = () => {
+  const [viewTrials, setViewTrials] = useState(false)
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOrder = searchParams.get("sort");
   const leadsQuery = useQuery({
@@ -20,10 +22,16 @@ const NewStudents = () => {
 		queryFn: () => getResource("utils?resource=info"),
 	});
 
-  const filteredData = !leadsQuery.isLoading && !leadsQuery.error ? leadsQuery.data.filter(lead => !lead.bookedTrial) : []
+  const selectedButtonStyles = {width: '50%', fontWeight: 'bold', borderRadius: 0, borderLeft: viewTrials && '1px solid lightgrey', borderRight: !viewTrials && '1px solid lightgrey', borderBottom: 0}
+  const inactiveButtonStyles = {width: '50%', borderRadius: 0, color: 'grey', borderBottom: '1px solid lightgrey', backgroundColor: "#FAFAFA", borderTopLeftRadius: viewTrials && '6px', borderTopRightRadius: !viewTrials && '6px'}
+
+
+  const newLeadsData = !leadsQuery.isLoading && !leadsQuery.error ? leadsQuery.data.filter(lead => !lead.bookedTrial) : []
+  const trialBookedData = !leadsQuery.isLoading && !leadsQuery.error ? leadsQuery.data.filter(lead => lead.bookedTrial) : []
+
 
   return (
-    <Container sx={{ m: 0 }}>
+    <Container sx={{ m: 0, pb: 16 }}>
       <SectionHeader title="New Students" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
         {leadsQuery.isLoading || utilsQuery.isLoading? (
@@ -33,9 +41,19 @@ const NewStudents = () => {
         ) : (
           <>
             < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mb: 2}}>
-              < DownloadCollectionCsvButton collection="Leads" data={filteredData}/>
+              < DownloadCollectionCsvButton collection="Leads" data={leadsQuery.data}/>
             </Box>
-            <EnquiriesTable enquiries={filteredData} info={utilsQuery.data}/>
+
+            <Box sx={{width: '100%', border: '1px solid lightgrey', borderRadius: '6px', z: 20, mt: 3}}>
+              <Box sx={{width: '100%'}}>
+                <Button onClick={() => setViewTrials(false)} sx={!viewTrials ? selectedButtonStyles : inactiveButtonStyles }>{`Enquiries (${newLeadsData.length})`}</Button>
+                <Button onClick={() => setViewTrials(true)} sx={viewTrials ? selectedButtonStyles : inactiveButtonStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
+              </Box>
+
+            { viewTrials ?<EnquiriesTable enquiries={trialBookedData} info={utilsQuery.data}/>
+              :
+            <EnquiriesTable enquiries={newLeadsData} info={utilsQuery.data}/> }
+            </Box>
           </>
         )}
       </Box>
