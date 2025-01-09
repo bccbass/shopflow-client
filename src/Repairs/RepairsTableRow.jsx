@@ -14,8 +14,9 @@ import RepairsCollapsibleContent from "./RepairsCollapsibleContent";
 import { nullDueDate } from "../assets/dateHelpers";
 import RepairCompleteToggleButton from "./RepairCompleteToggleButton";
 import TogglePaidButton from "./TogglePaidButton";
-import { smsHref } from "../assets/helperFuncs";
+import RepairRowMenu from "./RepairRowMenu";
 
+RepairRowMenu
 function RepairsTableRow({ row }) {
 	const [open, setOpen] = React.useState(false);
 	const noDueDate = nullDueDate(row.due);
@@ -52,9 +53,17 @@ function RepairsTableRow({ row }) {
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
+				<TableCell>
+					<RepairCompleteToggleButton repair={row} />
+				</TableCell>
 				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{`${row.lastFirst}`}</TableCell>
 				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{row.instrument}</TableCell>
 				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{row.jobDescription}</TableCell>
+				
+				<TableCell>
+					< TogglePaidButton repair={row} />
+				</TableCell>
+				
 				<TableCell>
 					<a href={"tel:" + row?.phone}>
 						<CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
@@ -72,11 +81,8 @@ function RepairsTableRow({ row }) {
 						<SmsIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
 					</a>
 				</TableCell>
-				<TableCell>
-					<RepairCompleteToggleButton repair={row} />{" "}
-				</TableCell>
 				<TableCell >
-					<TogglePaidButton repair={row} />{" "}
+					< RepairRowMenu repair={row} />
 				</TableCell>
 			</TableRow>
 			<TableRow>

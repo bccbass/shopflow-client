@@ -1,23 +1,21 @@
 import React from "react";
 import { useState } from "react";
 import { Edit } from "@mui/icons-material";
-import { Button, Modal, Dialog, Tooltip, DialogContent } from "@mui/material";
+import { Dialog, DialogContent, Box, ListItemIcon, ListItemText } from "@mui/material";
 
-const AddRepairButton = ({ children, repair=false }) => {
+const MenuItemEditRepair = ({ children, repair=false }) => {
   const [open, setOpen] = useState(false);
 
 
   return (
     <>
       
-        <Button variant={repair ? 'text': 'contained'} sx={{color: repair && 'grey'}} onClick={() => setOpen(!open)}>
-          {repair ? 
-          < Tooltip title='Edit' >
-          Edit Repair 
-          </Tooltip>
-          : "New Repair" }
-          
-        </Button>
+       <Box sx={{ display: "flex", width: '100%' }} onClick={() => setOpen(true)}>
+			<ListItemIcon>
+                < Edit /> 
+          	</ListItemIcon>
+            <ListItemText>Edit</ListItemText>
+        </Box>
      
 
       <Dialog open={open} sx={{ display: "flex", justifyContent: "center" }}>
@@ -38,4 +36,4 @@ const AddRepairButton = ({ children, repair=false }) => {
   
 };
 
-export default AddRepairButton;
+export default MenuItemEditRepair;

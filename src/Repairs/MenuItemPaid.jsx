@@ -1,13 +1,13 @@
 /** @format */
 
 import React from "react";
-import Button from "@mui/material/Button";
+import {Box, ListItemText, ListItemIcon } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Tooltip } from "@mui/material";
 
-const TogglePaidButton = ({ repair }) => {
+const MenuItemPaid = ({ repair }) => {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
@@ -24,13 +24,13 @@ const TogglePaidButton = ({ repair }) => {
 	};
 
 	return (
-		<Tooltip title={repair.paid ? "Mark as Unpaid" : "Mark as Paid"}>
-			<Button sx={{ color: repair.paid ? "green" : "red", fontWeight:'bold'}} onClick={handleSubmit}>
-				{/* <AttachMoneyIcon fontSize="small" /> */}
-				{`$${repair.amount}`}
-			</Button>
-		</Tooltip>
+			<Box sx={{ display: "flex", width: '100%' }} onClick={handleSubmit}>
+				<ListItemIcon>
+                    <AttachMoneyIcon  fontSize="small"/>
+                </ListItemIcon>
+                <ListItemText>{repair.paid ? 'Mark Unpaid' : 'Mark Paid'}</ListItemText>
+			</Box>
 	);
 };
 
-export default TogglePaidButton;
+export default MenuItemPaid;

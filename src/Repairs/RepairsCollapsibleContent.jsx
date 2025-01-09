@@ -14,12 +14,12 @@ const RepairsCollapsibleContent = ({ row }) => {
 		fontWeight: 'bold'
 	};
 	return (
-		<Container sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
+		<Container sx={{ p: 1, py: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
 			<Typography
 				variant="h5"
 				color="primary"
 				component="div"
-                sx={{my: 2}}
+                sx={{mb: 2}}
 				textAlign='center'
 			>
 				<strong> {`Repair Details: ${row.instrument} ${row.jobDescription}`} </strong>
@@ -77,26 +77,29 @@ const RepairsCollapsibleContent = ({ row }) => {
 					</Typography>
 				</Box>
 			</Box > 
-			<Box sx={{width:"100%", display: 'flex', justifyContent: 'center'}}>
+			<Box sx={{width:"100%", display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
 				<Typography variant="h6"  
 					sx={{mt: 4,
-						backgroundColor: row.paid ? "green" : "red",
+						border: '1px solid',
+						borderColor: row.paid ? "green" : "red",
+						color: row.paid ? "green" : "red",
 						textAlign: 'center',
-						py: 1,
-						px: 2,
-						color: 'white',
+						py: .5,
+						px: 1,
+						mb: 2,
+						// color: 'white',
 						borderRadius: '5px'
 					}}  
 					>
 						<strong> {row.paid ? "Amount Paid:" : "Amount Owed:"} {row.amount && "$"+ row?.amount} </strong>
 						
 					</Typography>
+				<AddRepairButton repair={row}>
+					<RepairFormWrapper />
+				</AddRepairButton>
 			</Box>
 			<Box sx={{width:"100%", px: 4, display: 'flex', justifyContent: 'flex-end'}}>
-			<AddRepairButton repair={row}>
-				<RepairFormWrapper />
-			</AddRepairButton>
-			< DeleteButton id={row._id} path='repairs' />
+
 			</Box>
 		</Container>
 	);

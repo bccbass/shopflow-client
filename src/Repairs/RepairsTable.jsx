@@ -19,14 +19,15 @@ export default function RepairsTable({ repairs }) {
 				<TableHead>
 					<TableRow>
 						<TableCell />
+						<TableCell sx={{ fontWeight: "bold" }}>Completed</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Job</TableCell>
+						<TableCell sx={{ fontWeight: "bold" }}><span style={{color: 'green'}}>Paid</span> / <span style={{color: 'red'}}>Owed</span></TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
 						{/* <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell> */}
 						<TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Completed</TableCell>
-						<TableCell  sx={{ fontWeight: "bold", pl: 3.5 }}>Paid</TableCell>
+						<TableCell  sx={{ fontWeight: "bold" }}></TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>
