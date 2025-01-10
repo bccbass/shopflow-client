@@ -2,6 +2,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, useMemo } from "react";
 import {
+  Chip,
   Box,
   TextField,
   Typography,
@@ -12,30 +13,61 @@ import {
   MenuItem,
 } from "@mui/material";
 import SendEmail from "./Buttons/SendEmail";
-import {
-  createEmailTemplateArray,
-  emailURL
-} from "./assets/emailHelpers.js";
+import { createEmailTemplateArray, emailURL } from "./assets/emailHelpers.js";
 
 const EmailForm = ({ student, setOpen, info }) => {
+  const templateArray = createEmailTemplateArray(student, info);
 
+  const defaultTemplateId = useMemo(
+    () =>
+      templateArray.filter(
+        (temp) =>
+          temp.id ==
+          `${student.bookedTrial ? "trialConfirmation" : "initialEnquiry"}`
+      )[0].id
+  );
 
-
-  const templateArray =  createEmailTemplateArray(student, info)
-
-  const defaultTemplateId = useMemo(() => templateArray.filter(temp => temp.id==`${student.bookedTrial ? 'trialConfirmation': 'initialEnquiry'}` )[0].id)
-  
   const [activeTemplate, setActiveTemplate] = useState(defaultTemplateId);
 
-  const [emailObj, setEmailObj] = useState({to: 'bccbass@gmail.com', from: emailURL, subject: '', text: ''});
+  const [emailObj, setEmailObj] = useState({
+    personalizations: [
+      {
+        to: [
+          {
+            email: "bccbass@gmail.com",
+          },
+        ],
+        cc: [
+          // {
+          //   email: "bccbassspotify@gmail.com",
+          // },
+        ],
+        bcc: [
+          {
+            email: "bccbassspotify@gmail.com",
+          },
+        ],
+      },
+    ],
+    from: emailURL,
+    subject: "",
+    text: "",
+  });
 
-  useEffect(()=>{
-    const templateObj = templateArray.filter(temp => temp.id === activeTemplate)[0]
-    setEmailObj({...emailObj, subject: templateObj.subject, text: templateObj.text})
-  }, [activeTemplate])
+  useEffect(() => {
+    const templateObj = templateArray.filter(
+      (temp) => temp.id === activeTemplate
+    )[0];
+    setEmailObj({
+      ...emailObj,
+      subject: templateObj.subject,
+      text: templateObj.text,
+    });
+  }, [activeTemplate]);
 
   const handleSelect = (e) => {
-    setActiveTemplate(e.target.value)}
+    setActiveTemplate(e.target.value);
+  };
 
   return (
     <Box>
@@ -62,8 +94,37 @@ const EmailForm = ({ student, setOpen, info }) => {
             label="Email Template"
             onChange={handleSelect}
           >
-            {templateArray.map(temp => <MenuItem key={temp.id} name={temp.label} disabled={!student.bookedTrial && (temp.id == "trialConfirmation" || temp.id == "trialFollowUp") || (student.bookedTrial && temp.id == 'initialEnquiry')} value={temp.id}>{`${temp.label}${student.correspondence.includes(temp.id) ? ' (sent)' : ''}`}</MenuItem>)}
-
+            {templateArray.map((temp) => (
+              <MenuItem
+                key={temp.id}
+                name={temp.label}
+                disabled={
+                  (!student.bookedTrial &&
+                    (temp.id == "trialConfirmation" ||
+                      temp.id == "trialFollowUp")) ||
+                  (student.bookedTrial && temp.id == "initialEnquiry")
+                }
+                value={temp.id}
+              >
+                {`${temp.label} `}
+                {student.correspondence.includes(temp.id) && (
+                  <span
+                    style={{
+                      marginLeft: "8px",
+                      fontSize: ".65rem",
+                      color: "white",
+                      borderRadius: "8px",
+                      padding: "2px 7px 0 7px",
+                      backgroundColor: "green",
+                      display: "inline-block",
+                    }}
+                    label="sent"
+                  >
+                    SENT
+                  </span>
+                )}
+              </MenuItem>
+            ))}
           </Select>
         </FormControl>
       </Box>
@@ -88,7 +149,12 @@ const EmailForm = ({ student, setOpen, info }) => {
           my: 3,
         }}
       >
-        <SendEmail msg={emailObj} setOpen={setOpen} emailId={activeTemplate} userId={student._id} />
+        <SendEmail
+          msg={emailObj}
+          setOpen={setOpen}
+          emailId={activeTemplate}
+          userId={student._id}
+        />
         <Button sx={{ mt: 1 }} variant="text:" onClick={() => setOpen(false)}>
           Cancel
         </Button>
