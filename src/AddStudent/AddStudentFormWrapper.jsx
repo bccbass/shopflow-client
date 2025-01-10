@@ -7,13 +7,21 @@ import AddStudentForm from "./AddStudentForm";
 import { blankStudent } from "../assets/blankStudentForm";
 import TrialLessonButton from "../TrialLessonForm/TrialLessonButton";
 import ParseAMSLead from "./ParseAMSLead";
+import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 
 const AddStudentFormWrapper = ({ student = blankStudent }) => {
   const [studentData, setStudentData] = useState(student);
 
   return (
-    <Box>
-      < ParseAMSLead blankStudent={blankStudent} setStudentData={setStudentData} />
+    <Box sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          alignItems: 'center',
+          mx: "auto",
+          mt: 6,
+          mb: 8,
+        }}>
       <Box
         sx={{
           display: "flex",
@@ -22,8 +30,7 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           justifyContent: "space-around",
           maxWidth: 480,
           mx: "auto",
-          mt: 6,
-          mb: 8,
+          mb: 4,
           border: "1px solid lightgray",
           p: 4,
           borderRadius: 4,
@@ -57,6 +64,9 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           }}
         />
       </Box>
+      <OpenUpdateModalButton title='Paste and Parse Text' variant='outlined' >
+        < ParseAMSLead blankStudent={blankStudent} setStudentData={setStudentData} />
+      </OpenUpdateModalButton>
     </Box>
   );
 };

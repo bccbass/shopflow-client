@@ -1,11 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { Box, TextField, Typography, Button, Checkbox, FormControlLabel } from "@mui/material";
+import { Box, TextField, Tooltip, Typography, Button, Checkbox, FormControlLabel } from "@mui/material";
 
-const ParseAMSLead = ({ blankStudent, setStudentData }) => {
+const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
   const [inputText, setInputText] = useState("");
   const [isAdult, setIsAdult] = useState(false);
-  console.log(isAdult)
+
   const handleParse = (e) => {
     const name = inputText?.split("Name: ")[1]?.split("Email")[0]?.split(" ");
     const email = inputText?.split("Email: ")[1]?.split("Phone")[0];
@@ -27,40 +27,44 @@ const ParseAMSLead = ({ blankStudent, setStudentData }) => {
         leadSource: "AMS Leads",
         notes: notes,
       });
+    setOpen(false)
   };
 
   return (
     <Box
       sx={{
-        width: "20rem",
-        p: 6,
-        mx: 6,
+        width: "25rem",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        mb: 2
       }}
     >
-      <Typography variant="h6">Parse Data</Typography>
+      <Typography variant="h5" color='primary'>Paste and Parse Data</Typography>
       <TextField
-        placeholder="Paste new lead email text to parse"
+        placeholder="Paste new-lead email and click 'Submit' to parse"
         multiline
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         minRows={5}
-        sx={{ width: "20rem", mt: 2 }}
+        sx={{ width: "100%", mt: 2 }}
       ></TextField>
-      <FormControlLabel
-        sx={{color: "grey", mb: 2, ml: -20}}
-        control={
-          <Checkbox checked={isAdult} onChange={() => setIsAdult(!isAdult) } name="isAdult" />
-        }
-        label="Adult Student"
-        // labelPlacement='start'
-      />
-
+      < Tooltip  placement='top' title='Select if enquiry is for an adult student' >
+        <FormControlLabel
+          sx={{color: "grey", mb: 2, ml: -30}}
+          control={
+            <Checkbox checked={isAdult} onChange={() => setIsAdult(!isAdult) } name="isAdult" />
+          }
+          label="Adult Student"
+          // labelPlacement='start'
+        />
+      </Tooltip>
       <Button variant="outlined" onClick={handleParse}>
         {" "}
-        Parse Lead
+        Submit
+      </Button>
+      <Button sx={{ mt: 1, color: 'grey' }} variant="text" onClick={() => setOpen(false)}>
+          Cancel
       </Button>
     </Box>
   );

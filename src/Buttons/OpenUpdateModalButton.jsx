@@ -4,15 +4,14 @@ import { Button, Dialog, Box, DialogContent } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from "@mui/icons-material/Edit";
 
-const OpenUpdateModalButton = ({ children, title }) => {
+const OpenUpdateModalButton = ({ children, title, variant = title == "Book Trial" ? "contained" : "text" }) => {
   const [open, setOpen] = useState(false);
 
-  const buttonVariant = title == "Book Trial" ? "contained" : "text";
 
   return (
     <>
       {title !== undefined ? (
-        <Button variant={buttonVariant} onClick={() => setOpen(!open)}>
+        <Button variant={variant} onClick={() => setOpen(!open)}>
           {title}
         </Button>
       ) : (
@@ -38,6 +37,7 @@ const OpenUpdateModalButton = ({ children, title }) => {
         >
           {React.cloneElement(children, { setOpen })}
         </DialogContent>
+         
       </Dialog>
     </>
   );

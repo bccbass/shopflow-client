@@ -49,7 +49,7 @@ Caringbah Music`
         <a style={{padding: '6px 15px', backgroundColor: 'cornflowerblue', borderRadius: '8px', color: 'white', textDecoration: 'none', whiteSpace: '-moz-pre-wrap'}} href={smsHref.replaceAll('\n', '%0D%0A')} onMouseUp={() => setOpen(false)}>
             OPEN SMS MESSENGER
           </a>
-        <Button sx={{ mt: 1 }} variant="text:" onClick={() => {setTextBody(newMsg), setOpen(false)}}>
+        <Button sx={{ mt: 1 }} variant="text"  onClick={() => {setTextBody(newMsg), setOpen(false)}}>
           Cancel
         </Button>
       </Box>
