@@ -15,6 +15,7 @@ import { nullDueDate } from "../assets/dateHelpers";
 import RepairCompleteToggleButton from "./RepairCompleteToggleButton";
 import TogglePaidButton from "./TogglePaidButton";
 import RepairRowMenu from "./RepairRowMenu";
+import OpenSMSModalButton from '../Buttons/OpenSMSModalButton'
 
 RepairRowMenu
 function RepairsTableRow({ row }) {
@@ -75,11 +76,10 @@ function RepairsTableRow({ row }) {
 					</a>
 				</TableCell> */}
 				<TableCell>
-					<a
-						href={`sms:/${row?.phone}/&body=Hi ${row.firstName}, %0D%0A %0D%0A [MESSAGE] %0D%0A %0D%0A Thank you, %0D%0A Caringbah Music Admin Team`}
-					>
-						<SmsIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-					</a>
+         			<OpenSMSModalButton 
+					 	contactNumber={row.phone} 
+						recipient={row.firstName}
+						customMessage={`Your ${row.instrument ? row.instrument.toLowerCase() : 'instrument'} repair is complete and is ready to be picked up.`}/>
 				</TableCell>
 				<TableCell >
 					< RepairRowMenu repair={row} />

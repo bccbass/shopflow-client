@@ -35,11 +35,11 @@ const HeaderMenuItems = () => {
 			path: "newstudents",
 			due: dueQuery?.data?.enquiries || "",
 		},
-		{
-			title: "Trial Lessons",
-			path: "triallessons",
-			due: dueQuery?.data?.trials || "",
-		},
+		// {
+		// 	title: "Trial Lessons",
+		// 	path: "triallessons",
+		// 	due: dueQuery?.data?.trials || "",
+		// },
 		{ title: "Repairs", path: "repairs", due: dueQuery?.data?.repairs || "" },
 		{ title: "Notes", path: "notes", due: dueQuery?.data?.notes || "" },
 	];

@@ -1,8 +1,7 @@
 import React from "react";
 import { useState } from "react";
-import { Button, Dialog, Box, DialogContent, Tooltip} from "@mui/material";
+import { Dialog, Box, DialogContent, Tooltip} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import EditIcon from "@mui/icons-material/Edit";
 import EmailIcon from "@mui/icons-material/Email";
 
 const OpenEmailModalButton = ({ children, email }) => {

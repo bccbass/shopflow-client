@@ -17,6 +17,7 @@ import OpenEmailModalButton from "../Buttons/OpenEmailModalButton";
 import EmailForm from "../EmailForm";
 import { nullDueDate } from "../assets/dateHelpers";
 import { smsHref } from "../assets/helperFuncs";
+import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
 
 function EnquiryRow({ row, info }) {
   const [open, setOpen] = React.useState(false);
@@ -77,12 +78,8 @@ function EnquiryRow({ row, info }) {
           </OpenEmailModalButton>
         </TableCell>
         <TableCell>
-          {" "}
-          <a href={smsHref(row)}>
-            <SmsIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-          </a>
-        </TableCell>
-        {/* CELL TO FOR ACTIONS MENU ICON */}
+         <OpenSMSModalButton contactNumber={row.contact.phone} recipient={row.isMinor ? row.guardian.firstName : row.student.firstName}/>
+         </TableCell>
         <TableCell>
           <RowMenu lead={row} />
         </TableCell>

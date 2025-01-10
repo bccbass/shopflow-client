@@ -22,8 +22,9 @@ const NewStudents = () => {
 		queryFn: () => getResource("utils?resource=info"),
 	});
 
-  const selectedButtonStyles = {width: '50%', fontWeight: 'bold', borderRadius: 0, borderLeft: viewTrials && '1px solid lightgrey', borderRight: !viewTrials && '1px solid lightgrey', borderBottom: 0}
-  const inactiveButtonStyles = {width: '50%', borderRadius: 0, color: 'grey', borderBottom: '1px solid lightgrey', backgroundColor: "#FAFAFA", borderTopLeftRadius: viewTrials && '6px', borderTopRightRadius: !viewTrials && '6px'}
+  const leftActiveStyles ={fontSize: '1rem', width: '50%', border:'1px solid lightgrey', borderLeft: 0, borderRadius: '8px 8px 0 0', fontWeight: !viewTrials ? 'bold' : '', borderBottom: viewTrials ? '1px solid lightgrey' : 0, color: viewTrials ? 'lightgrey' : '', backgroundColor: viewTrials ? "#FAFAFA" : ''}
+
+  const rightActiveStyles = {fontSize: '1rem', width: '50%', border:'1px solid lightgrey', borderRight: 0, borderRadius: '8px 8px 0 0', fontWeight: viewTrials ? 'bold' : '', borderBottom: !viewTrials ? '1px solid lightgrey' : 0, color: !viewTrials ? 'lightgrey' : '', backgroundColor: !viewTrials ? "#FAFAFA" : ''}
 
 
   const newLeadsData = !leadsQuery.isLoading && !leadsQuery.error ? leadsQuery.data.filter(lead => !lead.bookedTrial) : []
@@ -44,10 +45,10 @@ const NewStudents = () => {
               < DownloadCollectionCsvButton collection="Leads" data={leadsQuery.data}/>
             </Box>
 
-            <Box sx={{width: '100%', border: '1px solid lightgrey', borderRadius: '6px', z: 20, mt: 3}}>
+            <Box sx={{width: '100%', border: '1px solid lightgrey', borderTop: 0, borderRadius: '8px', z: 20, mt: 3}}>
               <Box sx={{width: '100%'}}>
-                <Button onClick={() => setViewTrials(false)} sx={!viewTrials ? selectedButtonStyles : inactiveButtonStyles }>{`Enquiries (${newLeadsData.length})`}</Button>
-                <Button onClick={() => setViewTrials(true)} sx={viewTrials ? selectedButtonStyles : inactiveButtonStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
+                <Button onClick={() => setViewTrials(false)} sx={leftActiveStyles}>{`Enquiries (${newLeadsData.length})`}</Button>
+                <Button onClick={() => setViewTrials(true)}  sx={rightActiveStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
               </Box>
 
             { viewTrials ?<EnquiriesTable enquiries={trialBookedData} info={utilsQuery.data}/>
