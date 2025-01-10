@@ -85,6 +85,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           value={studentData.trialLesson.time.hour}
           onChange={handleTimeChange}
         >
+          
           {hoursArray.map((hour) => (
             <MenuItem value={hour} key={hour}>
               {hour}
@@ -148,6 +149,9 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           value={studentData.trialLesson.instrument}
           onChange={handleTrialLessonChange}
         >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           {loaded ? (
             utilsQuery.data.instruments.map((instrument) => (
               <MenuItem value={instrument} key={instrument}>
@@ -170,6 +174,9 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           value={studentData.trialLesson.groupClass}
           onChange={handleTrialLessonChange}
         >
+          <MenuItem value="">
+            <em>None</em>
+          </MenuItem>
           {loaded ? (
             utilsQuery.data.groupClasses.map((group) => (
               <MenuItem value={group} key={group}>

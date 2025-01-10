@@ -66,7 +66,7 @@ function RepairsTableRow({ row }) {
 				</TableCell>
 				
 				<TableCell>
-					<a href={"tel:" + row?.phone}>
+					<a href={"SIP:" + row?.phone}>
 						<CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
 					</a>
 				</TableCell>

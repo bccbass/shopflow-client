@@ -93,7 +93,10 @@ export default function AddStudentForm({ studentData, setStudentData }) {
 						name="instrument"
 						value={studentData.student.instrument}
 						onChange={handleStudentChange}
-					>
+					>	
+						<MenuItem value="">
+            				<em>None</em>
+          				</MenuItem>
 						{loaded ? (
 							utilsQuery.data.instruments.map((instrument) => (
 								<MenuItem value={instrument} key={instrument}>
@@ -115,6 +118,9 @@ export default function AddStudentForm({ studentData, setStudentData }) {
 						value={studentData.student.groupClass}
 						onChange={handleStudentChange}
 					>
+						<MenuItem value="">
+            				<em>None</em>
+          				</MenuItem>
 						{loaded ? (
 							utilsQuery.data.groupClasses.map((group) => (
 								<MenuItem value={group} key={group}>
@@ -220,6 +226,9 @@ export default function AddStudentForm({ studentData, setStudentData }) {
 						value={studentData.leadSource}
 						onChange={handleChange}
 					>
+						<MenuItem value="">
+            				<em>None</em>
+          				</MenuItem>
 						{loaded ? (
 							utilsQuery.data.leadSources.map((instrument) => (
 								<MenuItem value={instrument} key={instrument}>

@@ -1,6 +1,4 @@
-import { getDay } from './dateHelpers.js'
-
-const emailURL = "info@caringbahmusic.com.au"
+const emailURL = "support@caringbahmusic.com.au"
 
 const generateInitialEnquiry = (student, info, admin) => {
   const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName

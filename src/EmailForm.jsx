@@ -1,6 +1,5 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getResource } from "./assets/apiHelpers.js";
 import { useState, useEffect, useMemo } from "react";
 import {
   Box,
@@ -63,7 +62,7 @@ const EmailForm = ({ student, setOpen, info }) => {
             label="Email Template"
             onChange={handleSelect}
           >
-            {templateArray.map(temp => <MenuItem key={temp.id} name={temp.label} disabled={!student.bookedTrial && (temp.id == "trialConfirmation" || temp.id == "trialFollowUp") || (student.bookedTrial && temp.id == 'initialEnquiry')} value={temp.id}>{temp.label}</MenuItem>)}
+            {templateArray.map(temp => <MenuItem key={temp.id} name={temp.label} disabled={!student.bookedTrial && (temp.id == "trialConfirmation" || temp.id == "trialFollowUp") || (student.bookedTrial && temp.id == 'initialEnquiry')} value={temp.id}>{`${temp.label}${student.correspondence.includes(temp.id) ? ' (sent)' : ''}`}</MenuItem>)}
 
           </Select>
         </FormControl>
@@ -89,7 +88,7 @@ const EmailForm = ({ student, setOpen, info }) => {
           my: 3,
         }}
       >
-        <SendEmail msg={emailObj} setOpen={setOpen} />
+        <SendEmail msg={emailObj} setOpen={setOpen} emailId={activeTemplate} userId={student._id} />
         <Button sx={{ mt: 1 }} variant="text:" onClick={() => setOpen(false)}>
           Cancel
         </Button>

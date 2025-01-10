@@ -50,7 +50,6 @@ const NewStudents = () => {
                 <Button onClick={() => setViewTrials(false)} sx={leftActiveStyles}>{`Enquiries (${newLeadsData.length})`}</Button>
                 <Button onClick={() => setViewTrials(true)}  sx={rightActiveStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
               </Box>
-
             { viewTrials ?<EnquiriesTable enquiries={trialBookedData} info={utilsQuery.data}/>
               :
             <EnquiriesTable enquiries={newLeadsData} info={utilsQuery.data}/> }

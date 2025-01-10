@@ -46,7 +46,7 @@ Caringbah Music`
         < Typography variant="h5" color='primary' mb={4}>Compose SMS Message</Typography>
         < TextField multiline value={textBody} id={textBody} minRows={6} sx={{width: '20rem', mb: 4}} onChange={(e) => setTextBody(e.target.value)}></TextField>
         
-        <a style={{padding: '6px 15px', backgroundColor: 'cornflowerblue', borderRadius: '8px', color: 'white', textDecoration: 'none', whiteSpace: '-moz-pre-wrap'}} href={smsHref.replaceAll('\n', '%0D%0A')}>
+        <a style={{padding: '6px 15px', backgroundColor: 'cornflowerblue', borderRadius: '8px', color: 'white', textDecoration: 'none', whiteSpace: '-moz-pre-wrap'}} href={smsHref.replaceAll('\n', '%0D%0A')} onMouseUp={() => setOpen(false)}>
             OPEN SMS MESSENGER
           </a>
         <Button sx={{ mt: 1 }} variant="text:" onClick={() => {setTextBody(newMsg), setOpen(false)}}>

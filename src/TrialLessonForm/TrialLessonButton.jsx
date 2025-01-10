@@ -26,11 +26,12 @@ const TrialLessonButton = ({studentData, setStudentData}) => {
         <Box sx={{ display: "flex", flexDirection: "column", my: 2, width: '100%' }}>
         <Button
           variant="outlined"
-          color="textPrimary"
+          color={studentData.bookedTrial ? "error" : "textPrimary"}
           onClick={handleTrialClick}
           startIcon={studentData.bookedTrial ? <RemoveIcon /> : <AddIcon />}
         >
-          Trial Lesson
+          {`${!studentData.bookedTrial ? "Add" : "Remove"
+} Trial Lesson`}
         </Button>
 
         <Collapse in={studentData.bookedTrial}>

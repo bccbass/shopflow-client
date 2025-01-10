@@ -12,7 +12,7 @@ const TrialLessonSubmitButton = ({ updatedStudent, setOpen }) => {
 	const mutation = useMutation({
 		mutationFn: patchResource,
 		onSuccess: () => {queryClient.invalidateQueries(["leads"]),
-			navigate('/triallessons'),
+			// navigate('/triallessons'),
     		setOpen(false)}
 	});
 

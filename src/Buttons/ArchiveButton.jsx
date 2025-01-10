@@ -18,7 +18,7 @@ const ArchiveButton = ({ reactivate = false, id, bookedTrial=false }) => {
 		mutationFn: deleteResource,
 		onSuccess: () => {
 			queryClient.invalidateQueries(["Leads", "Archive"]);
-			navigate(bookedTrial ? '/triallessons' : '/newstudents')
+			navigate('/newstudents')
 		},
 	});
 
