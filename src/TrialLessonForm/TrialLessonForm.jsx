@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getResource } from "../assets/apiHelpers.js";
 import { Box, TextField, MenuItem } from "@mui/material";
@@ -10,6 +11,8 @@ const minutesArray = ["00", "15", "30", "45"];
 const ampmArray = ["am", "pm"];
 
 const TrialLessonForm = ({ setStudentData, studentData }) => {
+
+
   const utilsQuery = useQuery({
     queryKey: ["utils"],
     queryFn: () => getResource("utils?resource=info"),
@@ -85,7 +88,6 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           value={studentData.trialLesson.time.hour}
           onChange={handleTimeChange}
         >
-          
           {hoursArray.map((hour) => (
             <MenuItem value={hour} key={hour}>
               {hour}

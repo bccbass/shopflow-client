@@ -38,9 +38,6 @@ const EmailForm = ({ student, setOpen, info }) => {
           },
         ],
         cc: [
-          // {
-          //   email: "bccbassspotify@gmail.com",
-          // },
         ],
         bcc: [
           {
