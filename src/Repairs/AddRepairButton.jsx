@@ -12,9 +12,7 @@ const AddRepairButton = ({ children, repair=false }) => {
       
         <Button variant={repair ? 'text': 'contained'} sx={{color: repair && 'grey'}} onClick={() => setOpen(!open)}>
           {repair ? 
-          < Tooltip title='Edit' >
-          Edit Repair 
-          </Tooltip>
+            "Edit Repair "
           : "New Repair" }
           
         </Button>

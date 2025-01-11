@@ -20,9 +20,10 @@ export default function ArchiveTable({ enquiries, children }) {
 						<TableCell sx={{ fontWeight: "bold", width: 120 }}>From</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Student</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Parent</TableCell>
+						<TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
 						<TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
+						<TableCell sx={{ fontWeight: "bold" }}></TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

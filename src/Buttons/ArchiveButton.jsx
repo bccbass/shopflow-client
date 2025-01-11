@@ -41,11 +41,11 @@ const ArchiveButton = ({ reactivate = false, id, bookedTrial=false }) => {
 				sx={{ px: 2 }}
 			>
 				{reactivate ? (
-					<RecyclingIcon color="secondary" />
+					<RecyclingIcon sx={{color: 'grey'}} />
 				) : (
 					<InboxIcon
 						// fontSize="large"
-						color="secondary"
+						sx={{color: 'grey'}}
 					/>
 				)}
 			</Button>

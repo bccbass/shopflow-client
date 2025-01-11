@@ -8,12 +8,11 @@ import MenuItem from "@mui/material/MenuItem";
 import MenuList from "@mui/material/MenuList";
 import Stack from "@mui/material/Stack";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import MenuItemPaid from "./MenuItemPaid"
-import MenuItemComplete from './MenuItemComplete'
-import MenuItemDelete from '../Buttons/MenuItemDelete'
+import MenuItemCSVDownload from "../Buttons/MenuItemCSVDownload";
+import MenuItemUnarchive from "./MenuItemUnarchive";
+import MenuItemDelete from "../Buttons/MenuItemDelete";
 
-
-export default function RepairRowMenu({ repair }) {
+export default function ArchiveRowMenu({ lead }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
@@ -86,18 +85,11 @@ export default function RepairRowMenu({ repair }) {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>
-                      <MenuItemPaid repair={repair} />
+                      <MenuItemUnarchive id={lead._id} />
                     </MenuItem>
-
                     <MenuItem onClick={handleClose}>
-                      <MenuItemComplete repair={repair} />
+                      <MenuItemDelete id={lead._id} path='archive' />
                     </MenuItem>
-
-                    <MenuItem onClick={handleClose}>
-                      <MenuItemDelete id={repair._id} path='repairs'/>
-                    </MenuItem>
-
-   
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

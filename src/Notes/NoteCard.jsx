@@ -30,7 +30,7 @@ export default function NoteCard({ note, setEditingNote }) {
 					</Typography>
 					<Divider sx={{ mb: 1.5 }} />
 
-					<Typography sx={{ minHeight: 65 }} variant="h5" component="div">
+					<Typography sx={{ minHeight: 65 }}  variant="h5" component="div">
 						{note.title}
 					</Typography>
 					<Typography sx={{ my: 1.5, minHeight: 160 }} variant="body2">

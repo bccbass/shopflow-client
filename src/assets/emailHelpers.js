@@ -2,6 +2,7 @@ const emailURL = "support@caringbahmusic.com.au"
 
 const generateInitialEnquiry = (student, info, admin) => {
   const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
+  const instrument = student?.student?.instrument == "drums" ? "drum" : student?.student?.instrument ? student?.student?.instrument : 'music'
   return {
     id: 'initialEnquiry',
     label: "Initial Enquiry",
@@ -14,7 +15,7 @@ const generateInitialEnquiry = (student, info, admin) => {
     }Lessons at Caringbah Music`,
     text: `Dear ${addressee},
     
-Thank you for reaching out and enquiring about ${student?.student?.instrument ? student.student.instrument : 'music'} lessons at Caringbah Music! We'd love to help you on your creative journey. 
+Thank you for reaching out and enquiring about ${instrument} lessons at Caringbah Music! We'd love to help you on your creative journey. 
 
 All of our teachers are university qualified and experienced within the music industry. We offer lessons six days per week at our shop and studio locations, so please let us know what days and times are most suitable for you. 
 
@@ -34,13 +35,15 @@ const generateTrialConfirmation = (student, info, admin) => {
   const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
   const studentPossesive =  student.isMinor ? student.student.firstName + "'s" : 'your'
   const location = info?.locations?.filter(location => student.trialLesson.location === location.name)[0]
+  const instrument = student?.trialLesson?.instrument == "drums" ? "drum " : student?.trialLesson?.instrument ? student?.trialLesson?.instrument + ' ': ''
+
   return {
     id: 'trialConfirmation',
     label: "Trial Confirmation",
     subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee},
      
-Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive}${student.trialLesson.instrument ? ' ' + student.trialLesson.instrument : ''} lesson below:
+Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of your ${instrument}lesson below:
 
 Day: ${student.trialDay}
 Date: ${student.trialDate}

@@ -29,7 +29,7 @@ const filterArray = (arr, searchTerm) => {
   }
 
 	return (
-		< Container sx={{m:0}}>
+		< Container sx={{mb:20}}>
 			<SectionHeader
 				setSearchParams={ setSearchParams }
 				title="Notes"

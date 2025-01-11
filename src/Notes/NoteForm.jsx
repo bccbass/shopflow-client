@@ -43,14 +43,14 @@ const NoteForm = () => {
   return (
     <Box sx={{ minWidth: 275, m: 2, width: 300 }}>
       <Card variant="outlined" sx={{ backgroundColor: "lightblue" }}>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>
+        <CardContent sx={{width: '100%' }}>
+          <Typography variant="h5" gutterBottom color='text.secondary'>
             New Note
           </Typography>
 
           <Box
             component="form"
-            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+            sx={{ "& > :not(style)": { m: 1, width: "94%" } }}
             noValidate
             autoComplete="off"
             onSubmit={handleSubmit}
@@ -67,7 +67,7 @@ const NoteForm = () => {
 
           <Box
             component="form"
-            sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+            sx={{ "& > :not(style)": { m: 1, width: "94%" } }}
             noValidate
             autoComplete="off"
           >
@@ -100,14 +100,16 @@ const NoteForm = () => {
               onChange={handleChange}
               value={note.due}
             />
+          <Box sx={{display: 'flex', justifyContent: 'center'}}>
           <Button
             disabled={mutation.isPending}
             variant="outlined"
-            sx={{ flex: 1 }}
+            sx={{width: '100%'}}
             onClick={handleSubmit}
           >
             Save
           </Button>
+          </Box>
           </Box>
 
         </CardContent>

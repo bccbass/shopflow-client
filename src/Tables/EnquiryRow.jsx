@@ -64,7 +64,7 @@ function EnquiryRow({ row, info }) {
           </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
-        <TableCell align={row.isMinor ? "inherit" : "center"}>
+        <TableCell >
           {row.isMinor ? `${row.guardianFullName}` : ""}
         </TableCell>
         <TableCell>{row.student.instrument}</TableCell>
@@ -94,23 +94,5 @@ function EnquiryRow({ row, info }) {
     </React.Fragment>
   );
 }
-
-// Row.propTypes = {
-//   row: PropTypes.shape({
-//     calories: PropTypes.number.isRequired,
-//     carbs: PropTypes.number.isRequired,
-//     fat: PropTypes.number.isRequired,
-//     history: PropTypes.arrayOf(
-//       PropTypes.shape({
-//         amount: PropTypes.number.isRequired,
-//         customerId: PropTypes.string.isRequired,
-//         date: PropTypes.string.isRequired,
-//       }),
-//     ).isRequired,
-//     name: PropTypes.string.isRequired,
-//     price: PropTypes.number.isRequired,
-//     protein: PropTypes.number.isRequired,
-//   }).isRequired,
-// };
 
 export default EnquiryRow;

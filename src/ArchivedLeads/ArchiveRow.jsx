@@ -13,12 +13,30 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ArchiveButton from "../Buttons/ArchiveButton";
 import DeleteButton from "../Buttons/DeleteButton";
+import ArchiveRowMenu from "./ArchiveRowMenu";
 
 
 function ArchiveRow({ children, row }) {
 	const [open, setOpen] = React.useState(false);
 	const minorStudent =
 		row.guardian.lastName.length > 0 && row.guardian.firstName.length > 0;
+
+	const enrolledStyles = {
+		color: "white",
+		backgroundColor: "green",
+		padding: "4px 6px",
+		marginLeft: "-.5rem",
+		borderRadius: "6px",
+		fontWeight: "bold",
+	};
+	const trialStyles = {
+		color: "white",
+		backgroundColor: "green",
+		padding: "4px 6px",
+		marginLeft: "-.5rem",
+		borderRadius: "6px",
+		fontWeight: "bold",
+	};
 
 	return (
 		<React.Fragment>
@@ -34,22 +52,28 @@ function ArchiveRow({ children, row }) {
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
-				<TableCell>
-					{new Date(row.dateCreated).toLocaleString("en-AU", {
+				<TableCell align="center"  >
+					<span style={row.enrolled ? enrolledStyles : !row.enrolled && row.bookedTrial ? trialStyles : null}>
+					{ row.bookedTrial && !row.enrolled ? 'TRIAL' : row.enrolled ? 'ENROLLED' : new Date(row.dateCreated).toLocaleString("en-AU", {
 						day: "numeric",
 						month: "numeric",
 						year: "numeric",
 					})}
+					</span>
 				</TableCell>
 				<TableCell>{`${row.student.lastName}, ${row.student.firstName}`}</TableCell>
 				<TableCell >
 					{minorStudent
 						? `${row.guardian.lastName}, ${row.guardian.firstName}`
-						: "-"}
+						: ""}
 				</TableCell>
+				<TableCell>{row.student.instrument}</TableCell>
+
 				<TableCell>{row.contact.phone}</TableCell>
 				<TableCell>{row.contact.email}</TableCell>
-				<TableCell>{row.student.instrument}</TableCell>
+				< TableCell >
+						<ArchiveRowMenu lead={row}/>
+				</TableCell>
 			</TableRow>
 			<TableRow>
 				<TableCell
@@ -57,14 +81,14 @@ function ArchiveRow({ children, row }) {
 						paddingBottom: 0,
 						paddingTop: 0,
 					}}
-					colSpan={7}
+					colSpan={8}
 				>
 					<Collapse in={open} timeout="auto">
 						<Box sx={{ m: 2 }}>
 							<Container
 								sx={{ display: "flex", justifyContent: "space-between" }}
 							>
-								<Box sx={{ py: 2, flex: 2 }}>
+								<Box sx={{ py: 2, flex: 1 }}>
 									<Typography
 										variant="h6"
 										gutterBottom
@@ -105,7 +129,7 @@ function ArchiveRow({ children, row }) {
 									</Typography>
 								</Box>
 								{row.bookedTrial === true ? (
-									<Box sx={{ py: 2, flex: 2 }}>
+									<Box sx={{ py: 2, flex: 1 }}>
 										<Typography
 											variant="h6"
 											gutterBottom
@@ -149,9 +173,22 @@ function ArchiveRow({ children, row }) {
 										)}
 									</Box>
 								) : (
-									<Box sx={{ py: 2, flex: 2 }}></Box>
+									<Box sx={{ py: 2, flex: 1 }}>
+										<Typography
+											variant="h6"
+											gutterBottom
+											color="textSecondary"
+											component="div"
+										>
+											<strong> Trial Lesson </strong>
+										</Typography>
+										<Typography sx={{mt: 6, fontWeight: 'bold', color: 'white', backgroundColor: 'grey', borderRadius: '10px', width: 'fit-content', px: 3, py: 1}}>
+											No Trial Booked
+										</Typography>
+										
+									</Box>
 								)}
-								<Box sx={{ py: 2, flex: 2 }}>
+								<Box sx={{ py: 2, flex: 1 }}>
 									<Typography
 										variant="h6"
 										gutterBottom

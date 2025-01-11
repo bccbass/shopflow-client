@@ -3,7 +3,7 @@
 import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteResource } from "../assets/apiHelpers";
-import DeleteButton from '../Buttons/DeleteButton' 
+import DeleteButton from './DeleteButton' 
 import { Box, ListItemIcon, ListItemText } from "@mui/material";
 import DeleteOutlineOutlinedIcon from "@mui/icons-material/DeleteOutlineOutlined";
 
