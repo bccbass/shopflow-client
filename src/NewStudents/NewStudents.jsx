@@ -7,15 +7,28 @@ import SectionHeader from "../SectionHeader";
 import { Container, Box, Typography, Button } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
+import Search from '../Search'
 
 const NewStudents = () => {
   const [viewTrials, setViewTrials] = useState(false)
+  const [ searchTerm, setSearchTerm ] = useState('')
   const [searchParams, setSearchParams] = useSearchParams();
   const sortOrder = searchParams.get("sort");
   const leadsQuery = useQuery({
     queryKey: ["leads", sortOrder],
     queryFn: () => getResource("leads?sort=" + sortOrder),
   });
+
+          
+  const filteredArr = (arr, searchTerm) => { 
+    return searchTerm.length == 0 ?
+      arr 
+        :
+      arr
+      .filter(lead => [lead.student.firstName, lead.student.lastName, lead.student.instrument, lead.trialLesson.instrument, ...Object.values(lead.guardian)]
+      .map(name => name.toLowerCase().includes(searchTerm.toLowerCase())).includes(true)
+      )
+    }
 
   const utilsQuery = useQuery({
 		queryKey: ["utils"],
@@ -41,21 +54,24 @@ const NewStudents = () => {
           <h1 className="">Error</h1>
         ) : (
           <>
-            < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mb: 2}}>
-              < DownloadCollectionCsvButton collection="Leads" data={leadsQuery.data}/>
+            < Box sx={{width: '100%', display: 'flex', mt: 0, mb: 4, pr: 2, justifyContent: 'flex-end'}}>
+              < Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </Box>
-
-            <Box sx={{width: '100%', border: '1px solid lightgrey', borderTop: 0, borderRadius: '8px', z: 20, mt: 3}}>
+            <Box sx={{width: '100%', border: '1px solid lightgrey', borderTop: 0, borderRadius: '8px', z: 20}}>
               <Box sx={{width: '100%'}}>
                 <Button onClick={() => setViewTrials(false)} sx={leftActiveStyles}>{`Enquiries (${newLeadsData.length})`}</Button>
                 <Button onClick={() => setViewTrials(true)}  sx={rightActiveStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
               </Box>
-            { viewTrials ?<EnquiriesTable enquiries={trialBookedData} info={utilsQuery.data}/>
+            { viewTrials ?<EnquiriesTable enquiries={filteredArr(trialBookedData, searchTerm)} info={utilsQuery.data}/>
               :
-            <EnquiriesTable enquiries={newLeadsData} info={utilsQuery.data}/> }
+            <EnquiriesTable enquiries={filteredArr(newLeadsData, searchTerm)} info={utilsQuery.data}/> }
+            </Box>
+            < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mr: 4, mt: 4}}>
+              < DownloadCollectionCsvButton collection="Leads" data={leadsQuery.data}/>
             </Box>
           </>
         )}
+
       </Box>
     </Container>
   );

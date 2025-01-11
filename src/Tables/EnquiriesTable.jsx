@@ -12,7 +12,7 @@ export default function EnquiriesTable({ enquiries, children, info }) {
   const rows = [...enquiries]
 
   return (
-    <TableContainer sx={{}} component={Paper} >
+    <TableContainer component={Paper} >
       <Table aria-label="collapsible table" >
         <TableHead >
           <TableRow >
