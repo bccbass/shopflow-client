@@ -40,7 +40,7 @@ const generateTrialConfirmation = (student, info, admin) => {
     subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee},
      
-Welcome to our Caringbah Music family! We're so glad to have you. Below are the details of ${studentPossesive} lesson:
+Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive}${student.trialLesson.instrument ? ' ' + student.trialLesson.instrument : ''} lesson below:
 
 Day: ${student.trialDay}
 Date: ${student.trialDate}
