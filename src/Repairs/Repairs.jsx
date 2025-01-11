@@ -11,6 +11,8 @@ import RepairsTable from "./RepairsTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from '../Search'
 import ErrorCard from '../ErrorCard'
+import TableSkeleton from "../TableSkeleton";
+
 
 
 const Repairs = () => {
@@ -51,7 +53,7 @@ const Repairs = () => {
       <SectionHeader title="Repairs" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
         {repairsQuery.isLoading ? (
-          <h1 className="">Loading...</h1>
+          < TableSkeleton />
         ) : repairsQuery.isError ? (
           <ErrorCard />
         ) : (

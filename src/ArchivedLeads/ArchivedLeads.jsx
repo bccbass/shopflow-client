@@ -9,6 +9,8 @@ import ArchiveTable from "./ArchiveTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from '../Search'
 import ErrorCard from '../ErrorCard'
+import TableSkeleton from "../TableSkeleton";
+
 
 
 
@@ -36,7 +38,7 @@ const ArchivedLeads = () => {
       <SectionHeader title="Archived Leads" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
         {archive.isLoading ? (
-          <h1 className="">Loading...</h1>
+          < TableSkeleton tabs={false}/>
         ) : archive.isError ? (
           < ErrorCard />
         ) : (

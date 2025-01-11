@@ -9,6 +9,7 @@ import EnquiriesTable from "../Tables/EnquiriesTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from '../Search'
 import ErrorCard from '../ErrorCard'
+import TableSkeleton from "../TableSkeleton";
 
 const NewStudents = () => {
   const [viewTrials, setViewTrials] = useState(false)
@@ -50,7 +51,7 @@ const NewStudents = () => {
       <SectionHeader title="New Students" />
       <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
         {leadsQuery.isLoading || utilsQuery.isLoading? (
-          <h1 className="">Loading...</h1>
+          <TableSkeleton/>
         ) : leadsQuery.isError || utilsQuery.isError ? (
           <ErrorCard />
         ) : (
