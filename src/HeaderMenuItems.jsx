@@ -86,7 +86,7 @@ const HeaderMenuItems = () => {
 								<Badge
 									color={item.due && "error"}
 									badgeContent={
-										dueQuery.isLoading ? "" : dueQuery.isError ? "e" : item.due
+										dueQuery.isLoading ? "" : dueQuery.isError ? "" : item.due
 									}
 								>
 									{item.path === "" && <HomeIcon fontSize="large" />}

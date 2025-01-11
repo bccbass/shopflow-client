@@ -8,6 +8,8 @@ import { Container, Box, Typography } from "@mui/material";
 import ArchiveTable from "./ArchiveTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from '../Search'
+import ErrorCard from '../ErrorCard'
+
 
 
 const ArchivedLeads = () => {
@@ -36,7 +38,7 @@ const ArchivedLeads = () => {
         {archive.isLoading ? (
           <h1 className="">Loading...</h1>
         ) : archive.isError ? (
-          <h1 className="">Error</h1>
+          < ErrorCard />
         ) : (
           <>
             < Box sx={{width: '100%', display: 'flex', mt: 0, mb: 1, px: 2, justifyContent: 'space-between'}}>

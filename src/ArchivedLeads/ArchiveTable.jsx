@@ -14,16 +14,16 @@ export default function ArchiveTable({ enquiries, children }) {
   return (
 		<TableContainer sx={{ mt: 2 }} component={Paper}>
 			<Table aria-label="collapsible table">
-				<TableHead>
-					<TableRow>
+				<TableHead sx={{backgroundColor: '#0599fc'}}>
+					<TableRow sx={{color: 'white'}}>
 						<TableCell />
-						<TableCell sx={{ fontWeight: "bold", width: 120 }}>From</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Student</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Parent</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}>Email</TableCell>
-						<TableCell sx={{ fontWeight: "bold" }}></TableCell>
+						<TableCell sx={{ fontWeight: "bold", pl: 4, color: 'white' }}>From</TableCell>
+						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Student</TableCell>
+						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Parent</TableCell>
+						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Instrument</TableCell>
+						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Phone</TableCell>
+						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Email</TableCell>
+						<TableCell sx={{ fontWeight: "bold", color: 'white' }}></TableCell>
 					</TableRow>
 				</TableHead>
 				<TableBody>

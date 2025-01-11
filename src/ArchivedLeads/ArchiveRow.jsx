@@ -41,7 +41,7 @@ function ArchiveRow({ children, row }) {
 	return (
 		<React.Fragment>
 			<TableRow
-				sx={{ "& > *": { borderBottom: "unset", backgroundColor: "#AFE5E3" } }}
+				sx={{ "& > *": { borderBottom: "unset", backgroundColor: "#dcf2fc" } }}
 			>
 				<TableCell>
 					<IconButton

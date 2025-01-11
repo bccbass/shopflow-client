@@ -8,6 +8,7 @@ import { Container, Box, Typography, Button } from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from '../Search'
+import ErrorCard from '../ErrorCard'
 
 const NewStudents = () => {
   const [viewTrials, setViewTrials] = useState(false)
@@ -51,7 +52,7 @@ const NewStudents = () => {
         {leadsQuery.isLoading || utilsQuery.isLoading? (
           <h1 className="">Loading...</h1>
         ) : leadsQuery.isError || utilsQuery.isError ? (
-          <h1 className="">Error</h1>
+          <ErrorCard />
         ) : (
           <>
             < Box sx={{width: '100%', display: 'flex', mt: 0, mb: 4, pr: 2, justifyContent: 'flex-end'}}>

@@ -10,6 +10,8 @@ import RepairFormWrapper from "./RepairFormWrapper";
 import RepairsTable from "./RepairsTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from '../Search'
+import ErrorCard from '../ErrorCard'
+
 
 const Repairs = () => {
   const [ searchTerm, setSearchTerm ] = useState('')
@@ -51,7 +53,7 @@ const Repairs = () => {
         {repairsQuery.isLoading ? (
           <h1 className="">Loading...</h1>
         ) : repairsQuery.isError ? (
-          <h1 className="">Error</h1>
+          <ErrorCard />
         ) : (
           <>
 

@@ -9,6 +9,8 @@ import NoteForm from "./NoteForm";
 import SectionHeader from "../SectionHeader";
 import Search from '../Search'
 import { Box, Container } from "@mui/material";
+import ErrorCard from '../ErrorCard'
+
 
 const Notes = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -47,18 +49,20 @@ const filterArray = (arr, searchTerm) => {
               < Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </Box>
 			<Box sx={{display: 'flex', flexWrap: 'wrap'}}>
-				<NoteForm key={'noteForm'}/>
 				{notesQuery.isLoading ? (
 					<Loading />
 				) : notesQuery.isError ? (
-					<h1 className="">Error</h1>
-				) : (
-					filterArray(notesQuery.data, searchTerm).map((note) => (
-						<Box key={note._id}>
-							<Note note={note} />
-						</Box>
-					))
-				)}
+					<ErrorCard/>
+				) : 
+				
+					<>
+					<NoteForm key={'noteForm'}/>
+
+					{filterArray(notesQuery.data, searchTerm).map((note) => (
+							<Note key={note._id} note={note} />
+					))}
+					</>
+				}
 			</Box>
 		</ Container>
 	);
