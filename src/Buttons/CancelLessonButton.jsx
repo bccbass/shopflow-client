@@ -3,7 +3,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Tooltip } from "@mui/material";
+import { Tooltip, Button} from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 
@@ -30,7 +30,8 @@ const CancelLessonButton = ({ id, setIsLoading }) => {
 
 	return (
 		<Tooltip placement='top' title="Cancel lesson and move student to New Students section.">
-			<DeleteIcon onClick={handleSubmit} color="error" />
+			{/* <DeleteIcon onClick={handleSubmit} color="error" /> */}
+			<Button onClick={handleSubmit} fullWidth  variant="outlined" color='error' >Delete Trial Lesson</Button>
 		</Tooltip>
 	);
 };

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 
-const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading }) => {
+const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading, setOpen }) => {
 	const queryClient = useQueryClient();
 	const navigate = useNavigate()
 	const mutation = useMutation({
@@ -14,6 +14,7 @@ const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading }) => {
 		onSuccess: async () => {
 			await queryClient.invalidateQueries(["leads"]);
 			setIsLoading(false);
+			setOpen(false),
 			navigate('/newstudents?view=triallessons')
     			}
 	});
@@ -32,7 +33,7 @@ const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading }) => {
 		});
 	};
 
-	return  (<Button variant="contained" onClick={handleSubmit}>
+	return  (<Button fullWidth variant="contained" onClick={handleSubmit}>
 				Submit
 			</Button>)
 };

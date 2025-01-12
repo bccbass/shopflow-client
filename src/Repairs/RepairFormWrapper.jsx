@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import CreateButton from "../Buttons/CreateButton";
 import SubmitUpdateButton from '../Buttons/SubmitUpdateButton'
 import RepairForm from "./RepairForm";
+import FormTitle from '../FormTitle'
 import { defaultRepairForm } from "../assets/defaultRepairForm";
 import { formatDate } from "../assets/dateHelpers.js";
 
@@ -35,9 +36,9 @@ const RepairFormWrapper = ({ repair=false, setOpen }) => {
         justifyContent: "center",
       }}
     >
-      <DialogTitle textAlign={"center"} variant="h5">
+      <FormTitle >
         {`Repair Form`}
-      </DialogTitle>
+      </FormTitle>
       <RepairForm repairData={repairData} setRepairData={setRepairData}/>
       <DialogActions sx={{ display: "flex", flexDirection: "column" }}>
        {!repair ?  <CreateButton

@@ -12,6 +12,8 @@ import AddStudentForm from "./AddStudentForm";
 import { blankStudent } from "../assets/blankStudentForm";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 import { formatDate } from "../assets/dateHelpers";
+import FormTitle from "../FormTitle";
+
 
 const EditStudentFormWrapper = ({ student = blankStudent, setOpen }) => {
   const [studentData, setStudentData] = useState(student);
@@ -36,9 +38,9 @@ const EditStudentFormWrapper = ({ student = blankStudent, setOpen }) => {
         mx: "auto",
       }}
     >
-      <DialogTitle textAlign={"center"} variant="h5">
+      <FormTitle >
         {`Edit ${studentData.studentFullName}`}
-      </DialogTitle>
+      </FormTitle>
       <AddStudentForm
         studentData={studentData}
         setStudentData={setStudentData}

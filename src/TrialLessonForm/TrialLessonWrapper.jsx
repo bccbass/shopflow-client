@@ -1,17 +1,17 @@
 import React from "react";
 import {
   Button,
-  DialogTitle,
   DialogContent,
   DialogActions,
-  Box,
 } from "@mui/material";
 import TrialLessonForm from "./TrialLessonForm";
+import FormTitle from '../FormTitle'
 import TrialLessonSubmitButton from "./TrialLessonSubmitButton";
 import { useState, useEffect } from "react";
 import CancelLessonButton from "../Buttons/CancelLessonButton";
 import { formatDate } from "../assets/dateHelpers";
 import LoadingSpinner from "../LoadingSpinner";
+
 
 
 const TrialLessonWrapper = ({ student, setOpen }) => {
@@ -35,37 +35,30 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
         justifyContent: "center",
       }}
     >
-      <DialogTitle textAlign={"center"} variant="h5">
+      <FormTitle >
         {`${studentData.studentFullName} Trial Lesson`}
-      </DialogTitle>
+      </FormTitle>
       <TrialLessonForm
         studentData={studentData}
         setStudentData={setStudentData}
       />
-      {isLoading ? <LoadingSpinner height={studentData.bookedTrial ? '10.4rem' : '9.1rem'}/>
+      {isLoading ? <LoadingSpinner height={studentData.bookedTrial ? '11.3rem' : '9.1rem'}/>
         :
-        <>
-      <DialogActions sx={{ display: "flex", flexDirection: "column" }}>
+      
+      <DialogActions sx={{ display: "flex", flexDirection: "column", width: '100%', alignContent:'center', justifyContent: 'center' }}>
         <TrialLessonSubmitButton
           updatedStudent={studentData}
           setIsLoading={setIsLoading}
+          setOpen={setOpen}
         />
-        <Button sx={{ my: 2 }} onClick={() => setOpen(false)}>
+        <Button fullWidth variant='outlined' sx={{ my: 2 }} onClick={() => setOpen(false)}>
           Cancel
         </Button>
+         {studentData.bookedTrial && (
+
+        <CancelLessonButton id={studentData._id} setIsLoading={setIsLoading} />)
+      }
       </DialogActions>
-      {studentData.bookedTrial && (
-        <Box
-          sx={{
-            width: "100%",
-            display: "flex",
-            justifyContent: "flex-end",
-            mx: 2,
-          }}
-        >
-          <CancelLessonButton id={studentData._id} setIsLoading={setIsLoading} />
-        </Box>)}
-        </>
       }
     </DialogContent>
   );

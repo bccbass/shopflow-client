@@ -8,6 +8,7 @@ import { blankStudent } from "../assets/blankStudentForm";
 import TrialLessonButton from "../TrialLessonForm/TrialLessonButton";
 import ParseAMSLead from "./ParseAMSLead";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
+import FormTitle from "../FormTitle";
 
 const AddStudentFormWrapper = ({ student = blankStudent }) => {
   const [studentData, setStudentData] = useState(student);
@@ -36,14 +37,10 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           borderRadius: 4,
         }}
       >
-        <Typography
-          variant="h4"
-          align="center"
-          color="textSecondary"
-          gutterBottom
+        <FormTitle
         >
           Add New Student
-        </Typography>
+        </FormTitle>
         <AddStudentForm
           studentData={studentData}
           setStudentData={setStudentData}

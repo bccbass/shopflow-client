@@ -2,6 +2,8 @@ import React from "react";
 import { Button, DialogTitle, DialogContent, DialogActions, TextField } from "@mui/material";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 import { useState, useEffect } from "react";
+import FormTitle from "../FormTitle";
+
 
 
 const EditNotesWrapper = ({ student, setOpen }) => {
@@ -16,9 +18,9 @@ const EditNotesWrapper = ({ student, setOpen }) => {
       }}
     >
 
-      <DialogTitle textAlign={"center"} variant="h5" >
+      <FormTitle >
         {`Edit ${studentData.studentFullName} Notes` }
-      </DialogTitle>
+      </FormTitle>
             <TextField
             rows={6}
             size="small"
