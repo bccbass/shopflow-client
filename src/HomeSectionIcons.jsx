@@ -34,7 +34,7 @@ const HomeSectionItems = () => {
     },
     {
       title: "Track Trial Lessons",
-      path: "newstudents",
+      path: "newstudents?view=triallessons",
       description:
         "View and manage trial lessons, tracking your followup process on the path enrolling them as full time students",
       icon: <QueueMusicIcon sx={{ transform: "scale(3)" }} />,
