@@ -40,7 +40,7 @@ const RepairFormWrapper = ({ repair=false, setOpen }) => {
         {`Repair Form`}
       </FormTitle>
       <RepairForm repairData={repairData} setRepairData={setRepairData}/>
-      <DialogActions sx={{ display: "flex", flexDirection: "column" }}>
+      <DialogActions sx={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
        {!repair ?  <CreateButton
           buttonProps={{
             path: "repairs",
@@ -52,11 +52,12 @@ const RepairFormWrapper = ({ repair=false, setOpen }) => {
         /> :
         < SubmitUpdateButton 
         submitProps={{
+          fullWidth: true,
           updatedData: repairData,
           path: 'repairs/' + repair._id,
           setOpen: setOpen,
           }}/>}
-        <Button  onClick={() => setOpen(false)}>
+        <Button fullWidth variant="outlined" color="text.secondary" sx={{my: 2, mr: .5}} onClick={() => setOpen(false)}>
           Cancel
         </Button>
       </DialogActions>
