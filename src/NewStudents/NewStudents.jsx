@@ -26,7 +26,7 @@ const NewStudents = () => {
       arr 
         :
       arr
-      .filter(lead => [lead.student.firstName, lead.student.lastName, lead.student.instrument, lead.trialLesson.instrument, ...Object.values(lead.guardian)]
+      .filter(lead => [lead.studentFullName, lead.guardianFullName, lead.trialLesson.instrument, lead.student.instrument]
       .map(name => name.toLowerCase().includes(searchTerm.toLowerCase())).includes(true)
       )
     }

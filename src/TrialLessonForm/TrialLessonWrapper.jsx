@@ -11,9 +11,12 @@ import TrialLessonSubmitButton from "./TrialLessonSubmitButton";
 import { useState, useEffect } from "react";
 import CancelLessonButton from "../Buttons/CancelLessonButton";
 import { formatDate } from "../assets/dateHelpers";
+import LoadingSpinner from "../LoadingSpinner";
+
 
 const TrialLessonWrapper = ({ student, setOpen }) => {
   const [studentData, setStudentData] = useState(student);
+	const [isLoading, setIsLoading] = useState(false)
    
   useEffect(() => {
     // Reformat trial lesson date from student data so it can be used as an input value and not throw error
@@ -39,10 +42,13 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
         studentData={studentData}
         setStudentData={setStudentData}
       />
+      {isLoading ? <LoadingSpinner height={studentData.bookedTrial ? '10.4rem' : '9.1rem'}/>
+        :
+        <>
       <DialogActions sx={{ display: "flex", flexDirection: "column" }}>
         <TrialLessonSubmitButton
           updatedStudent={studentData}
-          setOpen={setOpen}
+          setIsLoading={setIsLoading}
         />
         <Button sx={{ my: 2 }} onClick={() => setOpen(false)}>
           Cancel
@@ -57,9 +63,10 @@ const TrialLessonWrapper = ({ student, setOpen }) => {
             mx: 2,
           }}
         >
-          <CancelLessonButton id={studentData._id} setOpen={setOpen} />
-        </Box>
-      )}
+          <CancelLessonButton id={studentData._id} setIsLoading={setIsLoading} />
+        </Box>)}
+        </>
+      }
     </DialogContent>
   );
 };

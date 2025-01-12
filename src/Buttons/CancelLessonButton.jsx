@@ -7,20 +7,21 @@ import { Tooltip } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 
-const CancelLessonButton = ({ id, setOpen }) => {
+const CancelLessonButton = ({ id, setIsLoading }) => {
 	const queryClient = useQueryClient();	
 	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: patchResource,
-		onSuccess: () => {
-			queryClient.invalidateQueries(["Leads"]);
-			setOpen(false);
+		onSuccess: async () => {
+			await queryClient.invalidateQueries(["Leads"]);
+			setIsLoading(false);
 			navigate('/newstudents?view=enquiries')
 		},
 	});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsLoading(true);
 		mutation.mutate({
 			path: `leads/updatetrial/${id}`,
 			body: { bookedTrial: false },

@@ -61,10 +61,10 @@ function ArchiveRow({ children, row }) {
 					})}
 					</span>
 				</TableCell>
-				<TableCell>{`${row.student.lastName}, ${row.student.firstName}`}</TableCell>
+				<TableCell>{`${row.studentFullName}`}</TableCell>
 				<TableCell >
 					{minorStudent
-						? `${row.guardian.lastName}, ${row.guardian.firstName}`
+						? `${row.guardianFullName}`
 						: ""}
 				</TableCell>
 				<TableCell>{row.student.instrument}</TableCell>

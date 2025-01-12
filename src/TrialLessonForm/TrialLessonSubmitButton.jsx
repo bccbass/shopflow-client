@@ -6,14 +6,16 @@ import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 
-const TrialLessonSubmitButton = ({ updatedStudent, setOpen }) => {
+const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading }) => {
 	const queryClient = useQueryClient();
 	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: patchResource,
-		onSuccess: () => {queryClient.invalidateQueries(["leads"]),
-			navigate('/newstudents?view=triallessons'),
-    		setOpen(false)}
+		onSuccess: async () => {
+			await queryClient.invalidateQueries(["leads"]);
+			setIsLoading(false);
+			navigate('/newstudents?view=triallessons')
+    			}
 	});
 
 	const dataPayload = {
@@ -23,20 +25,16 @@ const TrialLessonSubmitButton = ({ updatedStudent, setOpen }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setIsLoading(true);
 		mutation.mutate({
 			path: `leads/updatetrial/${updatedStudent._id}`,
 			body: dataPayload,
 		});
-		//   if (mutation.isSuccess) {
-		//     setEditingNote();
-		//   }
 	};
 
-	return (
-		<Button variant="contained" onClick={handleSubmit}>
-			Submit
-		</Button>
-	);
+	return  (<Button variant="contained" onClick={handleSubmit}>
+				Submit
+			</Button>)
 };
 
 export default TrialLessonSubmitButton;
