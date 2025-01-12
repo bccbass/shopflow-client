@@ -12,13 +12,12 @@ import ErrorCard from '../ErrorCard'
 import TableSkeleton from "../TableSkeleton";
 
 const NewStudents = () => {
-  const [viewTrials, setViewTrials] = useState(false)
   const [ searchTerm, setSearchTerm ] = useState('')
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortOrder = searchParams.get("sort");
+  const viewTrials = searchParams.get("view") === 'triallessons';
   const leadsQuery = useQuery({
-    queryKey: ["leads", sortOrder],
-    queryFn: () => getResource("leads?sort=" + sortOrder),
+    queryKey: ["leads"],
+    queryFn: () => getResource("leads"),
   });
 
           
@@ -61,12 +60,12 @@ const NewStudents = () => {
             </Box>
             <Box sx={{width: '100%', border: '1px solid lightgrey', borderTop: 0, borderRadius: '8px', z: 20}}>
               <Box sx={{width: '100%'}}>
-                <Button onClick={() => setViewTrials(false)} sx={leftActiveStyles}>{`Enquiries (${newLeadsData.length})`}</Button>
-                <Button onClick={() => setViewTrials(true)}  sx={rightActiveStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
+                <Button onClick={() => setSearchParams({view: 'enquiries'})} sx={leftActiveStyles}>{`Enquiries (${newLeadsData.length})`}</Button>
+                <Button onClick={() => setSearchParams({view: 'triallessons'})}  sx={rightActiveStyles } >{`Trial Lessons (${trialBookedData.length})`}</Button>
               </Box>
             { viewTrials ?<EnquiriesTable enquiries={filteredArr(trialBookedData, searchTerm)} info={utilsQuery.data}/>
               :
-            <EnquiriesTable enquiries={filteredArr(newLeadsData, searchTerm)} info={utilsQuery.data}/> }
+            < EnquiriesTable enquiries={filteredArr(newLeadsData, searchTerm)} info={utilsQuery.data}/> }
             </Box>
             < Box sx={{width: '100%', display: 'flex', justifyContent: 'flex-end', mr: 4, mt: 4}}>
               < DownloadCollectionCsvButton collection="Leads" data={leadsQuery.data}/>

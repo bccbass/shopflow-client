@@ -15,7 +15,7 @@ const CancelLessonButton = ({ id, setOpen }) => {
 		onSuccess: () => {
 			queryClient.invalidateQueries(["Leads"]);
 			setOpen(false);
-			navigate('/newstudents')
+			navigate('/newstudents?view=enquiries')
 		},
 	});
 

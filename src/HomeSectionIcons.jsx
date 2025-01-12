@@ -34,7 +34,7 @@ const HomeSectionItems = () => {
     },
     {
       title: "Track Trial Lessons",
-      path: "triallessons",
+      path: "newstudents",
       description:
         "View and manage trial lessons, tracking your followup process on the path enrolling them as full time students",
       icon: <QueueMusicIcon sx={{ transform: "scale(3)" }} />,
@@ -69,9 +69,8 @@ const HomeSectionItems = () => {
             key={item.title}
             sx={{
               m: 2,
+              p: 2,
               width: "100%",
-              // border: "1px solid grey",
-              // borderRadius: 4,
             }}
           >
             <ListItemButton
@@ -82,8 +81,10 @@ const HomeSectionItems = () => {
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  px: 2.5,
+                  pl: 3.5,
+                  pb: 3,
                   justifyContent: "center",
+                  borderRadius: 4,
                 },
               ]}
             >

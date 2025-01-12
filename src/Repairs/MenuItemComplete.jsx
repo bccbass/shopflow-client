@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
@@ -8,10 +9,10 @@ import { Box, ListItemIcon, ListItemText } from "@mui/material";
 
 const MenuItemComplete = ({ repair }) => {
 	const queryClient = useQueryClient();
-
+	const navigate = useNavigate()
 	const mutation = useMutation({
 		mutationFn: patchResource,
-		onSuccess: () => queryClient.invalidateQueries(["repairs"]),
+		onSuccess: () => {queryClient.invalidateQueries(["repairs"]); navigate(`/repairs?view=${repair.completed ? 'inprogress' : 'completed'}`)},
 	});
 
 	const handleSubmit = async (e) => {

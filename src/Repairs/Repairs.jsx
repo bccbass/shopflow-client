@@ -17,17 +17,17 @@ import TableSkeleton from "../TableSkeleton";
 
 const Repairs = () => {
   const [ searchTerm, setSearchTerm ] = useState('')
-  const [viewLeft, setViewLeft] = useState(true)
   const [searchParams, setSearchParams] = useSearchParams();
-  const sortOrder = searchParams.get("sort");
+  const inProgress = searchParams.get("view") !== 'completed';
+
   const repairsQuery = useQuery({
-    queryKey: ["repairs", sortOrder],
-    queryFn: () => getResource("repairs?sort=" + sortOrder),
+    queryKey: ["repairs"],
+    queryFn: () => getResource("repairs"),
   });
 
   
-  const leftStyles ={fontSize: '1rem', width: '50%', border:'1px solid lightgrey', borderLeft: 0, borderRadius: '8px 8px 0 0', fontWeight: viewLeft ? 'bold' : '', borderBottom: !viewLeft ? '1px solid lightgrey' : 0, color: !viewLeft ? 'lightgrey' : '', backgroundColor: !viewLeft ? "#FAFAFA" : ''}
-  const rightStyles = {fontSize: '1rem', width: '50%', border:'1px solid lightgrey', borderRight: 0, borderRadius: '8px 8px 0 0', fontWeight: !viewLeft ? 'bold' : '', borderBottom: viewLeft ? '1px solid lightgrey' : 0, color: viewLeft ? 'lightgrey' : '', backgroundColor: viewLeft ? "#FAFAFA" : ''}
+  const leftStyles ={fontSize: '1rem', width: '50%', border:'1px solid lightgrey', borderLeft: 0, borderRadius: '8px 8px 0 0', fontWeight: inProgress ? 'bold' : '', borderBottom: !inProgress ? '1px solid lightgrey' : 0, color: !inProgress ? 'lightgrey' : '', backgroundColor: !inProgress ? "#FAFAFA" : ''}
+  const rightStyles = {fontSize: '1rem', width: '50%', border:'1px solid lightgrey', borderRight: 0, borderRadius: '8px 8px 0 0', fontWeight: !inProgress ? 'bold' : '', borderBottom: inProgress ? '1px solid lightgrey' : 0, color: inProgress ? 'lightgrey' : '', backgroundColor: inProgress ? "#FAFAFA" : ''}
 
   const filterArray = (arr, searchTerm) => {
     return searchTerm.length == 0 ?
@@ -75,11 +75,11 @@ const Repairs = () => {
             </Box>
             <Box sx={{width: '100%', border: '1px solid lightgrey', borderTop: 0, borderRadius: '6px', z: 20}}>
               <Box sx={{width: '100%'}}>
-                <Button onClick={() => setViewLeft(true)} sx={leftStyles}>In Progress</Button>
-                <Button onClick={() => setViewLeft(false)} sx={rightStyles } >Completed</Button>
+                <Button onClick={() => setSearchParams({view: 'inprogress'})} sx={leftStyles}>In Progress</Button>
+                <Button onClick={() => setSearchParams({view: 'completed'})} sx={rightStyles } >Completed</Button>
               </Box>
 
-            { viewLeft ? <RepairsTable repairs={filterArray(activeRepairs, searchTerm)} />
+            { inProgress ? <RepairsTable repairs={filterArray(activeRepairs, searchTerm)} />
               :
             <RepairsTable repairs={filterArray(completedRepairs, searchTerm)} />}
             </Box>

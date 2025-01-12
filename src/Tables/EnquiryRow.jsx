@@ -39,8 +39,7 @@ function EnquiryRow({ row, info }) {
   return (
     <React.Fragment>
       <TableRow
-        sx={{
-          "& > *": {
+        sx={{"& > *": {
             borderBottom: "unset",
           },
         }}

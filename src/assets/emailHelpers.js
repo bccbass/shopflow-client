@@ -21,7 +21,7 @@ All of our teachers are university qualified and experienced within the music in
 
 We have multiple options for group lessons starting at $25, and an individual rate of $51 per half hour lesson. We also offer an introductory trial lesson at a reduced rate of $25 in order for you to get an idea of lesson structure and to meet your teacher before enrolling for the term. 
 
-If you have any questions, please contact us at ${info?.phone} or support@caringbahmusic.com.au. 
+If you have any questions, please contact us at ${info?.phone} or by responding to this email. 
 
 We look forward to hearing from you and seeing you at your first lesson!
 
@@ -56,7 +56,7 @@ ${student.trialLesson.teacher} will be ${studentPossesive} teacher.
 
 After the trial lesson, please let us know how you felt it went. We will then see about finding you a set spot in our timetable.
 
-If you have any questions prior to your first lesson, please don't hesitate to ask! You can reach us at ${info.phone} or support@caringbahmusic.com.au
+If you have any questions prior to your first lesson, please don't hesitate to ask! You can reach us at ${info.phone} or by responding to this email.
 
 Kind regards, 
 Caringbah Music
@@ -80,7 +80,7 @@ I'm just following up to see how ${subjectName} enjoyed the lesson with ${studen
 
 I'd also briefly like to remind you about our price packages. Our individual rate is $51 per half hour lesson. Following the NSW school calendar, we offer 10 lessons per term, and bill per term. This can be paid at the beginning of each term, or monthly through direct debit. 
 
-If you have any other questions, we would love to hear from you at ${info.phone} or support@caringbahmusic.com.au
+If you have any other questions please reach out to us at ${info.phone} or by responding to this email.
 
 We look forward to hearing from you! 
 
