@@ -3,10 +3,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
-import { nullDueDate } from "../assets/dateHelpers";
+import { nullDate } from "../assets/dateHelpers";
 
 const TrialDetailsCard = ({ student, children }) => {
-  const noTrialDate = nullDueDate(student.trialLesson.date);
+  const noTrialDate = nullDate(student.trialLesson.date);
   return (
     <Box
       sx={{

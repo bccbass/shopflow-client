@@ -2,7 +2,7 @@
 
 import React from "react";
 import { mkConfig, generateCsv, download } from "export-to-csv";
-import { dateStamp } from "../assets/dateHelpers";
+import { dateStamp, nullDate } from "../assets/dateHelpers";
 import { Button, Tooltip } from "@mui/material";
 
 const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' }) => {
@@ -16,22 +16,20 @@ const DownloadCollectionCsvButton = ({ data, collection = false, format='leads' 
 
   const generateCSVDataFromInput = (format, inputData) => {
    if (format == 'leads'){return inputData.map((d) => { return {
-      dateCreated: d.createdDate,
-      studentFirstName: d.student.firstName,
-      studentLastName: d.student.lastName,
+      Created: d.createdDate,
+      Student: d.studentFullName,
       Adult: !d.isMinor,
-      instrument: d.student.instrument,
-      age: d.student.age,
-      guardianFirstName: d.guardian.firstName,
-      guardianLastName: d.guardian.lastName,
-      phone: d.contact.phone,
-      email: d.contact.email,
-      groupClass: d.groupClass,
-      trialLesson: d.bookedTrial,
-      enrolled: d.enrolled,
-      followUpContact: d.followUp.length + d.trialLesson.followUp.length,
-      trialTeacher: d.trialLesson.teacher,
-      trialDate: `${d.trialDate}, ${d.trialTime}`,
+      Instrument: d.student.instrument,
+      Age: d.student.age,
+      Guardian: d.guardianFullName,
+      Phone: d.contact.phone,
+      Email: d.contact.email,
+      'Group Class': d.groupClass,
+      'Trial Lesson': d.bookedTrial,
+      Enrolled: d.enrolled,
+      'Follup History': d.followUp.length + d.trialLesson.followUp.length,
+      'Trial Teacher': d.trialLesson.teacher,
+      'Trial Date': !nullDate(d.trialLesson.date) ? `${d.trialDate}, ${d.trialTime}` : '',
       }
     } )
   }

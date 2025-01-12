@@ -33,7 +33,7 @@ function ArchiveRow({ children, row }) {
 		color: "white",
 		backgroundColor: "green",
 		padding: "4px 6px",
-		marginLeft: "-.5rem",
+		marginLeft: '.7rem',
 		borderRadius: "6px",
 		fontWeight: "bold",
 	};
@@ -52,7 +52,7 @@ function ArchiveRow({ children, row }) {
 						{open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
 					</IconButton>
 				</TableCell>
-				<TableCell align="center"  >
+				<TableCell >
 					<span style={row.enrolled ? enrolledStyles : !row.enrolled && row.bookedTrial ? trialStyles : null}>
 					{ row.bookedTrial && !row.enrolled ? 'TRIAL' : row.enrolled ? 'ENROLLED' : new Date(row.dateCreated).toLocaleString("en-AU", {
 						day: "numeric",

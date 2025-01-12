@@ -50,6 +50,6 @@ const formatDate = (date, incYear=true) => {
     catch (e) {console.log('Invalid date:', e.message)}
 }
 
-  const nullDueDate = (date) => new Date(date) <= new Date("2020-01-01");
+  const nullDate = (date) => new Date(date) <= new Date("2020-01-01");
 
-export { addDays, calculateNextContact, dateStamp, localDate, nullDueDate, formatDate, getDay}
+export { addDays, calculateNextContact, dateStamp, localDate, nullDate, formatDate, getDay}

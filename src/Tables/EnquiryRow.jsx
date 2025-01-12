@@ -15,14 +15,14 @@ import SmsIcon from "@mui/icons-material/Sms";
 import RowMenu from "./RowMenu";
 import OpenEmailModalButton from "../Buttons/OpenEmailModalButton";
 import EmailForm from "../EmailForm";
-import { nullDueDate } from "../assets/dateHelpers";
+import { nullDate } from "../assets/dateHelpers";
 import { smsHref } from "../assets/helperFuncs";
 import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
 
 function EnquiryRow({ row, info }) {
   const [open, setOpen] = React.useState(false);
 
-  const noDueDate = nullDueDate(row.nextContactDate);
+  const noDueDate = nullDate(row.nextContactDate);
   const overdueStyles = {
     color: "red",
     fontWeight: "bold",

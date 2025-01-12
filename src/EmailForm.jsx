@@ -81,7 +81,7 @@ const EmailForm = ({ student, setOpen, info }) => {
           <strong>subject: </strong>
           {emailObj?.subject}
         </Typography>
-        <FormControl size="small" sx={{ width: "12rem", mt: 2 }}>
+        <FormControl size="small" sx={{ width: "12rem", mt: 2, display: 'flex', flexDirection: 'row' }}>
           <InputLabel id="templateSelect">Email Template</InputLabel>
           <Select
             labelId="templateSelect"
@@ -111,7 +111,7 @@ const EmailForm = ({ student, setOpen, info }) => {
                       fontSize: ".65rem",
                       color: "white",
                       borderRadius: "8px",
-                      padding: "2px 7px 0 7px",
+                      padding: "0px 7px 0 7px",
                       backgroundColor: "green",
                       display: "inline-block",
                     }}

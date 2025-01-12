@@ -11,7 +11,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import SmsIcon from "@mui/icons-material/Sms";
 import RepairsCollapsibleContent from "./RepairsCollapsibleContent";
-import { nullDueDate } from "../assets/dateHelpers";
+import { nullDate } from "../assets/dateHelpers";
 import RepairCompleteToggleButton from "./RepairCompleteToggleButton";
 import TogglePaidButton from "./TogglePaidButton";
 import RepairRowMenu from "./RepairRowMenu";
@@ -20,7 +20,7 @@ import OpenSMSModalButton from '../Buttons/OpenSMSModalButton'
 RepairRowMenu
 function RepairsTableRow({ row }) {
 	const [open, setOpen] = React.useState(false);
-	const noDueDate = nullDueDate(row.due);
+	const noDueDate = nullDate(row.due);
 
 	const overdueStyles = {
 		color: "red",

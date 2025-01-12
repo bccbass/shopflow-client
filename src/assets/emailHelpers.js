@@ -2,20 +2,20 @@ const emailURL = "support@caringbahmusic.com.au"
 
 const generateInitialEnquiry = (student, info, admin) => {
   const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
-  const instrument = student?.student?.instrument == "drums" ? "drum" : student?.student?.instrument ? student?.student?.instrument : 'music'
+  const instrument = student?.student?.instrument == "drums" ? "drum " : student?.student?.instrument ? student?.student?.instrument + ' ': ''
   return {
     id: 'initialEnquiry',
     label: "Initial Enquiry",
     subject: `${
       student.student?.instrument
-        ? student.student?.instrument[0].toUpperCase() +
-          student.student?.instrument.slice(1) +
+        ? instrument[0].toUpperCase() +
+          instrument.slice(1) +
           " "
         : ""
     }Lessons at Caringbah Music`,
     text: `Dear ${addressee},
     
-Thank you for reaching out and enquiring about ${instrument} lessons at Caringbah Music! We'd love to help you on your creative journey. 
+Thank you for reaching out and enquiring about ${instrument}lessons at Caringbah Music! We'd love to help you on your creative journey. 
 
 All of our teachers are university qualified and experienced within the music industry. We offer lessons six days per week at our shop and studio locations, so please let us know what days and times are most suitable for you. 
 
