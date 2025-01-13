@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Box, IconButton, Typography } from "@mui/material";
-import SectionHeader from "./SectionHeader";
+import Logo from "./Logo";
 import HomeSectionItems from "./HomeSectionIcons";
 
 const Home = () => {
@@ -37,7 +37,7 @@ const Home = () => {
             alignItems: "center",
           }}
         >
-          <Typography p={5} width={"100%"} textAlign={"center"} variant="h4">
+          <Typography sx={{fontFamily: 'Gugi'}} p={5} width={"100%"} textAlign={"center"} variant="h4">
             Welcome to ShopFlow!
           </Typography>
           <Typography p={3} variant="h5">

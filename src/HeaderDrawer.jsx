@@ -14,6 +14,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HeaderMenuItems from "./HeaderMenuItems";
+import Logo from './Logo'
 
 const drawerWidth = 240;
 
@@ -126,9 +127,7 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Shopflow
-          </Typography>
+        < Logo />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>

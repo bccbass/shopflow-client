@@ -47,7 +47,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
 				mx: "auto",
 			}}
 		>
-			<Box sx={{ display: "flex", flexDirection: "column", my: 1 }}>
+			<Box sx={{ display: "flex", flexDirection: "column", mb: 1 }}>
 				<Typography variant="h6" sx={{ mb: 2 }}>
 					Student:
 				</Typography>

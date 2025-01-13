@@ -54,8 +54,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
         flexDirection: "column",
         mb: 1,
         width: "100%",
-        mt: 2,
-        py: 4,
+        pb: 4,
         borderRadius: "5px",
       }}
     >

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Dialog, Box, DialogContent, Tooltip, Button, Typography, TextField} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import SmsIcon from '@mui/icons-material/Sms';
+import FormTitle from '../FormTitle'
 
     const OpenSMSModalButton = ({ recipient, contactNumber, customMessage='[MESSAGE]' }) => {
     
@@ -43,7 +44,7 @@ Caringbah Music`
           my: 3,
         }}
       >
-        < Typography variant="h5" color='primary' mb={4}>Compose SMS Message</Typography>
+        < FormTitle >Compose SMS Message</FormTitle>
         < TextField multiline value={textBody} id={textBody} minRows={6} sx={{width: '20rem', mb: 4}} onChange={(e) => setTextBody(e.target.value)}></TextField>
         
         <a style={{padding: '6px 15px', backgroundColor: 'cornflowerblue', borderRadius: '8px', color: 'white', textDecoration: 'none', whiteSpace: '-moz-pre-wrap'}} href={smsHref.replaceAll('\n', '%0D%0A')} onMouseUp={() => setOpen(false)}>

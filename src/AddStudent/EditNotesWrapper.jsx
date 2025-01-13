@@ -24,7 +24,7 @@ const EditNotesWrapper = ({ student, setOpen }) => {
             <TextField
             rows={6}
             size="small"
-            sx={{ width: "100%", minHeight: '40px', my: 4 }}
+            sx={{ width: "100%", minHeight: '40px', mb: 4 }}
             id="notes"
             label="Notes"
             multiline
