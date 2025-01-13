@@ -1,7 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import { Box, TextField, Tooltip, Typography, Button, Checkbox, FormControlLabel } from "@mui/material";
-
+import {
+  Box,
+  TextField,
+  Tooltip,
+  Typography,
+  Button,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
+import FormTitle from "../FormTitle";
 const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
   const [inputText, setInputText] = useState("");
   const [isAdult, setIsAdult] = useState(false);
@@ -17,7 +25,7 @@ const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
         ...blankStudent,
         student: {
           firstName: typeof name == "object" && isAdult ? name[0] : "",
-          lastName: typeof name == "object" && isAdult? name[1] : "",
+          lastName: typeof name == "object" && isAdult ? name[1] : "",
         },
         guardian: {
           firstName: typeof name == "object" && !isAdult ? name[0] : "",
@@ -27,7 +35,7 @@ const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
         leadSource: "AMS Leads",
         notes: notes,
       });
-    setOpen(false)
+    setOpen(false);
   };
 
   return (
@@ -37,23 +45,30 @@ const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        mb: 2
+        mb: 2,
       }}
     >
-      <Typography variant="h5" color='primary'>Paste and Parse Data</Typography>
+      <FormTitle>Paste and Parse Data</FormTitle>
       <TextField
         placeholder="Paste new-lead email and click 'Submit' to parse"
         multiline
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         minRows={5}
-        sx={{ width: "100%", mt: 2 }}
+        sx={{ width: "100%"}}
       ></TextField>
-      < Tooltip  placement='top' title='Select if enquiry is for an adult student' >
+      <Tooltip
+        placement="top"
+        title="Select if enquiry is for an adult student"
+      >
         <FormControlLabel
-          sx={{color: "grey", mb: 2, ml: -30}}
+          sx={{ color: "grey", mb: 2, ml: -30 }}
           control={
-            <Checkbox checked={isAdult} onChange={() => setIsAdult(!isAdult) } name="isAdult" />
+            <Checkbox
+              checked={isAdult}
+              onChange={() => setIsAdult(!isAdult)}
+              name="isAdult"
+            />
           }
           label="Adult Student"
           // labelPlacement='start'
@@ -63,8 +78,12 @@ const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
         {" "}
         Submit
       </Button>
-      <Button sx={{ mt: 1, color: 'grey' }} variant="text" onClick={() => setOpen(false)}>
-          Cancel
+      <Button
+        sx={{ mt: 1, color: "grey" }}
+        variant="text"
+        onClick={() => setOpen(false)}
+      >
+        Cancel
       </Button>
     </Box>
   );

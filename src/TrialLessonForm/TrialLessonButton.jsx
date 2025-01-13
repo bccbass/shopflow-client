@@ -16,10 +16,11 @@ const TrialLessonButton = ({ studentData, setStudentData }) => {
   };
   return (
     <Box
-      sx={{ display: "flex", flexDirection: "column", my: 2, width: "100%" }}
+      sx={{ display: "flex", flexDirection: "column", width: "100%" }}
     >
       <Button
         variant="outlined"
+        sx={{my: 2,}}
         color={studentData.bookedTrial ? "error" : "textPrimary"}
         onClick={handleTrialClick}
         startIcon={studentData.bookedTrial ? <RemoveIcon /> : <AddIcon />}
@@ -27,7 +28,8 @@ const TrialLessonButton = ({ studentData, setStudentData }) => {
         {`${!studentData.bookedTrial ? "Add" : "Remove"} Trial Lesson`}
       </Button>
 
-      <Collapse in={studentData.bookedTrial}>
+        
+        <Collapse sx={{}} in={studentData.bookedTrial}>
         <TrialLessonForm
           studentData={studentData}
           setStudentData={setStudentData}

@@ -1,5 +1,3 @@
-/** @format */
-
 import * as React from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
@@ -14,7 +12,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import HeaderMenuItems from "./HeaderMenuItems";
-import Logo from './Logo'
+import Logo from "./Logo";
 
 const drawerWidth = 240;
 
@@ -127,12 +125,14 @@ export default function MiniDrawer({ children }) {
           >
             <MenuIcon />
           </IconButton>
-        < Logo />
+          <Logo />
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
-			<Typography sx={{mr: 6.5, fontWeight: 600}} color="primary">Menu Items</Typography>
+          <Typography sx={{ mr: 6.5, fontWeight: 600 }} color="primary">
+            Menu Items
+          </Typography>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
               <ChevronRightIcon />

@@ -1,8 +1,6 @@
 import React from "react";
-import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect, useMemo } from "react";
 import {
-  Chip,
   Box,
   TextField,
   Typography,
@@ -37,8 +35,7 @@ const EmailForm = ({ student, setOpen, info }) => {
             email: "bccbass@gmail.com",
           },
         ],
-        cc: [
-        ],
+        cc: [],
         bcc: [
           {
             email: "bccbassspotify@gmail.com",
@@ -81,7 +78,10 @@ const EmailForm = ({ student, setOpen, info }) => {
           <strong>subject: </strong>
           {emailObj?.subject}
         </Typography>
-        <FormControl size="small" sx={{ width: "12rem", mt: 2, display: 'flex', flexDirection: 'row' }}>
+        <FormControl
+          size="small"
+          sx={{ mt: 2, display: "flex", flexDirection: "row" }}
+        >
           <InputLabel id="templateSelect">Email Template</InputLabel>
           <Select
             labelId="templateSelect"
@@ -90,6 +90,7 @@ const EmailForm = ({ student, setOpen, info }) => {
             name="Email Template"
             label="Email Template"
             onChange={handleSelect}
+            // sx={{ width: "14.5rem"}}
           >
             {templateArray.map((temp) => (
               <MenuItem

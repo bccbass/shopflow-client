@@ -1,16 +1,21 @@
-const emailURL = "support@caringbahmusic.com.au"
+const emailURL = "support@caringbahmusic.com.au";
 
 const generateInitialEnquiry = (student, info, admin) => {
-  const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
-  const instrument = student?.student?.instrument == "drums" ? "drum " : student?.student?.instrument ? student?.student?.instrument + ' ': ''
+  const addressee = student.isMinor
+    ? student.guardian.firstName
+    : student.student.firstName;
+  const instrument =
+    student?.student?.instrument == "drums"
+      ? "drum "
+      : student?.student?.instrument
+      ? student?.student?.instrument + " "
+      : "";
   return {
-    id: 'initialEnquiry',
+    id: "initialEnquiry",
     label: "Initial Enquiry",
     subject: `${
       student.student?.instrument
-        ? instrument[0].toUpperCase() +
-          instrument.slice(1) +
-          " "
+        ? instrument[0].toUpperCase() + instrument.slice(1) + " "
         : ""
     }Lessons at Caringbah Music`,
     text: `Dear ${addressee},
@@ -30,33 +35,45 @@ Caringbah Music`,
   };
 };
 
-
 const generateTrialConfirmation = (student, info, admin) => {
-  const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
-  const studentPossesive =  student.isMinor ? student.student.firstName + "'s" : 'your'
-  const location = info?.locations?.filter(location => student.trialLesson.location === location.name)[0]
-  const instrument = student?.trialLesson?.instrument == "drums" ? "drum " : student?.trialLesson?.instrument ? student?.trialLesson?.instrument + ' ': ''
+  const addressee = student.isMinor
+    ? student.guardian.firstName
+    : student.student.firstName;
+  const studentPossesive = student.isMinor
+    ? student.student.firstName + "'s"
+    : "your";
+  const location = info?.locations?.filter(
+    (location) => student.trialLesson.location === location.name
+  )[0];
+  const instrument =
+    student?.trialLesson?.instrument == "drums"
+      ? "drum "
+      : student?.trialLesson?.instrument
+      ? student?.trialLesson?.instrument + " "
+      : "";
 
   return {
-    id: 'trialConfirmation',
+    id: "trialConfirmation",
     label: "Trial Confirmation",
     subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee},
      
-Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of your ${instrument}lesson below:
+Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive} ${instrument}lesson below:
 
 Day: ${student.trialDay}
 Date: ${student.trialDate}
 Time: ${student.trialTime}
-Address:  ${location ? location.streetAddress : '' } 
-		${location ? location.suburb + ',' : ''} ${location ? location.state : '' } 
-		${location ? location.description : ''}
+Address:  ${location ? location.streetAddress : ""} 
+		${location ? location.suburb + "," : ""} ${location ? location.state : ""} 
+		${location ? location.description : ""}
 
 ${student.trialLesson.teacher} will be ${studentPossesive} teacher.
 
 After the trial lesson, please let us know how you felt it went. We will then see about finding you a set spot in our timetable.
 
-If you have any questions prior to your first lesson, please don't hesitate to ask! You can reach us at ${info.phone} or by responding to this email.
+If you have any questions prior to your first lesson, please don't hesitate to ask! You can reach us at ${
+      info.phone
+    } or by responding to this email.
 
 Kind regards, 
 Caringbah Music
@@ -66,34 +83,42 @@ caringbahmusic.com.au
 };
 
 const generateTrialFollowUp = (student, info) => {
-  const subjectName =  student.isMinor ? student.student.firstName : 'you'
-  const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
+  const subjectName = student.isMinor ? student.student.firstName : "you";
+  const addressee = student.isMinor
+    ? student.guardian.firstName
+    : student.student.firstName;
   return {
-    id: 'trialFollowUp',
+    id: "trialFollowUp",
     label: "Trial Follow Up",
     subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee}, 
 
 I hope you're well! 
 
-I'm just following up to see how ${subjectName} enjoyed the lesson with ${student.trialLesson.teacher.split(' ')[0]}, and whether you would be keen to enroll in weekly lessons? These lessons would be for the same day and time. 
+I'm just following up to see how ${subjectName} enjoyed the lesson with ${
+      student.trialLesson.teacher.split(" ")[0]
+    }, and whether you would be keen to enroll in weekly lessons? These lessons would be for the same day and time. 
 
 I'd also briefly like to remind you about our price packages. Our individual rate is $51 per half hour lesson. Following the NSW school calendar, we offer 10 lessons per term, and bill per term. This can be paid at the beginning of each term, or monthly through direct debit. 
 
-If you have any other questions please reach out to us at ${info.phone} or by responding to this email.
+If you have any other questions please reach out to us at ${
+      info.phone
+    } or by responding to this email.
 
 We look forward to hearing from you! 
 
 Kind regards, 
 Caringbah Music
-`
+`,
   };
 };
 
 const generateJamEnquiry = (student) => {
-  const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
+  const addressee = student.isMinor
+    ? student.guardian.firstName
+    : student.student.firstName;
   return {
-    id: 'jamEnquiry',
+    id: "jamEnquiry",
     label: "Jam Group Enquiry",
     subject: `Adult Jam Groups at Caringbah Music`,
     text: `Hi ${addressee},
@@ -113,9 +138,11 @@ Caringbah Music`,
 };
 
 const generateBlankEnquiry = (student) => {
-  const addressee =  student.isMinor ? student.guardian.firstName : student.student.firstName
+  const addressee = student.isMinor
+    ? student.guardian.firstName
+    : student.student.firstName;
   return {
-    id: 'blank',
+    id: "blank",
     label: "Blank Template",
     subject: `Music Lessons at Caringbah Music`,
     text: `Dear ${addressee},
@@ -127,8 +154,12 @@ Caringbah Music`,
   };
 };
 
-
-const createEmailTemplateArray = (student, info) => [generateInitialEnquiry(student, info), generateTrialConfirmation(student, info), generateTrialFollowUp(student, info), generateJamEnquiry(student), generateBlankEnquiry(student)]
-
+const createEmailTemplateArray = (student, info) => [
+  generateInitialEnquiry(student, info),
+  generateTrialConfirmation(student, info),
+  generateTrialFollowUp(student, info),
+  generateJamEnquiry(student),
+  generateBlankEnquiry(student),
+];
 
 export { createEmailTemplateArray, emailURL };

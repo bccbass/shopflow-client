@@ -1,3 +1,5 @@
+/** @format */
+
 import React from "react";
 import { Container, Box, IconButton, Typography } from "@mui/material";
 import Logo from "./Logo";
@@ -7,7 +9,6 @@ const Home = () => {
   return (
     <Container sx={{ pt: 10, pb: 20, width: "100vw" }}>
       {/* <SectionHeader title="Home" setSearchParams={null} /> */}
-    
 
       <Box
         border={"1px solid grey"}
@@ -37,7 +38,13 @@ const Home = () => {
             alignItems: "center",
           }}
         >
-          <Typography sx={{fontFamily: 'Gugi'}} p={5} width={"100%"} textAlign={"center"} variant="h4">
+          <Typography
+            sx={{ fontFamily: "Gugi" }}
+            p={5}
+            width={"100%"}
+            textAlign={"center"}
+            variant="h4"
+          >
             Welcome to ShopFlow!
           </Typography>
           <Typography p={3} variant="h5">
@@ -48,7 +55,7 @@ const Home = () => {
             sales orders, and so much more...
           </Typography>
         </Box>
-        <Box p={2} width={"50%"} maxWidth={'25rem'}>
+        <Box p={2} width={"50%"} maxWidth={"25rem"}>
           <HomeSectionItems />
         </Box>
       </Box>
