@@ -14,7 +14,7 @@ const CancelLessonButton = ({ id, setIsLoading }) => {
 		mutationFn: patchResource,
 		onSuccess: async () => {
 			await queryClient.invalidateQueries(["Leads"]);
-			setIsLoading(false);
+			// setIsLoading(false);
 			navigate('/newstudents?view=enquiries')
 		},
 	});

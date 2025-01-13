@@ -13,8 +13,7 @@ const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading, setOpen }) => {
 		mutationFn: patchResource,
 		onSuccess: async () => {
 			await queryClient.invalidateQueries(["leads"]);
-			setIsLoading(false);
-			setOpen(false),
+			// setIsLoading(false);
 			navigate('/newstudents?view=triallessons')
     			}
 	});
