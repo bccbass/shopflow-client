@@ -55,7 +55,7 @@ const generateTrialConfirmation = (student, info, admin) => {
   return {
     id: "trialConfirmation",
     label: "Trial Confirmation",
-    subject: `Trial Lesson Info for ${student.trialDay}, ${student.trialDate} at ${student.trialTime}`,
+    subject: `Trial Lesson Info for ${student.trialDay.split(' ')[0]}, ${student.trialDate} at ${student.trialTime}`,
     text: `Hi ${addressee},
      
 Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive} ${instrument}lesson below:
