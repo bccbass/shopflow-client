@@ -30,7 +30,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
           gutterBottom
           color="textSecondary"
           component="div"
-          sx={{ pb: 1 }}
+          // sx={{ pb: 1 }}
         >
           <strong> Notes </strong>
         </Typography>

@@ -39,7 +39,7 @@ const Home = () => {
           }}
         >
           <Typography
-            sx={{ fontFamily: "Gugi" }}
+            sx={{ fontFamily: "Gugi", transform: 'skew(-6deg)' }}
             p={5}
             width={"100%"}
             textAlign={"center"}
