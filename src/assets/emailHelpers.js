@@ -60,7 +60,7 @@ const generateTrialConfirmation = (student, info, admin) => {
      
 Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive} ${instrument}lesson below:
 
-Day: ${student.trialDay}
+Day: ${student?.trialDay?.split(' ')[0]}
 Date: ${student.trialDate}
 Time: ${student.trialTime}
 Address:  ${location ? location.streetAddress : ""} 

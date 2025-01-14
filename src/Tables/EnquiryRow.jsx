@@ -21,7 +21,6 @@ import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
 
 function EnquiryRow({ row, info }) {
   const [open, setOpen] = React.useState(false);
-  console.log(row.trialDay)
   const noDueDate = nullDate(row.nextContactDate);
   const overdueStyles = {
     color: "red",
