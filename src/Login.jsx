@@ -9,10 +9,8 @@ const Login = () => {
 	return (
 		<Container
 			sx={{
-				badgroundColor: "red",
-				height: "500px",
-				m: 0,
 				p: 0,
+				mr: '10.3rem',
 				width: "100vw",
 			}}
 		>

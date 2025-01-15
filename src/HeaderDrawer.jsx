@@ -113,38 +113,39 @@ export default function MiniDrawer({ children }) {
 	return (
 		<Box sx={{ display: "flex", mt: 10, ml: 1 }}>
 			<CssBaseline />
-			<AppBar position="fixed" open={open}>
-				<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-					{true && (
-						<IconButton
-							color="inherit"
-							aria-label="open drawer"
-							onClick={handleDrawerOpen}
-							edge="start"
-							sx={[
-								{
-									marginRight: 5,
-								},
-								open && { display: "none" },
-							]}
+				<AppBar position="fixed" open={open}>
+					<Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+						{true && (
+							<IconButton
+								color="inherit"
+								aria-label="open drawer"
+								onClick={handleDrawerOpen}
+								edge="start"
+								sx={[
+									{
+										marginRight: 5,
+									},
+									open && { display: "none" },
+								]}
+							>
+								<MenuIcon />
+							</IconButton>
+						)}
+						<Logo variant="h4" />
+						<Box
+							display={"flex"}
+							width={"10rem"}
+							alignItems={"flex-end"}
+							justifyContent={"space-between"}
 						>
-							<MenuIcon />
-						</IconButton>
-					)}
-					<Logo />
-					<Box
-						display={"flex"}
-						width={"10rem"}
-						alignItems={"flex-end"}
-						justifyContent={"space-between"}
-					>
-						<Button sx={{}} color="inherit">
-							Logout
-						</Button>
-						<Avatar sx={{ bgcolor: "salmon" }}>TBD</Avatar>
-					</Box>
-				</Toolbar>
-			</AppBar>
+							<Button sx={{}} color="inherit">
+								Logout
+							</Button>
+							<Avatar sx={{ bgcolor: "salmon" }}>TBD</Avatar>
+						</Box>
+					</Toolbar>
+				</AppBar>
+			
 			{true && (
 				<Drawer variant="permanent" open={open}>
 					<DrawerHeader>

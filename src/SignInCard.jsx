@@ -91,7 +91,13 @@ export default function SignInCard() {
 	};
 
 	return (
-		<Card variant="outlined" sx={{ margin: "auto", mt: {xs: 4, sm: 8, med: 12, lg: 16 }}}>
+		<Card
+			variant="outlined"
+			sx={{
+				mx: "auto",
+				mt: { xs: 4, sm: 2, md: 8, xl: 12},
+			}}
+		>
 			<Box sx={{ display: { xs: "flex", md: "none" } }}></Box>
 			<Logo variant="h3" color="primary" />
 			<Typography
