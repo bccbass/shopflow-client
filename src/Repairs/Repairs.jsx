@@ -52,7 +52,7 @@ const Repairs = () => {
     <Container sx={{ m: 0, pb: 12}}>
 
       <SectionHeader title="Repairs" />
-      <Box sx={{ display: "flex", mx: 'auto', width: '90vw', flexWrap: "wrap" }}>
+      <Box sx={{ display: "flex", mx: 'auto', px: {sm: '1rem', lg: '4rem', xl: '12rem'}, width: '90vw', flexWrap: "wrap"}}>
         {repairsQuery.isLoading ? (
           < TableSkeleton />
         ) : repairsQuery.isError ? (

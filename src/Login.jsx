@@ -10,8 +10,8 @@ const Login = () => {
 		<Container
 			sx={{
 				p: 0,
-				mr: '10.3rem',
-				width: "100vw",
+				mx: 'auto',
+				width: "100%",
 			}}
 		>
 			<SignInCard />

@@ -20,6 +20,7 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           justifyContent: "space-around",
           alignItems: 'center',
           mx: "auto",
+          width: "90vw",
           mt: 6,
           mb: 8,
         }}>

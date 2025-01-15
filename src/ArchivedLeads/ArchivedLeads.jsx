@@ -36,7 +36,7 @@ const ArchivedLeads = () => {
   return (
     <Container sx={{ m: 0, mb: 10}}>
       <SectionHeader title="Archived Leads" />
-      <Box sx={{ display: "flex", mx: 'auto', width: '90vw', flexWrap: "wrap" }}>
+      <Box sx={{ display: "flex", mx: 'auto', px: {sm: '1rem', lg: '4rem', xl: '12rem'}, width: '90vw', flexWrap: "wrap"}}>
         {archive.isLoading ? (
           < TableSkeleton tabs={false}/>
         ) : archive.isError ? (

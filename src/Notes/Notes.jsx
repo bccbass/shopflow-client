@@ -31,7 +31,7 @@ const filterArray = (arr, searchTerm) => {
   }
 
 	return (
-		< Container sx={{mb:20, mx: 0}}>
+		< Container sx={{mb:20, mx: 0, width: '100vw'}}>
 			<SectionHeader
 				setSearchParams={ setSearchParams }
 				title="Notes"
@@ -39,7 +39,7 @@ const filterArray = (arr, searchTerm) => {
 
              <Box
               sx={{
-                width: "100%",
+                width: "90vw",
                 display: "flex",
                 justifyContent: "flex-end",
                 mb: 4,
@@ -48,7 +48,7 @@ const filterArray = (arr, searchTerm) => {
             >
               < Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
             </Box>
-			<Box sx={{display: 'flex', flexWrap: 'wrap'}}>
+			<Box sx={{display: 'flex', flexWrap: 'wrap', width: '90vw', justifyContent: {xs: 'center', lg: 'flex-start'}}}>
 				{notesQuery.isLoading ? (
 					<Loading />
 				) : notesQuery.isError ? (
