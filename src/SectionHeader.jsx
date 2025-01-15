@@ -11,7 +11,7 @@ const SectionHeader = ({ setSearchParams, title }) => {
   const sortOptions = ["new", "old", "due"];
 
   return (
-    <Box sx={{ mx: 0, mt: 6, mb: 6, width: '85vw' }}  >
+    <Box sx={{ mx: 0, mt: 6, mb: 6, width: '90vw' }}  >
       <Typography variant="h4" color="primary" 
         // sx={{textTransform: "uppercase"}}
        >

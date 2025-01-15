@@ -1,9 +1,9 @@
 import React from 'react'
 import { Typography } from '@mui/material'
 
-const Logo = ({variant='h5'}) => {
+const Logo = ({variant='h5', color='white'}) => {
   return (
-    <Typography className="audiowide" sx={{fontFamily: "Gugi", transform: 'skew(-6deg)'}} variant={variant} noWrap component="div">
+    <Typography align='center' color={color} className="audiowide" sx={{fontFamily: "Gugi", transform: 'skew(-6deg)'}} variant={variant} noWrap component="div">
         ShopFlow
     </Typography>
   )

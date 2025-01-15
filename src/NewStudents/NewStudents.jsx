@@ -46,9 +46,9 @@ const NewStudents = () => {
 
 
   return (
-    <Container sx={{ m: 0, pb: 16 }}>
+    <Container sx={{ width: '100vw', m: 0, pb: 16 }}>
       <SectionHeader title="New Students" />
-      <Box sx={{ display: "flex", w: "100vw", flexWrap: "wrap" }}>
+      <Box sx={{ display: "flex", mx: 'auto', width: '90vw', flexWrap: "wrap"}}>
         {leadsQuery.isLoading || utilsQuery.isLoading? (
           <TableSkeleton/>
         ) : leadsQuery.isError || utilsQuery.isError ? (
