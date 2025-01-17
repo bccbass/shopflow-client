@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import SmsIcon from '@mui/icons-material/Sms';
 import FormTitle from '../FormTitle'
 
-    const OpenSMSModalButton = ({ recipient, contactNumber, customMessage='[MESSAGE]' }) => {
+    const OpenSMSModalButton = ({ recipient, contactNumber, customMessage='[MESSAGE]', admin='' }) => {
     
         const newMsg = 
 `Hi ${recipient}, 
@@ -13,6 +13,7 @@ import FormTitle from '../FormTitle'
 ${customMessage}
 
 Thank you, 
+${admin}
 Caringbah Music`
   
     const [open, setOpen] = useState(false);

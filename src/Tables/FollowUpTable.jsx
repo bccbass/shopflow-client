@@ -7,9 +7,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
+import FollowUpForm from "../Tables/FollowUpForm";
 import { Divider } from "@mui/material";
 
-const FollowUpTable = ({ followUpEvents }) => {
+const FollowUpTable = ({ followUpEvents, lead }) => {
   return (
     <TableContainer sx={{ mb: 0 }}>
       <Divider sx={{ my: 2.5 }} />
@@ -27,11 +28,12 @@ const FollowUpTable = ({ followUpEvents }) => {
           <TableRow>
             <TableCell sx={{ width: "20%" }}>Date</TableCell>
             <TableCell>Admin</TableCell>
-            <TableCell>Chat</TableCell>
-            <TableCell>Voicemail</TableCell>
-            <TableCell>Email</TableCell>
-            <TableCell>Text</TableCell>
-            <TableCell sx={{ width: "37%" }}>Notes</TableCell>
+            <TableCell align="center">Chat</TableCell>
+            <TableCell align="center">Voicemail</TableCell>
+            <TableCell align="center">Email</TableCell>
+            <TableCell align="center">Text</TableCell>
+            <TableCell sx={{}}>Notes</TableCell>
+            <TableCell sx={{}}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -40,7 +42,7 @@ const FollowUpTable = ({ followUpEvents }) => {
               <TableCell component="th" scope="row">
                 {contact.followUpInitDate}
               </TableCell>
-              <TableCell>{contact.admin}</TableCell>
+              <TableCell sx={{pl: 3.2}}>{contact.admin}</TableCell>
               <TableCell align="center" sx={{ color: "green" }}>
                 {contact.method?.chat === true ? "✓" : ""}
               </TableCell>
@@ -54,8 +56,10 @@ const FollowUpTable = ({ followUpEvents }) => {
                 {contact.method?.text === true ? "✓" : ""}
               </TableCell>
               <TableCell>{contact?.notes}</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           ))}
+          < FollowUpForm lead={lead}/>
         </TableBody>
       </Table>
     </TableContainer>

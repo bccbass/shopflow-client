@@ -4,9 +4,9 @@ import { Box, Skeleton } from '@mui/material'
 const TableSkeleton = ( {tabs=true}) => {
   return (
     <Box sx={{width: '100vw'}}>
-        < Box sx={{width: '100%', display: 'flex', mt: 0, mb: 4, pr: 2, justifyContent: 'flex-end'}}>
+        {/* < Box sx={{width: '100%', display: 'flex', mt: 0, mb: 4, pr: 2, justifyContent: 'flex-end'}}>
             < Skeleton variant='circular' width={45} height={45}/>
-        </Box>
+        </Box> */}
         <Box sx={{width: '100%', borderTop: 0, borderRadius: '8px'}}>
         {tabs && <Box sx={{width: '100%', display: 'flex', height: '2.7rem'}}>
             <Box  sx={{width: '50%', border:'1px solid lightgrey',backgroundColor: '#FAFAFA',  borderRadius: '8px 8px 0 0', borderBottom: 0}}/>

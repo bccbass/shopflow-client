@@ -7,15 +7,16 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
 import { addDays } from '../assets/dateHelpers'
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postResource } from "../assets/apiHelpers";
-
+import { UserContext } from '../UserContext'
 const NoteForm = () => {
+  const { user } = useContext(UserContext)
   const blankNote = {
     title: "",
     body: "",
-    createdBy: "",
+    createdBy: `${user.firstName} ${user.lastName[0]}.`,
     due: addDays(3),
   };
   

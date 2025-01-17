@@ -3,7 +3,7 @@
 import React from "react";
 import { Box, Typography, Button, ButtonGroup, Divider } from "@mui/material";
 
-const SectionHeader = ({ setSearchParams, title }) => {
+const SectionHeader = ({ setSearchParams, title, children }) => {
   const handleSort = (e) => {
     setSearchParams({ sort: e.target.name });
   };
@@ -11,12 +11,17 @@ const SectionHeader = ({ setSearchParams, title }) => {
   const sortOptions = ["new", "old", "due"];
 
   return (
-    <Box sx={{ mx: 0, mt: 6, mb: 6, width: '90vw' }}  >
-      <Typography variant="h4" color="primary" 
+    <Box sx={{ mx: 0, mt: 6, mb: 6, width: "90vw" }}>
+      <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
+      <Typography
+        variant="h4"
+        color="primary"
         // sx={{textTransform: "uppercase"}}
-       >
+      >
         {title}
       </Typography>
+      {children}
+      </Box>
       <Divider />
       {setSearchParams != null && (
         <Box sx={{ display: "flex", alignContent: "", height: 15, my: 1 }}>

@@ -15,71 +15,64 @@ import FollowUpForm from "../Tables/FollowUpForm";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 
 const RowCollapsibleContent = ({ lead }) => {
-	return (
-		<Box sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
-			<Container
-				sx={{
-					display: "flex",
-					pt: 2,
-					justifyContent: "space-between",
-					width: "100%",
-				}}
-			>
-				{/* Main Content in this container */}
-				<EnquiryDetailsCard lead={lead}>
-					<OpenUpdateModalButton  title={"Edit Student"}>
-						<EditStudentFormWrapper student={lead}/>
-					</OpenUpdateModalButton>
-				</EnquiryDetailsCard>
+  return (
+    <Box sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
+      <Container
+        sx={{
+          display: "flex",
+          pt: 2,
+          justifyContent: "space-between",
+          width: "100%",
+        }}
+      >
+        {/* Main Content in this container */}
+        <EnquiryDetailsCard lead={lead}>
+          <OpenUpdateModalButton title={"Edit Student"}>
+            <EditStudentFormWrapper student={lead} />
+          </OpenUpdateModalButton>
+        </EnquiryDetailsCard>
 
-				<TrialDetailsCard student={lead}>
-					<OpenUpdateModalButton title={"Edit Trial"}>
-						<TrialLessonWrapper student={lead} />
-					</OpenUpdateModalButton>
-				</TrialDetailsCard>
+        <TrialDetailsCard student={lead}>
+          <OpenUpdateModalButton title={"Edit Trial"}>
+            <TrialLessonWrapper student={lead} />
+          </OpenUpdateModalButton>
+        </TrialDetailsCard>
 
-				<EnquiryNotesCard lead={lead}>
-					<OpenUpdateModalButton  title={"Edit Notes"}>
-						<EditNotesWrapper student={lead}/>
-					</OpenUpdateModalButton>
-				</EnquiryNotesCard>
-			</Container>
+        <EnquiryNotesCard lead={lead}>
+          <OpenUpdateModalButton title={"Edit Notes"}>
+            <EditNotesWrapper student={lead} />
+          </OpenUpdateModalButton>
+        </EnquiryNotesCard>
+      </Container>
 
-			{ !lead.enrolled &&
-				<>
-					<FollowUpTable
-						followUpEvents={
-							lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
-						}
-					/>
-					<FollowUpForm lead={lead} />
-					<Box
-						sx={{
-							width: "100%",
-							display: "flex",
-							justifyContent: "flex-end",
-							px: 4,
-							mt: 4,
-						}}
-					></Box>{" "}
-				</>
-			}
+      {!lead.enrolled && (
+        <>
+          <FollowUpTable
+            lead={lead}
+            followUpEvents={
+              lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
+            }
+          />
+        </>
+      )}
 
-			<Box sx={{ width: "100%", display: "flex", justifyContent: "center", mt: lead.enrolled ? 2 : 0 }}>
-				<SubmitUpdateButton
-					submitProps={{
-						updatedData: { enrolled: !lead.enrolled },
-						path: "leads/updatetrial/" + lead._id,
-						type: "patch",
-						title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${
-							lead.studentFullName
-						}`,
-						variant: "outlined",
-					}}
-				/>
-			</Box>
-		</Box>
-	);
+      <Box
+        sx={{ width: "100%", display: "flex", justifyContent: "center", mt: 4 }}
+      >
+        <SubmitUpdateButton
+          submitProps={{
+            updatedData: { enrolled: !lead.enrolled },
+            path: "leads/updatetrial/" + lead._id,
+            type: "patch",
+            title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${
+              lead.studentFullName
+            }`,
+            variant: "outlined",
+          }}
+        />
+      </Box>
+    </Box>
+  );
 };
 
 export default RowCollapsibleContent;

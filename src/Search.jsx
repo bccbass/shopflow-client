@@ -11,7 +11,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
     }
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'flex-end', height: '2.5rem' }}>
+    <Box sx={{ display: 'flex', alignItems: 'flex-end', height: '2.5rem', mr: 10, mb: 1 }}>
 
         <Collapse in={showInput}>
              <TextField 
@@ -21,7 +21,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
                     label="Search" 
                     variant="standard" 
                     value={searchTerm} 
-                    sx={{mr: 2, mb: 1}}
+                    sx={{mr: 2, mb: -1.1}}
                     onChange={e => setSearchTerm(e.target.value)}
             />
          </Collapse>

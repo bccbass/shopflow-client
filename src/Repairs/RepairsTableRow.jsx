@@ -1,6 +1,7 @@
 /** @format */
 
 import * as React from "react";
+import { useContext } from "react";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
@@ -16,9 +17,11 @@ import RepairCompleteToggleButton from "./RepairCompleteToggleButton";
 import TogglePaidButton from "./TogglePaidButton";
 import RepairRowMenu from "./RepairRowMenu";
 import OpenSMSModalButton from '../Buttons/OpenSMSModalButton'
+import { UserContext } from "../UserContext";
 
 RepairRowMenu
 function RepairsTableRow({ row }) {
+	const {user} = useContext(UserContext)
 	const [open, setOpen] = React.useState(false);
 	const noDueDate = nullDate(row.due);
 
@@ -79,6 +82,7 @@ function RepairsTableRow({ row }) {
          			<OpenSMSModalButton 
 					 	contactNumber={row.phone} 
 						recipient={row.firstName}
+						admin={user.firstName}
 						customMessage={`Your ${row.instrument ? row.instrument.toLowerCase() : 'instrument'} repair is complete and is ready to be picked up.`}/>
 				</TableCell>
 				<TableCell >

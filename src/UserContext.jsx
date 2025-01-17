@@ -12,6 +12,7 @@ export const UserProvider = ({ children }) => {
     queryKey: ["user"],
     queryFn: () => getResource("auth/me"),
     retry: false,
+    enabled: document.cookie.includes('token'),
     staleTime: 1000 * 60 * 5, // Cache the user data for 5 minutes,
   });
 

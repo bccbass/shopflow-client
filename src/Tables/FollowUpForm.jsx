@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { useContext } from "react";
 import {
   Box,
   Typography,
@@ -8,13 +9,18 @@ import {
   FormGroup,
   Checkbox,
   Tooltip,
+  TableRow,
+  TableCell,
 } from "@mui/material";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 import { calculateNextContact } from "../assets/dateHelpers";
+import { UserContext } from "../UserContext";
 
 const FollowUpForm = ({ lead }) => {
+  const { user } = useContext(UserContext);
+
   const blankFormData = {
-    admin: "",
+    admin: user.initials,
     method: { chat: false, voicemail: false, email: false, text: false },
     notes: "",
   };
@@ -48,28 +54,12 @@ const FollowUpForm = ({ lead }) => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "100%",
-      }}
-    >
-      <FormGroup
-        sx={{
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          flexWrap: "nowrap",
-          width: "100%",
-          alignItems: "flex-start",
-        }}
-      >
+    <TableRow>
+      <TableCell>
         <TextField
           variant="standard"
+          sx={{width: '90%'}}
           size="normal"
-          sx={{ width: "16%", minWidth: "8rem", mt: 1.67, pr: 5, ml: 1 }}
           helperText="Next Contact Date"
           name="nextContactDate"
           id="nextContactDate"
@@ -77,63 +67,54 @@ const FollowUpForm = ({ lead }) => {
           onChange={(e) => setDate(e.target.value)}
           value={date}
         />
-        <TextField
-          size="small"
-          // minWidth: "1rem",
-          sx={{ width: "6%", minWidth: "3rem" }}
-          id="admin"
-          label="Admin"
-          multiline
-          name="admin"
-          value={formData.admin}
-          onChange={handleChange}
-          variant="standard"
-          onSubmit={handleSubmit}
-        />
-        <Box
-          sx={{
-            mt: 1,
-            width: "31%",
-            minWidth: "18rem",
-            display: "flex",
-            justifyContent: "space-between",
-            ml: 2
-          }}
+      </TableCell>
+      <TableCell>
+        <Typography
+          sx={{ mt: 1.67, mx: { xs: 2.5, lg: 1 } }}
         >
-          <Tooltip title="Chat" placement="top">
-            <Checkbox
-              name="chat"
-              onChange={handleCheckboxChange}
-              checked={!!formData.method.chat}
-            />
-          </Tooltip>
-          <Tooltip title="Voicemail" placement="top">
-            <Checkbox
-              name="voicemail"
-              onChange={handleCheckboxChange}
-              checked={!!formData.method.voicemail}
-            />
-          </Tooltip>
-
-          <Tooltip title="Email" placement="top">
-            <Checkbox
-              name="email"
-              onChange={handleCheckboxChange}
-              checked={!!formData.method.email}
-            />
-          </Tooltip>
-
-          <Tooltip title="Text" placement="top">
-            <Checkbox
-              name="text"
-              onChange={handleCheckboxChange}
-              checked={!!formData.method.text}
-            />
-          </Tooltip>
-        </Box>
+          {user.initials}
+        </Typography>
+      </TableCell>
+      <TableCell align='center'>
+        <Tooltip title="Chat" placement="top">
+          <Checkbox
+            name="chat"
+            onChange={handleCheckboxChange}
+            checked={!!formData.method.chat}
+          />
+        </Tooltip>
+      </TableCell>
+      <TableCell align='center'>
+        <Tooltip title="Voicemail" placement="top">
+          <Checkbox
+            name="voicemail"
+            onChange={handleCheckboxChange}
+            checked={!!formData.method.voicemail}
+          />
+        </Tooltip>
+      </TableCell>
+      <TableCell align='center'>
+        <Tooltip title="Email" placement="top">
+          <Checkbox
+            name="email"
+            onChange={handleCheckboxChange}
+            checked={!!formData.method.email}
+          />
+        </Tooltip>
+      </TableCell>
+      <TableCell align='center'>
+        <Tooltip title="Text" placement="top">
+          <Checkbox
+            name="text"
+            onChange={handleCheckboxChange}
+            checked={!!formData.method.text}
+          />
+        </Tooltip>
+      </TableCell>
+      <TableCell>
         <TextField
           size="small"
-          sx={{ width: "29%" }}
+          sx={{ width: "100%" }}
           id="notes"
           label="Notes"
           multiline
@@ -142,7 +123,8 @@ const FollowUpForm = ({ lead }) => {
           onChange={handleChange}
           variant="standard"
         />
-
+      </TableCell>
+      <TableCell sx={{}}>
         <SubmitUpdateButton
           submitProps={{
             updatedData: constructedPayload,
@@ -153,8 +135,8 @@ const FollowUpForm = ({ lead }) => {
             title: "add",
           }}
         />
-      </FormGroup>
-    </Box>
+      </TableCell>
+    </TableRow>
   );
 };
 

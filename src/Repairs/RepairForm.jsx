@@ -1,14 +1,25 @@
 /** @format */
 
 import React from "react";
-import { Box, TextField, MenuItem, InputAdornment, Checkbox, FormControlLabel} from "@mui/material";
+import { useContext } from "react";
+import {
+  Box,
+  TextField,
+  MenuItem,
+  InputAdornment,
+  Checkbox,
+  FormControlLabel,
+} from "@mui/material";
+import { UserContext } from '../UserContext'
 
 const status = ["In Progress", "Awaiting Response", "Completed"];
-const RepairForm = ({ setRepairData, repairData }) => {
 
+const RepairForm = ({ setRepairData, repairData }) => {
+  const { user } = useContext(UserContext)
   const handleChange = (e) =>
     setRepairData({
       ...repairData,
+      createdBy: user.initials,
       [e.target.name]: e.target.value,
     });
   return (
@@ -88,7 +99,7 @@ const RepairForm = ({ setRepairData, repairData }) => {
           onChange={handleChange}
         />
       </Box>
-  
+
       <Box
         sx={{
           display: "flex",
@@ -98,7 +109,7 @@ const RepairForm = ({ setRepairData, repairData }) => {
         }}
       >
         <TextField
-          sx={{ width: "35%" }}
+          sx={{ width: "49%" }}
           size="small"
           id="due"
           type="date"
@@ -107,7 +118,7 @@ const RepairForm = ({ setRepairData, repairData }) => {
           value={repairData?.due}
           onChange={handleChange}
         />
-        <TextField
+        {/* <TextField
           sx={{ width: "28%" }}
           size="small"
           id="createdBy"
@@ -115,9 +126,9 @@ const RepairForm = ({ setRepairData, repairData }) => {
           name="createdBy"
           value={repairData?.createdBy}
           onChange={handleChange}
-        />
+        /> */}
         <TextField
-          sx={{ width: "31%" }}
+          sx={{ width: "49%" }}
           size="small"
           id="status"
           helperText="status"
@@ -134,7 +145,7 @@ const RepairForm = ({ setRepairData, repairData }) => {
           ))}
         </TextField>
       </Box>
-       <Box
+      <Box
         sx={{
           my: 2,
           display: "flex",
@@ -153,13 +164,31 @@ const RepairForm = ({ setRepairData, repairData }) => {
           onChange={handleChange}
           slotProps={{
             input: {
-              startAdornment: <InputAdornment position="start">$</InputAdornment>,
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
             },
-          }}        
-          />
+          }}
+        />
 
-      <FormControlLabel sx={{mr: 10, color: 'grey'}} labelPlacement='start' control={<Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } />} label="Paid:" />
-      {/* <Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } /> */}
+        <FormControlLabel
+          sx={{ mr: 10, color: "grey" }}
+          labelPlacement="start"
+          control={
+            <Checkbox
+              name="paid"
+              checked={repairData?.paid}
+              onChange={(e) =>
+                setRepairData({
+                  ...repairData,
+                  [e.target.name]: e.target.checked,
+                })
+              }
+            />
+          }
+          label="Paid:"
+        />
+        {/* <Checkbox name='paid' checked={repairData?.paid} onChange={e => setRepairData({...repairData, [e.target.name]: e.target.checked}) } /> */}
       </Box>
       <Box
         sx={{
@@ -171,7 +200,7 @@ const RepairForm = ({ setRepairData, repairData }) => {
         }}
       >
         <TextField
-           multiline
+          multiline
           sx={{ width: "100%" }}
           size="small"
           id="notes"

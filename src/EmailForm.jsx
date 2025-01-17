@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useContext } from "react";
 import {
   Box,
   TextField,
@@ -12,9 +12,11 @@ import {
 } from "@mui/material";
 import SendEmail from "./Buttons/SendEmail";
 import { createEmailTemplateArray, emailURL } from "./assets/emailHelpers.js";
+import { UserContext } from './UserContext.jsx'
 
 const EmailForm = ({ student, setOpen, info }) => {
-  const templateArray = createEmailTemplateArray(student, info);
+  const { user } = useContext( UserContext )
+  const templateArray = createEmailTemplateArray(student, info, user.firstName);
 
   const defaultTemplateId = useMemo(
     () =>
@@ -95,7 +97,7 @@ const EmailForm = ({ student, setOpen, info }) => {
             {templateArray.map((temp) => (
               <MenuItem
                 key={temp.id}
-                name={temp.label}
+                name={temp?.label}
                 disabled={
                   (!student.bookedTrial &&
                     (temp.id == "trialConfirmation" ||

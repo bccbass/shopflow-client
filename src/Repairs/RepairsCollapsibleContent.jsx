@@ -1,14 +1,17 @@
 /** @format */
 
 import React from "react";
+import { useContext } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import DeleteButton from '../Buttons/DeleteButton'
 import AddRepairButton from "./AddRepairButton";
 import RepairFormWrapper from "./RepairFormWrapper";
 import { localDate } from "../assets/dateHelpers";
+import { UserContext } from "../UserContext";
 
 
 const RepairsCollapsibleContent = ({ row }) => {
+	const { user } = useContext(UserContext)
 	const overdueStyles = {
 		color: "red",
 		fontWeight: 'bold'
@@ -35,7 +38,7 @@ const RepairsCollapsibleContent = ({ row }) => {
 				<Box sx={{ py: 2, width: "25%" }}>
 					<Typography color="textSecondary" >
 						<strong> Created: </strong>
-						{localDate(row.dateCreated)}
+						{ `${user.initials}  ${localDate(row.dateCreated)}` }
 					</Typography>
 					<Typography color="textSecondary">
 						<strong> Name: </strong>

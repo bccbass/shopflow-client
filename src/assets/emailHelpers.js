@@ -1,4 +1,5 @@
 const emailURL = "support@caringbahmusic.com.au";
+import { nullDate } from './dateHelpers'
 
 const generateInitialEnquiry = (student, info, admin) => {
   const addressee = student.isMinor
@@ -31,11 +32,13 @@ If you have any questions, please contact us at ${info?.phone} or by responding 
 We look forward to hearing from you and seeing you at your first lesson!
 
 Kind regards, 
+${admin}
 Caringbah Music`,
   };
 };
 
 const generateTrialConfirmation = (student, info, admin) => {
+  const noDate = nullDate(student.trialLesson.date)
   const addressee = student.isMinor
     ? student.guardian.firstName
     : student.student.firstName;
@@ -60,10 +63,10 @@ const generateTrialConfirmation = (student, info, admin) => {
      
 Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive} ${instrument}lesson below:
 
-Day: ${student?.trialDay?.split(' ')[0]}
-Date: ${student.trialDate}
-Time: ${student.trialTime}
-Location: ${location.name[0].toUpperCase() + location.name.slice(1)} 
+Day: ${noDate ? '': student?.trialDay?.split(' ')[0]}
+Date: ${noDate ? '': student?.trialDate}
+Time: ${student?.trialTime}
+Location: ${location ? location.name[0].toUpperCase() + location.name.slice(1) : ''} 
                 ${location ? location.streetAddress : ""} 
                 ${location ? location.suburb + "," : ""} ${location ? location.state : ""} 
                 ${location ? location.description : ""}
@@ -77,13 +80,13 @@ If you have any questions prior to your first lesson, please don't hesitate to a
     } or by responding to this email.
 
 Kind regards, 
+${admin}
 Caringbah Music
-caringbahmusic.com.au
 `,
   };
 };
 
-const generateTrialFollowUp = (student, info) => {
+const generateTrialFollowUp = (student, info, admin) => {
   const subjectName = student.isMinor ? student.student.firstName : "you";
   const addressee = student.isMinor
     ? student.guardian.firstName
@@ -109,12 +112,13 @@ If you have any other questions please reach out to us at ${
 We look forward to hearing from you! 
 
 Kind regards, 
+${admin}
 Caringbah Music
 `,
   };
 };
 
-const generateJamEnquiry = (student) => {
+const generateJamEnquiry = (student, admin) => {
   const addressee = student.isMinor
     ? student.guardian.firstName
     : student.student.firstName;
@@ -134,11 +138,12 @@ We have a performance at the Brass Monkey twice a year to showcase the hard work
 Please let me know if you have any questions?
 
 Kind regards, 
+${admin}
 Caringbah Music`,
   };
 };
 
-const generateBlankEnquiry = (student) => {
+const generateBlankEnquiry = (student, admin) => {
   const addressee = student.isMinor
     ? student.guardian.firstName
     : student.student.firstName;
@@ -151,16 +156,17 @@ const generateBlankEnquiry = (student) => {
 [Message]
 
 Kind regards, 
+${admin}
 Caringbah Music`,
   };
 };
 
-const createEmailTemplateArray = (student, info) => [
-  generateInitialEnquiry(student, info),
-  generateTrialConfirmation(student, info),
-  generateTrialFollowUp(student, info),
-  generateJamEnquiry(student),
-  generateBlankEnquiry(student),
+const createEmailTemplateArray = (student, info, admin) => [
+  generateInitialEnquiry(student, info, admin),
+  generateTrialConfirmation(student, info, admin),
+  generateTrialFollowUp(student, info, admin),
+  generateJamEnquiry(student, admin),
+  generateBlankEnquiry(student, admin),
 ];
 
 export { createEmailTemplateArray, emailURL };

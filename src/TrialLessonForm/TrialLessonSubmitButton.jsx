@@ -14,7 +14,8 @@ const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading, setOpen }) => {
 		onSuccess: async () => {
 			await queryClient.invalidateQueries(["leads"]);
 			// setIsLoading(false);
-			navigate('/newstudents?view=triallessons')
+			navigate(`/newstudents?view=${'triallessons'}`)
+			setOpen(false)
     			}
 	});
 

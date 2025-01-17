@@ -1,7 +1,7 @@
 /** @format */
 
 import * as React from "react";
-import PropTypes from "prop-types";
+import { useContext } from "react";
 import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import TableCell from "@mui/material/TableCell";
@@ -10,16 +10,15 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import RowCollapsibleContent from "./RowCollapsibleContent";
 import CallButton from "../Buttons/CallButton";
-import CallIcon from "@mui/icons-material/Call";
-import SmsIcon from "@mui/icons-material/Sms";
 import RowMenu from "./RowMenu";
 import OpenEmailModalButton from "../Buttons/OpenEmailModalButton";
 import EmailForm from "../EmailForm";
 import { nullDate } from "../assets/dateHelpers";
-import { smsHref } from "../assets/helperFuncs";
 import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
+import { UserContext } from "../UserContext";
 
 function EnquiryRow({ row, info }) {
+  const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const noDueDate = nullDate(row.nextContactDate);
   const overdueStyles = {
@@ -38,7 +37,8 @@ function EnquiryRow({ row, info }) {
   return (
     <React.Fragment>
       <TableRow
-        sx={{"& > *": {
+        sx={{
+          "& > *": {
             borderBottom: "unset",
           },
         }}
@@ -55,29 +55,37 @@ function EnquiryRow({ row, info }) {
         <TableCell>
           <span
             style={
-              row.overdue && !row.enrolled ? overdueStyles : row.enrolled ? enrolledStyles : null
+              row.overdue && !row.enrolled
+                ? overdueStyles
+                : row.enrolled
+                ? enrolledStyles
+                : null
             }
           >
             {noDueDate ? "" : row.enrolled ? "ENROLLED" : row.contactDate}
           </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
-        <TableCell >
-          {row.isMinor ? `${row.guardianFullName}` : ""}
-        </TableCell>
+        <TableCell>{row.isMinor ? `${row.guardianFullName}` : ""}</TableCell>
         <TableCell>{row.student.instrument}</TableCell>
 
         <TableCell>
-         < CallButton phoneNumber={row.contact.phone}/>
+          <CallButton phoneNumber={row.contact.phone} />
         </TableCell>
         <TableCell>
-          < OpenEmailModalButton dataObj={row} email={row.contact.email} >
-              <EmailForm student={row} info={info}/>
+          <OpenEmailModalButton dataObj={row} email={row.contact.email}>
+            <EmailForm student={row} info={info} />
           </OpenEmailModalButton>
         </TableCell>
         <TableCell>
-         <OpenSMSModalButton contactNumber={row.contact.phone} recipient={row.isMinor ? row.guardian.firstName : row.student.firstName}/>
-         </TableCell>
+          <OpenSMSModalButton
+            admin={user.firstName}
+            contactNumber={row.contact.phone}
+            recipient={
+              row.isMinor ? row.guardian.firstName : row.student.firstName
+            }
+          />
+        </TableCell>
         <TableCell>
           <RowMenu lead={row} />
         </TableCell>
