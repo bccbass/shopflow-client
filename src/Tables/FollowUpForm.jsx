@@ -70,7 +70,7 @@ const FollowUpForm = ({ lead }) => {
       </TableCell>
       <TableCell>
         <Typography
-          sx={{ mt: 1.67, mx: { xs: 2.5, lg: 1 } }}
+          sx={{ mt: 1.67, mx: 1 }}
         >
           {user.initials}
         </Typography>

@@ -26,7 +26,7 @@ const RowCollapsibleContent = ({ lead }) => {
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
-          <OpenUpdateModalButton >
+          <OpenUpdateModalButton>
             <EditStudentFormWrapper student={lead} />
           </OpenUpdateModalButton>
         </EnquiryDetailsCard>
@@ -38,7 +38,7 @@ const RowCollapsibleContent = ({ lead }) => {
         </TrialDetailsCard>
 
         <EnquiryNotesCard lead={lead}>
-          <OpenUpdateModalButton >
+          <OpenUpdateModalButton>
             <EditNotesWrapper student={lead} />
           </OpenUpdateModalButton>
         </EnquiryNotesCard>
@@ -62,11 +62,11 @@ const RowCollapsibleContent = ({ lead }) => {
           submitProps={{
             updatedData: { enrolled: !lead.enrolled },
             path: "leads/updatetrial/" + lead._id,
+            variant: 'contained',
             type: "patch",
             title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${
               lead.studentFullName
             }`,
-            variant: "outlined",
           }}
         />
       </Box>

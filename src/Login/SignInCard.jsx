@@ -18,6 +18,8 @@ import { styled } from "@mui/material/styles";
 import Logo from "../Logo";
 import { handleLogin } from "../assets/apiHelpers";
 import { UserContext } from "../UserContext";
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -196,10 +198,11 @@ export default function SignInCard() {
           sx={{ mt: 4 }}
           type="submit"
           fullWidth
+          disabled={mutation.isPending}
           variant="contained"
           onClick={validateInputs}
         >
-          Sign in
+          {mutation.isPending ? < CircularProgress size={'25px'}/> : 'Sign In'}
         </Button>
         {/* <Typography sx={{ textAlign: "center" }}>
 					Don&apos;t have an account?{" "}
