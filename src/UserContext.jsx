@@ -1,12 +1,12 @@
 import React from "react";
-import { createContext, useState, useEffect } from "react";
-import { getResource } from "./assets/apiHelpers";
-import { useQuery } from "@tanstack/react-query";
+import { createContext } from "react";
+import { getResource, postResource } from "./assets/apiHelpers";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  // const [user, setUser] = useState(null);
+  const queryClient = useQueryClient();
 
   const {data: user, isLoading, isError, refetch} = useQuery({
     queryKey: ["user"],
@@ -14,18 +14,25 @@ export const UserProvider = ({ children }) => {
     retry: false,
     staleTime: 1000 * 60 * 5, // Cache the user data for 5 minutes,
   });
-//   console.log(data, isLoading, isError, refetch);
+
+  const logout = () => {
+    mutation.mutate({ path: "auth/logout" });
+  };
+  const mutation = useMutation({
+    mutationFn: postResource,
+    onError: (error) => console.log("logout error", error),
+    onSuccess: () => {
+      queryClient.removeQueries(['user'])
+    },
+  });
+
 
   if (isError) console.error('Failed to fetch user data');
 
 
-  // useEffect(() => {
-  //   if (!isError && !isLoading) setUser(data);
-  //   console.log('from useeffect')
-  // }, [isLoading, isError, data]);
 
   return (
-    <UserContext.Provider value={{ user, isLoading, refetch }}>
+    <UserContext.Provider value={{ user, logout, isLoading, refetch }}>
       {children}
     </UserContext.Provider>
   );

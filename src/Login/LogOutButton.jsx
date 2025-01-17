@@ -7,26 +7,13 @@ import { Button } from "@mui/material";
 import { UserContext } from "../UserContext";
 
 const LogOutButton = () => {
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
-  const handleSubmit = () => {
-    mutation.mutate({ path: "auth/logout" });
-  };
-  const mutation = useMutation({
-    mutationFn: postResource,
-    onError: (error) => console.log("error", error),
+  const { logout } =useContext(UserContext)
 
-    onSuccess: () => {
-      navigate("/login");
-      console.log("success fn logout");
-      queryClient.removeQueries(["user"]);
 
-    },
-  });
 
   return (
-    <Button onClick={handleSubmit} sx={{}} color="inherit">
+    <Button onClick={logout} sx={{}} color="inherit">
       Logout
     </Button>
   );
