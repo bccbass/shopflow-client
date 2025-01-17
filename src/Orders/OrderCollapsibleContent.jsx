@@ -4,13 +4,13 @@ import React from "react";
 import { useContext } from "react";
 import { Box, Container, Typography } from "@mui/material";
 import DeleteButton from '../Buttons/DeleteButton'
-import AddRepairButton from "./AddRepairButton";
-import RepairFormWrapper from "./RepairFormWrapper";
+import AddOrderButton from "./AddOrderButton";
+import OrderFormWrapper from "./OrderFormWrapper";
 import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
 
 
-const RepairsCollapsibleContent = ({ row }) => {
+const OrdersCollapsibleContent = ({ row }) => {
 	const { user } = useContext(UserContext)
 	const overdueStyles = {
 		color: "red",
@@ -25,7 +25,7 @@ const RepairsCollapsibleContent = ({ row }) => {
                 sx={{mb: 2}}
 				textAlign='center'
 			>
-				<strong> {`Repair Details: ${row.instrument} ${row.jobDescription}`} </strong>
+				<strong> {`Order Details: ${row.instrument} ${row.jobDescription}`} </strong>
 			</Typography>
 			<Box
 				sx={{
@@ -38,7 +38,7 @@ const RepairsCollapsibleContent = ({ row }) => {
 				<Box sx={{ py: 2, width: "25%" }}>
 					<Typography color="textSecondary" >
 						<strong> Created: </strong>
-						{ `${row.createdBy}  ${localDate(row.dateCreated)}` }
+						{ `${user.initials}  ${localDate(row.dateCreated)}` }
 					</Typography>
 					<Typography color="textSecondary">
 						<strong> Name: </strong>
@@ -97,9 +97,9 @@ const RepairsCollapsibleContent = ({ row }) => {
 						<strong> {row.paid ? "Amount Paid:" : "Amount Owed:"} {row.amount && "$"+ row?.amount} </strong>
 						
 					</Typography>
-				<AddRepairButton repair={row}>
-					<RepairFormWrapper />
-				</AddRepairButton>
+				<AddOrderButton order={row}>
+					<OrderFormWrapper />
+				</AddOrderButton>
 			</Box>
 			<Box sx={{width:"100%", px: 4, display: 'flex', justifyContent: 'flex-end'}}>
 
@@ -108,4 +108,4 @@ const RepairsCollapsibleContent = ({ row }) => {
 	);
 };
 
-export default RepairsCollapsibleContent;
+export default OrdersCollapsibleContent;

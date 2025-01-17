@@ -17,7 +17,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
     >
       <Box
         sx={{
-          py: 2,
+          pt: 2,
           ml: 3,
           flex: 2,
           width: "100%",
@@ -36,14 +36,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
         </Typography>
         <Typography>{lead?.notes}</Typography>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          // my: 4,
-          ml: 2,
-        }}
-      >
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         {children}
       </Box>
     </Box>

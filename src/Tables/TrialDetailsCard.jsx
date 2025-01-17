@@ -21,7 +21,7 @@ const TrialDetailsCard = ({ student, children }) => {
     >
       <Box
         sx={{
-          py: 2,
+          pt: 2,
           mr: 3,
           flex: 2,
           // minHeight: "250px",
@@ -37,7 +37,7 @@ const TrialDetailsCard = ({ student, children }) => {
           <strong> Trial Lesson </strong>
         </Typography>
         {!student.bookedTrial ? (
-          <Box sx={{ mt: '60%' }}>
+          <Box sx={{ mt: "60%" }}>
             <OpenUpdateModalButton title={"Book Trial"}>
               <TrialLessonWrapper student={student} />
             </OpenUpdateModalButton>
@@ -77,14 +77,7 @@ const TrialDetailsCard = ({ student, children }) => {
           </>
         )}
       </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "flex-start",
-          // my: 4,
-        }}
-      >
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         {student.bookedTrial ? children : null}
       </Box>
     </Box>

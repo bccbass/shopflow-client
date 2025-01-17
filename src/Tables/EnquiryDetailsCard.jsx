@@ -12,7 +12,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         width: "30%",
       }}
     >
-      <Box sx={{ py: 2, flex: 2, mr: 3 }}>
+      <Box sx={{ pt: 2, flex: 2, mr: 3 }}>
         <Typography
           variant="h6"
           gutterBottom
@@ -30,6 +30,12 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           <strong> Student: </strong>
           {`${lead.studentFullName}`}
         </Typography>
+        {lead.student?.instrument && (
+          <Typography>
+            <strong>Instrument: </strong>
+            {lead.student?.instrument}
+          </Typography>
+        )}
         {lead.isMinor && (
           <Typography>
             <strong> Parent: </strong>
@@ -48,16 +54,20 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           <strong> Source: </strong>
           {lead?.leadSource}
         </Typography>
-        <Typography>
-          <strong>Group Class: </strong>
-          {lead.student?.groupClass}
-        </Typography>
+        {lead.student?.groupClass && (
+          <Typography>
+            <strong>Group Class: </strong>
+            {lead.student?.groupClass}
+          </Typography>
+        )}
         <Typography>
           <strong> Age: </strong>
           {lead?.student?.age}
         </Typography>
       </Box>
-      {children}
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+        {children}
+      </Box>
     </Box>
   );
 };

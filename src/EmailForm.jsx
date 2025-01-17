@@ -12,10 +12,11 @@ import {
 } from "@mui/material";
 import SendEmail from "./Buttons/SendEmail";
 import { createEmailTemplateArray, emailURL } from "./assets/emailHelpers.js";
-import { UserContext } from './UserContext.jsx'
+import { UserContext } from "./UserContext.jsx";
+import FormTitle from "./FormTitle.jsx";
 
 const EmailForm = ({ student, setOpen, info }) => {
-  const { user } = useContext( UserContext )
+  const { user } = useContext(UserContext);
   const templateArray = createEmailTemplateArray(student, info, user.firstName);
 
   const defaultTemplateId = useMemo(
@@ -67,10 +68,10 @@ const EmailForm = ({ student, setOpen, info }) => {
 
   return (
     <Box>
-      <Typography variant="h5" align="center" color="primary">
+      <FormTitle variant="h5">
         Email{" "}
         {student.isMinor ? student.guardianFullName : student.studentFullName}{" "}
-      </Typography>
+      </FormTitle>
       <Box sx={{ display: "flex", flexDirection: "column", mt: 4, mb: 2 }}>
         <Typography variant="h6" color="textSecondary">
           <strong>to: </strong>

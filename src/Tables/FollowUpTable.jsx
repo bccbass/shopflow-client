@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
-import FollowUpForm from "../Tables/FollowUpForm";
+import FollowUpForm from "./FollowUpForm";
 import { Divider } from "@mui/material";
 
 const FollowUpTable = ({ followUpEvents, lead }) => {
@@ -42,7 +42,7 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
               <TableCell component="th" scope="row">
                 {contact.followUpInitDate}
               </TableCell>
-              <TableCell sx={{pl: 3.2}}>{contact.admin}</TableCell>
+              <TableCell sx={{ pl: 3.2 }}>{contact.admin}</TableCell>
               <TableCell align="center" sx={{ color: "green" }}>
                 {contact.method?.chat === true ? "✓" : ""}
               </TableCell>
@@ -59,7 +59,7 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
               <TableCell></TableCell>
             </TableRow>
           ))}
-          < FollowUpForm lead={lead}/>
+          <FollowUpForm lead={lead} />
         </TableBody>
       </Table>
     </TableContainer>

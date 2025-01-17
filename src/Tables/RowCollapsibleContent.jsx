@@ -11,7 +11,6 @@ import EnquiryNotesCard from "./EnquiryNotesCard";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
-import FollowUpForm from "../Tables/FollowUpForm";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 
 const RowCollapsibleContent = ({ lead }) => {
@@ -27,19 +26,19 @@ const RowCollapsibleContent = ({ lead }) => {
       >
         {/* Main Content in this container */}
         <EnquiryDetailsCard lead={lead}>
-          <OpenUpdateModalButton title={"Edit Student"}>
+          <OpenUpdateModalButton >
             <EditStudentFormWrapper student={lead} />
           </OpenUpdateModalButton>
         </EnquiryDetailsCard>
 
         <TrialDetailsCard student={lead}>
-          <OpenUpdateModalButton title={"Edit Trial"}>
+          <OpenUpdateModalButton>
             <TrialLessonWrapper student={lead} />
           </OpenUpdateModalButton>
         </TrialDetailsCard>
 
         <EnquiryNotesCard lead={lead}>
-          <OpenUpdateModalButton title={"Edit Notes"}>
+          <OpenUpdateModalButton >
             <EditNotesWrapper student={lead} />
           </OpenUpdateModalButton>
         </EnquiryNotesCard>
