@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Avatar from "@mui/material/Avatar";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
@@ -20,6 +19,7 @@ import HeaderMenuItems from "./HeaderMenuItems";
 import Logo from "./Logo";
 import LogOutButton from "./Login/LogOutButton";
 import { UserContext } from "./UserContext";
+import UserAvatar from "./UserAvatar";
 
 const drawerWidth = 240;
 
@@ -143,7 +143,7 @@ export default function MiniDrawer({ children }) {
                 justifyContent={"space-between"}
               >
                 <LogOutButton />
-                <Avatar sx={{ bgcolor: "salmon" }}>{user.initials}</Avatar>
+                <UserAvatar user={user}/>
               </Box>
             </>
           ) : (
