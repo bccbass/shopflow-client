@@ -10,26 +10,72 @@ import AddStudents from "./AddStudent/AddStudents";
 import ArchivedLeads from "./ArchivedLeads/ArchivedLeads";
 import Repairs from "./Repairs/Repairs";
 import RouteNotFound from "./RouteNotFound";
-import Login from './Login'
+import Login from "./Login/Login";
+import PrivateRoute from "./PrivateRoute";
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <HeaderDrawer>
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/addstudent" element={<AddStudents />} />
-          <Route path="/newstudents" element={<NewStudents />} />
-          <Route path="/repairs" element={< Repairs />} />
-          <Route path="/notes" element={<Notes />} />
-          <Route path="/archive" element={< ArchivedLeads />} />
-          <Route path="*" element={< RouteNotFound />} />
-        </Routes>
-      </HeaderDrawer>
-    </>
+    <HeaderDrawer>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+              <Login />
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/addstudent"
+          element={
+            <PrivateRoute>
+              <AddStudents />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/newstudents"
+          element={
+            <PrivateRoute>
+              <NewStudents />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/repairs"
+          element={
+            <PrivateRoute>
+              <Repairs />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/notes"
+          element={
+            <PrivateRoute>
+              <Notes />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/archive"
+          element={
+            <PrivateRoute>
+              <ArchivedLeads />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<RouteNotFound />} />
+      </Routes>
+    </HeaderDrawer>
   );
 }
 
