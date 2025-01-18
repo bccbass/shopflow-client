@@ -69,11 +69,11 @@ const FollowUpForm = ({ lead }) => {
         />
       </TableCell>
       <TableCell>
-        <Typography
+        {/* <Typography
           sx={{ mt: 1.67, mx: 1 }}
         >
           {user.initials}
-        </Typography>
+        </Typography> */}
       </TableCell>
       <TableCell align='center'>
         <Tooltip title="Chat" placement="top">

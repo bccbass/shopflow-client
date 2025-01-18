@@ -11,8 +11,6 @@ const minutesArray = ["00", "15", "30", "45"];
 const ampmArray = ["am", "pm"];
 
 const TrialLessonForm = ({ setStudentData, studentData }) => {
-
-
   const utilsQuery = useQuery({
     queryKey: ["utils"],
     queryFn: () => getResource("utils?resource=info"),
@@ -210,11 +208,15 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           onChange={handleTrialLessonChange}
         >
           {!teachersQuery.isLoading && !teachersQuery.isError ? (
-            teachersQuery?.data?.map((teacher) => (
-              <MenuItem value={teacher.firstLast} key={teacher._id}>
-                {teacher.firstLast}
-              </MenuItem>
-            ))
+            teachersQuery?.data
+              ?.filter((teacher) =>
+                teacher.instruments.includes(studentData.trialLesson.instrument)
+              )
+              .map((teacher) => (
+                <MenuItem value={teacher.firstLast} key={teacher._id}>
+                  {teacher.firstLast}
+                </MenuItem>
+              ))
           ) : (
             <MenuItem></MenuItem>
           )}

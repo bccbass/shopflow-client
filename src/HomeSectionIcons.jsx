@@ -13,6 +13,7 @@ import NoteIcon from "@mui/icons-material/Note";
 import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import DownloadIcon from "@mui/icons-material/Download";
 
 const HomeSectionItems = () => {
   const navigate = useNavigate();
@@ -22,38 +23,46 @@ const HomeSectionItems = () => {
       title: "Add New Leads",
       path: "addstudent",
       description:
-        "Add a new student to the system, tracking progress from lead to enrollment",
-      icon: <PersonAddIcon sx={{ transform: "scale(3)" }} />,
+        "Easily add new students to the system and track their journey from lead to enrollment.",
+      icon: <PersonAddIcon />,
     },
     {
       title: "View New Leads",
       path: "newstudents",
       description:
-        "View and manage new leads, tracking your followup process on the path to converting them to students",
-      icon: <PersonIcon sx={{ transform: "scale(3)" }} />,
+        "Manage new leads with a clear follow-up process to convert them into students.",
+      icon: <PersonIcon />,
     },
     {
       title: "Track Trial Lessons",
       path: "newstudents?view=triallessons",
       description:
-        "View and manage trial lessons, tracking your followup process on the path enrolling them as full time students",
-      icon: <QueueMusicIcon sx={{ transform: "scale(3)" }} />,
+        "Oversee trial lessons and follow up to successfully enroll students full-time.",
+      icon: <QueueMusicIcon />,
     },
     {
       title: "Notes",
       path: "notes",
       description:
-        "View and manage shared notes - a convenient place to handle administration handoff and monitor tasks that fall outside of narrowly defined needs.",
-      icon: <NoteIcon sx={{ transform: "scale(3)" }} />,
+        "Access and manage shared notes to streamline administration and track open tasks.",
+      icon: <NoteIcon />,
     },
     {
       title: "Archive",
       path: "archive",
       description:
-        "View and manage archived students and leads, tracking business history and trends.",
-      icon: <InboxIcon sx={{ transform: "scale(3)" }} />,
+        "Review archived students and leads to analyze business history and trends.",
+      icon: <InboxIcon />,
+    },
+    {
+      title: "Download",
+      path: "/",
+      description:
+        "Export your data in clean, pre-formatted CSV files for easy portability.",
+      icon: <DownloadIcon />,
     },
   ];
+
   return (
     <>
       <List
@@ -61,16 +70,19 @@ const HomeSectionItems = () => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
+          mt: 3,
+          px: { xs: 0, lg: 2, xl: 6 },
           alignItems: "center",
+          justifyContent: "space-around",
+          width: "100%",
         }}
       >
         {menuItems.map((item) => (
           <ListItem
             key={item.title}
             sx={{
-              m: 2,
-              p: 2,
-              width: "100%",
+              width: "30%",
+              minWidth: "19rem",
             }}
           >
             <ListItemButton
@@ -79,30 +91,43 @@ const HomeSectionItems = () => {
               sx={[
                 {
                   display: "flex",
-                  flexDirection: "row",
+                  flexDirection: "column",
                   alignItems: "center",
-                  pl: 3.5,
                   pb: 3,
+                  pt: 6,
                   justifyContent: "center",
                   borderRadius: 4,
                 },
               ]}
             >
               <ListItemIcon
+                sx={{
+                  pl: 2,
+                  pb: 1,
+                  transform: "scale(3)",
+                }}
               >
                 {item.icon}
               </ListItemIcon>
               <Box
                 sx={{
-                  pt: 2, pl:2
+                  pt: 2,
                 }}
               >
                 {/* <ListItemText primary={item.title} sx={{ fontSize: "20rem" }} />
                 <ListItemText primary={item.description} sx={[]} /> */}
-                <Typography variant="h6" color="primary" >
+                <Typography
+                  align="center"
+                  fontWeight={"bold"}
+                  variant="h6"
+                  color="primary"
+                >
                   {item.title}
                 </Typography>
-                <Typography  color="textSecondary" style={{textAlign: 'justify'}} >
+                <Typography
+                  color="textSecondary"
+                  sx={{ textAlign: "center" }}
+                >
                   {item.description}
                 </Typography>
               </Box>
