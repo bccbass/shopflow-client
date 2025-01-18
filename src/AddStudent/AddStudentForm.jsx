@@ -98,7 +98,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
             				<em>None</em>
           				</MenuItem>
 						{loaded ? (
-							utilsQuery.data.instruments.map((instrument) => (
+							utilsQuery.data?.instruments?.map((instrument) => (
 								<MenuItem value={instrument} key={instrument}>
 									{instrument}
 								</MenuItem>
@@ -122,7 +122,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
             				<em>None</em>
           				</MenuItem>
 						{loaded ? (
-							utilsQuery.data.groupClasses.map((group) => (
+							utilsQuery.data?.groupClasses?.map((group) => (
 								<MenuItem value={group} key={group}>
 									{group}
 								</MenuItem>
@@ -230,7 +230,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
             				<em>None</em>
           				</MenuItem>
 						{loaded ? (
-							utilsQuery.data.leadSources.map((instrument) => (
+							utilsQuery.data?.leadSources?.map((instrument) => (
 								<MenuItem value={instrument} key={instrument}>
 									{instrument}
 								</MenuItem>

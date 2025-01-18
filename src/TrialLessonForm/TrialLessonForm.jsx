@@ -154,7 +154,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
             <em>None</em>
           </MenuItem>
           {loaded ? (
-            utilsQuery.data.instruments.map((instrument) => (
+            utilsQuery.data?.instruments?.map((instrument) => (
               <MenuItem value={instrument} key={instrument}>
                 {instrument}
               </MenuItem>
@@ -179,7 +179,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
             <em>None</em>
           </MenuItem>
           {loaded ? (
-            utilsQuery.data.groupClasses.map((group) => (
+            utilsQuery.data?.groupClasses?.map((group) => (
               <MenuItem value={group} key={group}>
                 {group}
               </MenuItem>
@@ -210,7 +210,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           onChange={handleTrialLessonChange}
         >
           {!teachersQuery.isLoading && !teachersQuery.isError ? (
-            teachersQuery.data.map((teacher) => (
+            teachersQuery?.data?.map((teacher) => (
               <MenuItem value={teacher.firstLast} key={teacher._id}>
                 {teacher.firstLast}
               </MenuItem>
@@ -231,7 +231,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           onChange={handleTrialLessonChange}
         >
           {loaded ? (
-            utilsQuery.data.locations.map((location) => (
+            utilsQuery.data?.locations?.map((location) => (
               <MenuItem value={location.name} key={location._id}>
                 {location.name}
               </MenuItem>
