@@ -53,8 +53,8 @@ export default function SignInCard() {
   const mutation = useMutation({
     mutationFn: handleLogin,
     onError: (error) => console.error("error", error),
-
     onSuccess: () => {
+      // queryClient.invalidateQueries(['user']); // Refresh user data
       navigate("/");
     },
   });

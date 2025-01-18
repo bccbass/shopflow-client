@@ -1,7 +1,7 @@
 /** @format */
 
-import { useState } from "react";
-import { Routes, Route } from "react-router";
+import { useState, useContext } from "react";
+import { Routes, Route, Navigate } from "react-router";
 import HeaderDrawer from "./HeaderDrawer";
 import Home from "./Home";
 import Notes from "./Notes/Notes";
@@ -12,8 +12,10 @@ import Repairs from "./Repairs/Repairs";
 import RouteNotFound from "./RouteNotFound";
 import Login from "./Login/Login";
 import PrivateRoute from "./PrivateRoute";
+import { UserContext } from "./UserContext";
 
 function App() {
+  const { user } = useContext(UserContext);
   const [count, setCount] = useState(0);
 
   return (
@@ -21,9 +23,7 @@ function App() {
       <Routes>
         <Route
           path="/login"
-          element={
-              <Login />
-          }
+          element={!user ? <Login /> : <Navigate to="/" />}
         />
         <Route
           path="/"

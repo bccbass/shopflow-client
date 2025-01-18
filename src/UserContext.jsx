@@ -8,29 +8,31 @@ export const UserContext = createContext();
 export const UserProvider = ({ children }) => {
   const queryClient = useQueryClient();
 
-  const {data: user, isLoading, isError, refetch} = useQuery({
+  const {
+    data: user,
+    isLoading,
+    isError,
+    refetch,
+  } = useQuery({
     queryKey: ["user"],
     queryFn: () => getResource("auth/me"),
     retry: false,
-    enabled: document.cookie.includes('token'),
     staleTime: 1000 * 60 * 5, // Cache the user data for 5 minutes,
+  });
+
+  const mutation = useMutation({
+    mutationFn: postResource,
+    onError: (error) => console.log("logout error", error),
+    onSuccess: () => {
+      queryClient.setQueryData(['user'], null);
+    },
   });
 
   const logout = () => {
     mutation.mutate({ path: "auth/logout" });
   };
-  const mutation = useMutation({
-    mutationFn: postResource,
-    onError: (error) => console.log("logout error", error),
-    onSuccess: () => {
-      queryClient.removeQueries(['user'])
-    },
-  });
 
-
-  if (isError) console.error('Failed to fetch user data');
-
-
+  if (isError) console.error("Failed to fetch user data");
 
   return (
     <UserContext.Provider value={{ user, logout, isLoading, refetch }}>
