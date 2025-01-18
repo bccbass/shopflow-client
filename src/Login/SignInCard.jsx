@@ -18,9 +18,7 @@ import { styled } from "@mui/material/styles";
 import Logo from "../Logo";
 import { handleLogin } from "../assets/apiHelpers";
 import { UserContext } from "../UserContext";
-import CircularProgress from '@mui/material/CircularProgress';
-
-
+import CircularProgress from "@mui/material/CircularProgress";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -41,6 +39,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
+  const [generalError, setGeneralError] = React.useState("");
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -52,9 +51,13 @@ export default function SignInCard() {
 
   const mutation = useMutation({
     mutationFn: handleLogin,
-    onError: (error) => console.error("error", error),
+    onError: (error) => {
+      setEmailError(true);
+      setPasswordError(true);
+      setGeneralError("Invalid email or password");
+      console.error("error", error);
+    },
     onSuccess: () => {
-      // queryClient.invalidateQueries(['user']); // Refresh user data
       navigate("/");
     },
   });
@@ -79,6 +82,12 @@ export default function SignInCard() {
       password: data.get("password"),
     };
     mutation.mutate({ refetch: refetch, body: userObj });
+  };
+
+  const resetErrorMsgs = () => {
+    setEmailError(false);
+    setPasswordError(false);
+    setGeneralError("");
   };
 
   const validateInputs = () => {
@@ -126,10 +135,21 @@ export default function SignInCard() {
         sx={{
           width: "100%",
           pt: 4,
-          mb: 2,
         }}
       >
         Sign in
+      </Typography>
+      <Typography
+        // component="h1"
+        align="center"
+        color="error"
+        variant="h7"
+        sx={{
+          height: "1.67rem",
+          width: "100%",
+        }}
+      >
+        {generalError}
       </Typography>
       <Box
         component="form"
@@ -156,6 +176,7 @@ export default function SignInCard() {
             autoFocus
             required
             fullWidth
+            onChange={resetErrorMsgs}
             variant="outlined"
             color={emailError ? "error" : "primary"}
           />
@@ -183,6 +204,7 @@ export default function SignInCard() {
             id="password"
             autoComplete="current-password"
             autoFocus
+            onChange={resetErrorMsgs}
             required
             fullWidth
             variant="outlined"
@@ -202,7 +224,7 @@ export default function SignInCard() {
           variant="contained"
           onClick={validateInputs}
         >
-          {mutation.isPending ? < CircularProgress size={'25px'}/> : 'Sign In'}
+          {mutation.isPending ? <CircularProgress size={"25px"} /> : "Sign In"}
         </Button>
         {/* <Typography sx={{ textAlign: "center" }}>
 					Don&apos;t have an account?{" "}

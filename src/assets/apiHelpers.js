@@ -31,7 +31,7 @@ export const handleLogin = async (queryObj) => {
     await axiosApi.post(`/auth/login`, body);
     refetch();
   } catch (err) {
-    console.error(err.response?.data?.message || 'An error occurred');
+    throw err.response?.data?.message || 'An error occurred';
   }
 }
 

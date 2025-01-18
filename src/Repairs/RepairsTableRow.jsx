@@ -60,9 +60,9 @@ function RepairsTableRow({ row }) {
 				<TableCell>
 					<RepairCompleteToggleButton repair={row} />
 				</TableCell>
-				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{`${row.lastFirst}`}</TableCell>
-				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{row.instrument}</TableCell>
-				<TableCell sx={row.overdue && !row.completed && overdueStyles}>{row.jobDescription}</TableCell>
+				<TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>{`${row.lastFirst}`}</TableCell>
+				<TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>{row.instrument}</TableCell>
+				<TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>{row.jobDescription}</TableCell>
 				
 				<TableCell>
 					< TogglePaidButton repair={row} />

@@ -66,7 +66,7 @@ const RepairsCollapsibleContent = ({ row }) => {
 						<strong> Status: </strong>
 						{row?.status}
 					</Typography>
-					<Typography sx={row.overdue && !row.completed && overdueStyles} color="textSecondary">
+					<Typography sx={row.overdue && !row.completed ? overdueStyles : {}} color="textSecondary">
 						<strong> Due: </strong>
 						{localDate(row.due)}
 					</Typography>

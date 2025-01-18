@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
     mutationFn: postResource,
     onError: (error) => console.log("logout error", error),
     onSuccess: () => {
-      queryClient.setQueryData(['user'], null);
+      queryClient.setQueryData(["user"], null);
     },
   });
 

@@ -7,18 +7,17 @@ import "./index.css";
 import App from "./App.jsx";
 import { UserProvider } from "./UserContext";
 
-
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <UserProvider>
-        <BrowserRouter>
+    <BrowserRouter>
+      <QueryClientProvider client={queryClient}>
+        <UserProvider>
           <App />
           <ReactQueryDevtools />
-        </BrowserRouter>
-      </UserProvider>
-    </QueryClientProvider>
+        </UserProvider>
+      </QueryClientProvider>
+    </BrowserRouter>
   </StrictMode>
 );
