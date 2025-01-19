@@ -82,7 +82,7 @@ const Home = () => {
             Explore Features
           </Button>
         </Box>
-        <Box id="features">
+        <Box sx={{py: 4}} id="features">
           <HomeSectionItems />
         </Box>
       </Box>

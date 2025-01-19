@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useEffect } from "react";
+import { useLocation } from 'react-router';
 import { styled, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
@@ -22,7 +23,7 @@ import { UserContext } from "./UserContext";
 import UserAvatar from "./UserAvatar";
 
 const drawerWidth = 240;
-
+console.log(location.pathname)
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -38,9 +39,9 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
+  width: location.pathname == '/' ? 0 : `calc(${theme.spacing(7)} + 1px)`,
   [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
+    width: location.pathname == '/' ? 0 : `calc(${theme.spacing(8)} + 1px)`,
   },
 });
 
@@ -102,6 +103,7 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer({ children }) {
+  const location = useLocation()
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const { user, refetch } = React.useContext(UserContext);
@@ -154,7 +156,7 @@ export default function MiniDrawer({ children }) {
 
       {user && (
         <Drawer variant="permanent" open={open}>
-          <DrawerHeader>
+          <DrawerHeader onClick={handleDrawerClose}>
             <Typography sx={{ mr: 6.5, fontWeight: 600 }} color="primary">
               Menu Items
             </Typography>
