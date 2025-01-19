@@ -7,7 +7,7 @@ import Box from "@mui/material/Box";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
+import Card from "@mui/material/Card";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import NoteIcon from "@mui/icons-material/Note";
 import PersonIcon from "@mui/icons-material/Person";
@@ -85,52 +85,54 @@ const HomeSectionItems = () => {
               minWidth: "19rem",
             }}
           >
-            <ListItemButton
-              color="primary"
-              onClick={() => navigate(`/${item.path}`)}
-              sx={[
-                {
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  pb: 3,
-                  pt: 6,
-                  justifyContent: "center",
-                  borderRadius: 4,
-                },
-              ]}
-            >
-              <ListItemIcon
-                sx={{
-                  pl: 2,
-                  transform: "scale(2)",
-                }}
+            <Card sx={{ mb: {xs: 2, md: 4}, borderRadius: 4 }}>
+              <ListItemButton
+                color="primary"
+                onClick={() => navigate(`/${item.path}`)}
+                sx={[
+                  {
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    pt: 5,
+                    pb: 3,
+                    px: 3,
+                    justifyContent: "center",
+                  },
+                ]}
               >
-                {item.icon}
-              </ListItemIcon>
-              <Box
-                sx={{
-                  pt: 2,
-                }}
-              >
-                {/* <ListItemText primary={item.title} sx={{ fontSize: "20rem" }} />
+                <ListItemIcon
+                  sx={{
+                    pl: 2,
+                    transform: "scale(2)",
+                  }}
+                >
+                  {item.icon}
+                </ListItemIcon>
+                <Box
+                  sx={{
+                    pt: 2,
+                  }}
+                >
+                  {/* <ListItemText primary={item.title} sx={{ fontSize: "20rem" }} />
                 <ListItemText primary={item.description} sx={[]} /> */}
-                <Typography
-                  align="center"
-                  fontWeight={"bold"}
-                  variant="h6"
-                  color="primary"
-                >
-                  {item.title}
-                </Typography>
-                <Typography
-                  color="textSecondary"
-                  sx={{ textAlign: "center", pt: 1 }}
-                >
-                  {item.description}
-                </Typography>
-              </Box>
-            </ListItemButton>
+                  <Typography
+                    align="center"
+                    fontWeight={"bold"}
+                    variant="h6"
+                    color="primary"
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    color="textSecondary"
+                    sx={{ textAlign: "center", pt: 1 }}
+                  >
+                    {item.description}
+                  </Typography>
+                </Box>
+              </ListItemButton>
+            </Card>
           </ListItem>
         ))}
       </List>
