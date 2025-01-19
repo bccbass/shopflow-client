@@ -6,6 +6,12 @@ import Logo from "./Logo";
 import HomeSectionItems from "./HomeSectionIcons";
 
 const Home = () => {
+  const handleScrollToFeatures = () => {
+    const featuresSection = document.getElementById("features");
+    if (featuresSection) {
+      featuresSection.scrollIntoView({ behavior: "smooth" }); // Smooth scroll
+    }
+  };
   return (
     <Container sx={{ pt: 10, pb: 20, width: "100vw" }}>
       {/* <SectionHeader title="Home" setSearchParams={null} /> */}
@@ -58,6 +64,7 @@ const Home = () => {
             and inspiring your customers—while we handle the details.
           </Typography>
           <Button
+              onClick={handleScrollToFeatures}
               variant="contained"
               color="primary"
               size="large"
