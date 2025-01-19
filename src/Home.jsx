@@ -14,10 +14,7 @@ const Home = () => {
   };
   return (
     <Container sx={{ pt: 10, pb: 20, width: "100vw" }}>
-      {/* <SectionHeader title="Home" setSearchParams={null} /> */}
-
       <Box
-        // border={"1px solid grey"}
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -35,14 +32,18 @@ const Home = () => {
           backgroundColor="primary.main"
           color="white"
           p={2}
-          // width={"50%"}
           height={"100%"}
+          style={{
+            boxShadow: "3px 3px 6px 0px rgba(0,0,0,0.51)",
+          }}
           sx={{
             display: "flex",
             flexDirection: "column",
             flexGrow: 1,
-            // justifyContent: "space-around",
+            m: 2,
             alignItems: "center",
+            background:
+              "linear-gradient(147deg, rgba(52,126,238,1) 0%, rgba(5,126,233,1) 33%, rgba(50,119,230,1) 100%)",
           }}
         >
           <Typography
@@ -64,24 +65,24 @@ const Home = () => {
             and inspiring your customers—while we handle the details.
           </Typography>
           <Button
-              onClick={handleScrollToFeatures}
-              variant="contained"
-              color="primary"
-              size="large"
-              sx={{
-                color: 'cornflowerblue',
-                my: 4,
-                backgroundColor: "#fff",
-                "&:hover": {
-                  backgroundColor: "#e0e7ff",
-                },
-              }}
-              href="#features"
-            >
-              Explore Features
-            </Button>
+            onClick={handleScrollToFeatures}
+            variant="contained"
+            color="primary"
+            size="large"
+            sx={{
+              color: "cornflowerblue",
+              my: 4,
+              backgroundColor: "#fff",
+              "&:hover": {
+                backgroundColor: "#e0e7ff",
+              },
+            }}
+            href="#features"
+          >
+            Explore Features
+          </Button>
         </Box>
-        <Box id='features'>
+        <Box id="features">
           <HomeSectionItems />
         </Box>
       </Box>
