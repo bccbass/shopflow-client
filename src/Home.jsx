@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { Container, Box, IconButton, Typography } from "@mui/material";
+import { Container, Box, Button, Typography } from "@mui/material";
 import Logo from "./Logo";
 import HomeSectionItems from "./HomeSectionIcons";
 
@@ -37,8 +37,6 @@ const Home = () => {
             flexGrow: 1,
             // justifyContent: "space-around",
             alignItems: "center",
-            background: 'rgb(22,106,217)',
-background: 'linear-gradient(147deg, rgba(5,146,244,1)  0%, rgba(5,126,233,1) 33%, rgba(25,146,214,1) 100%)'
           }}
         >
           <Typography
@@ -59,8 +57,24 @@ background: 'linear-gradient(147deg, rgba(5,146,244,1)  0%, rgba(5,126,233,1) 33
             ShopFlow, you can focus on what truly matters—building your business
             and inspiring your customers—while we handle the details.
           </Typography>
+          <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              sx={{
+                color: 'cornflowerblue',
+                my: 4,
+                backgroundColor: "#fff",
+                "&:hover": {
+                  backgroundColor: "#e0e7ff",
+                },
+              }}
+              href="#features"
+            >
+              Explore Features
+            </Button>
         </Box>
-        <Box>
+        <Box id='features'>
           <HomeSectionItems />
         </Box>
       </Box>

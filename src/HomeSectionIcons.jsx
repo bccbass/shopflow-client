@@ -24,42 +24,42 @@ const HomeSectionItems = () => {
       path: "addstudent",
       description:
         "Easily add new students to the system and track their journey from lead to enrollment.",
-      icon: <PersonAddIcon />,
+      icon: <PersonAddIcon color="primary" />,
     },
     {
       title: "View New Leads",
       path: "newstudents",
       description:
         "Manage new leads with a clear follow-up process to convert them into students.",
-      icon: <PersonIcon />,
+      icon: <PersonIcon color="primary" />,
     },
     {
       title: "Track Trial Lessons",
       path: "newstudents?view=triallessons",
       description:
         "Oversee trial lessons and follow up to successfully enroll students full-time.",
-      icon: <QueueMusicIcon />,
+      icon: <QueueMusicIcon color="primary" />,
     },
     {
       title: "Notes",
       path: "notes",
       description:
         "Access and manage shared notes to streamline administration and track open tasks.",
-      icon: <NoteIcon />,
+      icon: <NoteIcon color="primary" />,
     },
     {
       title: "Archive",
       path: "archive",
       description:
         "Review archived students and leads to analyze business history and trends.",
-      icon: <InboxIcon />,
+      icon: <InboxIcon color="primary" />,
     },
     {
       title: "Download",
       path: "/",
       description:
         "Export your data in clean, pre-formatted CSV files for easy portability.",
-      icon: <DownloadIcon />,
+      icon: <DownloadIcon color="primary" />,
     },
   ];
 
@@ -103,8 +103,7 @@ const HomeSectionItems = () => {
               <ListItemIcon
                 sx={{
                   pl: 2,
-                  pb: 1,
-                  transform: "scale(3)",
+                  transform: "scale(2)",
                 }}
               >
                 {item.icon}
@@ -126,7 +125,7 @@ const HomeSectionItems = () => {
                 </Typography>
                 <Typography
                   color="textSecondary"
-                  sx={{ textAlign: "center" }}
+                  sx={{ textAlign: "center", pt: 1 }}
                 >
                   {item.description}
                 </Typography>
