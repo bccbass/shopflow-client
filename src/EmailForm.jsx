@@ -35,13 +35,13 @@ const EmailForm = ({ student, setOpen, info }) => {
       {
         to: [
           {
-            email: "bccbass@gmail.com",
+            email: student.contact.email,
           },
         ],
         cc: [],
         bcc: [
           {
-            email: "bccbassspotify@gmail.com",
+            email: "support@caringbahmusic.com.au",
           },
         ],
       },
