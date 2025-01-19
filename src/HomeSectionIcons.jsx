@@ -70,7 +70,7 @@ const HomeSectionItems = () => {
           display: "flex",
           flexDirection: "row",
           flexWrap: "wrap",
-          mt: 3,
+          mt: { xs: 0, md: 3 },
           px: { xs: 0, lg: 2, xl: 6 },
           alignItems: "center",
           justifyContent: "space-around",
@@ -82,10 +82,18 @@ const HomeSectionItems = () => {
             key={item.title}
             sx={{
               width: "30%",
-              minWidth: "19rem",
+              minWidth: { xs: "17rem", md: "19rem" },
             }}
           >
-            <Card sx={{ mb: {xs: 2, md: 4}, borderRadius: 4 }}>
+            <Card
+              sx={{
+                mb: { xs: 2, md: 4 },
+                borderRadius: 4,
+                aspectRatio: "1/1" ,
+                display: 'flex',
+                justifyContent: 'center'
+              }}
+            >
               <ListItemButton
                 color="primary"
                 onClick={() => navigate(`/${item.path}`)}
