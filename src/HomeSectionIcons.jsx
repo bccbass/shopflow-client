@@ -89,14 +89,16 @@ const HomeSectionItems = () => {
               sx={{
                 mb: { xs: 2, md: 4 },
                 borderRadius: 4,
-                aspectRatio: "1/1" ,
-                display: 'flex',
-                justifyContent: 'center'
+                aspectRatio: "1/1",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
               <ListItemButton
                 color="primary"
-                onClick={() => navigate(`/${item.path}`)}
+                onClick={() => {
+                  navigate(`/${item.path}`);
+                }}
                 sx={[
                   {
                     display: "flex",

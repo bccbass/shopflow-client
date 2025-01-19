@@ -6,12 +6,14 @@ import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
 import { UserProvider } from "./UserContext";
+import ScrollToTop from "./ScrollToTop.jsx";
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
+      <ScrollToTop />
       <QueryClientProvider client={queryClient}>
         <UserProvider>
           <App />
