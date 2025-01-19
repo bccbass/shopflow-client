@@ -1,5 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
@@ -8,36 +10,33 @@ import { nullDate } from "../assets/dateHelpers";
 const TrialDetailsCard = ({ student, children }) => {
   const noTrialDate = nullDate(student.trialLesson.date);
   return (
-    <Box
+    <Card
       sx={{
-        borderLeft: "1px solid #DDD",
-
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "center",
+        // alignItems: "flex-start",
         width: "30%",
       }}
     >
-      <Box
-        sx={{
-          pt: 2,
-          mr: 3,
-          flex: 2,
-          // minHeight: "250px",
-          pl: 4,
-        }}
-      >
-        <Typography
-          variant="h6"
-          gutterBottom
-          color="textSecondary"
-          component="div"
-        >
-          <strong> Trial Lesson </strong>
-        </Typography>
+      <Box sx={{ p: 2, flex: 2 }}>
+        {student.bookedTrial && (
+          <>
+            <Typography
+              variant="h6"
+              gutterBottom
+              color="textSecondary"
+              component="div"
+              // align="center"
+            >
+              <strong> Trial Lesson </strong>
+            </Typography>
+            <Divider sx={{ mb: 2 }} />
+          </>
+        )}
+
         {!student.bookedTrial ? (
-          <Box sx={{ mt: "60%" }}>
+          <Box sx={{ mt: "45%", display: "flex", justifyContent: "center" }}>
             <OpenUpdateModalButton title={"Book Trial"}>
               <TrialLessonWrapper student={student} />
             </OpenUpdateModalButton>
@@ -80,7 +79,7 @@ const TrialDetailsCard = ({ student, children }) => {
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         {student.bookedTrial ? children : null}
       </Box>
-    </Box>
+    </Card>
   );
 };
 

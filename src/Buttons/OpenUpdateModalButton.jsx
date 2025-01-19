@@ -15,7 +15,7 @@ const OpenUpdateModalButton = ({ children, title, variant = title == "Book Trial
           {title}
         </Button>
       ) : (
-        <Button onClick={() => setOpen(!open)} variant="text">
+        <Button sx={{ mx: .5, my: 1}} onClick={() => setOpen(!open)} variant="text">
           <EditIcon  sx={{ color: "silver", fontSize: '1.3rem' }} />
         </Button>
       )

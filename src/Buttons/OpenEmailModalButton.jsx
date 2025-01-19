@@ -8,7 +8,7 @@ const OpenEmailModalButton = ({ children, email }) => {
   const [open, setOpen] = useState(false);
   return (
     <>
-      <Tooltip title={email ? "" : "No Valid Email Address!"}>
+      <Tooltip title={email ? "Compose Email from Template" : "No Valid Email Address!"}>
         <EmailIcon
           onClick={() => (email ? setOpen(!open) : null)}
           sx={{ color: "grey" }}

@@ -1,31 +1,23 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
+import Divider from "@mui/material/Divider";
+import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 
 const EnquiryNotesCard = ({ lead, children }) => {
   return (
-    <Box
+    <Card
       sx={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        alignItems: "center",
+        // alignItems: "flex-start",
         width: "30%",
-        borderLeft: "1px solid #DDD",
-        pr: 6,
       }}
     >
-      <Box
-        sx={{
-          pt: 2,
-          ml: 3,
-          flex: 2,
-          width: "100%",
-          // minHeight: "250px",
-          pl: 4,
-        }}
-      >
+      <Box sx={{ p: 2, flex: 2 }}>
         <Typography
+          // align="center"
           variant="h6"
           gutterBottom
           color="textSecondary"
@@ -34,12 +26,13 @@ const EnquiryNotesCard = ({ lead, children }) => {
         >
           <strong> Notes </strong>
         </Typography>
+        <Divider sx={{ mb: 2 }} />
         <Typography>{lead?.notes}</Typography>
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         {children}
       </Box>
-    </Box>
+    </Card>
   );
 };
 
