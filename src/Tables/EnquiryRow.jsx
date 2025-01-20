@@ -21,8 +21,11 @@ function EnquiryRow({ row, info }) {
   const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const noDueDate = nullDate(row.nextContactDate);
-  const isEnrollmentIncomplete = Object.values(row.enrollmentFollowUp).includes(
+  const isEnrollAdminIncomplete = Object.values(row.enrolledAdmin).includes(
     false
+  );
+  const isAdminNotStarted = !Object.values(row.enrolledAdmin).includes(
+    true
   );
 
   const overdueStyles = {
@@ -32,7 +35,7 @@ function EnquiryRow({ row, info }) {
 
   const enrolledStyles = {
     color: "white",
-    backgroundColor: isEnrollmentIncomplete ? "orange" : "teal",
+    backgroundColor: isAdminNotStarted ? "red" : isEnrollAdminIncomplete ? "orange" : "teal",
     padding: "4px 6px",
     marginLeft: "-.5rem",
     borderRadius: "6px",
@@ -42,7 +45,7 @@ function EnquiryRow({ row, info }) {
   const rowActionContent = (row) => {
     let enrolled;
     if (row.enrolled) {
-      enrolled = isEnrollmentIncomplete ? "Incomplete" : "Complete";
+      enrolled = isEnrollAdminIncomplete ? "Incomplete" : "Complete";
     }
     return row.enrolled ? enrolled : noDueDate ? "" : row.contactDate;
   };
@@ -68,7 +71,6 @@ function EnquiryRow({ row, info }) {
         <TableCell>
           <span
             style={
-              
               row.overdue && !row.enrolled
                 ? overdueStyles
                 : row.enrolled

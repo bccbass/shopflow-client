@@ -12,15 +12,19 @@ import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
-import EnrollmentFollowUpForm from "./EnrollmentFollowUpForm";
+import EnrolledAdminForm from "./EnrolledAdminForm";
 import { redirect } from "react-router";
 
 const RowCollapsibleContent = ({ lead }) => {
   return (
-    <Box sx={{ pb: 4, 
-    // backgroundColor: "#FAFAFA", 
-    backgroundColor: "teal", 
-    width: "100%" }}>
+    <Box
+      sx={{
+        pb: 4,
+        // backgroundColor: "#FAFAFA",
+        backgroundColor: "teal",
+        width: "100%",
+      }}
+    >
       <Container
         sx={{
           display: "flex",
@@ -50,7 +54,7 @@ const RowCollapsibleContent = ({ lead }) => {
       </Container>
 
       {lead.enrolled ? (
-        <EnrollmentFollowUpForm lead={lead} />
+        <EnrolledAdminForm lead={lead} />
       ) : (
         <>
           <FollowUpTable

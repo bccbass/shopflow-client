@@ -30,8 +30,8 @@ const ToggleTrialPaidButton = ({ student }) => {
       <Button
         variant="outlined"
         sx={{
-          borderColor:student.trialLesson.paid ? "green" : "red",
-          color: student.trialLesson.paid ? "green" : "red",
+          borderColor:student.trialLesson.paid ? "teal" : "red",
+          color: student.trialLesson.paid ? "teal" : "red",
           fontWeight: "bold",
         }}
         onClick={handleSubmit}

@@ -20,13 +20,12 @@ const ArchivedLeads = () => {
     queryFn: () => getResource("archive?sort=" + sortOrder),
   });
 
-  const getAnalytics = (archiveQuery) => {
-
-    if (!archiveQuery.isLoading && !archiveQuery.isError)
+  const getAnalytics = (query) => {
+    if (!query.isLoading && !query.isError)
       return {
-        total: archiveQuery.data.length,
-        totalTrials: archiveQuery.data.filter((lead) => lead.bookedTrial).length,
-        totalEnrollments: archiveQuery.data.filter((lead) => lead.enrolled).length,
+        total: query.data.length,
+        totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
+        totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
       };
   };
 

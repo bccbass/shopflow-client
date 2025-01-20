@@ -2,7 +2,7 @@ import React from "react";
 import ToggleTaskStatusButton from "./ToggleTaskStatusButton";
 import { Box, Typography } from "@mui/material";
 
-const EnrollmentFollowUpForm = ({ lead }) => {
+const EnrolledAdminForm = ({ lead }) => {
   return (
     <Box
       sx={{
@@ -41,23 +41,23 @@ const EnrollmentFollowUpForm = ({ lead }) => {
           <ToggleTaskStatusButton
             id={lead._id}
             taskName="timetable"
-            taskStatus={lead.enrollmentFollowUp.timetable}
+            taskStatus={lead.enrolledAdmin.timetable}
           />
           <ToggleTaskStatusButton
             id={lead._id}
             taskName="status"
-            taskStatus={lead.enrollmentFollowUp.status}
+            taskStatus={lead.enrolledAdmin.status}
           />
 
           <ToggleTaskStatusButton
             id={lead._id}
             taskName="createInvoice"
-            taskStatus={lead.enrollmentFollowUp.createInvoice}
+            taskStatus={lead.enrolledAdmin.createInvoice}
           />
           <ToggleTaskStatusButton
             id={lead._id}
             taskName="sentInvoice"
-            taskStatus={lead.enrollmentFollowUp.sentInvoice}
+            taskStatus={lead.enrolledAdmin.sentInvoice}
           />
         </Box>
       </Box>
@@ -65,4 +65,4 @@ const EnrollmentFollowUpForm = ({ lead }) => {
   );
 };
 
-export default EnrollmentFollowUpForm;
+export default EnrolledAdminForm;

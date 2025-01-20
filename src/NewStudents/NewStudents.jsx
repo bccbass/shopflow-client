@@ -4,7 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Container, Box, Typography, Button } from "@mui/material";
+import {
+  Container,
+  Box,
+  Typography,
+  Button,
+  Card,
+  Divider,
+} from "@mui/material";
 import EnquiriesTable from "../Tables/EnquiriesTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from "../Search";
@@ -14,11 +21,22 @@ import TableSkeleton from "../TableSkeleton";
 const NewStudents = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const activeView = searchParams.get("view") || 'enquiries';
+  const activeView = searchParams.get("view") || "enquiries";
   const leadsQuery = useQuery({
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
   });
+
+  const getAnalytics = (query) => {
+    if (!query.isLoading && !query.isError)
+      return {
+        total: query.data.length,
+        totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
+        totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
+      };
+  };
+
+  const analytics = getAnalytics(leadsQuery)
 
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
@@ -155,11 +173,28 @@ const NewStudents = () => {
               sx={{
                 width: "100%",
                 display: "flex",
-                justifyContent: "flex-end",
+                justifyContent: "space-between",
                 mr: 4,
                 mt: 4,
               }}
             >
+              <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
+                <Typography color="text.secondary" variant="h5">
+                  Analytics Snapshot
+                </Typography>
+                <Divider />
+                <Typography>{`Total Leads: ${analytics.total}`}</Typography>
+                <Typography>{`Total Trials: ${
+                  analytics.totalTrials
+                } (${Math.floor(
+                  (analytics.totalTrials / analytics.total) * 100
+                )}%)`}</Typography>
+                <Typography>{`Total Enrollments: ${
+                  analytics.totalEnrollments
+                } (${Math.floor(
+                  (analytics.totalEnrollments / analytics.total) * 100
+                )}%)`}</Typography>
+              </Card>
               <DownloadCollectionCsvButton
                 collection="Leads"
                 data={leadsQuery.data}

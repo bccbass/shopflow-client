@@ -40,7 +40,7 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
     mutate({
       path: `leads/updatefollowup/${id}`,
       body: {
-        enrollmentFollowUp: { [taskName]: !taskStatus },
+        enrolledAdmin: { [taskName]: !taskStatus },
       },
     });
   };
@@ -58,7 +58,7 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
     >
       {isLoading ? (
         <Fab>
-          <CircularProgress size={"22px"} sx={{ }} />
+          <CircularProgress size={"22px"} sx={{}} />
         </Fab>
       ) : (
         <Tooltip title={taskDescriptions[taskName]}>
@@ -75,9 +75,8 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
         </Tooltip>
       )}
       <Typography
-        
         sx={{
-          textAlign: 'center', 
+          textAlign: "center",
           width: "95%",
           p: 1,
           border: "1px solid silver",
