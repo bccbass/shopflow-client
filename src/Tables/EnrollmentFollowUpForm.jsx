@@ -40,14 +40,15 @@ const EnrollmentFollowUpForm = ({ lead }) => {
         >
           <ToggleTaskStatusButton
             id={lead._id}
-            taskName="status"
-            taskStatus={lead.enrollmentFollowUp.status}
-          />
-          <ToggleTaskStatusButton
-            id={lead._id}
             taskName="timetable"
             taskStatus={lead.enrollmentFollowUp.timetable}
           />
+          <ToggleTaskStatusButton
+            id={lead._id}
+            taskName="status"
+            taskStatus={lead.enrollmentFollowUp.status}
+          />
+
           <ToggleTaskStatusButton
             id={lead._id}
             taskName="createInvoice"
