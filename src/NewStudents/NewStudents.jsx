@@ -14,7 +14,7 @@ import TableSkeleton from "../TableSkeleton";
 const NewStudents = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const viewTrials = searchParams.get("view") === "triallessons";
+  const activeView = searchParams.get("view");
   const leadsQuery = useQuery({
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
@@ -42,43 +42,46 @@ const NewStudents = () => {
     queryFn: () => getResource("utils?resource=info"),
   });
 
-  const leftActiveStyles = {
+  const activeStyles = {
     fontSize: "1rem",
-    width: "50%",
+    width: "33.33%",
     border: "1px solid lightgrey",
-    borderLeft: 0,
+    // borderLeft: activeView == "enquiries" ? 0 : "",
     borderRadius: "8px 8px 0 0",
-    fontWeight: !viewTrials ? "bold" : "",
-    borderBottom: viewTrials ? "1px solid lightgrey" : 0,
-    color: viewTrials ? "lightgrey" : "",
-    backgroundColor: viewTrials ? "#FAFAFA" : "",
+    fontWeight: "bold",
+    borderBottom: 0,
   };
 
-  const rightActiveStyles = {
+  const inactiveStyles = {
     fontSize: "1rem",
-    width: "50%",
+    width: "33.33%",
     border: "1px solid lightgrey",
-    borderRight: 0,
+    // borderRight: activeView == "triallessons" ? 0 : "",
     borderRadius: "8px 8px 0 0",
-    fontWeight: viewTrials ? "bold" : "",
-    borderBottom: !viewTrials ? "1px solid lightgrey" : 0,
-    color: !viewTrials ? "lightgrey" : "",
-    backgroundColor: !viewTrials ? "#FAFAFA" : "",
+    borderBottom: "1px solid lightgrey",
+    color: "lightgrey",
+    backgroundColor: "#FAFAFA",
   };
 
-  const newLeadsData =
+  const enquiriesData =
     !leadsQuery.isLoading && !leadsQuery.error
       ? leadsQuery.data.filter((lead) => !lead.bookedTrial)
       : [];
   const trialBookedData =
     !leadsQuery.isLoading && !leadsQuery.error
-      ? leadsQuery.data.filter((lead) => lead.bookedTrial)
+      ? leadsQuery.data.filter((lead) => lead.bookedTrial && !lead.enrolled)
+      : [];
+  const enrolledData =
+    !leadsQuery.isLoading && !leadsQuery.error
+      ? leadsQuery.data.filter((lead) => lead.enrolled)
       : [];
 
   return (
     <Container sx={{ width: "100vw", m: 0, pb: 16 }}>
       <SectionHeader title="New Students">
-      { !leadsQuery.isLoading && <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />}
+        {!leadsQuery.isLoading && (
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        )}
       </SectionHeader>
       <Box
         sx={{
@@ -107,21 +110,39 @@ const NewStudents = () => {
               <Box sx={{ width: "100%" }}>
                 <Button
                   onClick={() => setSearchParams({ view: "enquiries" })}
-                  sx={leftActiveStyles}
-                >{`Enquiries (${newLeadsData.length})`}</Button>
+                  style={{ borderLeft: 0}}
+                  sx={
+                    activeView === "enquiries" ? activeStyles : inactiveStyles
+                  }
+                >{`Enquiries (${enquiriesData.length})`}</Button>
                 <Button
                   onClick={() => setSearchParams({ view: "triallessons" })}
-                  sx={rightActiveStyles}
+                  style={{ borderLeft: 0, borderRight: 0 }}
+                  sx={
+                    activeView === "triallessons"
+                      ? activeStyles
+                      : inactiveStyles
+                  }
                 >{`Trial Lessons (${trialBookedData.length})`}</Button>
+                <Button
+                  style={{  borderRight: 0 }}
+                  onClick={() => setSearchParams({ view: "enrolled" })}
+                  sx={activeView === "enrolled" ? activeStyles : inactiveStyles}
+                >{`Enrolled (${enrolledData.length})`}</Button>
               </Box>
-              {viewTrials ? (
+              {activeView === "triallessons" ? (
                 <EnquiriesTable
                   enquiries={filteredArr(trialBookedData, searchTerm)}
                   info={utilsQuery.data}
                 />
+              ) : activeView === "enquiries" ? (
+                <EnquiriesTable
+                  enquiries={filteredArr(enquiriesData, searchTerm)}
+                  info={utilsQuery.data}
+                />
               ) : (
                 <EnquiriesTable
-                  enquiries={filteredArr(newLeadsData, searchTerm)}
+                  enquiries={filteredArr(enrolledData, searchTerm)}
                   info={utilsQuery.data}
                 />
               )}
