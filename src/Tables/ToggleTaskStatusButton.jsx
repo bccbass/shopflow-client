@@ -58,7 +58,7 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
     >
       {isLoading ? (
         <Fab>
-          <CircularProgress size={"22px"} sx={{ ml: "20px" }} />
+          <CircularProgress size={"22px"} sx={{ }} />
         </Fab>
       ) : (
         <Tooltip title={taskDescriptions[taskName]}>

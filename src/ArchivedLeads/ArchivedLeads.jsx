@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import { Container, Box, Typography } from "@mui/material";
+import { Container, Box, Typography, Card, Divider } from "@mui/material";
 import ArchiveTable from "./ArchiveTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from "../Search";
@@ -20,6 +20,17 @@ const ArchivedLeads = () => {
     queryFn: () => getResource("archive?sort=" + sortOrder),
   });
 
+  const getAnalytics = (archiveQuery) => {
+
+    if (!archiveQuery.isLoading && !archiveQuery.isError)
+      return {
+        total: archiveQuery.data.length,
+        totalTrials: archiveQuery.data.filter((lead) => lead.bookedTrial).length,
+        totalEnrollments: archiveQuery.data.filter((lead) => lead.enrolled).length,
+      };
+  };
+
+  const analytics = getAnalytics(archive)
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
       ? arr
@@ -67,8 +78,18 @@ const ArchivedLeads = () => {
                 mb: 1,
                 px: 2,
                 justifyContent: "space-between",
+                alignItems: 'flex-end'
               }}
             >
+              <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
+                <Typography color="text.secondary" variant="h5">
+                  Analytics Snapshot
+                </Typography>
+                <Divider />
+                <Typography>{`Total Leads: ${analytics.total}`}</Typography>
+                <Typography>{`Total Trials: ${analytics.totalTrials} (${Math.floor(analytics.totalTrials/analytics.total * 100)}%)`}</Typography>
+                <Typography>{`Total Enrollments: ${analytics.totalEnrollments} (${Math.floor(analytics.totalEnrollments/analytics.total * 100)}%)`}</Typography>
+              </Card>
               <DownloadCollectionCsvButton
                 data={archive.data}
                 collection="Archived Leads"

@@ -65,7 +65,7 @@ const DownloadCollectionCsvButton = ({
 
   return (
     <Tooltip title={`Download ${collection} CSV`}>
-      <Button variant="outlined" onClick={handleClick} sx={{ px: 2 }}>
+      <Button variant="outlined" onClick={handleClick} sx={{maxHeight: '3rem', px: 2 }}>
         Download CSV
       </Button>
     </Tooltip>

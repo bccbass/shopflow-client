@@ -42,7 +42,7 @@ function EnquiryRow({ row, info }) {
   const rowActionContent = (row) => {
     let enrolled;
     if (row.enrolled) {
-      enrolled = isEnrollmentIncomplete ? "In Progress" : "Complete";
+      enrolled = isEnrollmentIncomplete ? "Incomplete" : "Complete";
     }
     return row.enrolled ? enrolled : noDueDate ? "" : row.contactDate;
   };
@@ -68,6 +68,7 @@ function EnquiryRow({ row, info }) {
         <TableCell>
           <span
             style={
+              
               row.overdue && !row.enrolled
                 ? overdueStyles
                 : row.enrolled
