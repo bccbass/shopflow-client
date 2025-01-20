@@ -10,19 +10,12 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import FormTitle from "../FormTitle";
-const ParseAMSLead = ({ blankStudent, setStudentData, setOpen, utilsQuery }) => {
-  const { isError, isLoading, data: utils} = utilsQuery
+
+
+const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
   const [inputText, setInputText] = useState("");
   const [isAdult, setIsAdult] = useState(false);
   const [instrument, setInstrument] = useState(false);
-
-  // if (!isError && !isLoading) {
-  //   const instFromNotes = utils.instruments.filter((instrument) =>
-  //     notes.includes(instrument)
-  //   );
-  //   return instFromNotes.length ? instFromNotes[0] : null 
-
-
   const handleParse = (e) => {
     const name = inputText?.split("Name: ")[1]?.split("Email")[0]?.split(" ");
     const email = inputText?.split("Email: ")[1]?.split("Phone")[0];
@@ -42,7 +35,7 @@ const ParseAMSLead = ({ blankStudent, setStudentData, setOpen, utilsQuery }) => 
         },
         contact: { email: email, phone: phone },
         leadSource: "AMS Leads",
-        notes: notes,
+        notes: `"${notes.trim()}"`,
       });
     setOpen(false);
   };

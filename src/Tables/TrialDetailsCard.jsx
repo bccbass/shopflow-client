@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import { nullDate } from "../assets/dateHelpers";
+import ToggleTrialPaidButton from "../TrialLessonForm/ToggleTrialPaidButton";
 
 const TrialDetailsCard = ({ student, children }) => {
   const noTrialDate = nullDate(student.trialLesson.date);
@@ -73,6 +74,11 @@ const TrialDetailsCard = ({ student, children }) => {
                 {student?.trialLesson?.groupClass}
               </Typography>
             )}
+            <Box
+              sx={{mt: 3, display: "flex", justifyContent: "center", width: "100%" }}
+            >
+              <ToggleTrialPaidButton student={student} />
+            </Box>
           </>
         )}
       </Box>

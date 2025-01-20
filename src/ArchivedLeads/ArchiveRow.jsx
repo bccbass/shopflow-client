@@ -42,6 +42,7 @@ function ArchiveRow({ children, row }) {
   return (
     <React.Fragment>
       <TableRow
+        onClick={() => setOpen(!open)}
         sx={{ "& > *": { borderBottom: "unset", backgroundColor: "#dcf2fc" } }}
       >
         <TableCell>
@@ -104,7 +105,7 @@ function ArchiveRow({ children, row }) {
                     justifyContent: "space-between",
                     // alignItems: "flex-start",
                     width: "30%",
-					color: 'grey'
+                    color: "grey",
                   }}
                 >
                   <Box sx={{ p: 2, flex: 2 }}>
@@ -155,7 +156,7 @@ function ArchiveRow({ children, row }) {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-					color: 'grey',
+                    color: "grey",
                     width: "30%",
                   }}
                 >
@@ -228,7 +229,7 @@ function ArchiveRow({ children, row }) {
                             width: "fit-content",
                             px: 3,
                             py: 1,
-							mx: 'auto'
+                            mx: "auto",
                           }}
                         >
                           No Trial Booked
@@ -242,7 +243,7 @@ function ArchiveRow({ children, row }) {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-					color: 'grey',
+                    color: "grey",
                     width: "30%",
                   }}
                 >

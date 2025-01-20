@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getResource } from "../assets/apiHelpers.js";
+
 import Box from "@mui/material/Box";
 import CreateButton from "../Buttons/CreateButton";
 import Typography from "@mui/material/Typography";
@@ -14,10 +13,7 @@ import FormTitle from "../FormTitle";
 
 const AddStudentFormWrapper = ({ student = blankStudent }) => {
   const [studentData, setStudentData] = useState(student);
-  const utilsQuery = useQuery({
-    queryKey: ["utils"],
-    queryFn: () => getResource("utils?resource=info"),
-  });
+
   return (
     <Box
       sx={{

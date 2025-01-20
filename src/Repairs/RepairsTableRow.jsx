@@ -47,6 +47,8 @@ function RepairsTableRow({ row }) {
 						borderBottom: "unset",
 					},
 				}}
+				onClick={() => setOpen(!open)}
+
 			>
 				<TableCell>
 					<IconButton

@@ -42,6 +42,7 @@ function EnquiryRow({ row, info }) {
             borderBottom: "unset",
           },
         }}
+        onClick={() => setOpen(!open)}
       >
         <TableCell>
           <IconButton

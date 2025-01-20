@@ -63,10 +63,10 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead.student?.groupClass}
           </Typography>
         )}
-        <Typography>
+       {lead?.student?.age && <Typography>
           <strong> Age: </strong>
           {lead?.student?.age}
-        </Typography>
+        </Typography>}
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         {children}
