@@ -42,7 +42,6 @@ function EnquiryRow({ row, info }) {
             borderBottom: "unset",
           },
         }}
-        onClick={() => setOpen(!open)}
       >
         <TableCell>
           <IconButton
@@ -63,7 +62,7 @@ function EnquiryRow({ row, info }) {
                 : null
             }
           >
-            {noDueDate ? "" : row.enrolled ? "ENROLLED" : row.contactDate}
+            { row.enrolled ? "ENROLLED" : noDueDate ? "" : row.contactDate}
           </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>

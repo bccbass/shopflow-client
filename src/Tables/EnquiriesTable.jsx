@@ -9,14 +9,14 @@ import Paper from "@mui/material/Paper";
 import EnquiryRow from "./EnquiryRow";
 
 export default function EnquiriesTable({ enquiries, children, info }) {
-  const rows = [...enquiries]
+  const rows = [...enquiries];
 
   return (
-    <TableContainer sx={{width: '100%'}} component={Paper} >
-      <Table aria-label="collapsible table" >
-        <TableHead >
-          <TableRow >
-            <TableCell  />
+    <TableContainer sx={{ width: "100%" }} component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
             <TableCell sx={{ fontWeight: "bold", width: 120 }}>
               Next Action
             </TableCell>
@@ -32,8 +32,7 @@ export default function EnquiriesTable({ enquiries, children, info }) {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            
-            <EnquiryRow  key={row._id} row={row} info={info}>
+            <EnquiryRow key={row._id} row={row} info={info}>
               {children}
             </EnquiryRow>
           ))}

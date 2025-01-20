@@ -9,7 +9,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         // alignItems: "flex-start",
-        width: "30%",
+        width: "32%",
       }}
     >
       <Box sx={{ p: 2, flex: 2 }}>
@@ -47,11 +47,22 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         )}
         <Typography>
           <strong> Phone: </strong>
-          <a href={"tel:" + lead?.contact?.phone}>{lead?.contact?.phone}</a>
+          <a
+            style={{ color: "cornflowerblue" }}
+            href={"tel:" + lead?.contact?.phone}
+          >
+            {lead?.contact?.phone}
+          </a>
         </Typography>
         <Typography>
           <strong> Email: </strong>
-          <a href={"mailto:" + lead?.contact?.email}>{lead?.contact?.email}</a>
+
+          <a
+            style={{ color: "cornflowerblue" }}
+            href={"mailto:" + lead?.contact?.email}
+          >
+            {lead?.contact?.email}
+          </a>
         </Typography>
         <Typography>
           <strong> Source: </strong>
@@ -63,10 +74,12 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead.student?.groupClass}
           </Typography>
         )}
-       {lead?.student?.age && <Typography>
-          <strong> Age: </strong>
-          {lead?.student?.age}
-        </Typography>}
+        {lead?.student?.age && (
+          <Typography>
+            <strong> Age: </strong>
+            {lead?.student?.age}
+          </Typography>
+        )}
       </Box>
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         {children}

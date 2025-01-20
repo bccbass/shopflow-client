@@ -42,7 +42,6 @@ function ArchiveRow({ children, row }) {
   return (
     <React.Fragment>
       <TableRow
-        onClick={() => setOpen(!open)}
         sx={{ "& > *": { borderBottom: "unset", backgroundColor: "#dcf2fc" } }}
       >
         <TableCell>

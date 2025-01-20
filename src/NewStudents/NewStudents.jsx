@@ -14,7 +14,7 @@ import TableSkeleton from "../TableSkeleton";
 const NewStudents = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
-  const activeView = searchParams.get("view");
+  const activeView = searchParams.get("view") || 'enquiries';
   const leadsQuery = useQuery({
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
@@ -65,7 +65,7 @@ const NewStudents = () => {
 
   const enquiriesData =
     !leadsQuery.isLoading && !leadsQuery.error
-      ? leadsQuery.data.filter((lead) => !lead.bookedTrial)
+      ? leadsQuery.data.filter((lead) => !lead.bookedTrial && !lead.enrolled)
       : [];
   const trialBookedData =
     !leadsQuery.isLoading && !leadsQuery.error
@@ -110,14 +110,18 @@ const NewStudents = () => {
               <Box sx={{ width: "100%" }}>
                 <Button
                   onClick={() => setSearchParams({ view: "enquiries" })}
-                  style={{ borderLeft: 0}}
+                  style={{ borderLeft: 0 }}
                   sx={
                     activeView === "enquiries" ? activeStyles : inactiveStyles
                   }
                 >{`Enquiries (${enquiriesData.length})`}</Button>
                 <Button
                   onClick={() => setSearchParams({ view: "triallessons" })}
-                  style={{ borderLeft: 0, borderRight: 0 }}
+                  style={
+                    activeView !== "triallessons"
+                      ? { borderLeft: 0, borderRight: 0 }
+                      : {}
+                  }
                   sx={
                     activeView === "triallessons"
                       ? activeStyles
@@ -125,7 +129,7 @@ const NewStudents = () => {
                   }
                 >{`Trial Lessons (${trialBookedData.length})`}</Button>
                 <Button
-                  style={{  borderRight: 0 }}
+                  style={{ borderRight: 0 }}
                   onClick={() => setSearchParams({ view: "enrolled" })}
                   sx={activeView === "enrolled" ? activeStyles : inactiveStyles}
                 >{`Enrolled (${enrolledData.length})`}</Button>

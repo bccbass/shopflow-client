@@ -45,7 +45,6 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
         <AddStudentForm
           studentData={studentData}
           setStudentData={setStudentData}
-          utilsQuery={utilsQuery}
         />
         <TrialLessonButton
           studentData={studentData}
@@ -59,13 +58,12 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
             defaultData: blankStudent,
             data: studentData,
             setData: setStudentData,
-            redirect: "/newstudents",
+            redirect: "/newstudents?view=enquiries",
           }}
         />
       </Box>
       <OpenUpdateModalButton title="Paste and Parse Text" variant="outlined">
         <ParseAMSLead
-          utilsQuery={utilsQuery}
           blankStudent={blankStudent}
           setStudentData={setStudentData}
         />

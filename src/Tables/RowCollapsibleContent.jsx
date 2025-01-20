@@ -12,10 +12,12 @@ import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
+import EnrollmentFollowUpForm from "./EnrollmentFollowUpForm";
+import { redirect } from "react-router";
 
 const RowCollapsibleContent = ({ lead }) => {
   return (
-    <Box sx={{ p: 1, pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
+    <Box sx={{ pb: 4, backgroundColor: "#FAFAFA", width: "100%" }}>
       <Container
         sx={{
           display: "flex",
@@ -44,7 +46,7 @@ const RowCollapsibleContent = ({ lead }) => {
         </EnquiryNotesCard>
       </Container>
 
-      {!lead.enrolled && (
+      {lead.enrolled ? (<EnrollmentFollowUpForm lead={lead} />) : (
         <>
           <FollowUpTable
             lead={lead}
@@ -60,9 +62,10 @@ const RowCollapsibleContent = ({ lead }) => {
       >
         <SubmitUpdateButton
           submitProps={{
+            redirect: `/newstudents?view=enrolled`,
             updatedData: { enrolled: !lead.enrolled },
             path: "leads/updatetrial/" + lead._id,
-            variant: 'contained',
+            variant: "contained",
             type: "patch",
             title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${
               lead.studentFullName

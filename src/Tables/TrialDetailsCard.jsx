@@ -17,7 +17,7 @@ const TrialDetailsCard = ({ student, children }) => {
         flexDirection: "column",
         justifyContent: "space-between",
         // alignItems: "flex-start",
-        width: "30%",
+        width: "32%",
       }}
     >
       <Box sx={{ p: 2, flex: 2 }}>
