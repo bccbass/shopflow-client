@@ -1,5 +1,7 @@
 import * as React from "react";
 import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getResource } from "../assets/apiHelpers.js";
 import Box from "@mui/material/Box";
 import CreateButton from "../Buttons/CreateButton";
 import Typography from "@mui/material/Typography";
@@ -12,18 +14,23 @@ import FormTitle from "../FormTitle";
 
 const AddStudentFormWrapper = ({ student = blankStudent }) => {
   const [studentData, setStudentData] = useState(student);
-
+  const utilsQuery = useQuery({
+    queryKey: ["utils"],
+    queryFn: () => getResource("utils?resource=info"),
+  });
   return (
-    <Box sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-around",
-          alignItems: 'center',
-          mx: "auto",
-          width: "90vw",
-          mt: 6,
-          mb: 8,
-        }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-around",
+        alignItems: "center",
+        mx: "auto",
+        width: "90vw",
+        mt: 6,
+        mb: 8,
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -38,13 +45,11 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           borderRadius: 4,
         }}
       >
-        <FormTitle
-        >
-          Add New Student
-        </FormTitle>
+        <FormTitle>Add New Student</FormTitle>
         <AddStudentForm
           studentData={studentData}
           setStudentData={setStudentData}
+          utilsQuery={utilsQuery}
         />
         <TrialLessonButton
           studentData={studentData}
@@ -62,8 +67,12 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           }}
         />
       </Box>
-      <OpenUpdateModalButton title='Paste and Parse Text' variant='outlined' >
-        < ParseAMSLead blankStudent={blankStudent} setStudentData={setStudentData} />
+      <OpenUpdateModalButton title="Paste and Parse Text" variant="outlined">
+        <ParseAMSLead
+          utilsQuery={utilsQuery}
+          blankStudent={blankStudent}
+          setStudentData={setStudentData}
+        />
       </OpenUpdateModalButton>
     </Box>
   );

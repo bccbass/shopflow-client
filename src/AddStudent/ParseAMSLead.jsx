@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   TextField,
@@ -10,9 +10,18 @@ import {
   FormControlLabel,
 } from "@mui/material";
 import FormTitle from "../FormTitle";
-const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
+const ParseAMSLead = ({ blankStudent, setStudentData, setOpen, utilsQuery }) => {
+  const { isError, isLoading, data: utils} = utilsQuery
   const [inputText, setInputText] = useState("");
   const [isAdult, setIsAdult] = useState(false);
+  const [instrument, setInstrument] = useState(false);
+
+  // if (!isError && !isLoading) {
+  //   const instFromNotes = utils.instruments.filter((instrument) =>
+  //     notes.includes(instrument)
+  //   );
+  //   return instFromNotes.length ? instFromNotes[0] : null 
+
 
   const handleParse = (e) => {
     const name = inputText?.split("Name: ")[1]?.split("Email")[0]?.split(" ");
@@ -55,7 +64,7 @@ const ParseAMSLead = ({ blankStudent, setStudentData, setOpen }) => {
         value={inputText}
         onChange={(e) => setInputText(e.target.value)}
         minRows={5}
-        sx={{ width: "100%"}}
+        sx={{ width: "100%" }}
       ></TextField>
       <Tooltip
         placement="top"

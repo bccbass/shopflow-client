@@ -13,7 +13,13 @@ const Home = () => {
     }
   };
   return (
-    <Container sx={{ pt: {xs: 4, lg: 8, xl: 10}, pb: 6, width: "100vw" }}>
+    <Container
+      sx={{
+        pt: { xs: 4, lg: 8, xl: 10 },
+        pb: 6,
+        width: "100vw",
+      }}
+    >
       <Box
         sx={{
           display: "flex",
@@ -55,7 +61,14 @@ const Home = () => {
           >
             Welcome to ShopFlow!
           </Typography>
-          <Typography p={3} variant="h5" sx={{ wordBreak: 'normal', textAlign: {xs: 'center', sm: "justify"} }}>
+          <Typography
+            p={3}
+            variant="h5"
+            sx={{
+              wordBreak: "normal",
+              textAlign: { xs: "center", sm: "justify" },
+            }}
+          >
             ShopFlow is your ultimate solution for seamlessly managing the
             unique demands of music shops operating in both educational and
             retail spaces. Designed to streamline your workflow, ShopFlow
@@ -82,7 +95,7 @@ const Home = () => {
             Explore Features
           </Button>
         </Box>
-        <Box sx={{py: 4}} id="features">
+        <Box sx={{ py: 4 }} id="features">
           <HomeSectionItems />
         </Box>
       </Box>

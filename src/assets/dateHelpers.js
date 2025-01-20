@@ -12,17 +12,17 @@ const calculateNextContact = (lead) =>{
         return addDays(2);
     }
     else if (lead.followUp.length == 0) {
-        return addDays(2);
-    }
-    else if (lead.followUp.length == 1) {
         return addDays(3);
     }
-    else if (lead.followUp.length == 2) {
+    else if (lead.followUp.length == 1) {
         return addDays(4);
     }
-    else if (lead.followUp.length == 3) {
+    else if (lead.followUp.length == 2) {
         return addDays(7);
     }
+    // else if (lead.followUp.length == 3) {
+    //     return addDays(7);
+    // }
     else return ''
 }
 

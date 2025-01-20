@@ -1,18 +1,13 @@
 /** @format */
 
 import * as React from "react";
-import { useQuery } from "@tanstack/react-query";
-import { getResource } from "../assets/apiHelpers.js";
 import Box from "@mui/material/Box";
 import MenuItem from "@mui/material/MenuItem";
 import TextField from "@mui/material/TextField";
 import { Typography } from "@mui/material";
 
-export default function AddStudentForm({ studentData, setStudentData }) {
-	const utilsQuery = useQuery({
-		queryKey: ["utils"],
-		queryFn: () => getResource("utils?resource=info"),
-	});
+export default function AddStudentForm({ studentData, setStudentData, utilsQuery }) {
+
 
 	const loaded = !utilsQuery.isError && !utilsQuery.isLoading;
 	const handleChange = (e) =>
