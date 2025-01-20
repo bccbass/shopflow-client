@@ -75,7 +75,7 @@ const TrialDetailsCard = ({ student, children }) => {
               </Typography>
             )}
             <Box
-              sx={{mt: 3, display: "flex", justifyContent: "center", width: "100%" }}
+              sx={{mt: 3, mb: -2, display: "flex", justifyContent: "center", width: "100%" }}
             >
               <ToggleTrialPaidButton student={student} />
             </Box>

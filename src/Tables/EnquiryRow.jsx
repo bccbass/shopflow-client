@@ -21,17 +21,30 @@ function EnquiryRow({ row, info }) {
   const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const noDueDate = nullDate(row.nextContactDate);
+  const isEnrollmentIncomplete = Object.values(row.enrollmentFollowUp).includes(
+    false
+  );
+
   const overdueStyles = {
     color: "red",
     fontWeight: "bold",
   };
+
   const enrolledStyles = {
     color: "white",
-    backgroundColor: "green",
+    backgroundColor: isEnrollmentIncomplete ? "orange" : "teal",
     padding: "4px 6px",
     marginLeft: "-.5rem",
     borderRadius: "6px",
     fontWeight: "bold",
+  };
+
+  const rowActionContent = (row) => {
+    let enrolled;
+    if (row.enrolled) {
+      enrolled = isEnrollmentIncomplete ? "In Progress" : "Complete";
+    }
+    return row.enrolled ? enrolled : noDueDate ? "" : row.contactDate;
   };
 
   return (
@@ -62,7 +75,7 @@ function EnquiryRow({ row, info }) {
                 : null
             }
           >
-            { row.enrolled ? "ENROLLED" : noDueDate ? "" : row.contactDate}
+            {rowActionContent(row)}
           </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
