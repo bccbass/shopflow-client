@@ -11,6 +11,7 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import ArchiveButton from "../Buttons/ArchiveButton";
 import MenuItemCSVDownload from "../Buttons/MenuItemCSVDownload";
 import MenuItemArchive from "../Buttons/MenuItemArchive";
+import MenuItemToggleEnrollment from "../Buttons/MenuItemToggleEnrollment";
 
 export default function RowMenu({ lead }) {
   const [open, setOpen] = React.useState(false);
@@ -90,6 +91,9 @@ export default function RowMenu({ lead }) {
 
                     <MenuItem onClick={handleClose}>
                       <MenuItemArchive id={lead._id} />
+                    </MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      <MenuItemToggleEnrollment student={lead} />
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
