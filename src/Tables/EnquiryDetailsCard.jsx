@@ -1,5 +1,6 @@
 import React from "react";
-import { Box, Typography, Card, Divider } from "@mui/material";
+import { Box, Typography, Card, Divider, Tooltip, Link } from "@mui/material";
+import SearchEmailButton from "../Buttons/SearchEmailButton";
 
 const EnquiryDetailsCard = ({ lead, children }) => {
   return (
@@ -24,11 +25,10 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           <strong> Enquiry Details </strong>
         </Typography>
         <Divider sx={{ mb: 2 }} />
-
-        <Typography>
+        {/* <Typography>
           <strong> Created: </strong>
-          {lead.createdDate}
-        </Typography>
+          {`${lead.createdDate} By: ${lead.createdBy}`}
+        </Typography> */}
         <Typography>
           <strong> Student: </strong>
           {`${lead.studentFullName}`}
@@ -47,23 +47,22 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         )}
         <Typography>
           <strong> Phone: </strong>
-          <a
-            style={{ color: "cornflowerblue" }}
-            href={"tel:" + lead?.contact?.phone}
-          >
+          <Link href={"tel:" + lead?.contact?.phone}>
             {lead?.contact?.phone}
-          </a>
+          </Link>
         </Typography>
-        <Typography>
+
+        <Typography sx={{ display: "flex" }}>
           <strong> Email: </strong>
 
-          <a
-            style={{ color: "cornflowerblue" }}
-            href={"mailto:" + lead?.contact?.email}
-          >
-            {lead?.contact?.email}
-          </a>
+          <Link sx={{ px: 0.5 }} href={"mailto:" + lead?.contact?.email}>
+            {` ${lead?.contact?.email}`}
+          </Link>
+          {lead.contact.email && (
+            <SearchEmailButton email={lead.contact.email} />
+          )}
         </Typography>
+
         <Typography>
           <strong> Source: </strong>
           {lead?.leadSource}
@@ -81,7 +80,17 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           </Typography>
         )}
       </Box>
-      <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
+      <Box
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography color="text.secondary" pl={2}>
+          {`${lead.createdDate} ${lead.createdBy}`}
+        </Typography>
         {children}
       </Box>
     </Card>

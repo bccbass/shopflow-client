@@ -1,6 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
-
+import { useState, useContext, useEffe } from "react";
 import Box from "@mui/material/Box";
 import CreateButton from "../Buttons/CreateButton";
 import Typography from "@mui/material/Typography";
@@ -10,9 +9,13 @@ import TrialLessonButton from "../TrialLessonForm/TrialLessonButton";
 import ParseAMSLead from "./ParseAMSLead";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import FormTitle from "../FormTitle";
+import { UserContext } from '../UserContext'
+
 
 const AddStudentFormWrapper = ({ student = blankStudent }) => {
-  const [studentData, setStudentData] = useState(student);
+  const { user } = useContext(UserContext)
+  const [studentData, setStudentData] = useState({...student, createdBy: user.initials});
+  // setStudentData({...student, createdBy: user.initials})
 
   return (
     <Box
