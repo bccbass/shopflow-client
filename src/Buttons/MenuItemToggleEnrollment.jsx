@@ -11,17 +11,11 @@ import { patchResource } from "../assets/apiHelpers";
 import SchoolIcon from "@mui/icons-material/School";
 
 const MenuItemToggleEnrollment = ({ student }) => {
-//   const submitProps = {
-//     redirect: `/newstudents?view=enrolled`,
-//     updatedData: { enrolled: !lead.enrolled },
-//     path: "leads/updatetrial/" + lead._id,
-//     variant: "contained",
-//     type: "patch",
-//     title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${lead.studentFullName}`,
-//   };
-
-
-    const redirectView = !student.enrolled ? 'enrolled' : student.bookedTrial ? 'triallessons' : 'enquiries'
+  const redirectView = !student.enrolled
+    ? "enrolled"
+    : student.bookedTrial
+    ? "triallessons"
+    : "enquiries";
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const mutation = useMutation({

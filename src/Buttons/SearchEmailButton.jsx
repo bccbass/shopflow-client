@@ -11,7 +11,7 @@ const SearchEmailButton = ({ email }) => {
           margin: "0 0 -20px 0",
         }}
         target="_blank"
-        href={"https://mail.google.com/mail/u/0/#search/" + email}
+        href={"https://mail.google.com/mail/u/2/#search/" + email}
       >
         <SearchIcon />
       </Link>
