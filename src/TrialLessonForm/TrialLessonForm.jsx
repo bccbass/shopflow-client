@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useEffect } from "react";
+import { addDays } from "../assets/dateHelpers.js";
 import { useQuery } from "@tanstack/react-query";
 import { getResource } from "../assets/apiHelpers.js";
 import { Box, TextField, MenuItem } from "@mui/material";
@@ -26,6 +27,17 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
   const handleTrialLessonChange = (e) =>
     setStudentData({
       ...studentData,
+      trialLesson: {
+        ...studentData.trialLesson,
+        [e.target.name]: e.target.value,
+      },
+    });
+
+  const handleTrialDateChange = (e) =>
+    setStudentData({
+      ...studentData,
+      nextContactDate:  addDays(1, e.target.value),
+
       trialLesson: {
         ...studentData.trialLesson,
         [e.target.name]: e.target.value,
@@ -71,7 +83,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           helperText="Lesson Date"
           name="date"
           value={studentData?.trialLesson?.date}
-          onChange={handleTrialLessonChange}
+          onChange={handleTrialDateChange}
         />
 
         <TextField

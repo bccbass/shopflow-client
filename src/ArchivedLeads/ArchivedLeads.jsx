@@ -26,10 +26,10 @@ const ArchivedLeads = () => {
         total: query.data.length,
         totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
         totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
+        // totalContact: query.data.reduce((acc, obj) => acc + obj.totalContact, 0),
       };
   };
-
-  const analytics = getAnalytics(archive)
+  const analytics = getAnalytics(archive);
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
       ? arr
@@ -41,7 +41,7 @@ const ArchivedLeads = () => {
             lead.student.instrument,
           ]
             .map((name) =>
-              name.toLowerCase().includes(searchTerm.toLowerCase())
+              name?.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .includes(true)
         );
@@ -77,7 +77,7 @@ const ArchivedLeads = () => {
                 mb: 1,
                 px: 2,
                 justifyContent: "space-between",
-                alignItems: 'flex-end'
+                alignItems: "flex-end",
               }}
             >
               <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
@@ -86,8 +86,21 @@ const ArchivedLeads = () => {
                 </Typography>
                 <Divider />
                 <Typography>{`Total Leads: ${analytics.total}`}</Typography>
-                <Typography>{`Total Trials: ${analytics.totalTrials} (${Math.floor(analytics.totalTrials/analytics.total * 100)}%)`}</Typography>
-                <Typography>{`Total Enrollments: ${analytics.totalEnrollments} (${Math.floor(analytics.totalEnrollments/analytics.total * 100)}%)`}</Typography>
+                <Typography>{`Total Trials: ${
+                  analytics.totalTrials
+                } (${Math.floor(
+                  (analytics.totalTrials / analytics.total) * 100
+                )}%)`}</Typography>
+                <Typography>{`Total Enrollments: ${
+                  analytics.totalEnrollments
+                } (${Math.floor(
+                  (analytics.totalEnrollments / analytics.total) * 100
+                )}%)`}</Typography>
+                <Typography>{`Total Contact: ${
+                  analytics.totalContact
+                } (${Math.floor(
+                  (analytics.totalEnrollments / analytics.total) * 100
+                )}%)`}</Typography>
               </Card>
               <DownloadCollectionCsvButton
                 data={archive.data}

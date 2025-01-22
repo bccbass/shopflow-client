@@ -22,23 +22,6 @@ function ArchiveRow({ children, row }) {
   const minorStudent =
     row.guardian.lastName.length > 0 && row.guardian.firstName.length > 0;
 
-  const enrolledStyles = {
-    color: "white",
-    backgroundColor: "green",
-    padding: "4px 6px",
-    marginLeft: "-.5rem",
-    borderRadius: "6px",
-    fontWeight: "bold",
-  };
-  const trialStyles = {
-    color: "white",
-    backgroundColor: "green",
-    padding: "4px 6px",
-    marginLeft: ".7rem",
-    borderRadius: "6px",
-    fontWeight: "bold",
-  };
-
   return (
     <React.Fragment>
       <TableRow
@@ -54,24 +37,28 @@ function ArchiveRow({ children, row }) {
           </IconButton>
         </TableCell>
         <TableCell>
+          {new Date(row.dateCreated).toLocaleString("en-AU", {
+            day: "numeric",
+            month: "numeric",
+            year: "numeric",
+          })}
+        </TableCell>
+        <TableCell>
           <span
-            style={
-              row.enrolled
-                ? enrolledStyles
-                : !row.enrolled && row.bookedTrial
-                ? trialStyles
-                : null
-            }
+            style={{
+              color: "white",
+              backgroundColor: row.enrolled
+                ? "teal"
+                : row.bookedTrial
+                ? "orange"
+                : "salmon",
+              padding: "4px 6px",
+              marginLeft: "-.5rem",
+              borderRadius: "6px",
+              fontWeight: "bold",
+            }}
           >
-            {row.bookedTrial && !row.enrolled
-              ? "TRIAL"
-              : row.enrolled
-              ? "ENROLLED"
-              : new Date(row.dateCreated).toLocaleString("en-AU", {
-                  day: "numeric",
-                  month: "numeric",
-                  year: "numeric",
-                })}
+            {row.enrolled ? "Enrolled" : row.bookedTrial ? "Trial" : "No Trial"}
           </span>
         </TableCell>
         <TableCell>{`${row.studentFullName}`}</TableCell>
@@ -90,7 +77,7 @@ function ArchiveRow({ children, row }) {
             paddingBottom: 0,
             paddingTop: 0,
           }}
-          colSpan={8}
+          colSpan={9}
         >
           <Collapse in={open} timeout="auto">
             <Box sx={{ m: 2 }}>

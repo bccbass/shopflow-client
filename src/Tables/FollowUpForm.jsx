@@ -15,13 +15,15 @@ import {
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 import { calculateNextContact } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
+import TaskAltIcon from "@mui/icons-material/TaskAlt";
+import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 
 const FollowUpForm = ({ lead }) => {
   const { user } = useContext(UserContext);
 
   const blankFormData = {
     admin: user.initials,
-    method: { chat: false, voicemail: false, email: false, text: false },
+    method: { chat: false, voicemail: false, email: false, call: false },
     notes: "",
   };
   const [formData, setFormData] = React.useState(blankFormData);
@@ -58,7 +60,7 @@ const FollowUpForm = ({ lead }) => {
       <TableCell>
         <TextField
           variant="standard"
-          sx={{width: '90%'}}
+          sx={{ width: "90%" }}
           size="normal"
           helperText="Next Contact Date"
           name="nextContactDate"
@@ -75,42 +77,59 @@ const FollowUpForm = ({ lead }) => {
           {user.initials}
         </Typography> */}
       </TableCell>
-      <TableCell align='center'>
+      <TableCell align="center">
+        <Tooltip title="Call" placement="top">
+          <Checkbox
+            size="large"
+            color="success"
+            icon={<PanoramaFishEyeIcon />}
+            checkedIcon={<TaskAltIcon />}
+            name="call"
+            onChange={handleCheckboxChange}
+            checked={!!formData.method.call}
+          />
+        </Tooltip>
+      </TableCell>
+      <TableCell align="center">
         <Tooltip title="Chat" placement="top">
           <Checkbox
+            size="large"
+            color="success"
+            icon={<PanoramaFishEyeIcon />}
+            checkedIcon={<TaskAltIcon />}
             name="chat"
             onChange={handleCheckboxChange}
             checked={!!formData.method.chat}
           />
         </Tooltip>
       </TableCell>
-      <TableCell align='center'>
+      <TableCell align="center">
         <Tooltip title="Voicemail" placement="top">
           <Checkbox
+            size="large"
+            color="success"
+            icon={<PanoramaFishEyeIcon />}
+            checkedIcon={<TaskAltIcon />}
             name="voicemail"
             onChange={handleCheckboxChange}
             checked={!!formData.method.voicemail}
           />
         </Tooltip>
       </TableCell>
-      <TableCell align='center'>
+      <TableCell align="center">
         <Tooltip title="Email" placement="top">
           <Checkbox
+            size="large"
+            color="success"
+            icon={<PanoramaFishEyeIcon />}
+            checkedIcon={<TaskAltIcon />}
             name="email"
             onChange={handleCheckboxChange}
             checked={!!formData.method.email}
           />
         </Tooltip>
       </TableCell>
-      <TableCell align='center'>
-        <Tooltip title="Text" placement="top">
-          <Checkbox
-            name="text"
-            onChange={handleCheckboxChange}
-            checked={!!formData.method.text}
-          />
-        </Tooltip>
-      </TableCell>
+
       <TableCell>
         <TextField
           size="small"

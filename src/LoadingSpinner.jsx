@@ -4,7 +4,7 @@ import { Box, Typography, CircularProgress } from "@mui/material";
 const LoadingSpinner = ({ height }) => {
   return (
     <Box
-      fullwidth
+      fullWidth
       sx={{
         height: height,
         mt: -3,

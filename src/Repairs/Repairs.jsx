@@ -56,7 +56,7 @@ const Repairs = () => {
             repair.instrument,
             repair.jobDescription,
           ]
-            .map((val) => val.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((val) => val?.toLowerCase().includes(searchTerm.toLowerCase()))
             .includes(true)
         );
   };

@@ -73,17 +73,12 @@ function RepairsTableRow({ row }) {
 						<CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
 					</a>
 				</TableCell>
-				{/* <TableCell>
-					<a href={"mailto:" + row?.email}>
-						<EmailIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
-					</a>
-				</TableCell> */}
 				<TableCell>
          			<OpenSMSModalButton 
 					 	contactNumber={row.phone} 
 						recipient={row.firstName}
 						admin={user.firstName}
-						customMessage={`Your ${row.instrument ? row.instrument.toLowerCase() : 'instrument'} repair is complete and is ready to be picked up.`}/>
+						customMessage={`Your repair is complete and is ready for pickup.`}/>
 				</TableCell>
 				<TableCell >
 					< RepairRowMenu repair={row} />

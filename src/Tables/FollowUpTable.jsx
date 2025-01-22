@@ -11,9 +11,17 @@ import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import FollowUpForm from "./FollowUpForm";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
+import CheckIcon from "@mui/icons-material/Check";
 import { Divider } from "@mui/material";
 
 const FollowUpTable = ({ followUpEvents, lead }) => {
+  const checkStyles = {
+    color: "green",
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+  };
+
+  const cellTitleStyles = { fontWeight: "bold" };
   return (
     <Box
       sx={{
@@ -23,7 +31,7 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
         flexDirection: "column",
         alignItems: "center",
       }}
-    >       
+    >
       <Card
         sx={{
           bgcolor: "white",
@@ -38,43 +46,64 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
         }}
       >
         <TableContainer sx={{ mb: 0 }}>
-          <Typography color='text.secondary' align="center" variant="h5" fontWeight={"bold"}>
+          <Typography
+            color="text.secondary"
+            align="center"
+            variant="h5"
+            fontWeight={"bold"}
+          >
             Follow Up History
           </Typography>
-          <Divider sx={{mt:1, mb: 2.5 }} />
+          <Divider sx={{ mt: 1, mb: 2.5 }} />
 
           <Table size="small" aria-label="follow-up">
             <TableHead>
               <TableRow>
-                <TableCell sx={{ width: "20%" }}>Date</TableCell>
-                <TableCell>Admin</TableCell>
-                <TableCell align="center">Chat</TableCell>
-                <TableCell align="center">Voicemail</TableCell>
-                <TableCell align="center">Email</TableCell>
-                <TableCell align="center">Text</TableCell>
-                <TableCell sx={{}}>Notes</TableCell>
-                <TableCell sx={{}}></TableCell>
+                <TableCell sx={cellTitleStyles}>Contact Date</TableCell>
+                <TableCell sx={cellTitleStyles}>Admin</TableCell>
+                <TableCell sx={cellTitleStyles} align="center">
+                  Call
+                </TableCell>
+                <TableCell sx={cellTitleStyles} align="center">
+                  Chat
+                </TableCell>
+                <TableCell sx={cellTitleStyles} align="center">
+                  Voicemail
+                </TableCell>
+                <TableCell sx={cellTitleStyles} align="center">
+                  Email
+                </TableCell>
+
+                <TableCell sx={cellTitleStyles}>Notes</TableCell>
+                <TableCell sx={cellTitleStyles}></TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {followUpEvents.map((contact) => (
                 <TableRow key={contact._id}>
-                  <TableCell component="th" scope="row">
+                  <TableCell
+                    sx={{ color: "dimgray" }}
+                    component="th"
+                    scope="row"
+                  >
                     {contact.followUpInitDate}
                   </TableCell>
-                  <TableCell sx={{ pl: 3.2 }}>{contact.admin}</TableCell>
-                  <TableCell align="center" sx={{ color: "green" }}>
-                    {contact.method?.chat === true ? "✓" : ""}
+                  <TableCell sx={{ pl: 3.2, color: "dimgray" }}>
+                    {contact.admin}
                   </TableCell>
-                  <TableCell align="center" sx={{ color: "green" }}>
-                    {contact.method?.voicemail === true ? "✓" : ""}
+                  <TableCell align="center" sx={checkStyles}>
+                    {contact.method?.call === true ? <CheckIcon /> : ""}
                   </TableCell>
-                  <TableCell align="center" sx={{ color: "green" }}>
-                    {contact.method?.email === true ? "✓" : ""}
+                  <TableCell align="center" sx={checkStyles}>
+                    {contact.method?.chat === true ? <CheckIcon /> : ""}
                   </TableCell>
-                  <TableCell align="center" sx={{ color: "green" }}>
-                    {contact.method?.text === true ? "✓" : ""}
+                  <TableCell align="center" sx={checkStyles}>
+                    {contact.method?.voicemail === true ? <CheckIcon /> : ""}
                   </TableCell>
+                  <TableCell align="center" sx={checkStyles}>
+                    {contact.method?.email === true ? <CheckIcon /> : ""}
+                  </TableCell>
+
                   <TableCell>{contact?.notes}</TableCell>
                   <TableCell></TableCell>
                 </TableRow>

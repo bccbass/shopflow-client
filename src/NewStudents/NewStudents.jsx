@@ -49,7 +49,7 @@ const NewStudents = () => {
             lead.student.instrument,
           ]
             .map((name) =>
-              name.toLowerCase().includes(searchTerm.toLowerCase())
+              name?.toLowerCase().includes(searchTerm.toLowerCase())
             )
             .includes(true)
         );

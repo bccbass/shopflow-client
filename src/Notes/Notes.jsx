@@ -25,7 +25,7 @@ const Notes = () => {
       ? arr
       : arr.filter((note) =>
           [note.body, note.title, note.createdBy]
-            .map((val) => val.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((val) => val?.toLowerCase().includes(searchTerm.toLowerCase()))
             .includes(true)
         );
   };

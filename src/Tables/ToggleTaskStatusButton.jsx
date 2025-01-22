@@ -4,7 +4,6 @@ import React from "react";
 import { useState } from "react";
 import Fab from "@mui/material/Fab";
 import Box from "@mui/material/Box";
-import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
@@ -12,11 +11,10 @@ import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 import {
   Tooltip,
   CircularProgress,
-  CardHeader,
   Typography,
 } from "@mui/material";
 
-const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
+const ToggleTaskStatusButton = ({ taskName, description, updateKey, taskStatus, id }) => {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const { mutate } = useMutation({
@@ -27,20 +25,13 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
     },
   });
 
-  const taskDescriptions = {
-    timetable: "Update Timetables (MMS & SS)",
-    status: 'Make Student "Active" in MMS',
-    createInvoice: "Create Term Invoice in MMS",
-    sentInvoice: "Email Completed Invoice from MMS",
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     mutate({
       path: `leads/updatefollowup/${id}`,
       body: {
-        enrolledAdmin: { [taskName]: !taskStatus },
+        [updateKey]: { [taskName]: !taskStatus },
       },
     });
   };
@@ -61,7 +52,6 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
           <CircularProgress size={"22px"} sx={{}} />
         </Fab>
       ) : (
-        <Tooltip title={taskDescriptions[taskName]}>
           <Fab
             sx={{ color: taskStatus ? "green" : "grey" }}
             onClick={handleSubmit}
@@ -72,7 +62,6 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
               <PanoramaFishEyeIcon fontSize="large" />
             )}
           </Fab>
-        </Tooltip>
       )}
       <Typography
         sx={{
@@ -86,7 +75,7 @@ const ToggleTaskStatusButton = ({ taskName, taskStatus, id }) => {
           color: "white",
         }}
         color="text.secondary"
-      >{`${taskDescriptions[taskName]}`}</Typography>
+      >{description}</Typography>
     </Box>
   );
 };

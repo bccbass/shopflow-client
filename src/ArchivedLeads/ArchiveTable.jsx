@@ -18,6 +18,7 @@ export default function ArchiveTable({ enquiries, children }) {
 					<TableRow sx={{color: 'white'}}>
 						<TableCell />
 						<TableCell sx={{ fontWeight: "bold", pl: 4, color: 'white' }}>From</TableCell>
+						<TableCell sx={{ fontWeight: "bold", pl: 4, color: 'white' }}>Status</TableCell>
 						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Student</TableCell>
 						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Parent</TableCell>
 						<TableCell sx={{ fontWeight: "bold", color: 'white' }}>Instrument</TableCell>

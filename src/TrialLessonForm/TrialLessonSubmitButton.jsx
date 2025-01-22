@@ -21,6 +21,7 @@ const TrialLessonSubmitButton = ({ updatedStudent, setIsLoading, setOpen }) => {
 
 	const dataPayload = {
 		bookedTrial: 1,
+		nextContactDate: updatedStudent.nextContactDate,
 		trialLesson: { ...updatedStudent.trialLesson },
 	};
 

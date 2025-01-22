@@ -53,11 +53,16 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         </Typography>
 
         <Typography sx={{ display: "flex" }}>
-          <strong style={{marginRight: '4px'}}> Email: </strong>
-          {lead?.contact?.email}
-          {/* <Link sx={{ px: 0.5 }} href={"mailto:" + lead?.contact?.email}>
+          <strong style={{ marginRight: "4px" }}> Email: </strong>
+          <Link
+            target="_blank"
+            sx={{ px: 0.5 }}
+            href={
+              "https://mail.google.com/mail/u/2/#search/" + lead?.contact?.email
+            }
+          >
             {` ${lead?.contact?.email}`}
-          </Link> */}
+          </Link>
           {lead.contact.email && (
             <SearchEmailButton email={lead.contact.email} />
           )}

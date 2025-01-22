@@ -11,8 +11,8 @@ import EnquiryNotesCard from "./EnquiryNotesCard";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
 import EditStudentFormWrapper from "../AddStudent/EditStudentFormWrapper";
 import EditNotesWrapper from "../AddStudent/EditNotesWrapper";
-import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
-import EnrolledAdminForm from "./EnrolledAdminForm";
+import AdminChecklistForm from "./AdminChecklistForm";
+import AdminFormTasks from "./AdminFormTasks";
 import { redirect } from "react-router";
 
 const RowCollapsibleContent = ({ lead }) => {
@@ -52,18 +52,18 @@ const RowCollapsibleContent = ({ lead }) => {
           </OpenUpdateModalButton>
         </EnquiryNotesCard>
       </Container>
-
-      {lead.enrolled ? (
-        <EnrolledAdminForm lead={lead} />
-      ) : (
-        <>
-          <FollowUpTable
-            lead={lead}
-            followUpEvents={
-              lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
-            }
-          />
-        </>
+      {(lead.bookedTrial || lead.enrolled) && (
+        <AdminChecklistForm lead={lead}>
+          <AdminFormTasks lead={lead} />
+        </AdminChecklistForm>
+      )}
+      {!lead.enrolled && (
+        <FollowUpTable
+          lead={lead}
+          followUpEvents={
+            lead.bookedTrial ? lead.trialLesson.followUp : lead.followUp
+          }
+        />
       )}
     </Box>
   );
