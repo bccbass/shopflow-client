@@ -87,7 +87,7 @@ function RepairsTableRow({ row }) {
 			<TableRow>
 				<TableCell sx={{ p: 0, m:0 }} colSpan={9}>
 					<Collapse in={open} timeout="auto" sx={{bgcolor: '#FAFAFA'}}>
-						<RepairsCollapsibleContent row={row} />
+						{open && <RepairsCollapsibleContent row={row} />}
 					</Collapse>
 				</TableCell>
 			</TableRow>

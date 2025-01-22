@@ -24,9 +24,7 @@ function EnquiryRow({ row, info }) {
   const isEnrollAdminIncomplete = Object.values(row.enrolledAdmin).includes(
     false
   );
-  const isAdminNotStarted = !Object.values(row.enrolledAdmin).includes(
-    true
-  );
+  const isAdminNotStarted = !Object.values(row.enrolledAdmin).includes(true);
 
   const overdueStyles = {
     color: "red",
@@ -35,7 +33,11 @@ function EnquiryRow({ row, info }) {
 
   const enrolledStyles = {
     color: "white",
-    backgroundColor: isAdminNotStarted ? "red" : isEnrollAdminIncomplete ? "orange" : "teal",
+    backgroundColor: isAdminNotStarted
+      ? "red"
+      : isEnrollAdminIncomplete
+      ? "orange"
+      : "teal",
     padding: "4px 6px",
     marginLeft: "-.5rem",
     borderRadius: "6px",
@@ -109,7 +111,7 @@ function EnquiryRow({ row, info }) {
       <TableRow>
         <TableCell sx={{ p: 0 }} colSpan={9}>
           <Collapse in={open} timeout="auto">
-            <RowCollapsibleContent lead={row} />
+            {open && <RowCollapsibleContent lead={row} />}
           </Collapse>
         </TableCell>
       </TableRow>

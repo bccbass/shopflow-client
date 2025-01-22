@@ -35,9 +35,8 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
       <Card
         sx={{
           bgcolor: "white",
-
           p: 3,
-          my: 3,
+          // my: 3,
           width: "96%",
           borderRadius: "5px",
           display: "flex",
@@ -46,15 +45,15 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
         }}
       >
         <TableContainer sx={{ mb: 0 }}>
-          <Typography
+          {/* <Typography
             color="text.secondary"
             align="center"
             variant="h5"
             fontWeight={"bold"}
           >
             Follow Up History
-          </Typography>
-          <Divider sx={{ mt: 1, mb: 2.5 }} />
+          </Typography> */}
+          {/* <Divider sx={{ mt: 1, mb: 2.5 }} /> */}
 
           <Table size="small" aria-label="follow-up">
             <TableHead>

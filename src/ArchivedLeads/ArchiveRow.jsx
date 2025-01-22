@@ -21,7 +21,6 @@ function ArchiveRow({ children, row }) {
   const [open, setOpen] = React.useState(false);
   const minorStudent =
     row.guardian.lastName.length > 0 && row.guardian.firstName.length > 0;
-
   return (
     <React.Fragment>
       <TableRow
@@ -79,193 +78,195 @@ function ArchiveRow({ children, row }) {
           }}
           colSpan={9}
         >
-          <Collapse in={open} timeout="auto">
-            <Box sx={{ m: 2 }}>
-              <Container
-                sx={{ display: "flex", justifyContent: "space-between" }}
-              >
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    // alignItems: "flex-start",
-                    width: "30%",
-                    color: "grey",
-                  }}
+          {open && (
+            <Collapse in={open} timeout="auto">
+              <Box sx={{ m: 2 }}>
+                <Container
+                  sx={{ display: "flex", justifyContent: "space-between" }}
                 >
-                  <Box sx={{ p: 2, flex: 2 }}>
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      color="textSecondary"
-                      component="div"
-                    >
-                      <strong> Enquiry Details </strong>
-                    </Typography>
-                    <Divider sx={{ mb: 2 }} />
-
-                    <Typography>
-                      <strong> Student: </strong>
-                      {`${row.student.lastName}, ${row.student.firstName}`}
-                    </Typography>
-                    {minorStudent && (
-                      <Typography>
-                        <strong> Parent: </strong>
-                        {`${row.guardian.lastName}, ${row.guardian.firstName}`}
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      // alignItems: "flex-start",
+                      width: "30%",
+                      color: "grey",
+                    }}
+                  >
+                    <Box sx={{ p: 2, flex: 2 }}>
+                      <Typography
+                        variant="h6"
+                        gutterBottom
+                        color="textSecondary"
+                        component="div"
+                      >
+                        <strong> Enquiry Details </strong>
                       </Typography>
-                    )}
-                    <Typography>
-                      <strong> Phone: </strong>
-                      {row?.contact?.phone}
-                    </Typography>
-                    <Typography>
-                      <strong> Email: </strong>
-                      {row?.contact?.email}
-                    </Typography>
-                    <Typography>
-                      <strong> Source: </strong>
-                      {row?.leadSource}
-                    </Typography>
-                    <Typography>
-                      <strong>Group Class: </strong>
-                      {row.student?.groupClass}
-                    </Typography>
-                    <Typography>
-                      <strong> Age: </strong>
-                      {row?.student?.age}
-                    </Typography>
-                  </Box>
-                </Card>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    color: "grey",
-                    width: "30%",
-                  }}
-                >
-                  <Box sx={{ p: 2, flex: 2 }}>
-                    {row.bookedTrial === true ? (
-                      <>
-                        <Typography
-                          variant="h6"
-                          gutterBottom
-                          color="textSecondary"
-                          component="div"
-                        >
-                          <strong> Trial Lesson </strong>
-                        </Typography>
-                        <Divider sx={{ mb: 2 }} />
+                      <Divider sx={{ mb: 2 }} />
 
+                      <Typography>
+                        <strong> Student: </strong>
+                        {`${row.student.lastName}, ${row.student.firstName}`}
+                      </Typography>
+                      {minorStudent && (
                         <Typography>
-                          <strong> date: </strong>
-                          {new Date(row?.trialLesson?.date).toLocaleString(
-                            "en-AU",
-                            {
-                              day: "numeric",
-                              month: "numeric",
-                              year: "numeric",
-                            }
-                          )}
+                          <strong> Parent: </strong>
+                          {`${row.guardian.lastName}, ${row.guardian.firstName}`}
                         </Typography>
-                        <Typography>
-                          <strong> Time: </strong>
-                          {`${row?.trialLesson?.time?.hour}:${row?.trialLesson?.time?.min}${row?.trialLesson?.time?.twelveHr}`}
-                        </Typography>
-                        <Typography>
-                          <strong> Location: </strong>
-                          {row?.trialLesson?.location}
-                        </Typography>
-                        <Typography>
-                          <strong> Instrument: </strong>
-                          {row?.trialLesson?.instrument}
-                        </Typography>
-                        <Typography>
-                          <strong> Teacher: </strong>
-                          {row?.trialLesson?.teacher}
-                        </Typography>
-                        {row.trialLesson.groupClass && (
-                          <Typography>
-                            <strong>Group Class: </strong>
-                            {row?.trialLesson?.groupClass}
+                      )}
+                      <Typography>
+                        <strong> Phone: </strong>
+                        {row?.contact?.phone}
+                      </Typography>
+                      <Typography>
+                        <strong> Email: </strong>
+                        {row?.contact?.email}
+                      </Typography>
+                      <Typography>
+                        <strong> Source: </strong>
+                        {row?.leadSource}
+                      </Typography>
+                      <Typography>
+                        <strong>Group Class: </strong>
+                        {row.student?.groupClass}
+                      </Typography>
+                      <Typography>
+                        <strong> Age: </strong>
+                        {row?.student?.age}
+                      </Typography>
+                    </Box>
+                  </Card>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      color: "grey",
+                      width: "30%",
+                    }}
+                  >
+                    <Box sx={{ p: 2, flex: 2 }}>
+                      {row.bookedTrial === true ? (
+                        <>
+                          <Typography
+                            variant="h6"
+                            gutterBottom
+                            color="textSecondary"
+                            component="div"
+                          >
+                            <strong> Trial Lesson </strong>
                           </Typography>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        <Typography
-                          variant="h6"
-                          gutterBottom
-                          color="textSecondary"
-                          component="div"
-                        >
-                          <strong> Trial Lesson </strong>
-                        </Typography>
-                        <Divider sx={{ mb: 2 }} />
+                          <Divider sx={{ mb: 2 }} />
 
-                        <Typography
-                          sx={{
-                            mt: 6,
-                            fontWeight: "bold",
-                            color: "white",
-                            backgroundColor: "cornflowerblue",
-                            borderRadius: "10px",
-                            width: "fit-content",
-                            px: 3,
-                            py: 1,
-                            mx: "auto",
-                          }}
-                        >
-                          No Trial Booked
-                        </Typography>
-                      </>
-                    )}
-                  </Box>
-                </Card>
-                <Card
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                    color: "grey",
-                    width: "30%",
-                  }}
-                >
-                  <Box sx={{ p: 2, flex: 2 }}>
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      color="textSecondary"
-                      component="div"
-                    >
-                      <strong> Notes </strong>
-                    </Typography>
-                    <Divider sx={{ mb: 2 }} />
-                    <Typography>{row?.notes}</Typography>
-                  </Box>
-                </Card>
-              </Container>
+                          <Typography>
+                            <strong> date: </strong>
+                            {new Date(row?.trialLesson?.date).toLocaleString(
+                              "en-AU",
+                              {
+                                day: "numeric",
+                                month: "numeric",
+                                year: "numeric",
+                              }
+                            )}
+                          </Typography>
+                          <Typography>
+                            <strong> Time: </strong>
+                            {`${row?.trialLesson?.time?.hour}:${row?.trialLesson?.time?.min}${row?.trialLesson?.time?.twelveHr}`}
+                          </Typography>
+                          <Typography>
+                            <strong> Location: </strong>
+                            {row?.trialLesson?.location}
+                          </Typography>
+                          <Typography>
+                            <strong> Instrument: </strong>
+                            {row?.trialLesson?.instrument}
+                          </Typography>
+                          <Typography>
+                            <strong> Teacher: </strong>
+                            {row?.trialLesson?.teacher}
+                          </Typography>
+                          {row.trialLesson.groupClass && (
+                            <Typography>
+                              <strong>Group Class: </strong>
+                              {row?.trialLesson?.groupClass}
+                            </Typography>
+                          )}
+                        </>
+                      ) : (
+                        <>
+                          <Typography
+                            variant="h6"
+                            gutterBottom
+                            color="textSecondary"
+                            component="div"
+                          >
+                            <strong> Trial Lesson </strong>
+                          </Typography>
+                          <Divider sx={{ mb: 2 }} />
 
-              {children}
-            </Box>
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-end",
-                p: 4,
-              }}
-            >
-              <ArchiveButton
-                reactivate={true}
-                id={row._id}
-                bookedTrial={row.bookedTrial}
-              />
-              <DeleteButton id={row._id} path="archive" />
-            </Box>
-          </Collapse>
+                          <Typography
+                            sx={{
+                              mt: 6,
+                              fontWeight: "bold",
+                              color: "white",
+                              backgroundColor: "cornflowerblue",
+                              borderRadius: "10px",
+                              width: "fit-content",
+                              px: 3,
+                              py: 1,
+                              mx: "auto",
+                            }}
+                          >
+                            No Trial Booked
+                          </Typography>
+                        </>
+                      )}
+                    </Box>
+                  </Card>
+                  <Card
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      color: "grey",
+                      width: "30%",
+                    }}
+                  >
+                    <Box sx={{ p: 2, flex: 2 }}>
+                      <Typography
+                        variant="h6"
+                        gutterBottom
+                        color="textSecondary"
+                        component="div"
+                      >
+                        <strong> Notes </strong>
+                      </Typography>
+                      <Divider sx={{ mb: 2 }} />
+                      <Typography>{row?.notes}</Typography>
+                    </Box>
+                  </Card>
+                </Container>
+
+                {children}
+              </Box>
+              <Box
+                sx={{
+                  width: "100%",
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  p: 4,
+                }}
+              >
+                <ArchiveButton
+                  reactivate={true}
+                  id={row._id}
+                  bookedTrial={row.bookedTrial}
+                />
+                <DeleteButton id={row._id} path="archive" />
+              </Box>
+            </Collapse>
+          )}
         </TableCell>
       </TableRow>
     </React.Fragment>

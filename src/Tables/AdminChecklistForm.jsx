@@ -13,7 +13,7 @@ const AdminChecklistForm = ({ lead, children }) => {
     >
       <Box
         sx={{
-          p: 3,
+          // p: 3,
           width: "96%",
           borderRadius: "12px",
           display: "flex",
@@ -21,14 +21,7 @@ const AdminChecklistForm = ({ lead, children }) => {
           bgcolor: "teal",
         }}
       >
-        <Typography
-          color="white"
-          align="center"
-          variant="h5"
-          fontWeight={"bold"}
-        >
-          {`${lead.enrolled ? 'Enrollment' : 'Trial Lesson'} Checklist`}
-        </Typography>
+
         <Box
           sx={{
             display: "flex",

@@ -8,13 +8,15 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { patchResource } from "../assets/apiHelpers";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
-import {
-  Tooltip,
-  CircularProgress,
-  Typography,
-} from "@mui/material";
+import { Tooltip, CircularProgress, Typography } from "@mui/material";
 
-const ToggleTaskStatusButton = ({ taskName, description, updateKey, taskStatus, id }) => {
+const ToggleTaskStatusButton = ({
+  taskName,
+  description,
+  updateKey,
+  taskStatus,
+  id,
+}) => {
   const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
   const { mutate } = useMutation({
@@ -40,7 +42,8 @@ const ToggleTaskStatusButton = ({ taskName, description, updateKey, taskStatus, 
     <Box
       sx={{
         width: "25%",
-        p: 3,
+        px: 3,
+        pt: 3,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -52,16 +55,16 @@ const ToggleTaskStatusButton = ({ taskName, description, updateKey, taskStatus, 
           <CircularProgress size={"22px"} sx={{}} />
         </Fab>
       ) : (
-          <Fab
-            sx={{ color: taskStatus ? "green" : "grey" }}
-            onClick={handleSubmit}
-          >
-            {taskStatus ? (
-              <TaskAltIcon fontSize="large" />
-            ) : (
-              <PanoramaFishEyeIcon fontSize="large" />
-            )}
-          </Fab>
+        <Fab
+          sx={{ color: taskStatus ? "green" : "grey", bgcolor: taskStatus && 'white' }}
+          onClick={handleSubmit}
+        >
+          {taskStatus ? (
+            <TaskAltIcon fontSize="large" />
+          ) : (
+            <PanoramaFishEyeIcon fontSize="large" />
+          )}
+        </Fab>
       )}
       <Typography
         sx={{
@@ -75,7 +78,9 @@ const ToggleTaskStatusButton = ({ taskName, description, updateKey, taskStatus, 
           color: "white",
         }}
         color="text.secondary"
-      >{description}</Typography>
+      >
+        {description}
+      </Typography>
     </Box>
   );
 };
