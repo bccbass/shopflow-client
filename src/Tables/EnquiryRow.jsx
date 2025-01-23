@@ -24,18 +24,25 @@ function EnquiryRow({ row, info }) {
   const isEnrollAdminIncomplete = Object.values(row.enrolledAdmin).includes(
     false
   );
-  const isAdminNotStarted = !Object.values(row.enrolledAdmin).includes(true);
 
-  const overdueStyles = {
-    color: "red",
-    fontWeight: "bold",
-  };
 
   const enrolledStyles = {
     color: "white",
-    backgroundColor: isAdminNotStarted
+    backgroundColor: row.enrolledAdminProgress == 'none'
       ? "red"
-      : isEnrollAdminIncomplete
+      : row.enrolledAdminProgress == 'in-progress'
+      ? "orange"
+      : "teal",
+    padding: "4px 6px",
+    marginLeft: "-.5rem",
+    borderRadius: "6px",
+    fontWeight: "bold",
+  };
+  const dateStyles = {
+    color: "white",
+    backgroundColor: row.overdue || (row.trialAdminProgress == 'none' && row.bookedTrial)
+      ? "red"
+      :  row.bookedTrial && row.trialAdminProgress == 'in-progress'
       ? "orange"
       : "teal",
     padding: "4px 6px",
@@ -47,7 +54,7 @@ function EnquiryRow({ row, info }) {
   const rowActionContent = (row) => {
     let enrolled;
     if (row.enrolled) {
-      enrolled = isEnrollAdminIncomplete ? "Incomplete" : "Complete";
+      enrolled = row.enrolledAdminProgress == 'complete' ? "Complete" : "Incomplete";
     }
     return row.enrolled ? enrolled : noDueDate ? "" : row.contactDate;
   };
@@ -73,11 +80,7 @@ function EnquiryRow({ row, info }) {
         <TableCell>
           <span
             style={
-              row.overdue && !row.enrolled
-                ? overdueStyles
-                : row.enrolled
-                ? enrolledStyles
-                : null
+              row.enrolled ? enrolledStyles : dateStyles
             }
           >
             {rowActionContent(row)}
