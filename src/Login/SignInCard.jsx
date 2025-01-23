@@ -4,6 +4,7 @@ import * as React from "react";
 import { useContext } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import InputLabel from "@mui/material/InputLabel";
 import MuiCard from "@mui/material/Card";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
@@ -19,6 +20,12 @@ import Logo from "../Logo";
 import { handleLogin } from "../assets/apiHelpers";
 import { UserContext } from "../UserContext";
 import CircularProgress from "@mui/material/CircularProgress";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+import IconButton from "@mui/material/IconButton";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -40,6 +47,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 
 export default function SignInCard() {
   const [generalError, setGeneralError] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -62,26 +70,31 @@ export default function SignInCard() {
     },
   });
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
 
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
 
     if (emailError || passwordError) {
       return;
     }
-    const data = new FormData(event.currentTarget);
     const userObj = {
-      email: data.get("email"),
-      password: data.get("password"),
+      email: email,
+      password: password,
     };
     mutation.mutate({ refetch: refetch, body: userObj });
+  };
+
+  const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const handleMouseUpPassword = (event) => {
+    event.preventDefault();
   };
 
   const resetErrorMsgs = () => {
@@ -194,7 +207,8 @@ export default function SignInCard() {
 							Forgot your password?
 						</Link>
 					</Box> */}
-          <FormLabel htmlFor="password">Password</FormLabel>
+
+          {/* <FormLabel htmlFor="password">Password</FormLabel>
           <TextField
             error={passwordError}
             helperText={passwordErrorMessage}
@@ -210,6 +224,39 @@ export default function SignInCard() {
             variant="outlined"
             color={passwordError ? "error" : "primary"}
           />
+        </FormControl> */}
+
+          <FormLabel htmlFor="password">Password</FormLabel>
+          <OutlinedInput
+            notched
+            autoFocus
+            onChange={resetErrorMsgs}
+            color={"primary"}
+            required
+            error={passwordError}
+            helperText={passwordError ? passwordErrorMessage : ""}
+            id="password"
+            type={showPassword ? "text" : "password"}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label={
+                    showPassword ? "hide the password" : "display the password"
+                  }
+                  onClick={handleClickShowPassword}
+                  onMouseDown={handleMouseDownPassword}
+                  onMouseUp={handleMouseUpPassword}
+                  edge="end"
+                >
+                  {showPassword ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            }
+            // label={"Password"}
+          />
+          <Typography sx={{ pl: 2, pt: 0.3, fontSize: ".8rem" }} color="error">
+            {passwordError ? passwordErrorMessage : ""}
+          </Typography>
         </FormControl>
         {/* <FormControlLabel
 					control={<Checkbox value="remember" color="primary" />}
