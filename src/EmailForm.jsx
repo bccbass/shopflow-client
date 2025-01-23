@@ -46,7 +46,7 @@ const EmailForm = ({ student, setOpen, info }) => {
         ],
       },
     ],
-    from: emailURL,
+    from: { email: emailURL, name: "Caringbah Music School" },
     subject: "",
     text: "",
   });

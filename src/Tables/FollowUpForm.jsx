@@ -151,7 +151,7 @@ const FollowUpForm = ({ lead }) => {
             query: "Leads",
             type: "patch",
             successCb: handleSubmit,
-            title: "add",
+            title: "Submit",
           }}
         />
       </TableCell>

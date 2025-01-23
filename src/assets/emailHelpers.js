@@ -1,5 +1,5 @@
 const emailURL = "support@caringbahmusic.com.au";
-import { nullDate } from './dateHelpers'
+import { nullDate } from "./dateHelpers";
 
 const generateInitialEnquiry = (student, info, admin) => {
   const addressee = student.isMinor
@@ -38,7 +38,7 @@ Caringbah Music`,
 };
 
 const generateTrialConfirmation = (student, info, admin) => {
-  const noDate = nullDate(student.trialLesson.date)
+  const noDate = nullDate(student.trialLesson.date);
   const addressee = student.isMinor
     ? student.guardian.firstName
     : student.student.firstName;
@@ -58,20 +58,29 @@ const generateTrialConfirmation = (student, info, admin) => {
   return {
     id: "trialConfirmation",
     label: "Trial Confirmation",
-    subject: `Trial Lesson Info for ${student?.trialDay?.split(' ')[0]}, ${student.trialDate} at ${student.trialTime}`,
+    subject: `Trial Lesson Info for ${student?.trialDay?.split(" ")[0]}, ${
+      student.trialDate
+    } at ${student.trialTime}`,
     text: `Hi ${addressee},
      
 Welcome to our Caringbah Music family! We're so glad to have you. Please find the details of ${studentPossesive} ${instrument}lesson below:
 
-Day: ${noDate ? '': student?.trialDay?.split(' ')[0]}
-Date: ${noDate ? '': student?.trialDate}
+Your lesson will take place at our ${
+      location ? location.name[0].toUpperCase() + location.name.slice(1) : ""
+    } location:
+${location ? location.streetAddress : ""} 
+${location ? location.suburb + "," : ""} ${location ? location.state : ""} 
+${location ? location.description : ""}
+
+Day: ${noDate ? "" : student?.trialDay?.split(" ")[0]}
+Date: ${noDate ? "" : student?.trialDate}
 Time: ${student?.trialTime}
-Location: ${location ? location.name[0].toUpperCase() + location.name.slice(1) : ''} 
-                ${location ? location.streetAddress : ""} 
-                ${location ? location.suburb + "," : ""} ${location ? location.state : ""} 
-                ${location ? location.description : ""}
 
 ${student.trialLesson.teacher} will be ${studentPossesive} teacher.
+
+If you have not already arranged payment for your trial lesson please purchase a trial lesson voucher from our website or by phone to ensure your trial time is held.
+
+Should you need to cancel or reschedule your trial lesson please let us know with at least 24 hours notice. If less than 24 hours notice is given we may not be able to accommodate changes and your lesson fee may be forfeited.
 
 After the trial lesson, please let us know how you felt it went. We will then see about finding you a set spot in our timetable.
 
