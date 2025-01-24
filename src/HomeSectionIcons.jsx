@@ -14,6 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import DownloadIcon from "@mui/icons-material/Download";
+import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 
 const HomeSectionItems = () => {
   const navigate = useNavigate();
@@ -41,6 +42,13 @@ const HomeSectionItems = () => {
       icon: <QueueMusicIcon color="primary" />,
     },
     {
+      title: "Repairs",
+      path: "repairs",
+      description:
+        "Track and manage in-shop repairs and easily communicate with customers.",
+      icon: <BuildCircleIcon color="primary" />,
+    },
+    {
       title: "Notes",
       path: "notes",
       description:
@@ -56,6 +64,7 @@ const HomeSectionItems = () => {
     },
     {
       title: "Download",
+      disabled: true,
       path: "/",
       description:
         "Export your data in clean, pre-formatted CSV files for easy portability.",
