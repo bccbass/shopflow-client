@@ -1,22 +1,37 @@
 import React from "react";
 import { useState } from "react";
-import { Dialog, Box, DialogContent, Tooltip } from "@mui/material";
+import { Dialog, Box, DialogContent, Tooltip, Button } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import EmailIcon from "@mui/icons-material/Email";
 
 const OpenEmailModalButton = ({ children, email }) => {
   const [open, setOpen] = useState(false);
+
+  const handleStopPropagation = (e) => {
+    e.stopPropagation();
+  };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    email ? setOpen(!open) : null;
+  };
+
   return (
     <>
-      <Tooltip title={email ? "Compose Email from Template" : "No Valid Email Address!"}>
-        <EmailIcon
-          onClick={() => (email ? setOpen(!open) : null)}
-          sx={{ color: "grey" }}
-        />
+      <Tooltip
+        title={
+          email ? "Compose Email from Template" : "No Valid Email Address!"
+        }
+      >
+        <EmailIcon onClick={handleClick} sx={{ color: "grey" }} />
       </Tooltip>
-      <Dialog open={open} sx={{zIndex: 1000, display: "flex", justifyContent: "center" }}>
+      <Dialog
+        onClick={handleStopPropagation}
+        disableEnforceFocus
+        open={open}
+        sx={{ display: "flex", justifyContent: "center" }}
+      >
         <Box
-          onClick={() => setOpen(!open)}
           sx={{
             width: "100%",
             display: "flex",
@@ -25,7 +40,13 @@ const OpenEmailModalButton = ({ children, email }) => {
             pt: 1,
           }}
         >
-          <CloseIcon fontSize="large" sx={{ color: "grey" }} />
+          <Button>
+            <CloseIcon
+              onClick={handleClick}
+              fontSize="large"
+              sx={{ color: "grey" }}
+            />
+          </Button>
         </Box>
         <DialogContent
           sx={{

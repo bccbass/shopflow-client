@@ -36,4 +36,12 @@
   max-width: 475px;
 }
 
+.ck.ck-dropdown,
+.ck.ck-balloon-panel,
+.ck.ck-toolbar {
+  z-index: 1400 !important; /* Ensure this is higher than your dialog box */
+}
 
+.ck.ck-balloon-panel {
+  pointer-events: auto !important;
+}

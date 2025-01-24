@@ -21,18 +21,16 @@ function EnquiryRow({ row, info }) {
   const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const noDueDate = nullDate(row.nextContactDate);
-  const isEnrollAdminIncomplete = Object.values(row.enrolledAdmin).includes(
-    false
-  );
 
 
   const enrolledStyles = {
     color: "white",
-    backgroundColor: row.enrolledAdminProgress == 'none'
-      ? "red"
-      : row.enrolledAdminProgress == 'in-progress'
-      ? "orange"
-      : "teal",
+    backgroundColor:
+      row.enrolledAdminProgress == "none"
+        ? "red"
+        : row.enrolledAdminProgress == "in-progress"
+        ? "orange"
+        : "teal",
     padding: "4px 6px",
     marginLeft: "-.5rem",
     borderRadius: "6px",
@@ -40,11 +38,12 @@ function EnquiryRow({ row, info }) {
   };
   const dateStyles = {
     color: "white",
-    backgroundColor: row.overdue || (row.trialAdminProgress == 'none' && row.bookedTrial)
-      ? "red"
-      :  row.bookedTrial && row.trialAdminProgress == 'in-progress'
-      ? "orange"
-      : "teal",
+    backgroundColor:
+      row.overdue || (row.trialAdminProgress == "none" && row.bookedTrial)
+        ? "red"
+        : row.bookedTrial && row.trialAdminProgress == "in-progress"
+        ? "orange"
+        : "teal",
     padding: "4px 6px",
     marginLeft: "-.5rem",
     borderRadius: "6px",
@@ -54,7 +53,8 @@ function EnquiryRow({ row, info }) {
   const rowActionContent = (row) => {
     let enrolled;
     if (row.enrolled) {
-      enrolled = row.enrolledAdminProgress == 'complete' ? "Complete" : "Incomplete";
+      enrolled =
+        row.enrolledAdminProgress == "complete" ? "Complete" : "Incomplete";
     }
     return row.enrolled ? enrolled : noDueDate ? "None" : row.contactDate;
   };
@@ -62,6 +62,7 @@ function EnquiryRow({ row, info }) {
   return (
     <React.Fragment>
       <TableRow
+        onClick={() => setOpen(!open)}
         sx={{
           "& > *": {
             borderBottom: "unset",
@@ -69,20 +70,12 @@ function EnquiryRow({ row, info }) {
         }}
       >
         <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
+          <IconButton aria-label="expand row" size="small">
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell>
-          <span
-            style={
-              row.enrolled ? enrolledStyles : dateStyles
-            }
-          >
+          <span style={row.enrolled ? enrolledStyles : dateStyles}>
             {rowActionContent(row)}
           </span>
         </TableCell>

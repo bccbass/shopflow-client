@@ -55,7 +55,7 @@ export default function RTEditor({ emailObj, setEmailObj }) {
     return {
       editorConfig: {
         toolbar: {
-        zIndexOffset: 1100, // Adjust this based on your dialog's z-index
+        zIndexOffset: 1500, // Adjust this based on your dialog's z-index
 
           items: [
             "fontSize",

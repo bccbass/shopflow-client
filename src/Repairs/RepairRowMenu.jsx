@@ -17,11 +17,13 @@ export default function RepairRowMenu({ repair }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
-  const handleToggle = () => {
+  const handleToggle = (event) => {
+    event.stopPropagation()
     setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
+    event.stopPropagation()
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -30,6 +32,7 @@ export default function RepairRowMenu({ repair }) {
   };
 
   function handleListKeyDown(event) {
+    event.stopPropagation()
     if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);

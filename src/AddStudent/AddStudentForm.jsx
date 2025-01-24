@@ -48,7 +48,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
       }}
     >
       <Box sx={{ display: "flex", flexDirection: "column", mb: 1 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography align="start" variant="h6" sx={{ mb: 2 }}>
           Student:
         </Typography>
         <Box
@@ -144,7 +144,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
       </Box>
 
       <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography align="start" variant="h6" sx={{ mb: 2 }}>
           Parent:
         </Typography>
 
@@ -175,7 +175,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
         </Box>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography align="start" variant="h6" sx={{ mb: 2 }}>
           Contact Details:
         </Typography>
 
@@ -205,7 +205,7 @@ export default function AddStudentForm({ studentData, setStudentData }) {
         </Box>
       </Box>
       <Box sx={{ display: "flex", flexDirection: "column", my: 2 }}>
-        <Typography variant="h6" sx={{ mb: 2 }}>
+        <Typography align="start" variant="h6" sx={{ mb: 2 }}>
           Enquiry Details:
         </Typography>
         <Box

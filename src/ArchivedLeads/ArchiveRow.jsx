@@ -1,5 +1,3 @@
-/** @format */
-
 import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
@@ -24,14 +22,11 @@ function ArchiveRow({ children, row }) {
   return (
     <React.Fragment>
       <TableRow
+        onClick={() => setOpen(!open)}
         sx={{ "& > *": { borderBottom: "unset", backgroundColor: "#dcf2fc" } }}
       >
         <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
+          <IconButton aria-label="expand row" size="small">
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>

@@ -16,19 +16,21 @@ export default function ArchiveRowMenu({ lead }) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
-  const handleToggle = () => {
+  const handleToggle = (event) => {
+    event.stopPropagation();
     setOpen((prevOpen) => !prevOpen);
   };
 
   const handleClose = (event) => {
+    event.stopPropagation();
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
   function handleListKeyDown(event) {
+    event.stopPropagation()
     if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
@@ -88,7 +90,7 @@ export default function ArchiveRowMenu({ lead }) {
                       <MenuItemUnarchive id={lead._id} />
                     </MenuItem>
                     <MenuItem onClick={handleClose}>
-                      <MenuItemDelete id={lead._id} path='archive' />
+                      <MenuItemDelete id={lead._id} path="archive" />
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

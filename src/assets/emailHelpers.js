@@ -35,7 +35,8 @@ We look forward to hearing from you and seeing you at your first lesson!
 <p>
 Kind regards, <br>
 ${admin}<br>
-Caringbah Music</p>`,
+Caringbah Music</p>
+ `,
   };
 };
 
