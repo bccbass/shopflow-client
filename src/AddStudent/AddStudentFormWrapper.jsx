@@ -67,7 +67,7 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
       </Box>
       <OpenUpdateModalButton title="Paste and Parse Text" variant="outlined">
         <ParseAMSLead
-          blankStudent={blankStudent}
+          blankStudent={studentData}
           setStudentData={setStudentData}
         />
       </OpenUpdateModalButton>

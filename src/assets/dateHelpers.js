@@ -10,7 +10,7 @@ const addDays = (days, date = Date.now()) => {
 
 const calculateNextContact = (lead) => {
   if (lead.bookedTrial) {
-    if (lead.trialLesson.followUp.length >= 3) {
+    if (lead.trialLesson.followUp.length >= 2) {
       return "";
     } else return addDays(2);
   } else if (lead.followUp.length == 0) {
