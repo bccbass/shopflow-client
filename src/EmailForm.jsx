@@ -14,6 +14,7 @@ import SendEmail from "./Buttons/SendEmail";
 import { createEmailTemplateArray, emailURL } from "./assets/emailHelpers.js";
 import { UserContext } from "./UserContext.jsx";
 import FormTitle from "./FormTitle.jsx";
+import RTEditor from "./RTEditor.jsx";
 
 const EmailForm = ({ student, setOpen, info }) => {
   const { user } = useContext(UserContext);
@@ -48,7 +49,7 @@ const EmailForm = ({ student, setOpen, info }) => {
     ],
     from: { email: emailURL, name: "Caringbah Music School" },
     subject: "",
-    text: "",
+    html: "",
   });
 
   useEffect(() => {
@@ -58,7 +59,7 @@ const EmailForm = ({ student, setOpen, info }) => {
     setEmailObj({
       ...emailObj,
       subject: templateObj.subject,
-      text: templateObj.text,
+      html: templateObj.html,
     });
   }, [activeTemplate]);
 
@@ -102,7 +103,7 @@ const EmailForm = ({ student, setOpen, info }) => {
                 disabled={
                   (!student.bookedTrial &&
                     (temp.id == "trialConfirmation" ||
-                      temp.id == "trialFollowUp")) ||
+                      temp.id == "trialFollowUp" || temp.id == "trialUpdate")) ||
                   (student.bookedTrial && temp.id == "initialEnquiry")
                 }
                 value={temp.id}
@@ -130,7 +131,7 @@ const EmailForm = ({ student, setOpen, info }) => {
         </FormControl>
       </Box>
 
-      <TextField
+      {/* <TextField
         multiline
         minRows={15}
         name="text"
@@ -139,7 +140,9 @@ const EmailForm = ({ student, setOpen, info }) => {
           setEmailObj({ ...emailObj, [e.target.name]: e.target.value })
         }
         sx={{ width: "500px" }}
-      />
+      /> */}
+      <RTEditor emailObj={emailObj} setEmailObj={setEmailObj}/>
+      {/* {console.log(emailObj.html)} */}
       <Box
         sx={{
           display: "flex",
@@ -156,7 +159,7 @@ const EmailForm = ({ student, setOpen, info }) => {
           emailId={activeTemplate}
           userId={student._id}
         />
-        <Button sx={{ mt: 1 }} variant="text:" onClick={() => setOpen(false)}>
+        <Button sx={{ mt: 1 }} variant="text" onClick={() => setOpen(false)}>
           Cancel
         </Button>
       </Box>

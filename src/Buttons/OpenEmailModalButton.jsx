@@ -14,7 +14,7 @@ const OpenEmailModalButton = ({ children, email }) => {
           sx={{ color: "grey" }}
         />
       </Tooltip>
-      <Dialog open={open} sx={{ display: "flex", justifyContent: "center" }}>
+      <Dialog open={open} sx={{zIndex: 100, display: "flex", justifyContent: "center" }}>
         <Box
           onClick={() => setOpen(!open)}
           sx={{

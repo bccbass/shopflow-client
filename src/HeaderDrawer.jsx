@@ -119,7 +119,7 @@ export default function MiniDrawer({ children }) {
   return (
     <Box sx={{ display: "flex", mt: 10, ml: 1 }}>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
+      <AppBar sx={{zIndex:100}} position="fixed" open={open}>
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           {user ? (
             <>
@@ -155,7 +155,7 @@ export default function MiniDrawer({ children }) {
       </AppBar>
 
       {user && (
-        <Drawer variant="permanent" open={open}>
+        <Drawer sx={{zIndex:90,}} variant="permanent" open={open}>
           <DrawerHeader onClick={handleDrawerClose}>
             <Typography sx={{ mr: 6.5, fontWeight: 600 }} color="primary">
               Menu Items

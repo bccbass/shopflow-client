@@ -2,7 +2,7 @@ import { addDays } from "../assets/dateHelpers";
 
 const blankStudent = {
   notes: "",
-  nextContactDate: addDays(3),
+  nextContactDate: addDays(0),
   leadSource: "",
   student: {
     firstName: "",
