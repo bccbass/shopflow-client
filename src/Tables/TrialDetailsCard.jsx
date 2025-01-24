@@ -20,7 +20,7 @@ const TrialDetailsCard = ({ student, children }) => {
         width: "32%",
       }}
     >
-      <Box sx={{ p: 2, flex: 2 }}>
+      <Box sx={{ p: 2, flex: 2, bgcolor: !student.bookedTrial ? 'cadetblue' : 0 }}>
         {student.bookedTrial && (
           <>
             <Typography
@@ -37,11 +37,11 @@ const TrialDetailsCard = ({ student, children }) => {
         )}
 
         {!student.bookedTrial ? (
-          <Box sx={{ height: '100%', display: "flex", justifyContent: "center", alignItems: 'center' }}>
+          // <Box sx={{ height: '100%', display: "flex", justifyContent: "center", alignItems: 'center' }}>
             <OpenUpdateModalButton title={"Book Trial"}>
               <TrialLessonWrapper student={student} />
             </OpenUpdateModalButton>
-          </Box>
+          // </Box>
         ) : (
           <>
             <Typography>

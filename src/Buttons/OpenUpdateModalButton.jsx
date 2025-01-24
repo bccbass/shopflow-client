@@ -6,12 +6,12 @@ import EditIcon from "@mui/icons-material/Edit";
 
 const OpenUpdateModalButton = ({ children, title, variant = title == "Book Trial" ? "contained" : "text" }) => {
   const [open, setOpen] = useState(false);
-
+  const bookTrialStyles = title =='Book Trial' ? {width: "100%", height: '100%', fontSize: '1.2rem'} :{}
 
   return (
     <>
       {title !== undefined ? (
-        <Button variant={variant} onClick={() => setOpen(!open)}>
+        <Button sx={bookTrialStyles} variant={variant} onClick={() => setOpen(!open)}>
           {title}
         </Button>
       ) : (
