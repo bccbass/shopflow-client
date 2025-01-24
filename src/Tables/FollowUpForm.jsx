@@ -21,13 +21,16 @@ import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 const FollowUpForm = ({ lead }) => {
   const { user } = useContext(UserContext);
 
+
+  const [date, setDate] = React.useState(calculateNextContact(lead));
   const blankFormData = {
+    nextContactDate: date,  
     admin: user.initials,
     method: { chat: false, voicemail: false, email: false, call: false },
     notes: "",
   };
+
   const [formData, setFormData] = React.useState(blankFormData);
-  const [date, setDate] = React.useState(calculateNextContact(lead));
 
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -52,7 +55,7 @@ const FollowUpForm = ({ lead }) => {
   const constructedPayload = dataPayload();
 
   const handleSubmit = (e) => {
-    setFormData(blankFormData), setDate(calculateNextContact(lead));
+    setFormData(blankFormData);
   };
 
   return (

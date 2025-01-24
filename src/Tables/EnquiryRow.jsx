@@ -56,7 +56,7 @@ function EnquiryRow({ row, info }) {
     if (row.enrolled) {
       enrolled = row.enrolledAdminProgress == 'complete' ? "Complete" : "Incomplete";
     }
-    return row.enrolled ? enrolled : noDueDate ? "" : row.contactDate;
+    return row.enrolled ? enrolled : noDueDate ? "None" : row.contactDate;
   };
 
   return (
