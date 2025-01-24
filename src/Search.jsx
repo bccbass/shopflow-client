@@ -11,7 +11,7 @@ const Search = ({searchTerm, setSearchTerm}) => {
     }
 
   return (
-    <Box sx={{zIndex: 1000, display: 'flex', alignItems: 'flex-end', height: '2.5rem', mr: 10, mb: 1 }}>
+    <Box sx={{zIndex: 999, display: 'flex', alignItems: 'flex-end', height: '2.5rem', mr: 10, mb: 1 }}>
 
         <Collapse in={showInput}>
              <TextField 
