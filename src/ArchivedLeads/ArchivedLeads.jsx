@@ -26,7 +26,7 @@ const ArchivedLeads = () => {
         total: query.data.length,
         totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
         totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
-        // totalContact: query.data.reduce((acc, obj) => acc + obj.totalContact, 0),
+        totalContact: query.data.reduce((acc, obj) => acc + obj.totalContact, 0) ,
       };
   };
   const analytics = getAnalytics(archive);
@@ -96,11 +96,9 @@ const ArchivedLeads = () => {
                 } (${Math.floor(
                   (analytics.totalEnrollments / analytics.total) * 100
                 )}%)`}</Typography>
-                <Typography>{`Total Contact: ${
-                  analytics.totalContact
-                } (${Math.floor(
-                  (analytics.totalEnrollments / analytics.total) * 100
-                )}%)`}</Typography>
+                <Typography>{`Avg. Total Contact: ${
+                  (analytics.totalContact / analytics.total).toFixed(2)
+                }`}</Typography>
               </Card>
               <DownloadCollectionCsvButton
                 data={archive.data}

@@ -61,7 +61,7 @@ const EmailForm = ({ student, setOpen, info }) => {
       subject: templateObj.subject,
       html: templateObj.html,
     });
-  }, [activeTemplate]);
+  }, [activeTemplate, emailObj]);
 
   const handleSelect = (e) => {
     setActiveTemplate(e.target.value);
@@ -80,7 +80,7 @@ const EmailForm = ({ student, setOpen, info }) => {
         </Typography>
         <Typography variant="h6" color="textSecondary">
           <strong>subject: </strong>
-          {emailObj?.subject}
+          {emailObj.subject}
         </Typography>
         <FormControl
           size="small"
@@ -103,7 +103,8 @@ const EmailForm = ({ student, setOpen, info }) => {
                 disabled={
                   (!student.bookedTrial &&
                     (temp.id == "trialConfirmation" ||
-                      temp.id == "trialFollowUp" || temp.id == "trialUpdate")) ||
+                      temp.id == "trialFollowUp" ||
+                      temp.id == "trialUpdate")) ||
                   (student.bookedTrial && temp.id == "initialEnquiry")
                 }
                 value={temp.id}
@@ -141,7 +142,7 @@ const EmailForm = ({ student, setOpen, info }) => {
         }
         sx={{ width: "500px" }}
       /> */}
-      <RTEditor emailObj={emailObj} setEmailObj={setEmailObj}/>
+      <RTEditor emailObj={emailObj} setEmailObj={setEmailObj} />
       {/* {console.log(emailObj.html)} */}
       <Box
         sx={{

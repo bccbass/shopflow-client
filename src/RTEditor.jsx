@@ -101,7 +101,7 @@ export default function RTEditor({ emailObj, setEmailObj }) {
         image: {
           toolbar: ["imageTextAlternative", "|", "resizeImage"],
         },
-        initialData: emailObj.html,
+        // initialData: emailObj.html,
         licenseKey: LICENSE_KEY,
         link: {
           addTargetToExternalLinks: true,
