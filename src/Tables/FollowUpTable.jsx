@@ -10,7 +10,6 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import FollowUpForm from "./FollowUpForm";
-import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 import CheckIcon from "@mui/icons-material/Check";
 import { Divider } from "@mui/material";
 
@@ -119,18 +118,7 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
             mt: 4,
           }}
         >
-          <SubmitUpdateButton
-            submitProps={{
-              redirect: `/newstudents?view=enrolled`,
-              updatedData: { enrolled: !lead.enrolled },
-              path: "leads/updatetrial/" + lead._id,
-              variant: "contained",
-              type: "patch",
-              title: `${lead.enrolled ? "Unenroll" : "Enroll"} ${
-                lead.studentFullName
-              }`,
-            }}
-          />
+        
         </Box>
       </Card>
     </Box>

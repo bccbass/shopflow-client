@@ -32,7 +32,7 @@ function EnquiryRow({ row, info }) {
         ? "orange"
         : "teal",
     padding: "4px 6px",
-    marginLeft: "-.5rem",
+    // marginLeft: "-.5rem",
     borderRadius: "6px",
     fontWeight: "bold",
   };
