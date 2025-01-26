@@ -27,6 +27,7 @@ const RepairCompleteToggleButton = ({ repair }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setIsLoading(true);
     mutate({
       path: `repairs/${repair._id}`,

@@ -17,6 +17,7 @@ const TogglePaidButton = ({ repair }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		e.stopPropagation();
 		mutation.mutate({
 			path: `repairs/${repair._id}`,
 			body: { paid: !repair.paid },

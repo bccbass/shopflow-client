@@ -30,7 +30,7 @@ export default function ArchiveRowMenu({ lead }) {
   };
 
   function handleListKeyDown(event) {
-    event.stopPropagation()
+    // event.stopPropagation()
     if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
@@ -50,7 +50,8 @@ export default function ArchiveRowMenu({ lead }) {
   }, [open]);
 
   return (
-    <Stack direction="row" spacing={2}>
+    
+    <Stack  direction="row" spacing={2}>
       <div>
         <Button
           ref={anchorRef}
@@ -66,7 +67,7 @@ export default function ArchiveRowMenu({ lead }) {
           open={open}
           anchorEl={anchorRef.current}
           role={undefined}
-          placement="right-start"
+          placement="right-end"
           transition
           disablePortal
         >

@@ -18,7 +18,7 @@ export default function RepairsTable({ repairs }) {
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell />
+            <TableCell sx={{width: '4.1rem'}} />
             <TableCell sx={{ fontWeight: "bold" }}>Completed</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
@@ -31,11 +31,11 @@ export default function RepairsTable({ repairs }) {
             <TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
             {/* <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell> */}
             <TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}></TableCell>
+            <TableCell sx={{width: '5.8rem'}}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+          {!rows.length ? < TableRow /> : rows.map((row) => (
             <RepairsTableRow key={row._id} row={row} />
           ))}
         </TableBody>

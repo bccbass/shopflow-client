@@ -41,8 +41,8 @@ const ToggleTaskStatusButton = ({
   return (
     <Box
       sx={{
-        width: "25%",
-        px: 3,
+        width: "22%",
+        // px: 3,
         pt: 3,
         display: "flex",
         flexDirection: "column",

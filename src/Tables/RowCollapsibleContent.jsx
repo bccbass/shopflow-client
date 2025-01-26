@@ -81,7 +81,7 @@ const RowCollapsibleContent = ({ lead }) => {
         </EnquiryNotesCard>
       </Container>
       {(lead.bookedTrial || lead.enrolled) && (
-        <>
+        <Box sx={{ display: "flex", flexDirection:'column', justifyContent: "center", width: '100%' }}>
           <Divider sx={dividerStyles}>
             <Typography
               sx={titleStyles}
@@ -92,23 +92,21 @@ const RowCollapsibleContent = ({ lead }) => {
               {`${lead.enrolled ? "Enrollment" : "Trial Lesson"} Checklist`}
             </Typography>
           </Divider>
-          <AdminChecklistForm lead={lead}>
             <AdminFormTasks lead={lead} />
-          </AdminChecklistForm>
-        </>
+        </Box>
       )}
       {!lead.enrolled && (
         <>
-        <Divider sx={dividerStyles}>
-          <Typography
-            sx={titleStyles}
-            color="white"
-            align="center"
-            variant="h5"
-            fontWeight={"bold"}
-          >
-            Follow Up History
-          </Typography>
+          <Divider sx={dividerStyles}>
+            <Typography
+              sx={titleStyles}
+              color="white"
+              align="center"
+              variant="h5"
+              fontWeight={"bold"}
+            >
+              Follow Up History
+            </Typography>
           </Divider>
           <FollowUpTable
             lead={lead}

@@ -26,7 +26,7 @@ const ArchivedLeads = () => {
         total: query.data.length,
         totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
         totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
-        totalContact: query.data.reduce((acc, obj) => acc + obj.totalContact, 0) ,
+        // totalContact: query.data.reduce((acc, obj) => acc + obj.totalContact, 0) ,
       };
   };
   const analytics = getAnalytics(archive);
@@ -69,15 +69,18 @@ const ArchivedLeads = () => {
           <ErrorCard />
         ) : (
           <>
+            <ArchiveTable
+              enquiries={filteredArr(archive.data, searchTerm)}
+            ></ArchiveTable>
             <Box
               sx={{
                 width: "100%",
                 display: "flex",
-                mt: 0,
+                mt: 4,
                 mb: 1,
                 px: 2,
                 justifyContent: "space-between",
-                alignItems: "flex-end",
+                // alignItems: "flex-end",  
               }}
             >
               <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
@@ -96,26 +99,15 @@ const ArchivedLeads = () => {
                 } (${Math.floor(
                   (analytics.totalEnrollments / analytics.total) * 100
                 )}%)`}</Typography>
-                <Typography>{`Avg. Total Contact: ${
+                {/* <Typography>{`Avg. Total Contact: ${
                   (analytics.totalContact / analytics.total).toFixed(2)
-                }`}</Typography>
+                }`}</Typography> */}
               </Card>
               <DownloadCollectionCsvButton
                 data={archive.data}
                 collection="Archived Leads"
               />
             </Box>
-            <Box
-              sx={{
-                width: "100%",
-                display: "flex",
-                justifyContent: "flex-end",
-                mb: 2,
-              }}
-            ></Box>
-            <ArchiveTable
-              enquiries={filteredArr(archive.data, searchTerm)}
-            ></ArchiveTable>
           </>
         )}
       </Box>

@@ -45,7 +45,7 @@ function EnquiryRow({ row, info }) {
         ? "orange"
         : "teal",
     padding: "4px 6px",
-    marginLeft: "-.5rem",
+    // marginLeft: "-.5rem",
     borderRadius: "6px",
     fontWeight: "bold",
   };
@@ -71,10 +71,10 @@ function EnquiryRow({ row, info }) {
       >
         <TableCell>
           <IconButton aria-label="expand row" size="small">
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+            {open ? <  KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
-        <TableCell>
+        <TableCell >
           <span style={row.enrolled ? enrolledStyles : dateStyles}>
             {rowActionContent(row)}
           </span>

@@ -1,9 +1,19 @@
 import React from "react";
 import ToggleTaskStatusButton from "./ToggleTaskStatusButton";
+import Box from "@mui/material/Box";
 
 const AdminFormTasks = ({ lead }) => {
   return lead.enrolled ? (
-    <>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        alignItems: "flex-start",
+      }}
+    >
       <ToggleTaskStatusButton
         id={lead._id}
         taskName="timetable"
@@ -33,9 +43,18 @@ const AdminFormTasks = ({ lead }) => {
         description={"Email Completed Invoice from MMS"}
         updateKey={"enrolledAdmin"}
       />
-    </>
+    </Box>
   ) : (
-    <>
+    <Box
+      sx={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-around",
+        alignItems: "flex-start",
+      }}
+    >
       <ToggleTaskStatusButton
         id={lead._id}
         taskName="addToMms"
@@ -65,7 +84,7 @@ const AdminFormTasks = ({ lead }) => {
         description={"Send Trial Confirmation Email"}
         updateKey={"trialAdmin"}
       />
-    </>
+    </Box>
   );
 };
 
