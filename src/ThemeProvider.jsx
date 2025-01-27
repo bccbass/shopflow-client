@@ -7,11 +7,13 @@ import {
 const theme = createTheme({
   palette: {
     primary: {
+
+      // main: "#1976d2", // OG primary color
       main: "#008080", // Your custom primary color
       contrastText: "#ffffff", // Optional: Text color on primary buttons, etc.
     },
     secondary: {
-      main: "#6495ed", // Your custom secondary color
+      main: "#1976d2", // Your custom secondary color
       contrastText: "#ffffff",
     },
     background: {

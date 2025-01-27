@@ -82,6 +82,7 @@ const NewStudents = () => {
     borderRadius: "8px 8px 0 0",
     fontWeight: "bold",
     borderBottom: 0,
+    backgroundColor: "white",
   };
 
   const inactiveStyles = {
