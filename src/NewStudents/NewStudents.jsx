@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import {
+  Badge,
   Container,
   Box,
   Typography,
@@ -31,6 +32,14 @@ const NewStudents = () => {
   const leadsQuery = useQuery({
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
+  });
+  const {
+    isLoading,
+    isError,
+    data: overdue,
+  } = useQuery({
+    queryKey: ["due"],
+    queryFn: () => getResource("leads/due"),
   });
 
   const getAnalytics = (query) => {
@@ -70,7 +79,6 @@ const NewStudents = () => {
     fontSize: "1rem",
     width: "33.33%",
     border: "1px solid lightgrey",
-    // borderLeft: activeView == "enquiries" ? 0 : "",
     borderRadius: "8px 8px 0 0",
     fontWeight: "bold",
     borderBottom: 0,
@@ -80,7 +88,8 @@ const NewStudents = () => {
     fontSize: "1rem",
     width: "33.33%",
     border: "1px solid lightgrey",
-    // borderRight: activeView == "triallessons" ? 0 : "",
+    fontWeight: "bold",
+
     borderRadius: "8px 8px 0 0",
     borderBottom: "1px solid lightgrey",
     color: "lightgrey",
@@ -142,7 +151,14 @@ const NewStudents = () => {
                   sx={
                     activeView === "enquiries" ? activeStyles : inactiveStyles
                   }
-                >{`Enquiries (${enquiriesData.length})`}</Button>
+                >
+                  {`Enquiries`}
+                  <Badge
+                    sx={{ ml: 2, mb: 0.5 }}
+                    color={activeView === "enquiries" ? "error" : ""}
+                    badgeContent={isLoading || isError ? "" : overdue.enquiries}
+                  ></Badge>
+                </Button>
                 <Button
                   onClick={() => setSearchParams({ view: "triallessons" })}
                   style={
@@ -155,12 +171,26 @@ const NewStudents = () => {
                       ? activeStyles
                       : inactiveStyles
                   }
-                >{`Trial Lessons (${trialBookedData.length})`}</Button>
+                >
+                  {`Trial Lessons`}
+                  <Badge
+                    sx={{ ml: 2, mb: 0.5 }}
+                    color={activeView === "triallessons" ? "error" : ""}
+                    badgeContent={isLoading || isError ? "" : overdue.trials}
+                  ></Badge>
+                </Button>
                 <Button
                   style={{ borderRight: 0 }}
                   onClick={() => setSearchParams({ view: "enrolled" })}
                   sx={activeView === "enrolled" ? activeStyles : inactiveStyles}
-                >{`Enrolled (${enrolledData.length})`}</Button>
+                >
+                  {`Enrolled `}
+                  <Badge
+                    sx={{ ml: 2, mb: 0.5 }}
+                    color={activeView === "enrolled" ? "error" : ""}
+                    badgeContent={isLoading || isError ? "" : overdue.enrolled}
+                  ></Badge>
+                </Button>
               </Box>
               {activeView === "triallessons" ? (
                 <EnquiriesTable

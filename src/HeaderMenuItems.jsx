@@ -26,7 +26,7 @@ const HeaderMenuItems = () => {
 
   const dueQuery = useQuery({
     queryKey: ["due"],
-    queryFn: () =>  getResource("leads/due"),
+    queryFn: () => getResource("leads/due"),
   });
 
   const navigate = useNavigate();
@@ -37,7 +37,7 @@ const HeaderMenuItems = () => {
     {
       title: "New Students",
       path: "newstudents",
-      due: dueQuery?.data?.enquiries || "",
+      due: dueQuery?.data?.trials + dueQuery?.data?.enquiries + dueQuery?.data?.enrolled || "",
     },
     { title: "Repairs", path: "repairs", due: dueQuery?.data?.repairs || "" },
     { title: "Notes", path: "notes", due: dueQuery?.data?.notes || "" },
