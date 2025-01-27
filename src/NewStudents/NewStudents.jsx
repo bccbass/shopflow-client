@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
@@ -22,6 +22,12 @@ const NewStudents = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const activeView = searchParams.get("view") || "enquiries";
+  const [page, setPage] = React.useState(0);
+
+  useEffect(() => {
+    setPage(0);
+  }, [searchParams]);
+
   const leadsQuery = useQuery({
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
@@ -36,7 +42,7 @@ const NewStudents = () => {
       };
   };
 
-  const analytics = getAnalytics(leadsQuery)
+  const analytics = getAnalytics(leadsQuery);
 
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
@@ -98,7 +104,11 @@ const NewStudents = () => {
     <Container sx={{ width: "100vw", m: 0, pb: 16 }}>
       <SectionHeader title="New Students">
         {!leadsQuery.isLoading && (
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            setPage={setPage}
+          />
         )}
       </SectionHeader>
       <Box
@@ -156,16 +166,22 @@ const NewStudents = () => {
                 <EnquiriesTable
                   enquiries={filteredArr(trialBookedData, searchTerm)}
                   info={utilsQuery.data}
+                  page={page}
+                  setPage={setPage}
                 />
               ) : activeView === "enquiries" ? (
                 <EnquiriesTable
                   enquiries={filteredArr(enquiriesData, searchTerm)}
                   info={utilsQuery.data}
+                  page={page}
+                  setPage={setPage}
                 />
               ) : (
                 <EnquiriesTable
                   enquiries={filteredArr(enrolledData, searchTerm)}
                   info={utilsQuery.data}
+                  page={page}
+                  setPage={setPage}
                 />
               )}
             </Box>

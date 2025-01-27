@@ -14,16 +14,14 @@ import ErrorCard from "../ErrorCard";
 import TableSkeleton from "../TableSkeleton";
 
 const Repairs = () => {
-  const [page, setPage] = React.useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const inProgress = searchParams.get("view") !== "completed";
-
+  const [page, setPage] = React.useState(0);
 
   useEffect(() => {
     setPage(0);
   }, [searchParams]);
-
 
   const repairsQuery = useQuery({
     queryKey: ["repairs"],

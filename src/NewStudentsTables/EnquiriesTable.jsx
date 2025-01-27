@@ -7,9 +7,15 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import EnquiryRow from "./EnquiryRow";
+import TablePaginationFooter from "../TablePaginationFooter";
 
-export default function EnquiriesTable({ enquiries, children, info }) {
+
+export default function EnquiriesTable({ enquiries, children, info, page, setPage }) {
   const rows = [...enquiries];
+   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const emptyRows =
+      page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  
 
   return (
     <TableContainer sx={{ width: "100%" }} component={Paper}>
@@ -31,12 +37,28 @@ export default function EnquiriesTable({ enquiries, children, info }) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
+        {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
             <EnquiryRow key={row._id} row={row} info={info}>
               {children}
             </EnquiryRow>
           ))}
+           {emptyRows > 0 && (
+            <TableRow style={{ height: 70 * emptyRows }}>
+              <TableCell colSpan={9} />
+            </TableRow>
+          )}
         </TableBody>
+         <TablePaginationFooter
+                  count={rows.length}
+                  page={page}
+                  setPage={setPage}
+                  rowsPerPage={rowsPerPage}
+                  setRowsPerPage={setRowsPerPage}
+                  colSpan={9}
+                />
       </Table>
     </TableContainer>
   );
