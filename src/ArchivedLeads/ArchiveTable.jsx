@@ -15,10 +15,16 @@ export default function ArchiveTable({ enquiries, page, setPage, children }) {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+ const [openMenuId, setOpenMenuId] = React.useState(null);
+
+  const onMenuToggle = (id) => {
+    setOpenMenuId(openMenuId === id ? null : id);
+  };
+
   return (
     <TableContainer sx={{ mt: 2 }} component={Paper}>
       <Table aria-label="collapsible table">
-        <TableHead sx={{ backgroundColor: "#0599fc" }}>
+        <TableHead sx={{ backgroundColor: "secondary.main" }}>
           <TableRow sx={{ color: "white" }}>
             <TableCell />
             <TableCell sx={{ fontWeight: "bold", pl: 4, color: "white" }}>
@@ -50,7 +56,7 @@ export default function ArchiveTable({ enquiries, page, setPage, children }) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <ArchiveRow key={row._id} row={row}>
+            <ArchiveRow key={row._id} row={row} onMenuToggle={onMenuToggle} openMenuId={openMenuId}>
               {children}
             </ArchiveRow>
           ))}

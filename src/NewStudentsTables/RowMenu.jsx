@@ -13,14 +13,17 @@ import MenuItemCSVDownload from "../Buttons/MenuItemCSVDownload";
 import MenuItemArchive from "../Buttons/MenuItemArchive";
 import MenuItemToggleEnrollment from "../Buttons/MenuItemToggleEnrollment";
 
-export default function RowMenu({ lead }) {
-  const [open, setOpen] = React.useState(false);
+export default function RowMenu({ lead, openMenuId, onMenuToggle }) {
+  // const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+  const { _id: id } = lead;
 
   const handleToggle = (event) => {
     event.stopPropagation()
-    setOpen((prevOpen) => !prevOpen);
+    onMenuToggle(id);
   };
+
+  const open = openMenuId === id;
 
   const handleClose = (event) => {
     event.stopPropagation()
@@ -28,16 +31,16 @@ export default function RowMenu({ lead }) {
       return;
     }
 
-    setOpen(false);
+    onMenuToggle(null);
   };
 
   function handleListKeyDown(event) {
     event.stopPropagation()
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      onMenuToggle(null);
     } else if (event.key === "Escape") {
-      setOpen(false);
+      onMenuToggle(null);
     }
   }
 

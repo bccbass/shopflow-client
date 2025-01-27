@@ -13,14 +13,16 @@ import MenuItemComplete from './MenuItemComplete'
 import MenuItemDelete from '../Buttons/MenuItemDelete'
 
 
-export default function RepairRowMenu({ repair }) {
-  const [open, setOpen] = React.useState(false);
+export default function RepairRowMenu({ repair, openMenuId, onMenuToggle }) {
   const anchorRef = React.useRef(null);
+  const {_id: id} = repair
 
   const handleToggle = (event) => {
     event.stopPropagation()
-    setOpen((prevOpen) => !prevOpen);
+    onMenuToggle(id);
   };
+
+  const open = openMenuId === id;
 
   const handleClose = (event) => {
     event.stopPropagation()
@@ -28,18 +30,19 @@ export default function RepairRowMenu({ repair }) {
       return;
     }
 
-    setOpen(false);
+    onMenuToggle(null);
   };
 
   function handleListKeyDown(event) {
     event.stopPropagation()
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      onMenuToggle(null);
     } else if (event.key === "Escape") {
-      setOpen(false);
+      onMenuToggle(null);
     }
   }
+
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);

@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -12,7 +13,13 @@ import TablePaginationFooter from "../TablePaginationFooter";
 
 export default function EnquiriesTable({ enquiries, children, info, page, setPage }) {
   const rows = [...enquiries];
-   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+   const [rowsPerPage, setRowsPerPage] = useState(5);
+   const [openMenuId, setOpenMenuId] = useState(null);
+
+   const onMenuToggle = (id) => {
+    setOpenMenuId(openMenuId === id ? null : id);
+   }
+
     const emptyRows =
       page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
   
@@ -41,7 +48,7 @@ export default function EnquiriesTable({ enquiries, children, info, page, setPag
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <EnquiryRow key={row._id} row={row} info={info}>
+            <EnquiryRow row={row} info={info} openMenuId={openMenuId} onMenuToggle={onMenuToggle}>
               {children}
             </EnquiryRow>
           ))}

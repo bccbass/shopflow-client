@@ -12,30 +12,33 @@ import MenuItemCSVDownload from "../Buttons/MenuItemCSVDownload";
 import MenuItemUnarchive from "./MenuItemUnarchive";
 import MenuItemDelete from "../Buttons/MenuItemDelete";
 
-export default function ArchiveRowMenu({ lead }) {
-  const [open, setOpen] = React.useState(false);
+export default function ArchiveRowMenu({ lead, openMenuId, onMenuToggle }) {
   const anchorRef = React.useRef(null);
+  const { _id: id } = lead;
 
   const handleToggle = (event) => {
     event.stopPropagation();
-    setOpen((prevOpen) => !prevOpen);
+    onMenuToggle(id);
   };
+
+  const open = openMenuId === id;
 
   const handleClose = (event) => {
     event.stopPropagation();
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-    setOpen(false);
+
+    onMenuToggle(null);
   };
 
   function handleListKeyDown(event) {
-    // event.stopPropagation()
+    event.stopPropagation();
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      onMenuToggle(null);
     } else if (event.key === "Escape") {
-      setOpen(false);
+      onMenuToggle(null);
     }
   }
 
@@ -50,8 +53,7 @@ export default function ArchiveRowMenu({ lead }) {
   }, [open]);
 
   return (
-    
-    <Stack  direction="row" spacing={2}>
+    <Stack direction="row" spacing={2}>
       <div>
         <Button
           ref={anchorRef}

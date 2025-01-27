@@ -20,24 +20,16 @@ import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
 import { UserContext } from "../UserContext";
 
 RepairRowMenu;
-function RepairsTableRow({ row }) {
+function RepairsTableRow({ row, openMenuId, onMenuToggle }) {
   const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
-  const noDueDate = nullDate(row.due);
 
   const overdueStyles = {
     color: "red",
     fontWeight: "bold",
   };
 
-  const completedStyles = {
-    color: "white",
-    backgroundColor: "green",
-    padding: "4px 6px",
-    marginLeft: "-.5rem",
-    borderRadius: "6px",
-    fontWeight: "bold",
-  };
+
 
   return (
     <React.Fragment>
@@ -85,7 +77,11 @@ function RepairsTableRow({ row }) {
           />
         </TableCell>
         <TableCell>
-          <RepairRowMenu repair={row} />
+          <RepairRowMenu
+            repair={row}
+            onMenuToggle={onMenuToggle}
+            openMenuId={openMenuId}
+          />
         </TableCell>
       </TableRow>
       <TableRow>

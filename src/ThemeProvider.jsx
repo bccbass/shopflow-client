@@ -16,6 +16,9 @@ const theme = createTheme({
       main: "#1976d2", // Your custom secondary color
       contrastText: "#ffffff",
     },
+    text: {
+      primary: "#474747", // Main text color
+    },
     background: {
       default: "#f4f6f8", // Optional: Background color for the app
       paper: "#ffffff", // Background for cards, dialogs, etc.

@@ -17,6 +17,11 @@ export default function RepairsTable({ repairs, page, setPage }) {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+  const [openMenuId, setOpenMenuId] = React.useState(null);
+
+  const onMenuToggle = (id) => {
+    setOpenMenuId(openMenuId === id ? null : id);
+  };
 
   return (
     <TableContainer sx={{ mt: 0, mb: 0 }} component={Paper}>
@@ -44,7 +49,7 @@ export default function RepairsTable({ repairs, page, setPage }) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <RepairsTableRow key={row._id} row={row} />
+            <RepairsTableRow onMenuToggle={onMenuToggle} openMenuId={openMenuId} key={row._id} row={row} />
           ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 70 * emptyRows }}>

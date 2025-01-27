@@ -15,7 +15,7 @@ import ArchiveButton from "../Buttons/ArchiveButton";
 import DeleteButton from "../Buttons/DeleteButton";
 import ArchiveRowMenu from "./ArchiveRowMenu";
 
-function ArchiveRow({ children, row }) {
+function ArchiveRow({ children, row, openMenuId, onMenuToggle }) {
   const [open, setOpen] = React.useState(false);
   const minorStudent =
     row.guardian.lastName.length > 0 && row.guardian.firstName.length > 0;
@@ -62,7 +62,11 @@ function ArchiveRow({ children, row }) {
         <TableCell>{row.contact.phone}</TableCell>
         <TableCell>{row.contact.email}</TableCell>
         <TableCell>
-          <ArchiveRowMenu lead={row} />
+          <ArchiveRowMenu
+            onMenuToggle={onMenuToggle}
+            openMenuId={openMenuId}
+            lead={row}
+          />
         </TableCell>
       </TableRow>
       <TableRow>
