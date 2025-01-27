@@ -28,13 +28,8 @@ const FollowUpForm = ({ lead }) => {
     method: { chat: false, voicemail: false, email: false, call: false },
     notes: "",
   };
-  const secondContact =
-    !lead.bookedTrial && lead.followUp.length == 1
-      ? true
-      : lead.bookedTrial && lead.trialLesson.followUp.length == 1
-      ? true
-      : false;
-      
+  const secondContact = !lead.bookedTrial && lead.followUp.length == 1;
+
   const [formData, setFormData] = React.useState(blankFormData);
 
   const handleChange = (e) =>
