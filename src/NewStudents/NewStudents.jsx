@@ -154,8 +154,8 @@ const NewStudents = () => {
                 >
                   {`Enquiries`}
                   <Badge
-                    sx={{ ml: 2, mb: 0.5 }}
-                    color={activeView === "enquiries" ? "error" : ""}
+                    sx={{ ml: 2.5, mb: 0 }}
+                    color={activeView === "enquiries" ? "primary" : ""}
                     badgeContent={isLoading || isError ? "" : overdue.enquiries}
                   ></Badge>
                 </Button>
@@ -174,8 +174,8 @@ const NewStudents = () => {
                 >
                   {`Trial Lessons`}
                   <Badge
-                    sx={{ ml: 2, mb: 0.5 }}
-                    color={activeView === "triallessons" ? "error" : ""}
+                    sx={{ ml: 2.5, mb: 0 }}
+                    color={activeView === "triallessons" ? "primary" : ""}
                     badgeContent={isLoading || isError ? "" : overdue.trials}
                   ></Badge>
                 </Button>
@@ -186,8 +186,8 @@ const NewStudents = () => {
                 >
                   {`Enrolled `}
                   <Badge
-                    sx={{ ml: 2, mb: 0.5 }}
-                    color={activeView === "enrolled" ? "error" : ""}
+                    sx={{ ml: 2.5, mb: 0 }}
+                    color={activeView === "enrolled" ? "primary" : ""}
                     badgeContent={isLoading || isError ? "" : overdue.enrolled}
                   ></Badge>
                 </Button>
