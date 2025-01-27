@@ -28,7 +28,13 @@ const FollowUpForm = ({ lead }) => {
     method: { chat: false, voicemail: false, email: false, call: false },
     notes: "",
   };
-
+  const secondContact =
+    !lead.bookedTrial && lead.followUp.length == 1
+      ? true
+      : lead.bookedTrial && lead.trialLesson.followUp.length == 1
+      ? true
+      : false;
+      
   const [formData, setFormData] = React.useState(blankFormData);
 
   const handleChange = (e) =>
@@ -73,15 +79,17 @@ const FollowUpForm = ({ lead }) => {
         />
       </TableCell>
       <TableCell>
-        {/* <Typography
-          sx={{ mt: 1.67, mx: 1 }}
+        <Typography
+          color="primary"
+          sx={{ fontSize: ".9rem", fontStyle: "italic" }}
         >
-          {user.initials}
-        </Typography> */}
+          {secondContact ? "Email Only" : ""}
+        </Typography>
       </TableCell>
       <TableCell align="center">
         <Tooltip title="Call" placement="top">
           <Checkbox
+            disabled={secondContact}
             size="large"
             color="success"
             icon={<PanoramaFishEyeIcon />}
@@ -95,6 +103,7 @@ const FollowUpForm = ({ lead }) => {
       <TableCell align="center">
         <Tooltip title="Chat" placement="top">
           <Checkbox
+            disabled={secondContact}
             size="large"
             color="success"
             icon={<PanoramaFishEyeIcon />}
@@ -108,6 +117,7 @@ const FollowUpForm = ({ lead }) => {
       <TableCell align="center">
         <Tooltip title="Voicemail" placement="top">
           <Checkbox
+            disabled={secondContact}
             size="large"
             color="success"
             icon={<PanoramaFishEyeIcon />}
