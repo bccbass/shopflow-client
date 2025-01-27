@@ -37,7 +37,7 @@ const Repairs = () => {
     fontWeight: inProgress ? "bold" : "",
     borderBottom: !inProgress ? "1px solid lightgrey" : 0,
     color: !inProgress ? "lightgrey" : "",
-    backgroundColor: !inProgress ? "#FAFAFA" : "",
+    backgroundColor: !inProgress ? "#FAFAFA" : "white",
   };
   const rightStyles = {
     fontSize: "1rem",
@@ -48,7 +48,7 @@ const Repairs = () => {
     fontWeight: !inProgress ? "bold" : "",
     borderBottom: inProgress ? "1px solid lightgrey" : 0,
     color: inProgress ? "lightgrey" : "",
-    backgroundColor: inProgress ? "#FAFAFA" : "",
+    backgroundColor: inProgress ? "#FAFAFA" : "white",
   };
 
   const filterArray = (arr, searchTerm) => {

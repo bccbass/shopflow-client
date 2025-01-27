@@ -11,7 +11,6 @@ import { UserContext } from "../UserContext";
 
 
 const RepairsCollapsibleContent = ({ row }) => {
-	console.log('repair collapse')
 	const { user } = useContext(UserContext)
 	const overdueStyles = {
 		color: "red",
