@@ -6,6 +6,7 @@ import { BrowserRouter } from "react-router";
 import "./index.css";
 import App from "./App.jsx";
 import { UserProvider } from "./UserContext";
+import ThemeProvider from "./ThemeProvider.jsx";
 import ScrollToTop from "./ScrollToTop.jsx";
 
 const queryClient = new QueryClient();
@@ -16,7 +17,9 @@ createRoot(document.getElementById("root")).render(
       <ScrollToTop />
       <QueryClientProvider client={queryClient}>
         <UserProvider>
+          <ThemeProvider >
           <App />
+          </ThemeProvider>
           <ReactQueryDevtools />
         </UserProvider>
       </QueryClientProvider>

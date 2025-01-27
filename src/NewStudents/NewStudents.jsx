@@ -146,6 +146,7 @@ const NewStudents = () => {
             >
               <Box sx={{ width: "100%" }}>
                 <Button
+                  color="secondary"
                   onClick={() => setSearchParams({ view: "enquiries" })}
                   style={{ borderLeft: 0 }}
                   sx={
@@ -155,11 +156,12 @@ const NewStudents = () => {
                   {`Enquiries`}
                   <Badge
                     sx={{ ml: 2.5, mb: 0 }}
-                    color={activeView === "enquiries" ? "primary" : ""}
+                    color={activeView === "enquiries" ? "secondary" : ""}
                     badgeContent={isLoading || isError ? "" : overdue.enquiries}
                   ></Badge>
                 </Button>
                 <Button
+                  color="secondary"
                   onClick={() => setSearchParams({ view: "triallessons" })}
                   style={
                     activeView !== "triallessons"
@@ -175,11 +177,12 @@ const NewStudents = () => {
                   {`Trial Lessons`}
                   <Badge
                     sx={{ ml: 2.5, mb: 0 }}
-                    color={activeView === "triallessons" ? "primary" : ""}
+                    color={activeView === "triallessons" ? "secondary" : ""}
                     badgeContent={isLoading || isError ? "" : overdue.trials}
                   ></Badge>
                 </Button>
                 <Button
+                  color="secondary"
                   style={{ borderRight: 0 }}
                   onClick={() => setSearchParams({ view: "enrolled" })}
                   sx={activeView === "enrolled" ? activeStyles : inactiveStyles}
@@ -187,7 +190,7 @@ const NewStudents = () => {
                   {`Enrolled `}
                   <Badge
                     sx={{ ml: 2.5, mb: 0 }}
-                    color={activeView === "enrolled" ? "primary" : ""}
+                    color={activeView === "enrolled" ? "secondary" : ""}
                     badgeContent={isLoading || isError ? "" : overdue.enrolled}
                   ></Badge>
                 </Button>

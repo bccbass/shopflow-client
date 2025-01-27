@@ -126,6 +126,7 @@ const Repairs = () => {
             >
               <Box sx={{ width: "100%" }}>
                 <Button
+                  color="secondary"
                   onClick={() => {
                     setSearchParams({ view: "inprogress" });
                   }}
@@ -134,6 +135,7 @@ const Repairs = () => {
                   In Progress
                 </Button>
                 <Button
+                  color="secondary"
                   onClick={() => {
                     setSearchParams({ view: "completed" });
                   }}

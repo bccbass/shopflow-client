@@ -15,7 +15,7 @@ const SectionHeader = ({ setSearchParams, title, children }) => {
       <Box sx={{display: 'flex', justifyContent: 'space-between'}}>
       <Typography
         variant="h4"
-        color="primary"
+        color="secondary"
         // sx={{textTransform: "uppercase"}}
       >
         {title}

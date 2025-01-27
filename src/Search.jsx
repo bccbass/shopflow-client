@@ -33,7 +33,7 @@ const Search = ({searchTerm, setSearchTerm, setPage=false}) => {
                     onChange={e => setSearchTerm(e.target.value)}
             />
          </Collapse>
-        <Fab size="small" color="primary" aria-label="add" sx={{}}  onClick={handleClick}>
+        <Fab size="small" color="secondary" aria-label="add" sx={{}}  onClick={handleClick}>
             <SearchIcon/>
         </Fab>
     </Box>

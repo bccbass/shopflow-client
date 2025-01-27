@@ -25,42 +25,42 @@ const HomeSectionItems = () => {
       path: "addstudent",
       description:
         "Easily add new students to the system and track their journey from lead to enrollment.",
-      icon: <PersonAddIcon color="primary" />,
+      icon: <PersonAddIcon color="secondary" />,
     },
     {
       title: "View New Leads",
       path: "newstudents",
       description:
         "Manage new leads with a clear follow-up process to convert them into students.",
-      icon: <PersonIcon color="primary" />,
+      icon: <PersonIcon color="secondary" />,
     },
     {
       title: "Track Trial Lessons",
       path: "newstudents?view=triallessons",
       description:
         "Oversee trial lessons and follow up to successfully enroll students full-time.",
-      icon: <QueueMusicIcon color="primary" />,
+      icon: <QueueMusicIcon color="secondary" />,
     },
     {
       title: "Repairs",
       path: "repairs",
       description:
         "Track and manage in-shop repairs and easily communicate with customers.",
-      icon: <BuildCircleIcon color="primary" />,
+      icon: <BuildCircleIcon color="secondary" />,
     },
     {
       title: "Notes",
       path: "notes",
       description:
         "Access and manage shared notes to streamline administration and track open tasks.",
-      icon: <NoteIcon color="primary" />,
+      icon: <NoteIcon color="secondary" />,
     },
     {
       title: "Archive",
       path: "archive",
       description:
         "Review archived students and leads to analyze business history and trends.",
-      icon: <InboxIcon color="primary" />,
+      icon: <InboxIcon color="secondary" />,
     },
     {
       title: "Download",
@@ -68,7 +68,7 @@ const HomeSectionItems = () => {
       path: "/",
       description:
         "Export your data in clean, pre-formatted CSV files for easy portability.",
-      icon: <DownloadIcon color="primary" />,
+      icon: <DownloadIcon color="secondary" />,
     },
   ];
 
@@ -104,7 +104,7 @@ const HomeSectionItems = () => {
               }}
             >
               <ListItemButton
-                color="primary"
+                color="secondary"
                 onClick={() => {
                   navigate(`/${item.path}`);
                 }}
@@ -133,13 +133,13 @@ const HomeSectionItems = () => {
                     pt: 2,
                   }}
                 >
-                  {/* <ListItemText primary={item.title} sx={{ fontSize: "20rem" }} />
-                <ListItemText primary={item.description} sx={[]} /> */}
+                  {/* <ListItemText secondary={item.title} sx={{ fontSize: "20rem" }} />
+                <ListItemText secondary={item.description} sx={[]} /> */}
                   <Typography
                     align="center"
                     fontWeight={"bold"}
                     variant="h6"
-                    color="primary"
+                    color="secondary"
                   >
                     {item.title}
                   </Typography>
