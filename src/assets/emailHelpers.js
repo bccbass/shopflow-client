@@ -39,6 +39,38 @@ Caringbah Music</p>
  `,
   };
 };
+const generateInitialEnquiryFollowUp = (student, info, admin) => {
+  const addressee = student.isMinor
+    ? student.guardian.firstName
+    : student.student.firstName;
+  const instrument =
+    student?.student?.instrument == "drums"
+      ? "drum "
+      : student?.student?.instrument
+      ? student?.student?.instrument + " "
+      : "";
+  return {
+    id: "initialEnquiryFollowUp",
+    label: "Initial Enquiry Follow Up",
+    subject: `${
+      student.student?.instrument
+        ? instrument[0].toUpperCase() + instrument.slice(1) + " "
+        : ""
+    }Lessons at Caringbah Music`,
+    html: `<p>Hi ${addressee}!</p>
+    <p>
+    We are just following up on your initial enquiry about ${instrument}lessons at Caringbah Music. Please let us know if we can answer any questions or if you would like to book in a trial lesson.
+</p>
+<p>
+We look forward to hearing from you soon!
+</p>
+<p>
+Warm regards, <br>
+${admin}<br>
+Caringbah Music</p>
+ `,
+  };
+};
 
 const generateTrialConfirmation = (student, info, admin) => {
   const noDate = nullDate(student.trialLesson.date);
@@ -252,6 +284,7 @@ Caringbah Music`,
 
 const createEmailTemplateArray = (student, info, admin) => [
   generateInitialEnquiry(student, info, admin),
+  generateInitialEnquiryFollowUp(student, info, admin),
   generateTrialConfirmation(student, info, admin),
   generateTrialFollowUp(student, info, admin),
   generateJamEnquiry(student, admin),
