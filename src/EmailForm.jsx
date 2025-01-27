@@ -105,8 +105,8 @@ const EmailForm = ({ student, setOpen, info }) => {
                     (temp.id == "trialConfirmation" ||
                       temp.id == "trialFollowUp" ||
                       temp.id == "trialUpdate")) ||
-                  (student.bookedTrial && temp.id == "initialEnquiry") ||
-                  temp.id == "initialEnquiryFollowUp"
+                  (student.bookedTrial && (temp.id == "initialEnquiry" ||
+                  temp.id == "initialEnquiryFollowUp"))
                 }
                 value={temp.id}
               >
