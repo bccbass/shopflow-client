@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
@@ -14,9 +14,16 @@ import ErrorCard from "../ErrorCard";
 import TableSkeleton from "../TableSkeleton";
 
 const Repairs = () => {
+  const [page, setPage] = React.useState(0);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const inProgress = searchParams.get("view") !== "completed";
+
+
+  useEffect(() => {
+    setPage(0);
+  }, [searchParams]);
+
 
   const repairsQuery = useQuery({
     queryKey: ["repairs"],
@@ -75,7 +82,11 @@ const Repairs = () => {
     <Container sx={{ m: 0, pb: 12 }}>
       <SectionHeader title="Repairs">
         {!repairsQuery.isLoading && (
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            setPage={setPage}
+          />
         )}
       </SectionHeader>
       <Box
@@ -105,7 +116,6 @@ const Repairs = () => {
               <AddRepairButton>
                 <RepairFormWrapper />
               </AddRepairButton>
-        
             </Box>
             <Box
               sx={{
@@ -118,29 +128,31 @@ const Repairs = () => {
             >
               <Box sx={{ width: "100%" }}>
                 <Button
-                
-                  onClick={() => setSearchParams({ view: "inprogress" })}
+                  onClick={() => {
+                    setSearchParams({ view: "inprogress" });
+                  }}
                   sx={leftStyles}
                 >
                   In Progress
                 </Button>
                 <Button
-                  onClick={() => setSearchParams({ view: "completed" })}
+                  onClick={() => {
+                    setSearchParams({ view: "completed" });
+                  }}
                   sx={rightStyles}
                 >
                   Completed
                 </Button>
               </Box>
 
-              {inProgress ? (
-                <RepairsTable
-                  repairs={filterArray(activeRepairs, searchTerm)}
-                />
-              ) : (
-                <RepairsTable
-                  repairs={filterArray(completedRepairs, searchTerm)}
-                />
-              )}
+              <RepairsTable
+                page={page}
+                setPage={setPage}
+                repairs={filterArray(
+                  inProgress ? activeRepairs : completedRepairs,
+                  searchTerm
+                )}
+              />
             </Box>
             <Box
               sx={{

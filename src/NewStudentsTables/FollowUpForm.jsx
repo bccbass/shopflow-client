@@ -21,10 +21,9 @@ import PanoramaFishEyeIcon from "@mui/icons-material/PanoramaFishEye";
 const FollowUpForm = ({ lead }) => {
   const { user } = useContext(UserContext);
 
-
   const [date, setDate] = React.useState(calculateNextContact(lead));
   const blankFormData = {
-    nextContactDate: date,  
+    nextContactDate: date,
     admin: user.initials,
     method: { chat: false, voicemail: false, email: false, call: false },
     notes: "",

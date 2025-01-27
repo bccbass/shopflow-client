@@ -9,9 +9,8 @@ import Paper from "@mui/material/Paper";
 import ArchiveRow from "./ArchiveRow";
 import TablePaginationFooter from "../TablePaginationFooter";
 
-export default function ArchiveTable({ enquiries, children }) {
+export default function ArchiveTable({ enquiries, page, setPage, children }) {
   const rows = [...enquiries];
-  const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -56,7 +55,7 @@ export default function ArchiveTable({ enquiries, children }) {
             </ArchiveRow>
           ))}
           {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
+            <TableRow style={{ height: 69 * emptyRows }}>
               <TableCell colSpan={9} />
             </TableRow>
           )}

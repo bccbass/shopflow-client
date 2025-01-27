@@ -12,6 +12,8 @@ import ErrorCard from "../ErrorCard";
 import TableSkeleton from "../TableSkeleton";
 
 const ArchivedLeads = () => {
+  const [page, setPage] = React.useState(0);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchTerm, setSearchTerm] = useState("");
   const sortOrder = searchParams.get("sort");
@@ -51,7 +53,7 @@ const ArchivedLeads = () => {
     <Container sx={{ m: 0, mb: 10 }}>
       <SectionHeader title="Archived Leads">
         {!archive.isLoading && (
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setPage={setPage}/>
         )}
       </SectionHeader>
       <Box
@@ -70,7 +72,7 @@ const ArchivedLeads = () => {
         ) : (
           <>
             <ArchiveTable
-              enquiries={filteredArr(archive.data, searchTerm)}
+              enquiries={filteredArr(archive.data, searchTerm)} page={page} setPage={setPage}
             ></ArchiveTable>
             <Box
               sx={{
@@ -80,7 +82,7 @@ const ArchivedLeads = () => {
                 mb: 1,
                 px: 2,
                 justifyContent: "space-between",
-                // alignItems: "flex-end",  
+                // alignItems: "flex-end",
               }}
             >
               <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>

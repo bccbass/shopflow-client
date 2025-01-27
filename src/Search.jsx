@@ -1,14 +1,22 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, TextField, Collapse, Fab} from '@mui/material'
 
-const Search = ({searchTerm, setSearchTerm}) => {
+const Search = ({searchTerm, setSearchTerm, setPage=false}) => {
     const [showInput, setShowInput] = useState(false)
     const handleClick = () => {
       if (showInput) {setSearchTerm('')};
-       setShowInput(!showInput)
+       setShowInput(!showInput);
+       
     }
+
+    useEffect(() => {
+      if (setPage && searchTerm.length > 0) {
+        setPage(0)
+      }
+    }, [searchTerm])
+
 
   return (
     <Box sx={{display: 'flex', alignItems: 'flex-end', height: '2.5rem', mr: 10, mb: 1 }}>

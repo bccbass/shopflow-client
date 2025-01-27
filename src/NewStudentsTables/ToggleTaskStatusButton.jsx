@@ -56,7 +56,10 @@ const ToggleTaskStatusButton = ({
         </Fab>
       ) : (
         <Fab
-          sx={{ color: taskStatus ? "green" : "grey", bgcolor: taskStatus && 'white' }}
+          sx={{
+            color: taskStatus ? "green" : "grey",
+            bgcolor: taskStatus && "white",
+          }}
           onClick={handleSubmit}
         >
           {taskStatus ? (

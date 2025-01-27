@@ -12,7 +12,7 @@ import {
   Card,
   Divider,
 } from "@mui/material";
-import EnquiriesTable from "../Tables/EnquiriesTable";
+import EnquiriesTable from "../NewStudentsTables/EnquiriesTable";
 import DownloadCollectionCsvButton from "../Buttons/DownloadCollectionCsvButton";
 import Search from "../Search";
 import ErrorCard from "../ErrorCard";

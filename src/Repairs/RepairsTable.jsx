@@ -9,16 +9,21 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import RepairsTableRow from "./RepairsTableRow";
+import TablePaginationFooter from "../TablePaginationFooter";
 
-export default function RepairsTable({ repairs }) {
+export default function RepairsTable({ repairs, page, setPage }) {
   const rows = [...repairs];
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const emptyRows =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
 
   return (
     <TableContainer sx={{ mt: 0, mb: 0 }} component={Paper}>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell sx={{width: '4.1rem'}} />
+            <TableCell sx={{ width: "4.1rem" }} />
             <TableCell sx={{ fontWeight: "bold" }}>Completed</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
@@ -26,19 +31,35 @@ export default function RepairsTable({ repairs }) {
             <TableCell sx={{ fontWeight: "bold" }}>
               {/* <span style={{ color: "green" }}>Paid</span> /{" "}
               <span style={{ color: "red" }}>Owed</span> */}
-			  Paid/Owed
+              Paid/Owed
             </TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
             {/* <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell> */}
             <TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
-            <TableCell sx={{width: '5.8rem'}}></TableCell>
+            <TableCell sx={{ width: "5.8rem" }}></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {!rows.length ? < TableRow /> : rows.map((row) => (
+          {(rowsPerPage > 0
+            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : rows
+          ).map((row) => (
             <RepairsTableRow key={row._id} row={row} />
           ))}
+          {emptyRows > 0 && (
+            <TableRow style={{ height: 70 * emptyRows }}>
+              <TableCell colSpan={9} />
+            </TableRow>
+          )}
         </TableBody>
+        <TablePaginationFooter
+          count={rows.length}
+          page={page}
+          setPage={setPage}
+          rowsPerPage={rowsPerPage}
+          setRowsPerPage={setRowsPerPage}
+          colSpan={9}
+        />
       </Table>
     </TableContainer>
   );

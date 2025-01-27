@@ -20,7 +20,9 @@ const TrialDetailsCard = ({ student, children }) => {
         width: "32%",
       }}
     >
-      <Box sx={{ p: 2, flex: 2, bgcolor: !student.bookedTrial ? 'cadetblue' : 0 }}>
+      <Box
+        sx={{ p: 2, flex: 2, bgcolor: !student.bookedTrial ? "cadetblue" : 0 }}
+      >
         {student.bookedTrial && (
           <>
             <Typography
@@ -38,11 +40,11 @@ const TrialDetailsCard = ({ student, children }) => {
 
         {!student.bookedTrial ? (
           // <Box sx={{ height: '100%', display: "flex", justifyContent: "center", alignItems: 'center' }}>
-            <OpenUpdateModalButton title={"Book Trial"}>
-              <TrialLessonWrapper student={student} />
-            </OpenUpdateModalButton>
-          // </Box>
+          <OpenUpdateModalButton title={"Book Trial"}>
+            <TrialLessonWrapper student={student} />
+          </OpenUpdateModalButton>
         ) : (
+          // </Box>
           <>
             <Typography>
               <strong> Day: </strong>
@@ -75,7 +77,13 @@ const TrialDetailsCard = ({ student, children }) => {
               </Typography>
             )}
             <Box
-              sx={{mt: 3, mb: -2, display: "flex", justifyContent: "center", width: "100%" }}
+              sx={{
+                mt: 3,
+                mb: -2,
+                display: "flex",
+                justifyContent: "center",
+                width: "100%",
+              }}
             >
               <ToggleTrialPaidButton student={student} />
             </Box>
