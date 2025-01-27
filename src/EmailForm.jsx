@@ -61,7 +61,7 @@ const EmailForm = ({ student, setOpen, info }) => {
       subject: templateObj.subject,
       html: templateObj.html,
     });
-  }, [activeTemplate, emailObj]);
+  }, [activeTemplate]);
 
   const handleSelect = (e) => {
     setActiveTemplate(e.target.value);
