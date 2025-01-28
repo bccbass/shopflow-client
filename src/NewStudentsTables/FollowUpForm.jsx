@@ -41,18 +41,15 @@ const FollowUpForm = ({ lead }) => {
       method: { ...formData.method, [e.target.name]: e.target.checked },
     });
   };
-  const dataPayload = () => {
-    return lead.bookedTrial
-      ? {
-          nextContactDate: date,
-          trialLesson: { followUp: [...lead.trialLesson.followUp, formData] },
-        }
-      : {
-          followUp: [...lead.followUp, formData],
-          nextContactDate: date,
-        };
-  };
-  const constructedPayload = dataPayload();
+  const dataPayload = lead.bookedTrial
+    ? {
+        nextContactDate: date,
+        trialLesson: { followUp: [...lead.trialLesson.followUp, formData] },
+      }
+    : {
+        followUp: [...lead.followUp, formData],
+        nextContactDate: date,
+      };
 
   const handleSubmit = (e) => {
     setFormData(blankFormData);
@@ -153,7 +150,7 @@ const FollowUpForm = ({ lead }) => {
       <TableCell sx={{}}>
         <SubmitUpdateButton
           submitProps={{
-            updatedData: constructedPayload,
+            updatedData: dataPayload,
             path: `leads/updatefollowup/${lead._id}`,
             query: "Leads",
             type: "patch",

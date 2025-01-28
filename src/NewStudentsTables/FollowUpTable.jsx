@@ -6,12 +6,12 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import FollowUpForm from "./FollowUpForm";
 import CheckIcon from "@mui/icons-material/Check";
 import { Divider } from "@mui/material";
+import DeleteFollowUpButton from "./DeleteFollowUpButton";
 
 const FollowUpTable = ({ followUpEvents, lead }) => {
   const checkStyles = {
@@ -103,7 +103,15 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
                   </TableCell>
 
                   <TableCell>{contact?.notes}</TableCell>
-                  <TableCell></TableCell>
+                  <TableCell
+                    sx={{
+                      transition: ".2s",
+                      opacity: 0,
+                      "&:Hover": { opacity: 1 },
+                    }}
+                  >
+                    <DeleteFollowUpButton lead={lead} id={contact._id} />
+                  </TableCell>
                 </TableRow>
               ))}
               <FollowUpForm lead={lead} />
@@ -117,9 +125,7 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
             justifyContent: "center",
             mt: 4,
           }}
-        >
-        
-        </Box>
+        ></Box>
       </Card>
     </Box>
   );

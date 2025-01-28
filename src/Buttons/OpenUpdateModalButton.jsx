@@ -12,7 +12,7 @@ const OpenUpdateModalButton = ({
   const [open, setOpen] = useState(false);
   const bookTrialStyles =
     title == "Book Trial"
-      ? {
+      ? {bgcolor: 'secondary.main',
           width: "100%",
           height: "100%",
           fontSize: "1.2rem",

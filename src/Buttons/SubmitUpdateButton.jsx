@@ -9,6 +9,7 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 
 const SubmitUpdateButton = ({ submitProps }) => {
   const {
+    color = "secondary",
     fullWidth = false,
     updatedData,
     path,
@@ -51,7 +52,12 @@ const SubmitUpdateButton = ({ submitProps }) => {
       />
     </Tooltip>
   ) : (
-    <Button variant={variant} fullWidth={fullWidth} onClick={handleSubmit}>
+    <Button
+      variant={variant}
+      color={color}
+      fullWidth={fullWidth}
+      onClick={handleSubmit}
+    >
       {title}
     </Button>
   );

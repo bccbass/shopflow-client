@@ -84,6 +84,13 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead?.student?.age}
           </Typography>
         )}
+        {lead?.nextContactDate && (
+       <Typography>
+       <strong> Next Action: </strong>
+       {lead?.contactDate}
+     </Typography>
+        )}
+ 
       </Box>
       <Box
         sx={{
