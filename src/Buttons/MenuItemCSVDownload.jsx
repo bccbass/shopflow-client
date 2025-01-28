@@ -22,15 +22,15 @@ const MenuItemCSVDownload = ({ data, collection = false }) => {
 
   const csvData = [
     {
-      "Student First Name": data.student.firstName,
-      "Student Last Name": data.student.lastName,
+      "Student First Name Only": data.student.firstName,
+      "Student Last Name Only": data.student.lastName,
       "Student Email Address": data.isMinor ? "" : data.contact.email,
       "Student Phone Number": data.isMinor ? "" : data.contact.phone,
-      instruments: data.student.instrument,
-      "Parent First Name": data.guardian.firstName,
-      "Parent Last Name": data.guardian.lastName,
-      "Parent Email Address": data.isMinor ? data.contact.email : "",
-      "Parent Parent Mobile Phone Number": data.isMinor
+      Instruments: data.student.instrument,
+      "Parent First Name Only": data.guardian.firstName,
+      "Parent Last Name Only": data.guardian.lastName,
+      "Parent Email": data.isMinor ? data.contact.email : "",
+      "Parent Mobile Phone Number": data.isMinor
         ? data.contact.phone
         : "",
     },

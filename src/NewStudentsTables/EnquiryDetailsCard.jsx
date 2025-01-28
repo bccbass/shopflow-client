@@ -47,7 +47,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
         )}
         <Typography>
           <strong> Phone: </strong>
-          <Link href={"tel:" + lead?.contact?.phone}>
+          <Link href={"sip:" + lead?.contact?.phone}>
             {lead?.contact?.phone}
           </Link>
         </Typography>
