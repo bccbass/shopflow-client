@@ -13,7 +13,7 @@ const CallButton = ({phoneNumber}) => {
 
   return (
     <Tooltip onClick={handleStopPropagation} title={!phoneNumber ? 'No Valid Phone Number' : 'Call: ' + phoneNumber}>
-        <a  href={"tel:" + phoneNumber}>
+        <a  href={"sip:" + phoneNumber}>
             <CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
         </a>
     </Tooltip>
