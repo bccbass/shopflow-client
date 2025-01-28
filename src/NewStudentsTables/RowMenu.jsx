@@ -12,6 +12,7 @@ import ArchiveButton from "../Buttons/ArchiveButton";
 import MenuItemCSVDownload from "../Buttons/MenuItemCSVDownload";
 import MenuItemArchive from "../Buttons/MenuItemArchive";
 import MenuItemToggleEnrollment from "../Buttons/MenuItemToggleEnrollment";
+import MenuItemCopyLeadToClipboard from "../Buttons/MenuItemCopyLeadToClipboard";
 
 export default function RowMenu({ lead, openMenuId, onMenuToggle }) {
   // const [open, setOpen] = React.useState(false);
@@ -19,14 +20,14 @@ export default function RowMenu({ lead, openMenuId, onMenuToggle }) {
   const { _id: id } = lead;
 
   const handleToggle = (event) => {
-    event.stopPropagation()
+    event.stopPropagation();
     onMenuToggle(id);
   };
 
   const open = openMenuId === id;
 
   const handleClose = (event) => {
-    event.stopPropagation()
+    event.stopPropagation();
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -35,7 +36,7 @@ export default function RowMenu({ lead, openMenuId, onMenuToggle }) {
   };
 
   function handleListKeyDown(event) {
-    event.stopPropagation()
+    event.stopPropagation();
     if (event.key === "Tab") {
       event.preventDefault();
       onMenuToggle(null);
@@ -92,6 +93,10 @@ export default function RowMenu({ lead, openMenuId, onMenuToggle }) {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem onClick={handleClose}>
+                      <MenuItemCopyLeadToClipboard data={lead} />
+                    </MenuItem>
+
+                    <MenuItem onClick={handleClose}>
                       <MenuItemCSVDownload data={lead} />
                     </MenuItem>
 
@@ -111,3 +116,7 @@ export default function RowMenu({ lead, openMenuId, onMenuToggle }) {
     </Stack>
   );
 }
+
+
+
+

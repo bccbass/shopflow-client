@@ -10,10 +10,12 @@ const theme = createTheme({
 
       // main: "#1976d2", // OG primary color
       main: "#008080", // Your custom primary color
+      light: "#e8fffa",
       contrastText: "#ffffff", // Optional: Text color on primary buttons, etc.
     },
     secondary: {
       main: "#1976d2", // Your custom secondary color
+      light: "#e3f2fc",
       contrastText: "#ffffff",
     },
     text: {

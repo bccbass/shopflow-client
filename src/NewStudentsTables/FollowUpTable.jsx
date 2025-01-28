@@ -15,7 +15,7 @@ import DeleteFollowUpButton from "./DeleteFollowUpButton";
 
 const FollowUpTable = ({ followUpEvents, lead }) => {
   const checkStyles = {
-    color: "green",
+    color: "teal",
     fontSize: "1.2rem",
     fontWeight: "bold",
   };
@@ -24,7 +24,7 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
   return (
     <Box
       sx={{
-        bgcolor: "teal",
+        bgcolor: "primary",
         width: "100%",
         display: "flex",
         flexDirection: "column",
@@ -33,14 +33,14 @@ const FollowUpTable = ({ followUpEvents, lead }) => {
     >
       <Card
         sx={{
-          bgcolor: "white",
+          bgcolor: "secondary.light",
           p: 3,
           // my: 3,
           width: "96%",
           borderRadius: "5px",
           display: "flex",
           flexDirection: "column",
-          border: "1px solid silver",
+          border: "secondary.main",
         }}
       >
         <TableContainer sx={{ mb: 0 }}>

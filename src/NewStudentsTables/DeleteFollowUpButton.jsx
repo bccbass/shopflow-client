@@ -1,5 +1,6 @@
 import React from "react";
 import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
+import CloseIcon from '@mui/icons-material/Close';
 
 const DeleteFollowUpButton = ({ lead, id }) => {
   const dataPayload = lead.bookedTrial
@@ -26,7 +27,7 @@ const DeleteFollowUpButton = ({ lead, id }) => {
           variant: "text",
           type: "patch",
           //   successCb: handleSubmit,
-          title: "X",
+          title: <CloseIcon />,
         }}
       />
   );
