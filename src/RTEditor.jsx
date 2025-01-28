@@ -38,7 +38,7 @@ export default function RTEditor({ emailObj, setEmailObj }) {
 
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
-    setEmailObj({ ...emailObj, html: data });
+    setEmailObj(prevEmailObj => {return { ...prevEmailObj, html: data }});
   };
 
   useEffect(() => {

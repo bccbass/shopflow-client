@@ -48,12 +48,12 @@ export default function EnquiriesTable({ enquiries, children, info, page, setPag
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <EnquiryRow row={row} info={info} openMenuId={openMenuId} onMenuToggle={onMenuToggle}>
+            <EnquiryRow key={row._id} row={row} info={info} openMenuId={openMenuId} onMenuToggle={onMenuToggle}>
               {children}
             </EnquiryRow>
           ))}
            {emptyRows > 0 && (
-            <TableRow style={{ height: 70 * emptyRows }}>
+            <TableRow key={'spacerrows'} style={{ height: 70 * emptyRows }}>
               <TableCell colSpan={9} />
             </TableRow>
           )}

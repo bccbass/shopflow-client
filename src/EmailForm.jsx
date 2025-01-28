@@ -20,14 +20,13 @@ const EmailForm = ({ student, setOpen, info }) => {
   const { user } = useContext(UserContext);
   const templateArray = createEmailTemplateArray(student, info, user.firstName);
 
-  const defaultTemplateId = useMemo(
-    () =>
-      templateArray.filter(
-        (temp) =>
-          temp.id ==
-          `${student.bookedTrial ? "trialConfirmation" : "initialEnquiry"}`
-      )[0].id
-  );
+  const defaultTemplateId = useMemo(() => {
+    return templateArray.filter(
+      (temp) =>
+        temp.id ==
+        `${student.bookedTrial ? "trialConfirmation" : "initialEnquiry"}`
+    )[0].id;
+  }, []);
 
   const [activeTemplate, setActiveTemplate] = useState(defaultTemplateId);
 
@@ -56,11 +55,11 @@ const EmailForm = ({ student, setOpen, info }) => {
     const templateObj = templateArray.filter(
       (temp) => temp.id === activeTemplate
     )[0];
-    setEmailObj({
-      ...emailObj,
+    setEmailObj((prevEmailObj) => ({
+      ...prevEmailObj,
       subject: templateObj.subject,
       html: templateObj.html,
-    });
+    }));
   }, [activeTemplate]);
 
   const handleSelect = (e) => {
@@ -105,8 +104,9 @@ const EmailForm = ({ student, setOpen, info }) => {
                     (temp.id == "trialConfirmation" ||
                       temp.id == "trialFollowUp" ||
                       temp.id == "trialUpdate")) ||
-                  (student.bookedTrial && (temp.id == "initialEnquiry" ||
-                  temp.id == "initialEnquiryFollowUp"))
+                  (student.bookedTrial &&
+                    (temp.id == "initialEnquiry" ||
+                      temp.id == "initialEnquiryFollowUp"))
                 }
                 value={temp.id}
               >

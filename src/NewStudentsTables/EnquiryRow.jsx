@@ -17,7 +17,7 @@ import { nullDate } from "../assets/dateHelpers";
 import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
 import { UserContext } from "../UserContext";
 
-function EnquiryRow({ row, info, key, openMenuId, onMenuToggle }) {
+function EnquiryRow({ row, info, openMenuId, onMenuToggle }) {
   const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
   const noDueDate = nullDate(row.nextContactDate);
