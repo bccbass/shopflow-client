@@ -58,7 +58,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             target="_blank"
             sx={{ px: 0.5 }}
             href={
-              "https://mail.google.com/mail/u/2/#search/" + lead?.contact?.email
+              "https://mail.google.com/mail/u/1/#search/" + lead?.contact?.email
             }
           >
             {` ${lead?.contact?.email}`}

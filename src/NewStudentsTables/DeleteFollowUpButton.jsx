@@ -5,7 +5,6 @@ import CloseIcon from '@mui/icons-material/Close';
 const DeleteFollowUpButton = ({ lead, id }) => {
   const dataPayload = lead.bookedTrial
     ? {
-        nextContactDate: lead.nextContactDate,
         trialLesson: {
           followUp: lead.trialLesson.followUp.filter(
             (contact) => contact._id !== id
@@ -13,7 +12,6 @@ const DeleteFollowUpButton = ({ lead, id }) => {
         },
       }
     : {
-        nextContactDate: lead.nextContactDate,
         followUp: lead.followUp.filter((contact) => contact._id !== id),
       };
 
