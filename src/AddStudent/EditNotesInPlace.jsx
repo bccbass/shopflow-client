@@ -4,7 +4,7 @@ import SubmitUpdateButton from "../Buttons/SubmitUpdateButton";
 import { useState } from "react";
 
 const EditNotesInPlace = ({ student, setOpen }) => {
-  const [studentData, setStudentData] = useState(student);
+  const [studentNotesData, setStudentNotesData] = useState({notes: student.notes});
 
   return (
     <Box sx={{display: "flex", height: '89%', flexDirection: "column", justifyContent: "space-between" }}>
@@ -17,9 +17,9 @@ const EditNotesInPlace = ({ student, setOpen }) => {
         // label="Notes"
         multiline
         name="notes"
-        value={studentData.notes}
+        value={studentNotesData.notes}
         onChange={(e) =>
-          setStudentData({ ...studentData, notes: e.target.value })
+          setStudentNotesData({ notes: e.target.value })
         }
       />
       <Box sx={{ display: "flex", flexDirection: 'column'}}>
@@ -27,11 +27,10 @@ const EditNotesInPlace = ({ student, setOpen }) => {
           submitProps={{
             variant: "outlined",
             title: 'Save Changes',
-            updatedData: studentData,
+            updatedData: studentNotesData,
             setOpen: setOpen,
-            path: `leads/${studentData._id}`,
+            path: `leads/${student._id}`,
             query: "leads",
-            type: "put",
           }}
         />
 

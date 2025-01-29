@@ -1,8 +1,10 @@
 import React from "react";
-import { Box, Typography, Card, Divider, Tooltip, Link } from "@mui/material";
+import { Box, Typography, Card, Divider, Button, Link, Tooltip } from "@mui/material";
 import SearchEmailButton from "../Buttons/SearchEmailButton";
+import EditContactDateInPlace from "../AddStudent/EditContactDateInPlace";
 
 const EnquiryDetailsCard = ({ lead, children }) => {
+  const [openDateEdit, setOpenDateEdit] = React.useState(false);
   return (
     <Card
       sx={{
@@ -84,13 +86,26 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead?.student?.age}
           </Typography>
         )}
-        {lead?.nextContactDate && (
-       <Typography>
-       <strong> Next Action: </strong>
-       {lead?.contactDate}
-     </Typography>
-        )}
- 
+        <Box sx={{ display: "flex" }}>
+          <Typography sx={{ flex: 2, display: "flex", alignItems: "center" }}>
+            <strong> Next Action: </strong>
+          </Typography>
+
+          {!openDateEdit && lead.nextContactDate ? (
+            <Tooltip title={'Click to Update'}>
+            <Button
+              sx={{ flex: 2, p: 0, m: 0, ml: -35, fontWeight: "bold" }}
+              variant="text"
+              color={lead.overdue ? 'error' : 'primary'}
+              onClick={() => setOpenDateEdit(true)}
+            >
+              {lead?.contactDate}
+            </Button>
+            </Tooltip>
+          ) : (
+            <EditContactDateInPlace setOpen={setOpenDateEdit} student={lead} />
+          )}
+        </Box>
       </Box>
       <Box
         sx={{
