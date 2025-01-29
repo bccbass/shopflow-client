@@ -10,7 +10,6 @@ import ToggleTrialPaidButton from "../TrialLessonForm/ToggleTrialPaidButton";
 
 const TrialDetailsCard = ({ student, children }) => {
   const noTrialDate = nullDate(student.trialLesson.date);
-  console.log('trialdate', getDay(student.trialLesson.date))
   return (
     <Card
       sx={{

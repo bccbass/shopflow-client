@@ -73,9 +73,9 @@ const RowCollapsibleContent = ({ lead }) => {
         </TrialDetailsCard>
 
         <EnquiryNotesCard lead={lead}>
-          <OpenUpdateModalButton>
+          {/* <OpenUpdateModalButton>
             <EditNotesWrapper student={lead} />
-          </OpenUpdateModalButton>
+          </OpenUpdateModalButton> */}
         </EnquiryNotesCard>
       </Container>
 
