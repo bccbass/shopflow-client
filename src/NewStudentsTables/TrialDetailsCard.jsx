@@ -48,7 +48,7 @@ const TrialDetailsCard = ({ student, children }) => {
           <>
             <Typography>
               <strong> Day: </strong>
-              {noTrialDate ? "" : student.trialDate.split(",")[0]}
+              {noTrialDate ? "" : student.trialDay}
             </Typography>
             <Typography>
               <strong> Date: </strong>
