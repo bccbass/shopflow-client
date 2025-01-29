@@ -5,11 +5,12 @@ import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import TrialLessonWrapper from "../TrialLessonForm/TrialLessonWrapper";
-import { nullDate } from "../assets/dateHelpers";
+import { nullDate, getDay } from "../assets/dateHelpers";
 import ToggleTrialPaidButton from "../TrialLessonForm/ToggleTrialPaidButton";
 
 const TrialDetailsCard = ({ student, children }) => {
   const noTrialDate = nullDate(student.trialLesson.date);
+  console.log('trialdate', getDay(student.trialLesson.date))
   return (
     <Card
       sx={{
