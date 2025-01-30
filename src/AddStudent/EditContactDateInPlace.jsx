@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Box, TextField, Tooltip } from "@mui/material";
+import { IconButton, Box, TextField, Tooltip } from "@mui/material";
 import { useState } from "react";
 import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import CloseIcon from "@mui/icons-material/Close";
@@ -50,23 +50,22 @@ const EditContactDateInPlace = ({ student, setOpen }) => {
         onChange={handleChange}
         value={studentContactDate.nextContactDate}
       />
-      <Tooltip title='Save Changes'>
-        <TaskAltIcon
-          fontSize="small"
-          sx={{ flex: 1 }}
-          variant={"text"}
-          color={"success"}
-          onClick={handleSubmit}
-        />
+      <Tooltip title="Save Changes">
+        <IconButton
+                  sx={{ flex: 1, p: 0, m: 0 }}
+                  color={"success"}
+                  onClick={handleSubmit}>
+          <TaskAltIcon  fontSize="small" />
+        </IconButton>
       </Tooltip>
-      <Tooltip  title='Discard Changes'>
-        <CloseIcon
-          fontSize="small"
-          style={{ flex: 1 }}
-          variant="text"
+      <Tooltip title="Discard Changes">
+        <IconButton
+          sx={{ flex: 1, p: 0, m: 0}}
           color="error"
           onClick={() => setOpen(false)}
-        />
+        >
+          <CloseIcon fontSize="small"/>
+        </IconButton>
       </Tooltip>
     </Box>
   );

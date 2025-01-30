@@ -1,5 +1,13 @@
 import React from "react";
-import { Box, Typography, Card, Divider, Button, Link, Tooltip } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Card,
+  Divider,
+  Button,
+  Link,
+  Tooltip,
+} from "@mui/material";
 import SearchEmailButton from "../Buttons/SearchEmailButton";
 import EditContactDateInPlace from "../AddStudent/EditContactDateInPlace";
 
@@ -86,21 +94,27 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead?.student?.age}
           </Typography>
         )}
-        <Box sx={{ display: "flex", justifyContent: 'flex-start' }}>
-          <Typography sx={{ flex: openDateEdit && 2}}>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "flex-start",
+            mb: openDateEdit ? '-.5rem': '1rem',
+          }}
+        >
+          <Typography sx={{ flex: openDateEdit && 2 }}>
             <strong> Next Action: </strong>
           </Typography>
 
           {!openDateEdit && lead.nextContactDate ? (
-            <Tooltip title={'Click to Update'}>
-            <Button
-              sx={{ p: 0, ml: 1, minWidth: 0, fontWeight: "bold" }}
-              variant="text"
-              color={lead.overdue ? 'error' : 'primary'}
-              onClick={() => setOpenDateEdit(true)}
-            >
-              {lead?.contactDate}
-            </Button>
+            <Tooltip title={"Click to Update"}>
+              <Button
+                sx={{ p: 0, ml: 1, minWidth: 0, fontWeight: "bold" }}
+                variant="text"
+                color={lead.overdue ? "error" : "primary"}
+                onClick={() => setOpenDateEdit(true)}
+              >
+                {lead?.contactDate}
+              </Button>
             </Tooltip>
           ) : (
             <EditContactDateInPlace setOpen={setOpenDateEdit} student={lead} />
@@ -115,7 +129,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           alignItems: "center",
         }}
       >
-        <Typography color="text.secondary" pl={2}>
+        <Typography color="text.secondary" mt={.5} pl={2}>
           {`${lead.createdDate} ${lead.createdBy}`}
         </Typography>
         {children}
