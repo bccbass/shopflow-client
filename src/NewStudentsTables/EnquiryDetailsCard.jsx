@@ -86,15 +86,15 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead?.student?.age}
           </Typography>
         )}
-        <Box sx={{ display: "flex" }}>
-          <Typography sx={{ flex: 2, display: "flex", alignItems: "center" }}>
+        <Box sx={{ display: "flex", justifyContent: 'flex-start' }}>
+          <Typography sx={{ flex: openDateEdit && 2}}>
             <strong> Next Action: </strong>
           </Typography>
 
           {!openDateEdit && lead.nextContactDate ? (
             <Tooltip title={'Click to Update'}>
             <Button
-              sx={{ flex: 2, p: 0, m: 0, ml: -35, fontWeight: "bold" }}
+              sx={{ p: 0, ml: 1, minWidth: 0, fontWeight: "bold" }}
               variant="text"
               color={lead.overdue ? 'error' : 'primary'}
               onClick={() => setOpenDateEdit(true)}
