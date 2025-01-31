@@ -15,6 +15,7 @@ import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import DownloadIcon from "@mui/icons-material/Download";
 import BuildCircleIcon from "@mui/icons-material/BuildCircle";
+import ReceiptIcon from "@mui/icons-material/Receipt";
 
 const HomeSectionItems = () => {
   const navigate = useNavigate();
@@ -42,12 +43,20 @@ const HomeSectionItems = () => {
       icon: <QueueMusicIcon color="secondary" />,
     },
     {
+      title: "Orders",
+      path: "orders",
+      description:
+        "Track and manage in-shop and web orders to manage distributor progress and easily communicate with customers.",
+      icon: <ReceiptIcon color="secondary" />,
+    },
+    {
       title: "Repairs",
       path: "repairs",
       description:
         "Track and manage in-shop repairs and easily communicate with customers.",
       icon: <BuildCircleIcon color="secondary" />,
     },
+
     {
       title: "Notes",
       path: "notes",
