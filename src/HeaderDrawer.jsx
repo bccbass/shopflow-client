@@ -23,7 +23,7 @@ import { UserContext } from "./UserContext";
 import UserAvatar from "./UserAvatar";
 
 const drawerWidth = 240;
-console.log(location.pathname)
+// console.log(location.pathname)
 const openedMixin = (theme) => ({
   width: drawerWidth,
   transition: theme.transitions.create("width", {
@@ -139,6 +139,7 @@ export default function MiniDrawer({ children }) {
               </IconButton>
               <Logo variant="h4" />
               <Box
+                mr={1}
                 display={"flex"}
                 width={"10rem"}
                 alignItems={"flex-end"}

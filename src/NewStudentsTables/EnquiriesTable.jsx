@@ -13,7 +13,7 @@ import TablePaginationFooter from "../TablePaginationFooter";
 
 export default function EnquiriesTable({ enquiries, children, info, page, setPage }) {
   const rows = [...enquiries];
-   const [rowsPerPage, setRowsPerPage] = useState(5);
+   const [rowsPerPage, setRowsPerPage] = useState(10);
    const [openMenuId, setOpenMenuId] = useState(null);
 
    const onMenuToggle = (id) => {

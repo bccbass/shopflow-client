@@ -10,12 +10,12 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
-import { UserContext } from '../UserContext'
+import { UserContext } from "../UserContext";
 
 const status = ["In Progress", "Awaiting Response", "Completed"];
 
 const OrderForm = ({ setOrderData, orderData }) => {
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const handleChange = (e) =>
     setOrderData({
       ...orderData,
@@ -83,19 +83,19 @@ const OrderForm = ({ setOrderData, orderData }) => {
         <TextField
           sx={{ width: "49%" }}
           size="small"
-          id="instrument"
-          label="Instrument"
-          name="instrument"
-          value={orderData?.instrument}
+          id="item"
+          label="Item"
+          name="item"
+          value={orderData?.item}
           onChange={handleChange}
         />
         <TextField
           sx={{ width: "49%" }}
           size="small"
-          id="jobDescription"
-          label="Job Description"
-          name="jobDescription"
-          value={orderData?.jobDescription}
+          id="orderDescription"
+          label="Order Description"
+          name="orderDescription"
+          value={orderData?.orderDescription}
           onChange={handleChange}
         />
       </Box>
@@ -151,16 +151,33 @@ const OrderForm = ({ setOrderData, orderData }) => {
           display: "flex",
           flexWrap: "nowrap",
           justifyContent: "space-between",
+          alignItems: 'center',
           width: "100%",
         }}
       >
         <TextField
-          sx={{ width: "49%" }}
+          sx={{ width: "34%", display: 'block' }}
           size="small"
-          id="amount"
-          label="Amount Due"
-          name="amount"
-          value={orderData?.amount}
+          id="depositAmount"
+          label="Deposit Amount"
+          name="depositAmount"
+          value={orderData?.depositAmount}
+          onChange={handleChange}
+          slotProps={{
+            input: {
+              startAdornment: (
+                <InputAdornment position="start">$</InputAdornment>
+              ),
+            },
+          }}
+        />
+        <TextField
+          sx={{ width: "34%", display: 'block' }}
+          size="small"
+          id="totalAmount"
+          label="Total Price"
+          name="totalAmount"
+          value={orderData?.totalAmount}
           onChange={handleChange}
           slotProps={{
             input: {
@@ -172,7 +189,7 @@ const OrderForm = ({ setOrderData, orderData }) => {
         />
 
         <FormControlLabel
-          sx={{ mr: 10, color: "grey" }}
+          sx={{ width: '15%', color: "grey" }}
           labelPlacement="start"
           control={
             <Checkbox

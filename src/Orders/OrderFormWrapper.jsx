@@ -7,20 +7,20 @@ import {
   Box,
 } from "@mui/material";
 import { useState, useEffect } from "react";
-import CreateButton from "../Buttons/CreateButton.jsx";
-import SubmitUpdateButton from '../Buttons/SubmitUpdateButton.jsx'
-import RepairForm from "./RepairForm";
-import FormTitle from '../FormTitle.jsx'
-import { defaultRepairForm } from "../assets/defaultRepairForm.js";
+import CreateButton from "../Buttons/CreateButton";
+import SubmitUpdateButton from '../Buttons/SubmitUpdateButton'
+import OrderForm from "./OrderForm";
+import FormTitle from '../FormTitle'
+import { defaultOrderForm } from "../assets/defaultOrderForm";
 import { formatDate } from "../assets/dateHelpers.js";
 
-const RepairFormWrapper = ({ order=false, setOpen }) => {
-  const [orderData, setRepairData] = useState(!order ? defaultRepairForm : order);
+const OrderFormWrapper = ({ order=false, setOpen }) => {
+  const [orderData, setOrderData] = useState(!order ? defaultOrderForm : order);
 
   useEffect(() => {
     // Reformat date from so it can be used as an input value and not throw error
     if (order){const formattedDate = formatDate(order.due)
-    setRepairData({
+    setOrderData({
       ...orderData,
       due: formattedDate
     });}
@@ -37,15 +37,15 @@ const RepairFormWrapper = ({ order=false, setOpen }) => {
       }}
     >
       <FormTitle >
-        {`Repair Form`}
+        {`Order Form`}
       </FormTitle>
-      <RepairForm orderData={orderData} setRepairData={setRepairData}/>
+      <OrderForm orderData={orderData} setOrderData={setOrderData}/>
       <DialogActions sx={{ display: "flex", flexDirection: "column", alignItems: 'center', justifyContent: 'center' }}>
        {!order ?  <CreateButton
           buttonProps={{
             path: "orders",
             data: orderData,
-            setData: setRepairData,
+            setData: setOrderData,
             query: "orders",
             setDialogOpen: setOpen,
           }}
@@ -65,4 +65,4 @@ const RepairFormWrapper = ({ order=false, setOpen }) => {
   );
 };
 
-export default RepairFormWrapper;
+export default OrderFormWrapper;

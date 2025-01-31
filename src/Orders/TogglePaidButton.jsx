@@ -7,27 +7,28 @@ import { patchResource } from "../assets/apiHelpers";
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import { Tooltip } from "@mui/material";
 
-const TogglePaidButton = ({ repair }) => {
+const TogglePaidButton = ({ order }) => {
 	const queryClient = useQueryClient();
 
 	const mutation = useMutation({
 		mutationFn: patchResource,
-		onSuccess: () => queryClient.invalidateQueries(["repairs"]),
+		onSuccess: () => queryClient.invalidateQueries(["orders"]),
 	});
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		e.stopPropagation();
 		mutation.mutate({
-			path: `repairs/${repair._id}`,
-			body: { paid: !repair.paid },
+			path: `orders/${order._id}`,
+			body: { paid: !order.paid },
 		});
 	};
 
 	return (
-		<Tooltip title={repair.paid ? "Mark as Unpaid" : "Mark as Paid"}>
-			<Button sx={{ color: repair.paid ? "green" : "red", fontWeight:'bold'}} onClick={handleSubmit}>
+		<Tooltip title={order.paid ? "Mark as Unpaid" : "Mark as Paid"}>
+			<Button sx={{ color: order.paid ? "green" : "red", fontWeight:'bold'}} onClick={handleSubmit}>
 				{/* <AttachMoneyIcon fontSize="small" /> */}
-				{`$${repair.amount}`}
+				{`$${order.depositAmount}`}
 			</Button>
 		</Tooltip>
 	);

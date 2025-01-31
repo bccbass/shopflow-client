@@ -11,37 +11,30 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import SmsIcon from "@mui/icons-material/Sms";
-import RepairsCollapsibleContent from "./RepairsCollapsibleContent";
+import OrdersCollapsibleContent from "./OrdersCollapsibleContent";
 import { nullDate } from "../assets/dateHelpers";
-import RepairCompleteToggleButton from "./RepairCompleteToggleButton";
+import OrderCompleteToggleButton from "./OrderCompleteToggleButton";
 import TogglePaidButton from "./TogglePaidButton";
-import RepairRowMenu from "./RepairRowMenu";
+import OrderRowMenu from "./OrderRowMenu";
 import OpenSMSModalButton from "../Buttons/OpenSMSModalButton";
 import { UserContext } from "../UserContext";
 
-RepairRowMenu;
-function RepairsTableRow({ row }) {
+OrderRowMenu;
+function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
   const { user } = useContext(UserContext);
   const [open, setOpen] = React.useState(false);
-  const noDueDate = nullDate(row.due);
 
   const overdueStyles = {
     color: "red",
     fontWeight: "bold",
   };
 
-  const completedStyles = {
-    color: "white",
-    backgroundColor: "green",
-    padding: "4px 6px",
-    marginLeft: "-.5rem",
-    borderRadius: "6px",
-    fontWeight: "bold",
-  };
+
 
   return (
     <React.Fragment>
       <TableRow
+        onClick={() => setOpen(!open)}
         sx={{
           "& > *": {
             borderBottom: "unset",
@@ -49,31 +42,29 @@ function RepairsTableRow({ row }) {
         }}
       >
         <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
+          <IconButton aria-label="expand row" size="small">
             {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
           </IconButton>
         </TableCell>
         <TableCell>
-          <RepairCompleteToggleButton repair={row} />
+          <OrderCompleteToggleButton order={row} />
         </TableCell>
         <TableCell
-          sx={row.overdue && !row.completed && overdueStyles}
+          sx={row.overdue && !row.completed ? overdueStyles : {}}
         >{`${row.lastFirst}`}</TableCell>
-        <TableCell sx={row.overdue && !row.completed && overdueStyles}>
-          {row.instrument}
+        <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
+          {row.item}
         </TableCell>
-        <TableCell sx={row.overdue && !row.completed && overdueStyles}>
-          {row.jobDescription}
-        </TableCell>
+        {/* <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
+          {row.orderDescription}
+        </TableCell> */}
 
         <TableCell>
-          <TogglePaidButton repair={row} />
+          <TogglePaidButton order={row} />
         </TableCell>
-
+        <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
+          {`$${row.totalAmount}`}
+        </TableCell>
         <TableCell>
           <a href={"SIP:" + row?.phone}>
             <CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
@@ -88,13 +79,17 @@ function RepairsTableRow({ row }) {
           />
         </TableCell>
         <TableCell>
-          <RepairRowMenu repair={row} />
+          <OrderRowMenu
+            order={row}
+            onMenuToggle={onMenuToggle}
+            openMenuId={openMenuId}
+          />
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell sx={{ p: 0 }} colSpan={9}>
-          <Collapse in={open} timeout="auto">
-            <RepairsCollapsibleContent row={row} />
+        <TableCell sx={{ p: 0, m: 0 }} colSpan={9}>
+          <Collapse in={open} timeout="auto" sx={{ bgcolor: "#FAFAFA" }}>
+            {open && <OrdersCollapsibleContent row={row} />}
           </Collapse>
         </TableCell>
       </TableRow>
@@ -102,4 +97,4 @@ function RepairsTableRow({ row }) {
   );
 }
 
-export default RepairsTableRow;
+export default OrdersTableRow;

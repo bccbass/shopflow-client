@@ -13,30 +13,36 @@ import MenuItemComplete from './MenuItemComplete'
 import MenuItemDelete from '../Buttons/MenuItemDelete'
 
 
-export default function OrderRowMenu({ order }) {
-  const [open, setOpen] = React.useState(false);
+export default function OrderRowMenu({ order, openMenuId, onMenuToggle }) {
   const anchorRef = React.useRef(null);
+  const {_id: id} = order
 
-  const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+  const handleToggle = (event) => {
+    event.stopPropagation()
+    onMenuToggle(id);
   };
 
+  const open = openMenuId === id;
+
   const handleClose = (event) => {
+    event.stopPropagation()
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
 
-    setOpen(false);
+    onMenuToggle(null);
   };
 
   function handleListKeyDown(event) {
+    event.stopPropagation()
     if (event.key === "Tab") {
       event.preventDefault();
-      setOpen(false);
+      onMenuToggle(null);
     } else if (event.key === "Escape") {
-      setOpen(false);
+      onMenuToggle(null);
     }
   }
+
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);

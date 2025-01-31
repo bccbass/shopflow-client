@@ -20,6 +20,8 @@ import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import { getResource } from "./assets/apiHelpers";
 import { UserContext } from "./UserContext";
+import SettingsIcon from '@mui/icons-material/Settings'
+import ReceiptIcon from '@mui/icons-material/Receipt';
 
 const HeaderMenuItems = () => {
   const { user } = useContext(UserContext);
@@ -40,6 +42,7 @@ const HeaderMenuItems = () => {
       due: dueQuery?.data?.trials + dueQuery?.data?.enquiries + dueQuery?.data?.enrolled || "",
     },
     { title: "Repairs", path: "repairs", due: dueQuery?.data?.repairs || "" },
+    { title: "Orders", path: "orders", due: dueQuery?.data?.orders || "" },
     { title: "Notes", path: "notes", due: dueQuery?.data?.notes || "" },
   ];
   return (
@@ -100,6 +103,9 @@ const HeaderMenuItems = () => {
                   )}
                   {item.path === "repairs" && (
                     <BuildCircleIcon fontSize="large" />
+                  )}
+                  {item.path === "orders" && (
+                    <ReceiptIcon fontSize="large" />
                   )}
                   {item.path === "notes" && <NoteIcon fontSize="large" />}
                 </Badge>
@@ -174,6 +180,60 @@ const HeaderMenuItems = () => {
             />
           </ListItemButton>
         </ListItem>
+        {/* SECTION FOR SETTINGS MENU ITEM - WIP */}
+        {/* { user.fullAccess && <ListItem
+          key={"settings"}
+          disablePadding
+          sx={{ display: "block", ml: -1 }}
+        >
+          <ListItemButton
+            onClick={() => navigate(`/settings`)}
+            sx={[
+              {
+                minHeight: 48,
+                px: 2.5,
+              },
+              open
+                ? {
+                    justifyContent: "initial",
+                  }
+                : {
+                    justifyContent: "center",
+                  },
+            ]}
+          >
+            <ListItemIcon
+              sx={[
+                {
+                  minWidth: 0,
+                  justifyContent: "center",
+                },
+                open
+                  ? {
+                      mr: 3,
+                    }
+                  : {
+                      mr: "auto",
+                    },
+              ]}
+            >
+              <SettingsIcon fontSize="large" />
+            </ListItemIcon>
+            <ListItemText
+              primary={"Settings"}
+              sx={[
+                open
+                  ? {
+                      opacity: 1,
+                    }
+                  : {
+                      opacity: 0,
+                    },
+              ]}
+            />
+          </ListItemButton>
+        </ListItem>
+} */}
       </List>
     </>
   );

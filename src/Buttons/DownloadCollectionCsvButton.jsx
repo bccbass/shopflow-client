@@ -47,10 +47,28 @@ const DownloadCollectionCsvButton = ({
         return {
           created: d.createdDate,
           name: d.firstLast,
-          instrument: d.instrument,
-          job: d.jobDescription,
           phone: d.phone,
           email: d.email,
+          instrument: d.instrument,
+          amount: d.amount,
+          paid: d.paid,
+          job: d.jobDescription,
+          status: d.status,
+        };
+      });
+    }
+    if (format == "orders") {
+      return inputData.map((d) => {
+        return {
+          created: d.createdDate,
+          name: d.firstLast,
+          phone: d.phone,
+          email: d.email,
+          item: d.item,
+          order: d.orderDescription,
+          'deposit amount': d.depositAmount,
+          'total price': d.totalAmount,
+          paid: d.paid,
           status: d.status,
         };
       });
@@ -65,7 +83,11 @@ const DownloadCollectionCsvButton = ({
 
   return (
     <Tooltip title={`Download ${collection} CSV`}>
-      <Button variant="outlined" onClick={handleClick} sx={{maxHeight: '3rem', px: 2 }}>
+      <Button
+        variant="outlined"
+        onClick={handleClick}
+        sx={{ maxHeight: "3rem", px: 2 }}
+      >
         Download CSV
       </Button>
     </Tooltip>

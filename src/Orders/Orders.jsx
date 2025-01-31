@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
@@ -17,6 +17,11 @@ const Orders = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchParams, setSearchParams] = useSearchParams();
   const inProgress = searchParams.get("view") !== "completed";
+  const [page, setPage] = React.useState(0);
+
+  useEffect(() => {
+    setPage(0);
+  }, [searchParams]);
 
   const ordersQuery = useQuery({
     queryKey: ["orders"],
@@ -32,7 +37,7 @@ const Orders = () => {
     fontWeight: inProgress ? "bold" : "",
     borderBottom: !inProgress ? "1px solid lightgrey" : 0,
     color: !inProgress ? "lightgrey" : "",
-    backgroundColor: !inProgress ? "#FAFAFA" : "",
+    backgroundColor: !inProgress ? "#FAFAFA" : "white",
   };
   const rightStyles = {
     fontSize: "1rem",
@@ -43,7 +48,7 @@ const Orders = () => {
     fontWeight: !inProgress ? "bold" : "",
     borderBottom: inProgress ? "1px solid lightgrey" : 0,
     color: inProgress ? "lightgrey" : "",
-    backgroundColor: inProgress ? "#FAFAFA" : "",
+    backgroundColor: inProgress ? "#FAFAFA" : "white",
   };
 
   const filterArray = (arr, searchTerm) => {
@@ -53,10 +58,10 @@ const Orders = () => {
           [
             order.firstName,
             order.lastName,
-            order.instrument,
-            order.jobDescription,
+            order.item,
+            order.orderDescription,
           ]
-            .map((val) => val.toLowerCase().includes(searchTerm.toLowerCase()))
+            .map((val) => val?.toLowerCase().includes(searchTerm.toLowerCase()))
             .includes(true)
         );
   };
@@ -75,7 +80,11 @@ const Orders = () => {
     <Container sx={{ m: 0, pb: 12 }}>
       <SectionHeader title="Orders">
         {!ordersQuery.isLoading && (
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            setPage={setPage}
+          />
         )}
       </SectionHeader>
       <Box
@@ -117,26 +126,33 @@ const Orders = () => {
             >
               <Box sx={{ width: "100%" }}>
                 <Button
-                  onClick={() => setSearchParams({ view: "inprogress" })}
+                  color="secondary"
+                  onClick={() => {
+                    setSearchParams({ view: "inprogress" });
+                  }}
                   sx={leftStyles}
                 >
                   In Progress
                 </Button>
                 <Button
-                  onClick={() => setSearchParams({ view: "completed" })}
+                  color="secondary"
+                  onClick={() => {
+                    setSearchParams({ view: "completed" });
+                  }}
                   sx={rightStyles}
                 >
                   Completed
                 </Button>
               </Box>
 
-              {inProgress ? (
-                <OrdersTable orders={filterArray(activeOrders, searchTerm)} />
-              ) : (
-                <OrdersTable
-                  orders={filterArray(completedOrders, searchTerm)}
-                />
-              )}
+              <OrdersTable
+                page={page}
+                setPage={setPage}
+                orders={filterArray(
+                  inProgress ? activeOrders : completedOrders,
+                  searchTerm
+                )}
+              />
             </Box>
             <Box
               sx={{
