@@ -51,7 +51,7 @@ function RepairsTableRow({ row, openMenuId, onMenuToggle }) {
         </TableCell>
         <TableCell
           sx={row.overdue && !row.completed ? overdueStyles : {}}
-        >{`${row.lastFirst}`}</TableCell>
+        >{`${row.firstLast}`}</TableCell>
         <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
           {row.instrument}
         </TableCell>

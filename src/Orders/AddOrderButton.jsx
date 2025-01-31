@@ -10,7 +10,7 @@ const AddOrderButton = ({ children, order=false }) => {
   return (
     <>
       
-        <Button variant={order ? 'text': 'contained'} sx={{color: order && 'grey'}} onClick={() => setOpen(!open)}>
+        <Button flex={1} variant={order ? 'text': 'contained'} sx={{color: order && 'grey'}} onClick={() => setOpen(!open)}>
           {order ? 
             "Edit Order "
           : "New Order" }

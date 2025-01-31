@@ -43,7 +43,6 @@ const RowCollapsibleContent = ({ lead }) => {
       <Divider sx={{ ...dividerStyles, pt: 5 }}>
         <Typography
           sx={titleStyles}
-          color="white"
           align="center"
           variant="h5"
           fontWeight={"bold"}

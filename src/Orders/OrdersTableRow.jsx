@@ -50,19 +50,19 @@ function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
           <OrderCompleteToggleButton order={row} />
         </TableCell>
         <TableCell
-          sx={row.overdue && !row.completed ? overdueStyles : {}}
-        >{`${row.lastFirst}`}</TableCell>
-        <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
+          sx={(row.overdue && !row.completed ) || !row.paid? overdueStyles : {}}
+        >{`${row.firstLast}`}</TableCell>
+        <TableCell sx={(row.overdue && !row.completed ) || !row.paid? overdueStyles : {}}>
           {row.item}
         </TableCell>
-        {/* <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
+        {/* <TableCell sx={(row.overdue && !row.completed ) || !row.paid? overdueStyles : {}}>
           {row.orderDescription}
         </TableCell> */}
 
         <TableCell>
           <TogglePaidButton order={row} />
         </TableCell>
-        <TableCell sx={row.overdue && !row.completed ? overdueStyles : {}}>
+        <TableCell sx={(row.overdue && !row.completed ) || !row.paid? overdueStyles : {}}>
           {`$${row.totalAmount}`}
         </TableCell>
         <TableCell>
