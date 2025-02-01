@@ -3,15 +3,17 @@
 import React from "react";
 import { useContext } from "react";
 import { Box, Container, Typography, Card, Divider } from "@mui/material";
-import DeleteButton from "../Buttons/DeleteButton";
 import TogglePaidButton from "./TogglePaidButton";
 import AddRepairButton from "./AddRepairButton";
 import RepairFormWrapper from "./RepairFormWrapper";
 import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
+import { nullDate } from "../assets/dateHelpers";
 
 const RepairsCollapsibleContent = ({ row }) => {
   const { user } = useContext(UserContext);
+  const noDueDate = nullDate(row.due);
+
   const overdueStyles = {
     color: "red",
     fontWeight: "bold",
@@ -85,18 +87,24 @@ const RepairsCollapsibleContent = ({ row }) => {
             </Typography>
             <Typography color="textSecondary">
               <strong> Phone: </strong>
-              <a href={"tel:" + row?.phone}>{row?.phone}</a>
+              <a href={"sip:" + row?.phone}>{row?.phone}</a>
             </Typography>
             <Typography color="textSecondary">
               <strong> Email: </strong>
-              <a href={"mailto:" + row?.email}>{row?.email}</a>
+
+              <a
+                target="_blank"
+                href={"https://mail.google.com/mail/u/1/#search/" + row?.email}
+              >
+                {row?.email}
+              </a>
             </Typography>
             <Typography
               sx={row.overdue && !row.completed ? overdueStyles : {}}
               color="textSecondary"
             >
               <strong> Due: </strong>
-              {localDate(row.due)}
+              {noDueDate ? "No Due Date" : localDate(row.due)}
             </Typography>
           </Box>
           <Box sx={{ py: 2, width: "25%" }}>
@@ -128,7 +136,7 @@ const RepairsCollapsibleContent = ({ row }) => {
             alignItems: "center",
           }}
         >
-          <TogglePaidButton repair={row} verbose={true}/>
+          <TogglePaidButton repair={row} verbose={true} />
         </Box>
         <Box
           sx={{

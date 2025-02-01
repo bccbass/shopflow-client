@@ -25,7 +25,7 @@ function RepairsTableRow({ row, openMenuId, onMenuToggle }) {
   const [open, setOpen] = React.useState(false);
 
   const overdueStyles = {
-    color: "red",
+    color: "error.main",
     fontWeight: "bold",
   };
 

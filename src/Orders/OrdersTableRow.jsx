@@ -8,11 +8,8 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
-import SmsIcon from "@mui/icons-material/Sms";
 import OrdersCollapsibleContent from "./OrdersCollapsibleContent";
-import { nullDate } from "../assets/dateHelpers";
 import OrderCompleteToggleButton from "./OrderCompleteToggleButton";
 import TogglePaidButton from "./TogglePaidButton";
 import OrderRowMenu from "./OrderRowMenu";
@@ -25,7 +22,7 @@ function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
   const [open, setOpen] = React.useState(false);
 
   const overdueStyles = {
-    color: "red",
+    color: "error.main",
     fontWeight: "bold",
   };
 
@@ -89,7 +86,7 @@ function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
       <TableRow>
         <TableCell sx={{ p: 0, m: 0 }} colSpan={9}>
           <Collapse in={open} timeout="auto" sx={{ bgcolor: "#FAFAFA" }}>
-            {open && <OrdersCollapsibleContent row={row} />}
+            <OrdersCollapsibleContent row={row} />
           </Collapse>
         </TableCell>
       </TableRow>

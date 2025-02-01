@@ -8,9 +8,11 @@ import AddOrderButton from "./AddOrderButton";
 import OrderFormWrapper from "./OrderFormWrapper";
 import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
+import { nullDate } from "../assets/dateHelpers";
 
 const OrdersCollapsibleContent = ({ row }) => {
   const { user } = useContext(UserContext);
+  const noDueDate = nullDate(row.due);
   const dividerStyles = {
     px: 2,
     // pt: 8,
@@ -26,7 +28,7 @@ const OrdersCollapsibleContent = ({ row }) => {
     color: "primary.main",
     borderRadius: "10px",
     border: "1px solid",
-    borderColor: 'primary.main',
+    borderColor: "primary.main",
     fontWeight: "bold",
     px: 3,
   };
@@ -84,18 +86,23 @@ const OrdersCollapsibleContent = ({ row }) => {
             </Typography>
             <Typography color="textSecondary">
               <strong> Phone: </strong>
-              <a href={"tel:" + row?.phone}>{row?.phone}</a>
+              <a href={"sip:" + row?.phone}>{row?.phone}</a>
             </Typography>
             <Typography color="textSecondary">
               <strong> Email: </strong>
-              <a href={"mailto:" + row?.email}>{row?.email}</a>
+              <a
+                target="_blank"
+                href={"https://mail.google.com/mail/u/1/#search/" + row?.email}
+              >
+                {row?.email}
+              </a>
             </Typography>
             <Typography
               sx={row.overdue && !row.completed ? overdueStyles : {}}
               color="textSecondary"
             >
               <strong> Due: </strong>
-              {localDate(row.due)}
+              {noDueDate ? "No Due Date" : localDate(row.due)}
             </Typography>
           </Box>
           <Box sx={{ py: 2, width: "25%" }}>
@@ -123,8 +130,8 @@ const OrdersCollapsibleContent = ({ row }) => {
             </Typography>
           </Box>
         </Box>
-		 
-        < TogglePaidButton order={row} verbose={true}/>
+
+        <TogglePaidButton order={row} verbose={true} />
         <Box
           sx={{
             py: 1,
