@@ -105,7 +105,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             <strong> Next Action: </strong>
           </Typography>
 
-          {!openDateEdit`` ? (
+          {!openDateEdit ? (
             <Tooltip title={"Click to Update"}>
               <Button
                 sx={{ p: 0, ml: 1, minWidth: 0, fontWeight: "bold" }}
