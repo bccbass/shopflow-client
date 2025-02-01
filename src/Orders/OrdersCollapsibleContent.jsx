@@ -3,7 +3,7 @@
 import React from "react";
 import { useContext } from "react";
 import { Box, Container, Typography, Card, Divider } from "@mui/material";
-import DeleteButton from "../Buttons/DeleteButton";
+import TogglePaidButton from "./TogglePaidButton";
 import AddOrderButton from "./AddOrderButton";
 import OrderFormWrapper from "./OrderFormWrapper";
 import { localDate } from "../assets/dateHelpers";
@@ -123,29 +123,8 @@ const OrdersCollapsibleContent = ({ row }) => {
             </Typography>
           </Box>
         </Box>
-        <Typography
-          variant="h6"
-          sx={{
-            mt: 2,
-            px: 1,
-            mb: 1,
-
-            border: "1px solid",
-            color: "white",
-            bgcolor: row.paid ? "primary.main" : "red",
-            // borderColor: row.paid ? "primary.main" : "red",
-            textAlign: "center",
-            width: "fit-content",
-            borderRadius: "5px",
-          }}
-        >
-          <strong>
-            {" "}
-            {row.paid ? "Amount Paid: " : "Deposit Owed: "}{" "}
-            {row.depositAmount ? "$" + row?.depositAmount : "$" + 0}
-            {row.totalAmount && " of $" + row?.totalAmount}
-          </strong>
-        </Typography>
+		 
+        < TogglePaidButton order={row} verbose={true}/>
         <Box
           sx={{
             py: 1,

@@ -49,9 +49,9 @@ const OrderCompleteToggleButton = ({ order }) => {
         onClick={handleSubmit}
       >
         {order.completed ? (
-          <TaskAltIcon fontSize="small" />
+          <TaskAltIcon  />
         ) : (
-          <PanoramaFishEyeIcon fontSize="small" />
+          <PanoramaFishEyeIcon  />
         )}
       </Button>
     </Tooltip>

@@ -49,9 +49,9 @@ const RepairCompleteToggleButton = ({ repair }) => {
         onClick={handleSubmit}
       >
         {repair.completed ? (
-          <TaskAltIcon fontSize="small" />
+          <TaskAltIcon  />
         ) : (
-          <PanoramaFishEyeIcon fontSize="small" />
+          <PanoramaFishEyeIcon  />
         )}
       </Button>
     </Tooltip>
