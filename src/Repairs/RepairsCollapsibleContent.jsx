@@ -9,6 +9,7 @@ import RepairFormWrapper from "./RepairFormWrapper";
 import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
 import { nullDate } from "../assets/dateHelpers";
+import DisplayMarkdown from "../DisplayMarkdown";
 
 const RepairsCollapsibleContent = ({ row }) => {
   const { user } = useContext(UserContext);
@@ -122,10 +123,10 @@ const RepairsCollapsibleContent = ({ row }) => {
             </Typography>
           </Box>
           <Box sx={{ py: 2, width: "25%" }}>
-            <Typography color="textSecondary">
-              <strong> Notes: </strong>
-              {row.notes}
+            <Typography mb={-1.8} color="textSecondary">
+              <strong> Notes </strong>
             </Typography>
+            < DisplayMarkdown note={row.notes} />
           </Box>
         </Box>
         <Box

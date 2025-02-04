@@ -9,6 +9,7 @@ import OrderFormWrapper from "./OrderFormWrapper";
 import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
 import { nullDate } from "../assets/dateHelpers";
+import DisplayMarkdown from "../DisplayMarkdown";
 
 const OrdersCollapsibleContent = ({ row }) => {
   const { user } = useContext(UserContext);
@@ -123,11 +124,12 @@ const OrdersCollapsibleContent = ({ row }) => {
               {"$" + row.totalAmount}
             </Typography>
           </Box>
-          <Box sx={{ py: 2, width: "25%" }}>
-            <Typography color="textSecondary">
-              <strong> Notes: </strong>
-              {row.notes}
+          <Box sx={{ pt: 2, width: "25%" }}>
+            <Typography  mb={-1.8} color="textSecondary">
+              <strong> Notes </strong>
+              
             </Typography>
+            < DisplayMarkdown note={row.notes} />
           </Box>
         </Box>
 

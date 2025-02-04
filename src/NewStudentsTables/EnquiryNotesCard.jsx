@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import EditNotesInPlace from "../AddStudent/EditNotesInPlace";
 import EditIcon from "@mui/icons-material/Edit";
+import DisplayMarkdown from "../DisplayMarkdown";
+
 
 const EnquiryNotesCard = ({ lead, children }) => {
   const [open, setOpen] = React.useState(false);
@@ -38,7 +40,7 @@ const EnquiryNotesCard = ({ lead, children }) => {
           <>
             <Divider sx={{ mb: 2 }} />
 
-            <Typography>{lead?.notes}</Typography>
+            <DisplayMarkdown note={lead?.notes} />
           </>
         )}
       </Box>

@@ -8,6 +8,7 @@ import EditButton from "../Buttons/EditButton";
 import Chip from '@mui/material/Chip'
 import Divider from "@mui/material/Divider";
 import CompletedToggleButton from './CompletedToggleButton'
+import DisplayMarkdown from "../DisplayMarkdown";
 
 export default function NoteCard({ note, setEditingNote }) {
   return (
@@ -30,12 +31,12 @@ export default function NoteCard({ note, setEditingNote }) {
 					</Typography>
 					<Divider sx={{ mb: 1.5 }} />
 
-					<Typography sx={{ minHeight: 65 }}  variant="h5" component="div">
+					<Typography sx={{ fontWeight: 'bold' }}  variant="h5" component="div">
 						{note.title}
 					</Typography>
-					<Typography sx={{ my: 1.5, minHeight: 160 }} variant="body2">
-						{note.body}
-					</Typography>
+					<Box sx={{ mb: 1.5, minHeight: 160 }} variant="body2">
+					< DisplayMarkdown note={note.body}/>
+					</Box>
 					<Divider />
 
 					<Typography sx={{ color: "text.secondary", fontSize: 14, mt: 1.5 }}>
