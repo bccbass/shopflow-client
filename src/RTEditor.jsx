@@ -31,14 +31,14 @@ import "./App.css";
  */
 const LICENSE_KEY = "GPL"; // or <YOUR_LICENSE_KEY>.
 
-export default function RTEditor({ emailObj, setEmailObj }) {
+export default function RTEditor({ formObj, setFormObj }) {
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const [isLayoutReady, setIsLayoutReady] = useState(false);
 
   const handleEditorChange = (event, editor) => {
     const data = editor.getData();
-    setEmailObj(prevEmailObj => {return { ...prevEmailObj, html: data }});
+    setFormObj(prevFormObj => {return { ...prevFormObj, html: data }});
   };
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function RTEditor({ emailObj, setEmailObj }) {
         image: {
           toolbar: ["imageTextAlternative", "|", "resizeImage"],
         },
-        // initialData: emailObj.html,
+        // initialData: formObj.html,
         licenseKey: LICENSE_KEY,
         link: {
           addTargetToExternalLinks: true,
@@ -131,7 +131,7 @@ export default function RTEditor({ emailObj, setEmailObj }) {
           <div ref={editorRef}>
             {editorConfig && (
               <CKEditor
-                data={emailObj.html}
+                data={formObj.html}
                 id={"editorId"}
                 editor={ClassicEditor}
                 config={editorConfig}

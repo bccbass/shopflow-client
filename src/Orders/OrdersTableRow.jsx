@@ -85,7 +85,7 @@ function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
       </TableRow>
       <TableRow>
         <TableCell sx={{ p: 0, m: 0 }} colSpan={9}>
-          <Collapse in={open} timeout="auto" sx={{ bgcolor: "#FAFAFA" }}>
+          <Collapse in={open} timeout="auto" sx={{ bgcolor: "primary.main" }}>
             <OrdersCollapsibleContent row={row} />
           </Collapse>
         </TableCell>

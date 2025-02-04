@@ -143,7 +143,7 @@ const EmailForm = ({ student, setOpen, info }) => {
         }
         sx={{ width: "500px" }}
       /> */}
-      <RTEditor emailObj={emailObj} setEmailObj={setEmailObj} />
+      <RTEditor formObj={emailObj} setFormObj={setEmailObj} />
       {/* {console.log(emailObj.html)} */}
       <Box
         sx={{

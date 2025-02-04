@@ -6,20 +6,21 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import FormControl from "@mui/material/FormControl";
-import { addDays } from '../assets/dateHelpers'
+import { addDays } from "../assets/dateHelpers";
 import { useState, useContext } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postResource } from "../assets/apiHelpers";
-import { UserContext } from '../UserContext'
+import { UserContext } from "../UserContext";
+
 const NoteForm = () => {
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const blankNote = {
     title: "",
     body: "",
     createdBy: `${user.firstName} ${user.lastName[0]}.`,
     due: addDays(3),
   };
-  
+
   const [note, setNote] = useState(blankNote);
 
   const queryClient = useQueryClient();
@@ -44,8 +45,8 @@ const NoteForm = () => {
   return (
     <Box sx={{ minWidth: 275, m: 2, width: 300 }}>
       <Card variant="outlined" sx={{ backgroundColor: "lightblue" }}>
-        <CardContent sx={{width: '100%' }}>
-          <Typography variant="h5" gutterBottom color='text.secondary'>
+        <CardContent sx={{ width: "100%" }}>
+          <Typography variant="h5" gutterBottom color="text.secondary">
             New Note
           </Typography>
 
@@ -101,20 +102,18 @@ const NoteForm = () => {
               onChange={handleChange}
               value={note.due}
             />
-          <Box sx={{display: 'flex', justifyContent: 'center'}}>
-          <Button
-            disabled={mutation.isPending}
-            variant="outlined"
-            sx={{width: '100%'}}
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Button
+                disabled={mutation.isPending}
+                variant="outlined"
+                sx={{ width: "100%" }}
+                onClick={handleSubmit}
+              >
+                Save
+              </Button>
+            </Box>
           </Box>
-          </Box>
-
         </CardContent>
-
       </Card>
     </Box>
   );

@@ -59,6 +59,7 @@ const Orders = () => {
             order.firstName,
             order.lastName,
             order.item,
+            order.notes,
             order.orderDescription,
           ]
             .map((val) => val?.toLowerCase().includes(searchTerm.toLowerCase()))

@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useContext, useEffe } from "react";
 import Box from "@mui/material/Box";
 import CreateButton from "../Buttons/CreateButton";
-import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
 import AddStudentForm from "./AddStudentForm";
 import { blankStudent } from "../assets/blankStudentForm";
 import TrialLessonButton from "../TrialLessonForm/TrialLessonButton";
@@ -30,7 +30,7 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
         mb: 8,
       }}
     >
-      <Box
+      <Card
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -39,12 +39,20 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
           maxWidth: 480,
           mx: "auto",
           mb: 4,
-          border: "1px solid lightgray",
           p: 4,
-          borderRadius: 4,
+          // borderRadius: 4,
         }}
       >
         <FormTitle>Add New Student</FormTitle>
+        <Box sx={{ mb: 3, mx: 'auto'}}
+        >
+        <OpenUpdateModalButton title="Paste and Parse Text" variant="outlined">
+        <ParseAMSLead
+          blankStudent={studentData}
+          setStudentData={setStudentData}
+        />
+      </OpenUpdateModalButton>
+      </Box>
         <AddStudentForm
           studentData={studentData}
           setStudentData={setStudentData}
@@ -64,13 +72,8 @@ const AddStudentFormWrapper = ({ student = blankStudent }) => {
             redirect: "/newstudents?view=enquiries",
           }}
         />
-      </Box>
-      <OpenUpdateModalButton title="Paste and Parse Text" variant="outlined">
-        <ParseAMSLead
-          blankStudent={studentData}
-          setStudentData={setStudentData}
-        />
-      </OpenUpdateModalButton>
+      </Card>
+
     </Box>
   );
 };

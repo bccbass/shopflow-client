@@ -63,6 +63,7 @@ const NoteEditCard = ({ note, setEditingNote }) => {
               id="outlined-basic"
               label="Note"
               value={updatedNote.body}
+              rows={2}
               multiline
               variant="outlined"
               name="body"

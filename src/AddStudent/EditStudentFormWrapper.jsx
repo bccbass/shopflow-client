@@ -5,7 +5,7 @@ import {
   Button,
   DialogActions,
   DialogTitle,
-  Typography,
+  Card,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import AddStudentForm from "./AddStudentForm";
