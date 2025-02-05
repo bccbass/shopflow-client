@@ -244,6 +244,9 @@ const NewStudents = () => {
                 } (${Math.floor(
                   (analytics.totalEnrollments / analytics.total) * 100
                 )}%)`}</Typography>
+                <Typography>{`Trial Conversion Rate: ${Math.floor(
+                  (analytics.totalEnrollments / analytics.totalTrials) * 100
+                )}%`}</Typography>
               </Card>
               <DownloadCollectionCsvButton
                 collection="Leads"

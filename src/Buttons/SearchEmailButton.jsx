@@ -8,7 +8,7 @@ const SearchEmailButton = ({ email }) => {
       <Link
         sx={{
           color: "grey",
-          margin: "0 0 -20px 0",
+          margin: "0 0 -0px 0",
         }}
         target="_blank"
         href={"https://mail.google.com/mail/u/1/#search/" + email}

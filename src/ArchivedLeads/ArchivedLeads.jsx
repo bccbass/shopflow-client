@@ -53,7 +53,11 @@ const ArchivedLeads = () => {
     <Container sx={{ m: 0, mb: 10 }}>
       <SectionHeader title="Archived Leads">
         {!archive.isLoading && (
-          <Search searchTerm={searchTerm} setSearchTerm={setSearchTerm} setPage={setPage}/>
+          <Search
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            setPage={setPage}
+          />
         )}
       </SectionHeader>
       <Box
@@ -72,7 +76,9 @@ const ArchivedLeads = () => {
         ) : (
           <>
             <ArchiveTable
-              enquiries={filteredArr(archive.data, searchTerm)} page={page} setPage={setPage}
+              enquiries={filteredArr(archive.data, searchTerm)}
+              page={page}
+              setPage={setPage}
             ></ArchiveTable>
             <Box
               sx={{
@@ -101,6 +107,9 @@ const ArchivedLeads = () => {
                 } (${Math.floor(
                   (analytics.totalEnrollments / analytics.total) * 100
                 )}%)`}</Typography>
+                <Typography>{`Trial Conversion Rate: ${Math.floor(
+                  (analytics.totalEnrollments / analytics.totalTrials) * 100
+                )}%`}</Typography>
                 {/* <Typography>{`Avg. Total Contact: ${
                   (analytics.totalContact / analytics.total).toFixed(2)
                 }`}</Typography> */}
