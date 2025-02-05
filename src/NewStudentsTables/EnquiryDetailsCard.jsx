@@ -10,8 +10,10 @@ import {
 } from "@mui/material";
 import SearchEmailButton from "../Buttons/SearchEmailButton";
 import EditContactDateInPlace from "../AddStudent/EditContactDateInPlace";
+import { nullDate } from '../assets/dateHelpers.js'
 
 const EnquiryDetailsCard = ({ lead, children }) => {
+  const noDate = nullDate(lead.nextContactDate)
   const [openDateEdit, setOpenDateEdit] = React.useState(false);
   return (
     <Card
@@ -66,7 +68,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           <strong style={{ marginRight: "4px" }}> Email: </strong>
           <Link
             target="_blank"
-            sx={{ px: 0.5 }}
+            sx={{ px: 0.5,  wordBreak: 'break-all' }}
             href={
               "https://mail.google.com/mail/u/1/#search/" + lead?.contact?.email
             }
@@ -113,7 +115,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
                 color={lead.overdue ? "error" : "primary"}
                 onClick={() => setOpenDateEdit(true)}
               >
-                {lead?.contactDate}
+                {noDate ? 'none' : lead?.contactDate}
               </Button>
             </Tooltip>
           ) : (
@@ -129,7 +131,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           alignItems: "center",
         }}
       >
-        <Typography color="text.secondary" mt={.5} pl={2}>
+        <Typography sx={{fontSize: '.8rem', fontStyle: 'italic'}} color="text.secondary" mt={.5} pl={2}>
           {`${lead.createdDate} ${lead.createdBy}`}
         </Typography>
         {children}

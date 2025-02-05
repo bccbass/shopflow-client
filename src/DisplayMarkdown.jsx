@@ -8,7 +8,7 @@ marked.setOptions({
   });
   
 
-const DisplayMarkdown = ({ note }) => {
+const DisplayMarkdown = ({ note='' }) => {
     const markdownToHtml = marked(note); // Convert Markdown to HTML
     const sanitizedHTML = DOMPurify.sanitize(markdownToHtml); // Sanitize output
   

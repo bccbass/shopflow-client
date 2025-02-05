@@ -14,6 +14,8 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import ArchiveButton from "../Buttons/ArchiveButton";
 import DeleteButton from "../Buttons/DeleteButton";
 import ArchiveRowMenu from "./ArchiveRowMenu";
+import DisplayMarkdown from "../DisplayMarkdown";
+
 
 function ArchiveRow({ children, row, openMenuId, onMenuToggle }) {
   const [open, setOpen] = React.useState(false);
@@ -242,7 +244,7 @@ function ArchiveRow({ children, row, openMenuId, onMenuToggle }) {
                         <strong> Notes </strong>
                       </Typography>
                       <Divider sx={{ mb: 2 }} />
-                      <Typography>{row?.notes}</Typography>
+                      <DisplayMarkdown note={row?.notes}/>
                     </Box>
                   </Card>
                 </Container>
