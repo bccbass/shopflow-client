@@ -48,7 +48,7 @@ const NewStudents = () => {
         total: query.data.length,
         totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
         completedTrials: query.data.filter(
-          (lead) => new Date(lead.trialLesson.date) < now
+          (lead) => new Date(lead.trialLesson.date) < now && lead.bookedTrial
         ).length,
         totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
       };
