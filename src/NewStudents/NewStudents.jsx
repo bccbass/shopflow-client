@@ -41,18 +41,21 @@ const NewStudents = () => {
     queryKey: ["due"],
     queryFn: () => getResource("leads/due"),
   });
-
   const getAnalytics = (query) => {
+    const now = Date.now();
     if (!query.isLoading && !query.isError)
       return {
         total: query.data.length,
         totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
+        completedTrials: query.data.filter(
+          (lead) => lead.trialLesson.date < now
+        ).length,
         totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
       };
   };
 
   const analytics = getAnalytics(leadsQuery);
-
+  console.log(analytics);
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
       ? arr
@@ -245,7 +248,7 @@ const NewStudents = () => {
                   (analytics.totalEnrollments / analytics.total) * 100
                 )}%)`}</Typography>
                 <Typography>{`Trial Conversion Rate: ${Math.floor(
-                  (analytics.totalEnrollments / analytics.totalTrials) * 100
+                  (analytics.totalEnrollments / analytics.completedTrials) * 100
                 )}%`}</Typography>
               </Card>
               <DownloadCollectionCsvButton
