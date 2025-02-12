@@ -41,7 +41,7 @@ function EnquiryRow({ row, info, openMenuId, onMenuToggle }) {
     backgroundColor:
       row.overdue || (row.trialAdminProgress == "none" && row.bookedTrial)
         ? "red"
-        : row.bookedTrial && row.trialAdminProgress == "in-progress"
+        : row.bookedTrial && (row.trialAdminProgress == "in-progress" || !row.trialLesson.paid)
         ? "orange"
         : "teal",
     padding: "4px 6px",

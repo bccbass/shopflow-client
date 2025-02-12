@@ -10,10 +10,10 @@ import {
 } from "@mui/material";
 import SearchEmailButton from "../Buttons/SearchEmailButton";
 import EditContactDateInPlace from "../AddStudent/EditContactDateInPlace";
-import { nullDate } from '../assets/dateHelpers.js'
+import { nullDate } from "../assets/dateHelpers.js";
 
 const EnquiryDetailsCard = ({ lead, children }) => {
-  const noDate = nullDate(lead.nextContactDate)
+  const noDate = nullDate(lead.nextContactDate);
   const [openDateEdit, setOpenDateEdit] = React.useState(false);
   return (
     <Card
@@ -68,7 +68,7 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           <strong style={{ marginRight: "4px" }}> Email: </strong>
           <Link
             target="_blank"
-            sx={{ px: 0.5,  wordBreak: 'break-all' }}
+            sx={{ px: 0.5, wordBreak: "break-all" }}
             href={
               "https://mail.google.com/mail/u/1/#search/" + lead?.contact?.email
             }
@@ -96,32 +96,37 @@ const EnquiryDetailsCard = ({ lead, children }) => {
             {lead?.student?.age}
           </Typography>
         )}
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            mb: openDateEdit ? '-.5rem': '1rem',
-          }}
-        >
-          <Typography sx={{ flex: openDateEdit && 2 }}>
-            <strong> Next Action: </strong>
-          </Typography>
+        {!lead.enrolled && (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "flex-start",
+              mb: openDateEdit ? "-.5rem" : "1rem",
+            }}
+          >
+            <Typography sx={{ flex: openDateEdit && 2 }}>
+              <strong> Next Action: </strong>
+            </Typography>
 
-          {!openDateEdit ? (
-            <Tooltip title={"Click to Update"}>
-              <Button
-                sx={{ p: 0, ml: 1, minWidth: 0, fontWeight: "bold" }}
-                variant="text"
-                color={lead.overdue ? "error" : "primary"}
-                onClick={() => setOpenDateEdit(true)}
-              >
-                {noDate ? 'none' : lead?.contactDate}
-              </Button>
-            </Tooltip>
-          ) : (
-            <EditContactDateInPlace setOpen={setOpenDateEdit} student={lead} />
-          )}
-        </Box>
+            {!openDateEdit ? (
+              <Tooltip title={"Click to Update"}>
+                <Button
+                  sx={{ p: 0, ml: 1, minWidth: 0, fontWeight: "bold" }}
+                  variant="text"
+                  color={lead.overdue ? "error" : "primary"}
+                  onClick={() => setOpenDateEdit(true)}
+                >
+                  {noDate ? "none" : lead?.contactDate}
+                </Button>
+              </Tooltip>
+            ) : (
+              <EditContactDateInPlace
+                setOpen={setOpenDateEdit}
+                student={lead}
+              />
+            )}
+          </Box>
+        )}
       </Box>
       <Box
         sx={{
@@ -131,7 +136,12 @@ const EnquiryDetailsCard = ({ lead, children }) => {
           alignItems: "center",
         }}
       >
-        <Typography sx={{fontSize: '.8rem', fontStyle: 'italic'}} color="text.secondary" mt={.5} pl={2}>
+        <Typography
+          sx={{ fontSize: ".8rem", fontStyle: "italic" }}
+          color="text.secondary"
+          mt={0.5}
+          pl={2}
+        >
           {`${lead.createdDate} ${lead.createdBy}`}
         </Typography>
         {children}

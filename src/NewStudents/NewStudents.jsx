@@ -55,7 +55,7 @@ const NewStudents = () => {
   };
 
   const analytics = getAnalytics(leadsQuery);
-  console.log(analytics);
+  // console.log(analytics);
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
       ? arr
