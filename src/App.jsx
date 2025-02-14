@@ -10,9 +10,12 @@ import AddStudents from "./AddStudent/AddStudents";
 import ArchivedLeads from "./ArchivedLeads/ArchivedLeads";
 import Repairs from "./Repairs/Repairs";
 import Orders from "./Orders/Orders";
+import Settings from "./Settings/Settings";
+import Analytics from "./Analytics/Analytics";
 import RouteNotFound from "./RouteNotFound";
 import Login from "./Login/Login";
 import PrivateRoute from "./PrivateRoute";
+import RestrictedRoute from "./RestrictedRoute";
 import { UserContext } from "./UserContext";
 
 function App() {
@@ -80,6 +83,22 @@ function App() {
             <PrivateRoute>
               <ArchivedLeads />
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/analytics"
+          element={
+            <RestrictedRoute>
+              <Analytics />
+            </RestrictedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <RestrictedRoute>
+              <Settings />
+            </RestrictedRoute>
           }
         />
         <Route path="*" element={<RouteNotFound />} />
