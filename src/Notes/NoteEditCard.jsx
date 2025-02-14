@@ -40,12 +40,12 @@ const NoteEditCard = ({ note, setEditingNote }) => {
       <Card variant="outlined" sx={{ backgroundColor: "lightblue" }}>
         {" "}
         <CardContent>
-          <Typography variant="h5" gutterBottom color='text.secondary'>
+          <Typography variant="h5" gutterBottom color="text.secondary">
             Editing note...
           </Typography>
           <Box
             component="form"
-            sx={{ "& > :not(style)": { m: .83, width: "94%" } }}
+            sx={{ "& > :not(style)": { m: 0.83, width: "94%" } }}
             noValidate
             autoComplete="off"
             onSubmit={handleSubmit}
@@ -63,7 +63,7 @@ const NoteEditCard = ({ note, setEditingNote }) => {
               id="outlined-basic"
               label="Note"
               value={updatedNote.body}
-              rows={2}
+              rows={6}
               multiline
               variant="outlined"
               name="body"
@@ -87,7 +87,7 @@ const NoteEditCard = ({ note, setEditingNote }) => {
             </Button>
             <Button
               variant="text"
-              sx={{ color: "red"}}
+              sx={{ color: "red" }}
               onClick={setEditingNote}
             >
               cancel

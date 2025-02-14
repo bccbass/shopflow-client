@@ -78,6 +78,7 @@ const NoteForm = () => {
               label="Note"
               value={note.body}
               multiline
+              minRows={5}
               variant="outlined"
               name="body"
               onChange={handleChange}

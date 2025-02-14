@@ -134,7 +134,7 @@ const NewStudents = () => {
         }}
       >
         {leadsQuery.isLoading || utilsQuery.isLoading ? (
-          <TableSkeleton />
+          <TableSkeleton buttons={3} />
         ) : leadsQuery.isError || utilsQuery.isError ? (
           <ErrorCard />
         ) : (
