@@ -33,6 +33,7 @@ const NewStudents = () => {
     queryKey: ["leads"],
     queryFn: () => getResource("leads"),
   });
+  
   const {
     isLoading,
     isError,
