@@ -50,7 +50,7 @@ const LeadsLineChart = ({ data }) => {
         series={[
           {
             data: chartData.map((d) => d.inquiries),
-            label: "Inquiries",
+            label: "No Trial",
             stack: "all",
             area: true,
           },

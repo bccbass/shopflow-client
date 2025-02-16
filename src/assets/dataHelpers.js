@@ -16,7 +16,7 @@ const processLeadsForChart = (leads) => {
       // Categorize leads
       if (lead.status === "noTrial") groupedData[month].inquiries += 1;
       if (lead.status === "trial") groupedData[month].trials += 1;
-      if (lead.status === "enrolled") groupedData[month].enrollments += 1;
+      if (lead.status === "enrolled") groupedData[month].enrollments += 1, groupedData[month].trials += 1;
       groupedData[month].total += 1
     });
   
