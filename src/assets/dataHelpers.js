@@ -1,4 +1,4 @@
-import { format, startOfMonth, subMonths, startOfYear, endOfMonth, } from 'date-fns'
+import { format, startOfMonth, subMonths, startOfYear, endOfMonth, subYears, endOfYear } from 'date-fns'
 
 
 // Function to process leads into chart data
@@ -38,6 +38,9 @@ const processLeadsForChart = (leads) => {
   
       case "this-year":
         return { start: startOfYear(today), end: endOfMonth(today) };
+  
+      case "last-year":
+        return { start: subYears(startOfYear(today), 1), end: subYears(endOfYear(today), 1) };
   
       default:
         return { start: null, end: null }; // Fallback (all-time)

@@ -87,6 +87,7 @@ const LeadsLineChart = ({ data }) => {
           {/* <MenuItem value="this-month">This Month</MenuItem> */}
           <MenuItem value="last-3-months">Last 3 Months</MenuItem>
           <MenuItem value="this-year">This Year</MenuItem>
+          <MenuItem value="last-year">Last Year</MenuItem>
           <MenuItem value="all-time">All Time</MenuItem>
         </Select>
       </Box>
