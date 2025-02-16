@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
 import LeadsChart from "./LeadsChart";
+import LeadsLineChart from "./LeadsLineChart";
 import { Container } from "@mui/material";
 
 const Analytics = () => {
@@ -16,7 +17,11 @@ const Analytics = () => {
   return (
     <Container sx={{ width: "100vw", m: 0, pb: 16 }}>
       <SectionHeader title="Analytics" />
-      {!isError && !isLoading && <LeadsChart data={data} />}
+      {!isError && !isLoading && 
+      <>
+      <LeadsLineChart data={data} />
+      <LeadsChart data={data} />
+      </>}
     </Container>
   );
 };

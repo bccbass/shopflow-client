@@ -15,16 +15,16 @@ const LeadsChart = ({ data }) => {
   const dataByDate = (data, months) =>
     data.filter(
       (lead) => new Date(lead.dateCreated) >= getFirstDayOfMonth(months)
-    ).length;
+    ).length  / months;
 
 
   const parseDataByDate = (data, monthsArray) => {
     return monthsArray.map((interval) => {
-      return {
+      return  {
         interval: `${interval} Month Avg.`,
-        noTrial: dataByDate(data.noTrialLeads, interval) / interval,
-        trial: dataByDate(data.trialLeads, interval) / interval,
-        enrolled: dataByDate(data.enrolledLeads, interval) / interval,
+        noTrial: dataByDate(data.noTrialLeads, interval),
+        trial: dataByDate(data.trialLeads, interval),
+        enrolled: dataByDate(data.enrolledLeads, interval),
       };
     });
   };
@@ -42,6 +42,7 @@ const LeadsChart = ({ data }) => {
   return (
     <Box
       sx={{
+        py: 6,
         display: "flex",
         justifyContent: "space-around",
         alignItems: "flexstart",

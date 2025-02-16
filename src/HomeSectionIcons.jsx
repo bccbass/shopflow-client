@@ -16,6 +16,8 @@ import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import DownloadIcon from "@mui/icons-material/Download";
 import BuildCircleIcon from "@mui/icons-material/BuildCircle";
 import ReceiptIcon from "@mui/icons-material/Receipt";
+import BarChartIcon from "@mui/icons-material/BarChart";
+
 
 const HomeSectionItems = () => {
   const navigate = useNavigate();
@@ -63,6 +65,14 @@ const HomeSectionItems = () => {
       description:
         "Access and manage shared notes to streamline administration and track open tasks.",
       icon: <NoteIcon color="secondary" />,
+    },
+    {
+      title: "Dashboard",
+      path: "dashboard",
+      // restricted: true,
+      description:
+      "Get up to date analytics and track business trends to facilitate effect decision making.",
+      icon: <BarChartIcon color="secondary" />,
     },
     {
       title: "Archive",
@@ -115,7 +125,7 @@ const HomeSectionItems = () => {
               <ListItemButton
                 color="secondary"
                 onClick={() => {
-                  navigate(`/${item.path}`);
+                 navigate(`/${item.path}`);
                 }}
                 sx={[
                   {

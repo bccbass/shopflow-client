@@ -42,21 +42,7 @@ const NewStudents = () => {
     queryKey: ["due"],
     queryFn: () => getResource("leads/due"),
   });
-  const getAnalytics = (query) => {
-    const now = Date.now();
-    if (!query.isLoading && !query.isError)
-      return {
-        total: query.data.length,
-        totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
-        completedTrials: query.data.filter(
-          (lead) => new Date(lead.trialLesson.date) < now && lead.bookedTrial
-        ).length,
-        totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
-      };
-  };
 
-  const analytics = getAnalytics(leadsQuery);
-  // console.log(analytics);
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
       ? arr
@@ -227,12 +213,12 @@ const NewStudents = () => {
               sx={{
                 width: "100%",
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "flex-end",
                 mr: 4,
                 mt: 4,
               }}
             >
-              <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
+              {/* <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
                 <Typography color="text.secondary" variant="h5">
                   Analytics Snapshot
                 </Typography>
@@ -251,7 +237,7 @@ const NewStudents = () => {
                 <Typography>{`Trial Conversion Rate: ${Math.floor(
                   (analytics.totalEnrollments / analytics.completedTrials) * 100
                 )}%`}</Typography>
-              </Card>
+              </Card> */}
               <DownloadCollectionCsvButton
                 collection="Leads"
                 data={leadsQuery.data}

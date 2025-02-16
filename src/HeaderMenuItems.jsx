@@ -76,17 +76,17 @@ const HeaderMenuItems = () => {
       fullAccess: false,
     },
     {
-      title: "Analytics",
-      path: "analytics",
+      title: "Dashboard",
+      path: "dashboard",
       icon: <BarChartIcon fontSize="large" />,
       fullAccess: true,
     },
-    {
-      title: "Settings",
-      path: "settings",
-      icon: <SettingsIcon fontSize="large" />,
-      fullAccess: true,
-    },
+    // {
+    //   title: "Settings",
+    //   path: "settings",
+    //   icon: <SettingsIcon fontSize="large" />,
+    //   fullAccess: true,
+    // },
   ];
   return (
     <>
