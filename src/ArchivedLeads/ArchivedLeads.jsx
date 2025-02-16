@@ -22,16 +22,7 @@ const ArchivedLeads = () => {
     queryFn: () => getResource("archive?sort=" + sortOrder),
   });
 
-  const getAnalytics = (query) => {
-    if (!query.isLoading && !query.isError)
-      return {
-        total: query.data.length,
-        totalTrials: query.data.filter((lead) => lead.bookedTrial).length,
-        totalEnrollments: query.data.filter((lead) => lead.enrolled).length,
-        // totalContact: query.data.reduce((acc, obj) => acc + obj.totalContact, 0) ,
-      };
-  };
-  const analytics = getAnalytics(archive);
+
   const filteredArr = (arr, searchTerm) => {
     return searchTerm.length == 0
       ? arr
@@ -87,33 +78,10 @@ const ArchivedLeads = () => {
                 mt: 4,
                 mb: 1,
                 px: 2,
-                justifyContent: "space-between",
-                // alignItems: "flex-end",
+                justifyContent: "flex-end",
               }}
             >
-              <Card sx={{ display: "flex", flexDirection: "column", p: 3 }}>
-                <Typography color="text.secondary" variant="h5">
-                  Analytics Snapshot
-                </Typography>
-                <Divider />
-                <Typography>{`Total Leads: ${analytics.total}`}</Typography>
-                <Typography>{`Total Trials: ${
-                  analytics.totalTrials
-                } (${Math.floor(
-                  (analytics.totalTrials / analytics.total) * 100
-                )}%)`}</Typography>
-                <Typography>{`Total Enrollments: ${
-                  analytics.totalEnrollments
-                } (${Math.floor(
-                  (analytics.totalEnrollments / analytics.total) * 100
-                )}%)`}</Typography>
-                <Typography>{`Trial Conversion Rate: ${Math.floor(
-                  (analytics.totalEnrollments / analytics.totalTrials) * 100
-                )}%`}</Typography>
-                {/* <Typography>{`Avg. Total Contact: ${
-                  (analytics.totalContact / analytics.total).toFixed(2)
-                }`}</Typography> */}
-              </Card>
+
               <DownloadCollectionCsvButton
                 data={archive.data}
                 collection="Archived Leads"
