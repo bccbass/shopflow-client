@@ -72,7 +72,7 @@ const LeadsChart = ({ data }) => {
                 {
                   id: 1,
                   value: currentMonthData.trial,
-                  label: "Trial Booked",
+                  label: "Trial Only",
                 },
                 {
                   id: 2,
@@ -113,7 +113,7 @@ const LeadsChart = ({ data }) => {
             },
             {
               dataKey: "trial",
-              label: "Trial Lesson",
+              label: "Trial Only",
               stack: "current",
               valueFormatter,
             },

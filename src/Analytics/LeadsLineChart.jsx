@@ -37,7 +37,7 @@ const LeadsLineChart = ({ data }) => {
     >
       <Typography
         sx={{ alignSelf: "flex-start" }}
-        px={6}
+        px={12}
         py={2}
         variant="h4"
         gutterBottom
