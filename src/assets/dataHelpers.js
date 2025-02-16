@@ -17,7 +17,7 @@ const processLeadsForChart = (leads) => {
       if (lead.status === "noTrial") groupedData[month].inquiries += 1;
       if (lead.status === "trial") groupedData[month].trials += 1;
       if (lead.status === "enrolled") groupedData[month].enrollments += 1, groupedData[month].trials += 1;
-      groupedData[month].total += 1
+      lead.status ==='enrolled' ? groupedData[month].total += 2 : groupedData[month].total += 1
     });
   
     return Object.values(groupedData); // Convert to array for the chart

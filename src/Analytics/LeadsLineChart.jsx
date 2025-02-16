@@ -48,7 +48,7 @@ const LeadsLineChart = ({ data }) => {
       <LineChart
         xAxis={[{ scaleType: "point", data: chartData.map((d) => d.x) }]}
         series={[
-          {
+          { 
             data: chartData.map((d) => d.inquiries),
             label: "No Trial",
             stack: "all",
