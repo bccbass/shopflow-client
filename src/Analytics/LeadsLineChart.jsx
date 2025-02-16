@@ -51,14 +51,14 @@ const LeadsLineChart = ({ data }) => {
           { 
             data: chartData.map((d) => d.inquiries),
             label: "No Trial",
-            stack: "all",
-            area: true,
+            // stack: "all",
+            // area: true,
           },
           {
             data: chartData.map((d) => d.trials),
             label: "Trials",
-            stack: "all",
-            area: true,
+            // stack: "all",
+            // area: true,
           },
           {
             data: chartData.map((d) => d.enrollments),
@@ -66,9 +66,9 @@ const LeadsLineChart = ({ data }) => {
             stack: "all",
             area: true,
           },
-          {
+          { 
             data: chartData.map((d) => d.total),
-            label: "Total",
+            label: "Total Enquiries", 
             // stack: "all",
             area: false,
             color: "teal",
