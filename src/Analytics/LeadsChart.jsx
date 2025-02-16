@@ -1,40 +1,132 @@
-import React from 'react'
-import { BarChart } from '@mui/x-charts/BarChart';
-import { PieChart } from '@mui/x-charts/PieChart';
+import React from "react";
+import { BarChart } from "@mui/x-charts/BarChart";
+import { PieChart } from "@mui/x-charts/PieChart";
 
-import { Box } from "@mui/material"
+import { Box, Typography } from "@mui/material";
 
-const LeadsChart = ({data}) => {
-    console.log(data[0])
-    // const totalStatus = data.reduce( (acc, cur) => 
-    //     cur.status === 'enrolled' ? acc.enrolled = acc.enrolled +=1 : acc.trial = acc.trial +=1
-    // , {enrolled: 0, trial: 0, noTrial: 0});
-    const noTrial = data.filter(lead => lead.status === 'noTrial').length
-    const trial = data.filter(lead => lead.status === 'trial').length
-    const enrolled = data.filter(lead => lead.status === 'enrolled').length
+const LeadsChart = ({ data }) => {
+  const getFirstDayOfMonth = (offset = 0) => {
+    const date = new Date();
+    date.setMonth(date.getMonth() - offset, 1);
+    date.setHours(0, 0, 0, 0);
+    return date;
+  };
+
+  const dataByDate = (data, months) =>
+    data.filter(
+      (lead) => new Date(lead.dateCreated) >= getFirstDayOfMonth(months)
+    ).length;
+
+
+  const parseDataByDate = (data, monthsArray) => {
+    return monthsArray.map((interval) => {
+      return {
+        interval: `${interval} Month Avg.`,
+        noTrial: dataByDate(data.noTrialLeads, interval) / interval,
+        trial: dataByDate(data.trialLeads, interval) / interval,
+        enrolled: dataByDate(data.enrolledLeads, interval) / interval,
+      };
+    });
+  };
+  const valueFormatter = function (value) {
+    return Math.floor(value);
+  };
+
+  const dataSet = parseDataByDate(data, [1, 3, 6, 12]);
+  const currentMonthData = dataSet[0];
+  const monthTotal =
+    currentMonthData.trial +
+    currentMonthData.noTrial +
+    currentMonthData.enrolled;
+
   return (
-    <Box sx={{display: 'flex'}}>
-    <BarChart
-      xAxis={[{ scaleType: 'band', data: ['Last Year'] }]}
-      series={[{ data: [noTrial] }, { data: [trial] },{ data: [enrolled] }]}
-      width={500}
-      height={300}
-    />  
-    <PieChart
-  series={[
-    {
-      data: [
-        { id: 0, value: noTrial, label: 'No Trial' },
-        { id: 1, value: trial, label: 'Trial Booked' },
-        { id: 2, value: enrolled, label: 'Enrolled' },
-      ],
-    },
-  ]}
-  width={420}
-  height={200}
-/>
-</Box>
-)
-}
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "space-around",
+        alignItems: "flexstart",
+        flexWrap: "wrap",
+        width: "100%",
+      }}
+    >
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <Typography variant="h4" gutterBottom color="text.secondary">
+          This Months Activity
+        </Typography>
+        <PieChart
+          series={[
+            {
+              arcLabel: (item) =>
+                `${Math.round((item.value / monthTotal) * 100)}%`,
+              data: [
+                {
+                  id: 0,
+                  value: currentMonthData.noTrial,
+                  label: "No Trial",
+                  valueFormatter,
+                },
+                {
+                  id: 1,
+                  value: currentMonthData.trial,
+                  label: "Trial Booked",
+                },
+                {
+                  id: 2,
+                  value: currentMonthData.enrolled,
+                  label: "Enrolled",
+                },
+              ],
+            },
+          ]}
+          width={420}
+          height={200}
+        />
+        <Typography variant="h5" gutterBottom color="text.secondary">
+          {`Total Enquiries: ${monthTotal}`}
+        </Typography>
+      </Box>
+      <Box
+        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+      >
+        <Typography variant="h4" gutterBottom color="text.secondary">
+          Yearly Average
+        </Typography>
+        <BarChart
+          yAxis={[
+            {
+              label: "Lead History (Averages)",
+            },
+          ]}
+          xAxis={[{ scaleType: "band", dataKey: "interval" }]}
+          dataset={dataSet}
+          series={[
+            {
+              dataKey: "enrolled",
+              label: "Enrolled",
+              stack: "current",
+              valueFormatter,
+            },
+            {
+              dataKey: "trial",
+              label: "Trial Lesson",
+              stack: "current",
+              valueFormatter,
+            },
+            {
+              dataKey: "noTrial",
+              label: "No Trial",
+              stack: "current",
+              valueFormatter,
+            },
+          ]}
+          width={500}
+          height={300}
+        />
+      </Box>
+    </Box>
+  );
+};
 
-export default LeadsChart
+export default LeadsChart;

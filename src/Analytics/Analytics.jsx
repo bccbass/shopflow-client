@@ -1,27 +1,24 @@
-import React from 'react'
+import React from "react";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 import { getResource } from "../assets/apiHelpers";
 import SectionHeader from "../SectionHeader";
-import LeadsChart from './LeadsChart';
-import { Container } from '@mui/material';
-
-
+import LeadsChart from "./LeadsChart";
+import { Container } from "@mui/material";
 
 const Analytics = () => {
-    const {data, isLoading, isError} = useQuery({
-      queryKey: ["analytics"],
-      queryFn: () => getResource("analytics"),
-    });
-    
-  return (
-    <Container>
-      < SectionHeader title="Analytics" />
-{  (!isError && !isLoading) && < LeadsChart data={data} />
-}
-    </Container>
-  )
-}
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["analytics"],
+    queryFn: () => getResource("analytics"),
+  });
 
-export default Analytics
+  return (
+    <Container sx={{ width: "100vw", m: 0, pb: 16 }}>
+      <SectionHeader title="Analytics" />
+      {!isError && !isLoading && <LeadsChart data={data} />}
+    </Container>
+  );
+};
+
+export default Analytics;
