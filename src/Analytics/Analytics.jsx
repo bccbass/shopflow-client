@@ -16,7 +16,7 @@ const Analytics = () => {
 
   return (
     <Container sx={{ width: "100vw", m: 0, pb: 16 }}>
-      <SectionHeader title="Analytics" />
+      <SectionHeader title="Analytics Dashboard" />
       {!isError && !isLoading && 
       <>
       <LeadsLineChart data={data} />

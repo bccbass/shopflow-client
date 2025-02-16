@@ -1,4 +1,4 @@
-import { format } from 'date-fns'
+import { format, startOfMonth, subMonths, startOfYear, endOfMonth, } from 'date-fns'
 
 
 // Function to process leads into chart data
@@ -23,4 +23,25 @@ const processLeadsForChart = (leads) => {
     return Object.values(groupedData); // Convert to array for the chart
   };
 
-  export {processLeadsForChart}
+   const getDateRange = (option) => {
+    const today = new Date();
+    
+    switch (option) {
+      case "all-time":
+        return { start: null, end: null }; // No filtering
+  
+      case "this-month":
+        return { start: startOfMonth(today), end: endOfMonth(today) };
+  
+      case "last-3-months":
+        return { start: subMonths(startOfMonth(today), 2), end: endOfMonth(today) };
+  
+      case "this-year":
+        return { start: startOfYear(today), end: endOfMonth(today) };
+  
+      default:
+        return { start: null, end: null }; // Fallback (all-time)
+    }
+  };
+
+  export {processLeadsForChart, getDateRange}

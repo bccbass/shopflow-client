@@ -54,7 +54,7 @@ const LeadsChart = ({ data }) => {
         sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         <Typography variant="h4" gutterBottom color="text.secondary">
-          This Months Activity
+        Last 30 Days
         </Typography>
         <PieChart
           series={[
@@ -85,7 +85,7 @@ const LeadsChart = ({ data }) => {
           height={200}
         />
         <Typography variant="h5" gutterBottom color="text.secondary">
-          {`Total Enquiries: ${monthTotal}`}
+          {`30 Day Total: ${monthTotal}`}
         </Typography>
       </Box>
       <Box
