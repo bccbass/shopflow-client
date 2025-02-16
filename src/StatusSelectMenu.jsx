@@ -10,7 +10,7 @@ const statusArray = [
   "Awaiting Response",
   "Awaiting Shipment",
   "Awaiting Pick-Up",
-  "Completed",
+  "Complete",
 ];
 
 const StatusSelectMenu = ({ id, curStatus = statusArray[0], path }) => {

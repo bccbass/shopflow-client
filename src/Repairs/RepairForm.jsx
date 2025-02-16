@@ -17,7 +17,7 @@ const status = [
   "Awaiting Response",
   "Awaiting Shipment",
   "Awaiting Pick-Up",
-  "Completed",
+  "Complete",
 ];
 
 const RepairForm = ({ setRepairData, repairData }) => {
