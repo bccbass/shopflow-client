@@ -62,11 +62,12 @@ const LeadsChart = ({ data }) => {
               arcLabel: (item) =>
                 `${Math.round((item.value / monthTotal) * 100)}%`,
               data: [
+
+
                 {
                   id: 0,
-                  value: currentMonthData.noTrial,
-                  label: "No Trial",
-                  valueFormatter,
+                  value: currentMonthData.enrolled,
+                  label: "Enrolled",
                 },
                 {
                   id: 1,
@@ -75,8 +76,9 @@ const LeadsChart = ({ data }) => {
                 },
                 {
                   id: 2,
-                  value: currentMonthData.enrolled,
-                  label: "Enrolled",
+                  value: currentMonthData.noTrial,
+                  label: "No Trial",
+                  valueFormatter,
                 },
               ],
             },
