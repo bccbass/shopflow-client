@@ -16,7 +16,7 @@ const MenuItemArchive = ({ id }) => {
     mutationFn: deleteResource,
     onSuccess: () => {
       queryClient.invalidateQueries(["Leads", "Archive"]);
-      navigate('/archive')
+      // navigate('/archive')
     },
   });
 
