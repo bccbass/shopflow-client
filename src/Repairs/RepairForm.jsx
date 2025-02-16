@@ -10,12 +10,18 @@ import {
   Checkbox,
   FormControlLabel,
 } from "@mui/material";
-import { UserContext } from '../UserContext'
+import { UserContext } from "../UserContext";
 
-const status = ["In Progress", "Awaiting Response", "Completed"];
+const status = [
+  "In Progress",
+  "Awaiting Response",
+  "Awaiting Shipment",
+  "Awaiting Pick-Up",
+  "Completed",
+];
 
 const RepairForm = ({ setRepairData, repairData }) => {
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
   const handleChange = (e) =>
     setRepairData({
       ...repairData,

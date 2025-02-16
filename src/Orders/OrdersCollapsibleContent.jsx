@@ -1,8 +1,8 @@
 /** @format */
 
 import React from "react";
-import { useContext } from "react";
-import { Box, Container, Typography, Card, Divider } from "@mui/material";
+import { useContext, useState } from "react";
+import { Box, Container, Typography, Card, Divider, Link } from "@mui/material";
 import TogglePaidButton from "./TogglePaidButton";
 import AddOrderButton from "./AddOrderButton";
 import OrderFormWrapper from "./OrderFormWrapper";
@@ -10,8 +10,10 @@ import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
 import { nullDate } from "../assets/dateHelpers";
 import DisplayMarkdown from "../DisplayMarkdown";
+import StatusSelectMenu from "../StatusSelectMenu";
 
 const OrdersCollapsibleContent = ({ row }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useContext(UserContext);
   const noDueDate = nullDate(row.due);
   const dividerStyles = {
@@ -116,20 +118,23 @@ const OrdersCollapsibleContent = ({ row }) => {
               {row?.orderDescription}
             </Typography>
             <Typography color="textSecondary">
-              <strong> Status: </strong>
-              {row?.status}
-            </Typography>
-            <Typography color="textSecondary">
               <strong> Total Price: </strong>
               {"$" + row.totalAmount}
             </Typography>
+
+            <StatusSelectMenu
+              setOpen={setMenuOpen}
+              open={menuOpen}
+              curStatus={row?.status}
+              path="orders"
+              id={row._id}
+            />
           </Box>
           <Box sx={{ pt: 2, width: "25%" }}>
-            <Typography  mb={-1.8} color="textSecondary">
+            <Typography mb={-1.8} color="textSecondary">
               <strong> Notes </strong>
-              
             </Typography>
-            < DisplayMarkdown note={row.notes} />
+            <DisplayMarkdown note={row.notes} />
           </Box>
         </Box>
 

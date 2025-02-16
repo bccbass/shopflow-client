@@ -12,7 +12,13 @@ import {
 } from "@mui/material";
 import { UserContext } from "../UserContext";
 
-const status = ["In Progress", "Awaiting Response", "Completed"];
+const status = [
+ "In Progress",
+  "Awaiting Response",
+  "Awaiting Shipment",
+  "Awaiting Pick-Up",
+  "Completed",
+];
 
 const OrderForm = ({ setOrderData, orderData }) => {
   const { user } = useContext(UserContext);
@@ -151,12 +157,12 @@ const OrderForm = ({ setOrderData, orderData }) => {
           display: "flex",
           flexWrap: "nowrap",
           justifyContent: "space-between",
-          alignItems: 'center',
+          alignItems: "center",
           width: "100%",
         }}
       >
         <TextField
-          sx={{ width: "34%", display: 'block' }}
+          sx={{ width: "34%", display: "block" }}
           size="small"
           id="depositAmount"
           label="Deposit Amount"
@@ -172,7 +178,7 @@ const OrderForm = ({ setOrderData, orderData }) => {
           }}
         />
         <TextField
-          sx={{ width: "34%", display: 'block' }}
+          sx={{ width: "34%", display: "block" }}
           size="small"
           id="totalAmount"
           label="Total Price"
@@ -189,7 +195,7 @@ const OrderForm = ({ setOrderData, orderData }) => {
         />
 
         <FormControlLabel
-          sx={{ width: '15%', color: "grey" }}
+          sx={{ width: "15%", color: "grey" }}
           labelPlacement="start"
           control={
             <Checkbox

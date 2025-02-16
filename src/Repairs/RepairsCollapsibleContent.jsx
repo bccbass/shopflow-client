@@ -1,7 +1,7 @@
 /** @format */
 
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Box, Container, Typography, Card, Divider } from "@mui/material";
 import TogglePaidButton from "./TogglePaidButton";
 import AddRepairButton from "./AddRepairButton";
@@ -10,6 +10,7 @@ import { localDate } from "../assets/dateHelpers";
 import { UserContext } from "../UserContext";
 import { nullDate } from "../assets/dateHelpers";
 import DisplayMarkdown from "../DisplayMarkdown";
+import StatusSelectMenu from "../StatusSelectMenu";
 
 const RepairsCollapsibleContent = ({ row }) => {
   const { user } = useContext(UserContext);
@@ -117,16 +118,19 @@ const RepairsCollapsibleContent = ({ row }) => {
               <strong>Job: </strong>
               {row?.jobDescription}
             </Typography>
-            <Typography color="textSecondary">
-              <strong> Status: </strong>
-              {row?.status}
-            </Typography>
+
+              <StatusSelectMenu
+                curStatus={row?.status}
+                path="repairs"
+                id={row._id}
+              />
+      
           </Box>
           <Box sx={{ py: 2, width: "25%" }}>
             <Typography mb={-1.8} color="textSecondary">
               <strong> Notes </strong>
             </Typography>
-            < DisplayMarkdown note={row.notes} />
+            <DisplayMarkdown note={row.notes} />
           </Box>
         </Box>
         <Box

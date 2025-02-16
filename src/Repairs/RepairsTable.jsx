@@ -33,6 +33,7 @@ export default function RepairsTable({ repairs, page, setPage }) {
             <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Instrument</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Job</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Status</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>
               {/* <span style={{ color: "green" }}>Paid</span> /{" "}
               <span style={{ color: "red" }}>Owed</span> */}

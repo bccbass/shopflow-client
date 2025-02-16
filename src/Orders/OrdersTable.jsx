@@ -33,12 +33,9 @@ export default function OrdersTable({ orders, page, setPage }) {
             <TableCell sx={{ fontWeight: "bold" }}>Name</TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Item</TableCell>
             {/* <TableCell sx={{ fontWeight: "bold" }}>Description</TableCell> */}
-            <TableCell sx={{ fontWeight: "bold" }}>
-              Deposit
-            </TableCell>
-            <TableCell sx={{ fontWeight: "bold" }}>
-              Total Amount
-            </TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Deposit</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Total Amount</TableCell>
+            <TableCell sx={{ fontWeight: "bold" }}>Status </TableCell>
             <TableCell sx={{ fontWeight: "bold" }}>Phone</TableCell>
             {/* <TableCell sx={{ fontWeight: "bold" }}>Email</TableCell> */}
             <TableCell sx={{ fontWeight: "bold" }}>Text</TableCell>
@@ -50,7 +47,12 @@ export default function OrdersTable({ orders, page, setPage }) {
             ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
             : rows
           ).map((row) => (
-            <OrdersTableRow onMenuToggle={onMenuToggle} openMenuId={openMenuId} key={row._id} row={row} />
+            <OrdersTableRow
+              onMenuToggle={onMenuToggle}
+              openMenuId={openMenuId}
+              key={row._id}
+              row={row}
+            />
           ))}
           {emptyRows > 0 && (
             <TableRow style={{ height: 70 * emptyRows }}>

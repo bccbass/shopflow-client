@@ -62,6 +62,9 @@ function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
         <TableCell sx={(row.overdue && !row.completed ) || !row.paid? overdueStyles : {}}>
           {`$${row.totalAmount}`}
         </TableCell>
+        <TableCell sx={(row.overdue && !row.completed ) || !row.paid? overdueStyles : {}}>
+          {`${row.status}`}
+        </TableCell>
         <TableCell>
           <a href={"SIP:" + row?.phone}>
             <CallIcon fontSize="small" sx={{ ml: 1, color: "grey" }} />
@@ -84,7 +87,7 @@ function OrdersTableRow({ row, openMenuId, onMenuToggle }) {
         </TableCell>
       </TableRow>
       <TableRow>
-        <TableCell sx={{ p: 0, m: 0 }} colSpan={9}>
+        <TableCell sx={{ p: 0, m: 0 }} colSpan={10}>
           <Collapse in={open} timeout="auto" sx={{ bgcolor: "primary.main" }}>
             <OrdersCollapsibleContent row={row} />
           </Collapse>
