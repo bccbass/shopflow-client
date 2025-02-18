@@ -43,7 +43,7 @@ const processEnquiryTotalsForChart = (leads) => {
   const groupedData = {};
 
   leads.forEach((lead) => {
-    const day = format(new Date(lead.dateCreated), "MMM dd"); 
+    const day = format(new Date(lead.dateCreated), "dd MMM"); 
 
     // Initialize if day not present
     if (!groupedData[day]) {
