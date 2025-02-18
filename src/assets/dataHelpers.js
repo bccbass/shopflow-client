@@ -14,7 +14,7 @@ const processLeadsForChart = (leads) => {
   const groupedData = {};
 
   leads.forEach((lead) => {
-    const month = format(new Date(lead.dateCreated), "yyyy-MM"); // Extract YYYY-MM
+    const month = format(new Date(lead.dateCreated), "MMM yyyy"); // Extract YYYY-MM
 
     // Initialize if month not present
     if (!groupedData[month]) {
@@ -43,7 +43,7 @@ const processEnquiryTotalsForChart = (leads) => {
   const groupedData = {};
 
   leads.forEach((lead) => {
-    const day = format(new Date(lead.dateCreated), "yyyy-MM-dd"); // Extract YYYY-MM-dd
+    const day = format(new Date(lead.dateCreated), "MMM dd"); 
 
     // Initialize if day not present
     if (!groupedData[day]) {

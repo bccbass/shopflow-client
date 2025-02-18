@@ -40,8 +40,8 @@ const thirtyDayRange = getThirtyRange()
             data: chartData.map((d) => d.total),
             label: "Total Enquiries", 
             // stack: "all",
-            area: false,
-            color: "teal",
+            area: true,
+            color: "blueviolet",
           },
         ]}
         width={1000}
