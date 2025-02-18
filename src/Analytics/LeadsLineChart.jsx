@@ -2,25 +2,14 @@ import React from "react";
 import { useState } from "react";
 import { LineChart } from "@mui/x-charts/LineChart";
 import { Box, Typography, Select, MenuItem } from "@mui/material";
-import { processLeadsForChart, getDateRange } from "../assets/dataHelpers.js";
+import { processLeadsForChart, getDateRange, filterByDate } from "../assets/dataHelpers.js";
 
-const LeadsLineChart = ({ data }) => {
+const LeadsLineChart = ({ allLeads }) => {
   const [dateRange, setDateRange] = useState("all-time");
-  const allLeads = [
-    ...data.enrolledLeads,
-    ...data.trialLeads,
-    ...data.noTrialLeads,
-  ].sort((a, b) => new Date(a.dateCreated) - new Date(b.dateCreated));
+
 
   const userDateRange = getDateRange(dateRange);
-  const filterByDate = (data, dateRange) => {
-  if (!dateRange.start || !dateRange.end) return data; // No filter (all time)
 
-  return data.filter((item) => {
-    const itemDate = new Date(item.dateCreated);
-    return itemDate >= dateRange.start && itemDate <= dateRange.end;
-  });
-};
 
   const chartData = processLeadsForChart(filterByDate(allLeads, userDateRange));
 

@@ -1,33 +1,11 @@
 import React from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
 import { PieChart } from "@mui/x-charts/PieChart";
-
+import { dataByDate, parseDataByDate } from "../assets/dataHelpers";
 import { Box, Typography } from "@mui/material";
 
 const LeadsChart = ({ data }) => {
-  const getFirstDayOfMonth = (offset = 0) => {
-    const date = new Date();
-    date.setMonth(date.getMonth() - offset, 1);
-    date.setHours(0, 0, 0, 0);
-    return date;
-  };
 
-  const dataByDate = (data, months) =>
-    data.filter(
-      (lead) => new Date(lead.dateCreated) >= getFirstDayOfMonth(months)
-    ).length  / months;
-
-
-  const parseDataByDate = (data, monthsArray) => {
-    return monthsArray.map((interval) => {
-      return  {
-        interval: `${interval} Month Avg.`,
-        noTrial: dataByDate(data.noTrialLeads, interval),
-        trial: dataByDate(data.trialLeads, interval),
-        enrolled: dataByDate(data.enrolledLeads, interval),
-      };
-    });
-  };
   const valueFormatter = function (value) {
     return Math.floor(value);
   };
