@@ -80,6 +80,11 @@ const getDateRange = (option) => {
         start: subMonths(startOfMonth(today), 2),
         end: endOfMonth(today),
       };
+    case "30-days":
+      return {
+        start: subDays(today, 30),
+        end: today,
+      };
 
     case "this-year":
       return { start: startOfYear(today), end: endOfMonth(today) };
