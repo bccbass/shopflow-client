@@ -38,7 +38,7 @@ const ThirtyDayInquiriesChart = ({ enquiryData }) => {
         gutterBottom
         color="text.secondary"
       >
-        Total Enquiry History
+        Enquiry History
       </Typography>
       <LineChart
         xAxis={[{ scaleType: "point", data: chartData.map((d) => d.x) }]}
