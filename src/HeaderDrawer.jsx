@@ -21,6 +21,7 @@ import Logo from "./Logo";
 import LogOutButton from "./Login/LogOutButton";
 import { UserContext } from "./UserContext";
 import UserAvatar from "./UserAvatar";
+import SettingsNavIcon from './SettingsNavIcon'
 
 const drawerWidth = 240;
 // console.log(location.pathname)
@@ -141,11 +142,14 @@ export default function MiniDrawer({ children }) {
               <Box
                 mr={1}
                 display={"flex"}
-                width={"10rem"}
-                alignItems={"flex-end"}
+                // width={"14rem"}
+                gap={'1.5rem'}
+                alignItems={"center"}
                 justifyContent={"space-between"}
               >
                 <LogOutButton />
+                <SettingsNavIcon fullAccess={user.fullAccess}/>
+
                 <UserAvatar user={user}/>
               </Box>
             </>
