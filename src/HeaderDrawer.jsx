@@ -138,12 +138,12 @@ export default function MiniDrawer({ children }) {
               >
                 <MenuIcon />
               </IconButton>
-              <Logo variant="h4" />
+              <Logo variant="h4" centerOffset={user.fullAccess ? 19 : 14} />
               <Box
                 mr={1}
                 display={"flex"}
                 // width={"14rem"}
-                gap={'1.5rem'}
+                gap={'2rem'}
                 alignItems={"center"}
                 justifyContent={"space-between"}
               >
