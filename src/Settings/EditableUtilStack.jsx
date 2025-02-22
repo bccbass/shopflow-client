@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Stack, Chip, Box, TextField, Button } from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { putResource } from "../assets/apiHelpers";
@@ -7,8 +7,30 @@ import { putResource } from "../assets/apiHelpers";
 const EditableUtilStack = ({ utilsData, objKey, textFieldLabel }) => {
   const [utilsArr, setUtilsArr] = useState(utilsData[objKey]);
   const [newElement, setNewElement] = useState("");
+  const [editing, setEditing] = useState(false);
 
   const queryClient = useQueryClient();
+
+  const chipContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        chipContainerRef.current &&
+        !chipContainerRef.current.contains(e.target)
+      ) {
+        setEditing(false);
+      }
+    };
+
+    if (editing) {
+      window.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      window.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [editing]);
 
   const mutation = useMutation({
     mutationFn: putResource,
@@ -48,16 +70,25 @@ const EditableUtilStack = ({ utilsData, objKey, textFieldLabel }) => {
         p={2}
         border={1}
         sx={{ borderColor: "text.secondary" }}
+        ref={chipContainerRef}
       >
         {utilsArr.map((element) => (
           <Chip
             size={"large"}
+            color="secondary"
             key={element}
             label={element}
             variant="outlined"
-            onDelete={() => handleDelete(element)}
+            onDelete={editing ? () => handleDelete(element) : null}
           />
         ))}
+        {!editing && (
+          <Chip
+            color="secondary"
+            label={`Edit`}
+            onClick={(e) => {e.stopPropagation(); setEditing(true)}}
+          />
+        )}
       </Stack>
       <Box
         sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}

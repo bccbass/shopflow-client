@@ -1,6 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { Stack, Card, Box, Typography, TextField, Button } from "@mui/material";
+import {
+  Divider,
+  Card,
+  Box,
+  Typography,
+  TextField,
+  Button,
+} from "@mui/material";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { putResource } from "../assets/apiHelpers";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
@@ -23,6 +30,7 @@ const Locations = ({ utilsData }) => {
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              justifyContent: "space-between",
               width: 280,
               borderRadius: 3,
               color: "text.primary",
@@ -31,12 +39,16 @@ const Locations = ({ utilsData }) => {
               m: 2,
             }}
           >
-            <Box width={'100%'}>
-              <Typography variant="h6" color="grey" align="center" pb={2}>
+            <Box width={"100%"}>
+              <Typography variant="h6" color="grey" align="center">
                 {`${location.name.toUpperCase()}`}
               </Typography>
+              <Divider />
 
-              <Typography pb={0}>{`${location.streetAddress}`}</Typography>
+              <Typography
+                pt={2}
+                pb={0}
+              >{`${location.streetAddress}`}</Typography>
 
               <Typography pb={2}>
                 {`${location.suburb}, ${location.state}`}
@@ -49,9 +61,18 @@ const Locations = ({ utilsData }) => {
 
               <Typography pb={4}>{`Phone: ${location.phone}`}</Typography>
             </Box>
-            <OpenUpdateModalButton title={"Edit Location"}>
-              <LocationFormWrapper location={location} utilsData={utilsData} />
-            </OpenUpdateModalButton>
+
+            <Box
+              sx={{width: '100%', display: "flex", flexDirection:'column', alignItems: "center" }}
+            >
+              <Divider width={'100%'}/>
+              <OpenUpdateModalButton title={"Edit Location"}>
+                <LocationFormWrapper
+                  location={location}
+                  utilsData={utilsData}
+                />
+              </OpenUpdateModalButton>
+            </Box>
           </Card>
         ))}
       </Box>
