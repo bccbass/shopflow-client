@@ -7,7 +7,9 @@ const General = ({ utilsData }) => {
   return (
     <Box maxWidth={700} mr={10} mb={12}>
       <Box my={5}>
-        <Typography color="grey" variant="h5">Manage Instruments & Subjects</Typography>
+        <Typography color="grey" variant="h5">
+          Manage Instruments & Subjects
+        </Typography>
         <EditableUtilStack
           utilsData={utilsData}
           objKey={"instruments"}
@@ -15,7 +17,9 @@ const General = ({ utilsData }) => {
         />
       </Box>
       <Box my={5}>
-        <Typography color="grey" variant="h5">Manage Group Classes</Typography>
+        <Typography color="grey" variant="h5">
+          Manage Group Classes
+        </Typography>
         <EditableUtilStack
           utilsData={utilsData}
           objKey={"groupClasses"}
@@ -24,7 +28,9 @@ const General = ({ utilsData }) => {
       </Box>
       <Divider my={2} />
       <Box my={5}>
-        <Typography color="grey" variant="h5">Manage Lead Sources</Typography>
+        <Typography color="grey" variant="h5">
+          Manage Lead Sources
+        </Typography>
         <EditableUtilStack
           utilsData={utilsData}
           objKey={"leadSources"}
@@ -33,9 +39,11 @@ const General = ({ utilsData }) => {
       </Box>
       <Divider my={2} />
       <Box my={5}>
-        <Typography color="grey" variant="h5">Manage Locations</Typography>
-          
-          <Locations utilsData={utilsData} />
+        <Typography color="grey" variant="h5">
+          Manage Locations
+        </Typography>
+
+        <Locations utilsData={utilsData} />
       </Box>
     </Box>
   );

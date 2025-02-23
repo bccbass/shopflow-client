@@ -143,7 +143,7 @@ export default function MiniDrawer({ children }) {
                 mr={1}
                 display={"flex"}
                 // width={"14rem"}
-                gap={'2rem'}
+                sx={{gap: 4}}
                 alignItems={"center"}
                 justifyContent={"space-between"}
               >

@@ -101,6 +101,8 @@ const EditableUtilStack = ({ utilsData, objKey, textFieldLabel }) => {
           size="small"
         />
         <Button
+          disabled={newElement.trim().length === 0}
+          color="secondary"
           variant="outlined"
           sx={{ mx: "1rem" }}
           onClick={() => handleClick(newElement.trim())}

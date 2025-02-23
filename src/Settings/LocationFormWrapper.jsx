@@ -44,11 +44,11 @@ const LocationFormWrapper = ({ location = false, setOpen, utilsData }) => {
       body: { ...utilsData, locations: updatedLocations },
     });
   };
-  
+
   const handleDelete = () => {
     const updatedLocations = utilsData.locations.filter((location) =>
-          location._id !== locationData._id ? location : null
-        )
+      location._id !== locationData._id ? location : null
+    );
     mutation.mutate({
       path: `utils/${utilsData._id}`,
       body: { ...utilsData, locations: updatedLocations },
@@ -76,8 +76,12 @@ const LocationFormWrapper = ({ location = false, setOpen, utilsData }) => {
           justifyContent: "center",
         }}
       >
-        <Button onClick={submitUpdate} fullWidth variant="contained">
-          {location ? 'Update Location' : 'Add Location'}
+        <Button
+          onClick={submitUpdate}
+          fullWidth
+          variant="contained"
+        >
+          {location ? "Update Location" : "Add Location"}
         </Button>
 
         <Button
@@ -89,15 +93,17 @@ const LocationFormWrapper = ({ location = false, setOpen, utilsData }) => {
         >
           Cancel
         </Button>
-        {location && <Button
-        onClick={handleDelete}
-          color="error"
-          fullWidth
-          variant="contained"
-          sx={{ mr: 0.5 }}
-        >
-          Delete Location
-        </Button>}
+        {location && (
+          <Button
+            onClick={handleDelete}
+            color="error"
+            fullWidth
+            variant="contained"
+            sx={{ mr: 0.5 }}
+          >
+            Delete Location
+          </Button>
+        )}
       </DialogActions>
     </DialogContent>
   );

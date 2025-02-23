@@ -1,15 +1,11 @@
 import React from "react";
-import { useState } from "react";
 import {
   Divider,
   Card,
   Box,
   Typography,
-  TextField,
-  Button,
+
 } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { putResource } from "../assets/apiHelpers";
 import OpenUpdateModalButton from "../Buttons/OpenUpdateModalButton";
 import LocationFormWrapper from "./LocationFormWrapper";
 const Locations = ({ utilsData }) => {
@@ -63,9 +59,14 @@ const Locations = ({ utilsData }) => {
             </Box>
 
             <Box
-              sx={{width: '100%', display: "flex", flexDirection:'column', alignItems: "center" }}
+              sx={{
+                width: "100%",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
             >
-              <Divider width={'100%'}/>
+              <Divider width={"100%"} />
               <OpenUpdateModalButton title={"Edit Location"}>
                 <LocationFormWrapper
                   location={location}
