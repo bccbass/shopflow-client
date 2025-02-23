@@ -222,7 +222,7 @@ const TrialLessonForm = ({ setStudentData, studentData }) => {
           {!teachersQuery.isLoading && !teachersQuery.isError ? (
             teachersQuery?.data
               ?.filter((teacher) =>
-                teacher.instruments.includes(studentData.trialLesson.instrument)
+                teacher.active && teacher.instruments.includes(studentData.trialLesson.instrument)
               )
               .map((teacher) => (
                 <MenuItem value={teacher.firstLast} key={teacher._id}>

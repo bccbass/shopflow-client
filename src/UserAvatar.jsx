@@ -22,7 +22,7 @@ function stringToColor(string) {
 }
 
 const UserAvatar = ({user}) => {
-  return <Avatar sx={{ bgcolor: stringToColor(user.lastName), border: '1px solid lightblue', p: 2.5 }}>{user.initials}</Avatar>;
+  return <Avatar sx={{ bgcolor: stringToColor(user.lastName), border: '1px solid lightblue', py: 2.5 }}>{user.initials}</Avatar>;
 };
 
 export default UserAvatar;

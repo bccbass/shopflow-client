@@ -13,7 +13,7 @@ const LogOutButton = () => {
 
 
   return (
-    <Button onClick={logout} sx={{}} color="inherit">
+    <Button onClick={logout} sx={{pt: 2}} color="inherit">
       Logout
     </Button>
   );
