@@ -20,7 +20,7 @@ const theme = createTheme({
     },
     text: {
       primary: "#474747", // Main text color
-      secondary: "grey", // Main text color
+      secondary: "#707070", // Main text color
       light: "#C0C0C0", // Main text color
     },
     background: {
