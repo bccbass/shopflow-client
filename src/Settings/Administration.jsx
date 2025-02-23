@@ -37,10 +37,10 @@ const Administration = ({ adminData }) => {
               }}
             >
               <Box width={"100%"}>
-                <Typography variant="h6" color="grey" align="center">
+                <Typography variant="h6" color="text.secondary" align="center">
                   {`${admin.firstName} ${admin.lastName}`}
                 </Typography>
-                <Typography align="center" color="secondary" pb={2}>
+                <Typography align="center" color="text.light" pb={2}>
                  
                  {`${admin.fullAccess ? "(Full Access)" : "(Restricted Access)"}`}
                </Typography>

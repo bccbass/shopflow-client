@@ -20,7 +20,8 @@ const theme = createTheme({
     },
     text: {
       primary: "#474747", // Main text color
-      secondary: "#C0C0C0", // Main text color
+      secondary: "grey", // Main text color
+      light: "#C0C0C0", // Main text color
     },
     background: {
       default: "#f4f6f8", // Optional: Background color for the app
